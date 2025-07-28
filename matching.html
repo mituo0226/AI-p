@@ -1,103 +1,103 @@
+
 <!DOCTYPE html>
 <html lang="ja">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>AIパートナー診断結果</title>
-  <link href="https://unpkg.com/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet" />
+  <title>診断結果</title>
   <style>
     body {
-      font-family: 'Helvetica Neue', sans-serif;
-      background: black; color: white;
-      overflow-x: hidden;
-      margin: 0; padding: 0;
+      background-color: #000;
+      color: #fff;
+      font-family: 'Arial', sans-serif;
+      text-align: center;
+      padding: 20px;
     }
-    #bg-video {
-      position: fixed;
-      right: 0; bottom: 0;
-      min-width: 100%; min-height: 100%;
-      z-index: -1; object-fit: cover; opacity: 0.5;
+    h1 {
+      color: #ffccff;
+      font-size: 2em;
     }
-    .fade-in {
-      opacity: 0;
-      animation: fadeIn 2s ease forwards;
+    .main-character img {
+      border-radius: 50%;
+      width: 150px;
+      height: 150px;
     }
-    @keyframes fadeIn {
-      to { opacity: 1; }
+    .character-card {
+      display: inline-block;
+      width: 220px;
+      margin: 10px;
+      padding: 10px;
+      border-radius: 15px;
+      background-color: #111;
+      color: #fff;
+      box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+    }
+    .character-card img {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+    }
+    .character-name {
+      font-weight: bold;
+      margin: 5px 0;
+      font-size: 1.1em;
+    }
+    .video-link {
+      color: #66ccff;
+      font-size: 0.9em;
     }
   </style>
 </head>
 <body>
-  <video autoplay muted loop id="bg-video">
-    <source src="https://www.videvo.net/videvo_files/converted/2017_07/preview/170621_06_A_NightSky_1080p.mp424628.webm" type="video/webm">
-  </video>
-
-  <div class="max-w-5xl mx-auto px-6 py-20 text-center fade-in">
-    <h1 class="text-3xl font-bold text-pink-300 mb-8">あなたに選ばれたパートナー</h1>
-    <div id="characterCard" class="hidden mb-16">
-      <img id="characterImage" class="mx-auto w-48 h-48 rounded-full object-cover mb-4 border-4 border-white" />
-      <h2 id="characterName" class="text-2xl font-bold mb-2"></h2>
-      <p id="characterPhrase" class="italic text-pink-200 mb-2"></p>
-      <p id="characterIntro" class="text-sm text-pink-100"></p>
-      <a id="characterProfile" href="#" target="_blank" class="block text-blue-300 underline mt-4">▶ プロフィールページを見る</a>
-    </div>
-
-    <div id="relatedCharacters" class="hidden">
-      <h3 class="text-xl font-semibold text-pink-200 mb-6">他にも相性の良いパートナーたち</h3>
-      <div id="relatedGrid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-6 text-left"></div>
-    </div>
-  </div>
+  <h1>あなたに選ばれたパートナー</h1>
+  <div id="result" class="main-character"></div>
+  <h2>他にも相性の良いパートナーたち</h2>
+  <div id="sub-characters"></div>
 
   <script>
-    const base = "https://ryu02262.moo.jp/web/AI-p/";
     const params = new URLSearchParams(window.location.search);
-    const userType = params.get("type");
-    const userAge = params.get("age");
-    const partnerGender = params.get("partner");
+    const name = decodeURIComponent(params.get("name"));
+    const age = params.get("age");
+    const gender = params.get("gender");
+    const partner = params.get("partner");
+    const type = params.get("type");
 
-    async function loadAndMatch() {
-      const res = await fetch("characters.json");
-      const characters = await res.json();
+    fetch("characters.json")
+      .then((response) => response.json())
+      .then((characters) => {
+        const main = characters.find((c) => c.name === name);
+        const subs = characters.filter((c) =>
+          c.gender === partner &&
+          c.age === age &&
+          c.type === type &&
+          c.name !== name
+        ).slice(0, 4);
 
-      const scored = characters.map(c => {
-        let score = 0;
-        if (c.gender === partnerGender) score += 3;
-        if (c.age === userAge) score += 2;
-        if (c.type === userType) score += 3;
-        return { ...c, score };
-      }).sort((a, b) => b.score - a.score);
+        if (main) {
+          const resultDiv = document.getElementById("result");
+          resultDiv.innerHTML = `
+            <img src="${main.img}" alt="${main.name}" />
+            <h2>${main.name}（${main.age_num}歳）</h2>
+            <p><i>${main.phrase}</i></p>
+            <p>職業：${main.job}<br />性格：${main.type_desc}</p>
+            <p><a class="video-link" href="${main.profile}">▶プロフィール動画を見る</a></p>
+          `;
+        }
 
-      const best = scored[0];
-      const others = scored.slice(1, 5);
-
-      document.getElementById("characterImage").src = base + best.img;
-      document.getElementById("characterName").innerHTML = `<a href='${base + best.profile}' class='underline hover:text-pink-400'>${best.name}</a>`;
-      document.getElementById("characterPhrase").textContent = best.phrase;
-      document.getElementById("characterIntro").textContent = best.intro;
-      document.getElementById("characterProfile").href = base + best.profile;
-      document.getElementById("characterCard").classList.remove("hidden");
-
-      const grid = document.getElementById("relatedGrid");
-      others.forEach(c => {
-        const card = document.createElement("div");
-        card.className = "bg-white text-black rounded-xl p-4 shadow-md";
-        card.innerHTML = `
-          <img src="${base + c.img}" class="w-20 h-20 rounded-full object-cover border-2 border-pink-300 mb-2 mx-auto" />
-          <h4 class="text-center font-bold text-pink-700 mb-1">${c.name}</h4>
-          <p class="text-xs italic text-center text-gray-600 mb-1">“${c.phrase}”</p>
-          <p class="text-xs text-gray-700 mb-2">${c.intro}</p>
-          <a href="${base + c.profile}" target="_blank" class="text-indigo-500 text-xs block text-center hover:underline">▶ プロフィールページ</a>
-        `;
-        grid.appendChild(card);
+        const subDiv = document.getElementById("sub-characters");
+        subs.forEach((char) => {
+          const card = document.createElement("div");
+          card.className = "character-card";
+          card.innerHTML = `
+            <img src="${char.img}" alt="${char.name}" />
+            <div class="character-name">${char.name}（${char.age_num}歳）</div>
+            <p><i>${char.phrase}</i></p>
+            <p>職業：${char.job}<br />性格：${char.type_desc}</p>
+            <p><a class="video-link" href="${char.profile}">▶プロフィール動画</a></p>
+          `;
+          subDiv.appendChild(card);
+        });
       });
-      if (others.length > 0) {
-        document.getElementById("relatedCharacters").classList.remove("hidden");
-      }
-    }
-
-    window.onload = () => {
-      setTimeout(loadAndMatch, 1000);
-    };
   </script>
 </body>
 </html>
