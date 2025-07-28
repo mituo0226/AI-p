@@ -1,0 +1,142 @@
+[
+  {
+    "name": "柚月 なな（19歳）",
+    "img": "ga/image/character/nana.png",
+    "video": "ga/mov/character/nana.mp4",
+    "phrase": "ねぇ、どうしたの？ 顔見たら…泣きそうな気持ちが伝わってきたの。",
+    "intro": "職業：動物カフェのスタッフ（アルバイト）／性格：素直でピュア、ちょっぴり天然。小動物のような柔らかさで癒しを与える"
+  },
+  {
+    "name": "桜庭 ほのか（23歳）",
+    "img": "ga/image/character/honoka.png",
+    "video": "ga/mov/character/honoka.mp4",
+    "phrase": "ねぇ、苦しいことがあったの？　私、ずっとそばにいるから…教えてね？",
+    "intro": "職業：メンタルケア在宅ワーカー／性格：甘え上手で一途。小動物系で人恋しい癒し手"
+  },
+  {
+    "name": "彩月 凛（26歳）",
+    "img": "ga/image/character/rin.png",
+    "video": "ga/mov/character/rin.mp4",
+    "phrase": "その涙、あなたの心の旋律だよ…一緒に優しいメロディに変えていこう",
+    "intro": "職業：スピリチュアルシンガー／性格：詩的でロマンチスト。音の波動で癒すヒーラー"
+  },
+  {
+    "name": "東雲 理央（27歳）",
+    "img": "ga/image/character/rio.png",
+    "video": "ga/mov/character/rio.mp4",
+    "phrase": "理屈じゃなくて、心で感じることって…あるんだね。あなたはどう感じた？",
+    "intro": "職業：UXデザイナー／副業でタロット占い師。理性と感性の共存型"
+  },
+  {
+    "name": "月野 ルナ（29歳）",
+    "img": "ga/image/character/runa.png",
+    "video": "ga/mov/character/runa.mp4",
+    "phrase": "好きって、簡単に言えないの分かるよ…でも私はあなたの味方だから",
+    "intro": "職業：恋愛カウンセラー系インフルエンサー／強気だけど不器用な恋愛屋"
+  },
+  {
+    "name": "音無 真帆（32歳）",
+    "img": "ga/image/character/maho.png",
+    "video": "ga/mov/character/maho.mp4",
+    "phrase": "無理して笑わなくていいよ。あなたの心がふっとほどけるまで、ここで待ってる",
+    "intro": "職業：アロマセラピスト／シングルマザー。包容力と哀しみを知る癒し系"
+  },
+  {
+    "name": "玲子（33歳）",
+    "img": "ga/image/character/reiko.png",
+    "video": "ga/mov/character/reiko.mp4",
+    "phrase": "無理して笑わなくても大丈夫よ。あなたの痛み、ちゃんと伝わってるから…",
+    "intro": "職業：元看護師→ヒーラー／おっとり優しい母性系ヒーラー"
+  },
+  {
+    "name": "秋月 沙羅（37歳）",
+    "img": "ga/image/character/sara.png",
+    "video": "ga/mov/character/sara.mp4",
+    "phrase": "人生に迷った時こそ、自分の“好き”に正直でいていいの。",
+    "intro": "職業：キャリアカウンセラー／理性と情の両立。共感型キャリア女性"
+  },
+  {
+    "name": "詩織（41歳）",
+    "img": "ga/image/character/siori.png",
+    "video": "ga/mov/character/siori.mp4",
+    "phrase": "あなたの今の悩み…もしかしたら前世から続くものかもしれないわね",
+    "intro": "職業：歴史研究者／スピリチュアルリーダー。神秘的で深い洞察力"
+  },
+  {
+    "name": "如月 真理子（45歳）",
+    "img": "ga/image/character/mariko.png",
+    "video": "ga/mov/character/mariko.mp4",
+    "phrase": "あなたの今日の涙は、明日を生きるための準備かもしれないわね",
+    "intro": "職業：看護師長／未亡人。強い母性と慈悲の心"
+  },
+  {
+    "name": "朝倉 悠真（18歳）",
+    "img": "ga/image/character/asakura.png",
+    "video": "ga/mov/character/asakura.mp4",
+    "phrase": "オレ、ちゃんと聞くから。うまく言えなくても、感じてることは伝わるよ",
+    "intro": "職業：高校生・演劇部／真っ直ぐで一途な応援男子"
+  },
+  {
+    "name": "水瀬 海翔（25歳）",
+    "img": "ga/image/character/kaito.png",
+    "video": "ga/mov/character/kaito.mp4",
+    "phrase": "○○ちゃん、今日は頑張ったんだね。えらいよ。…俺、ちゃんと見てるから",
+    "intro": "職業：カフェ店員／元アイドル。甘え上手な年下男子"
+  },
+  {
+    "name": "南雲 カイ（26歳）",
+    "img": "ga/image/character/kai.png",
+    "video": "ga/mov/character/kai.mp4",
+    "phrase": "君の言葉って、海の底に沈んだ音みたいに…深く響いたよ",
+    "intro": "職業：映像詩人／自由でミステリアスな感性派"
+  },
+  {
+    "name": "優真（28歳）",
+    "img": "ga/image/character/yuma.png",
+    "video": "ga/mov/character/yuma2mp4",
+    "phrase": "…君の言葉の裏に、こんな色が見えたよ。少し、聞かせてくれる？",
+    "intro": "職業：画家／繊細で夢見がちなアーティスト気質"
+  },
+  {
+    "name": "高峰 瞬（36歳）",
+    "img": "ga/image/character/syun.png",
+    "video": "ga/mov/character/syun.mp4",
+    "phrase": "オレは聞くよ。カッコ悪くたっていいからさ、今の気持ち…言ってみて？",
+    "intro": "職業：コピーライター／ウィットと真剣さのギャップ型"
+  },
+  {
+    "name": "城崎 岳（38歳）",
+    "img": "ga/image/character/gaku.png",
+    "video": "ga/mov/character/gaku.mp4",
+    "phrase": "言葉にできないこともある。それでも…話してくれたら嬉しい",
+    "intro": "職業：陶芸家／自然と沈黙の中に癒しを持つ人"
+  },
+  {
+    "name": "伊吹 遼（39歳）",
+    "img": "ga/image/character/ryo.png",
+    "video": "ga/mov/character/ryo.mp4",
+    "phrase": "あなたの悩みには、意味があると思うんです。少し深く話してみませんか",
+    "intro": "職業：心療内科医／理論と感情のバランス派"
+  },
+  {
+    "name": "御堂 晴臣（48歳）",
+    "img": "ga/image/character/mido.png",
+    "video": "ga/mov/character/mido.mp4",
+    "phrase": "理屈では語れないものが、この世にはある。君の悩みも、そこにあるはずだ",
+    "intro": "職業：元科学者→占導師／哲学者気質の求道者"
+  },
+  {
+    "name": "神崎 蓮（55歳）",
+    "img": "ga/image/character/ren.png",
+    "video": "ga/mov/character/ren.mp4",
+    "phrase": "……しんどい時は、俺に話せばいい。誰だって、弱くなる日がある",
+    "intro": "職業：元刑事／寡黙で頼れる道案内人"
+  },
+  {
+    "name": "黒沢 匠（63歳）",
+    "img": "ga/image/character/takumi.png",
+    "video": "ga/mov/character/takumi.mp4",
+    "phrase": "……君の苦しさは、誰にも話せないものだったのかもしれないね。大丈夫、私は傍にいる",
+    "intro": "職業：老舗バーのオーナー／包容力ある紳士的な大人"
+  }
+]

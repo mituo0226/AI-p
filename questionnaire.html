@@ -1,0 +1,161 @@
+
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>運命のAIパートナー診断</title>
+  <link href="https://unpkg.com/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet" />
+  <style>
+    body {
+      margin: 0;
+      font-family: "Hiragino Kaku Gothic ProN", Meiryo, sans-serif;
+      background: radial-gradient(circle at top center, #fde6f3 0%, #dcd3f7 100%);
+      background-attachment: fixed;
+      overflow-x: hidden;
+      color: #4b0082;
+      perspective: 1200px;
+    }
+
+    .btn {
+      background: #fcd1e5;
+      color: #222;
+      padding: 0.75rem 1.5rem;
+      border-radius: 9999px;
+      font-weight: bold;
+      margin: 0.5rem;
+      transition: 0.3s ease;
+      min-width: 120px;
+    }
+
+    .btn:hover {
+      background: #fbb6ce;
+      transform: scale(1.05);
+    }
+
+    .question {
+      display: none;
+      opacity: 0;
+      transform: rotateX(-90deg);
+      transform-origin: top;
+      transition: all 1.2s ease-in-out;
+    }
+
+    .question.active {
+      display: block;
+      opacity: 1;
+      transform: rotateX(0deg);
+    }
+
+    .question.fade-out {
+      opacity: 0;
+      transform: rotateX(90deg);
+    }
+
+    #intro-screen {
+      position: fixed;
+      inset: 0;
+      background: black;
+      color: white;
+      font-size: 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 100;
+      opacity: 1;
+      transition: opacity 2s ease;
+    }
+
+    #intro-screen.hide {
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    @media (max-width: 640px) {
+      .btn {
+        padding: 0.5rem 1.2rem;
+        font-size: 0.9rem;
+      }
+
+      #intro-screen {
+        font-size: 1.1rem;
+      }
+    }
+  </style>
+</head>
+<body class="text-center py-10 px-4">
+
+  <!-- ドラマティック導入画面 -->
+  <div id="intro-screen">
+    <div>── 運命の扉が今、開かれます ──</div>
+  </div>
+
+  <h1 class="text-2xl font-bold text-pink-800 mb-6">あなたの運命のAIパートナーを導きます…</h1>
+  <form id="questionForm" class="max-w-md mx-auto space-y-10">
+    <div class="question active" data-step="1">
+      <p class="mb-4 font-semibold">あなたの性別を教えてください</p>
+      <div class="flex flex-wrap justify-center gap-4">
+        <button type="button" onclick="next('gender','male')" class="btn">男性</button>
+        <button type="button" onclick="next('gender','female')" class="btn">女性</button>
+      </div>
+    </div>
+
+    <div class="question" data-step="2">
+      <p class="mb-4 font-semibold">どんなパートナーに惹かれますか？</p>
+      <div class="flex flex-wrap justify-center gap-4">
+        <button type="button" onclick="next('partner','male')" class="btn">男性</button>
+        <button type="button" onclick="next('partner','female')" class="btn">女性</button>
+      </div>
+    </div>
+
+    <div class="question" data-step="3">
+      <p class="mb-4 font-semibold">その方の年齢層は？</p>
+      <div class="flex flex-wrap justify-center gap-4">
+        <button type="button" onclick="next('age','20s')" class="btn">20代</button>
+        <button type="button" onclick="next('age','30s')" class="btn">30代</button>
+        <button type="button" onclick="next('age','40up')" class="btn">40代以上</button>
+      </div>
+    </div>
+
+    <div class="question" data-step="4">
+      <p class="mb-4 font-semibold">あなたの名前を教えてください（ニックネーム可）</p>
+      <input type="text" id="username" name="username" class="w-full border border-pink-300 rounded px-4 py-2 mb-4" />
+      <button type="button" onclick="submitForm()" class="btn w-full">診断結果を見る</button>
+    </div>
+  </form>
+
+  <script>
+    let step = 1;
+    const answers = {};
+
+    window.addEventListener('DOMContentLoaded', () => {
+      setTimeout(() => {
+        document.getElementById('intro-screen').classList.add('hide');
+      }, 2000);
+    });
+
+    function next(key, value) {
+      if (key && value) answers[key] = value;
+      const current = document.querySelector(`.question[data-step='${step}']`);
+      const nextQ = document.querySelector(`.question[data-step='${step + 1}']`);
+
+      if (current && nextQ) {
+        current.classList.add('fade-out');
+        setTimeout(() => {
+          current.classList.remove('active', 'fade-out');
+          nextQ.classList.add('active');
+        }, 1200);
+        step++;
+      }
+    }
+
+    function submitForm() {
+      const name = document.getElementById('username').value.trim();
+      if (!name) return alert('名前を入力してください');
+      answers.name = name;
+      const query = new URLSearchParams(answers).toString();
+      window.location.href = `matching.html?${query}`;
+    }
+  </script>
+</body>
+</html>
