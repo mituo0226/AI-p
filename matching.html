@@ -72,8 +72,20 @@
       // ユーザー情報表示
       const userInfoDiv = document.getElementById('user-info');
       if (userGender) {
-        userInfoDiv.textContent = `あなたの性別：${userGender === 'male' ? '男性' : '女性'}`;
+        const partnerText = partnerGender === 'male' ? '男性' : '女性';
+        const ageText = ageParam === '10s' ? '10代' : ageParam === '20s' ? '20代' : ageParam === '30s' ? '30代' : '40代以上';
+        const typeText = typeParam === 'friend' ? '友人タイプ' : typeParam === 'advisor' ? 'アドバイザータイプ' : '恋人タイプ';
+        userInfoDiv.innerHTML = `
+          <p>${name}さんの診断条件</p>
+          <p>あなたの性別：${userGender === 'male' ? '男性' : '女性'} | 
+          求めるパートナー：${partnerText} | 
+          年齢層：${ageText} | 
+          関係性：${typeText}</p>
+        `;
       }
+
+      // デバッグ情報をコンソールに出力
+      console.log("診断条件:", { userGender, partnerGender, ageParam, typeParam, name });
 
       // JSON 読み込み
       let chars;
@@ -81,6 +93,7 @@
         const res = await fetch("characters.json");
         console.log("fetch status:", res.status);
         chars = await res.json();
+        console.log("総キャラクター数:", chars.length);
       } catch (err) {
         console.error("fetch error:", err);
         return;
@@ -90,8 +103,46 @@
       const ages = chars.map(c => parseInt(c.age,10)).filter(n=>!isNaN(n));
       const maxAge = Math.max(...ages);
 
-      // メインキャラ描画
-      const main = chars.find(c => c.name === name);
+      // メインキャラ選択ロジックを修正
+      // ユーザーの回答に基づいてマッチするキャラクターを探す
+      let threshold = null;
+      if (ageParam.endsWith("up")) {
+        threshold = Number(ageParam.replace(/\D/g,""));
+        if (threshold > maxAge) threshold = maxAge;
+      }
+      
+      // 条件に合うキャラクターをフィルタリング
+      const matchingChars = chars.filter(c => {
+        // 年齢マッチングを修正
+        let ageMatch = false;
+        if (ageParam.endsWith("up")) {
+          // "40up" の場合、文字列として直接比較するか、数値として比較
+          ageMatch = c.age === ageParam || (parseInt(c.age,10) >= threshold);
+        } else {
+          // "20s", "30s" の場合は直接比較
+          ageMatch = c.age === ageParam;
+        }
+        
+        const genderMatch = c.gender === partnerGender;
+        const typeMatch = c.type === typeParam;
+        const overallMatch = genderMatch && ageMatch && typeMatch;
+        
+        // デバッグ出力（最初の5文字のみ表示）
+        if (chars.indexOf(c) < 5) {
+          console.log(`${c.name}: gender(${c.gender}=${partnerGender}?) ${genderMatch}, age(${c.age}=${ageParam}?) ${ageMatch}, type(${c.type}=${typeParam}?) ${typeMatch} → ${overallMatch}`);
+        }
+        
+        return overallMatch;
+      });
+
+      // メインキャラはランダムまたは最初の候補を選択
+      const main = matchingChars.length > 0 ? matchingChars[0] : null;
+      
+      // デバッグ情報
+      console.log("マッチしたキャラクター数:", matchingChars.length);
+      console.log("マッチしたキャラクター:", matchingChars.map(c => c.name));
+      console.log("選択されたメインキャラ:", main?.name || "なし");
+
       const resultDiv = document.getElementById("result");
       if (main) {
         const ageNum = parseInt(main.age,10) || main.age;
@@ -106,22 +157,8 @@
         resultDiv.textContent = "選ばれたパートナーは見つかりませんでした。";
       }
 
-      // サブキャラ絞り込み （性別・年代・タイプ・本人除外）
-      let threshold = null;
-      if (ageParam.endsWith("up")) {
-        threshold = Number(ageParam.replace(/\D/g,""));
-        if (threshold > maxAge) threshold = maxAge;
-      }
-      const subs = chars.filter(c => {
-        const ageNum = parseInt(c.age,10);
-        const ageMatch = ageParam.endsWith("up")
-          ? ageNum >= threshold
-          : c.age === ageParam;
-        return c.gender === partnerGender
-            && ageMatch
-            && c.type === typeParam
-            && c.name !== name;
-      }).slice(0,4);
+      // サブキャラ絞り込み （メインキャラを除外）
+      const subs = matchingChars.filter(c => c.name !== (main?.name || "")).slice(0,4);
 
       console.log("subs:", subs.length, subs);
       const subDiv = document.getElementById("sub-characters");
