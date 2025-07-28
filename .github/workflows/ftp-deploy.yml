@@ -1,5 +1,7 @@
 name: FTP Deploy
 
+name: FTP Deploy
+
 on:
   push:
     branches:
