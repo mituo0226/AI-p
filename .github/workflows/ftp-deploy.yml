@@ -6,14 +6,15 @@ on:
       - main
 
 jobs:
-  Upload:
+  ftp-deploy:
+    name: Upload to FTP
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repo
         uses: actions/checkout@v3
 
       - name: FTP Deploy
-        uses: SamKirkland/FTP-Deploy-Action@v4.3.3  # Å© Ç±Ç±Ç v4.3.3 Ç…ïœçXÅI
+        uses: SamKirkland/FTP-Deploy-Action@v4
         with:
           server: ${{ secrets.FTP_SERVER }}
           username: ${{ secrets.FTP_USERNAME }}
