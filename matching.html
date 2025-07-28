@@ -60,6 +60,7 @@
       const name          = decodeURIComponent(params.get("name") || "");
       const ageParam      = params.get("age") || "";
       const partnerGender = params.get("partner") || "";
+      const typeParam     = params.get("type") || "";
 
       // JSON 読み込み
       let chars;
@@ -76,7 +77,7 @@
       const ages = chars.map(c => parseInt(c.age,10)).filter(n=>!isNaN(n));
       const maxAge = Math.max(...ages);
 
-      // メインキャラ描画
+      // メインキャラ描画（タイプ無視）
       const main = chars.find(c => c.name === name);
       const resultDiv = document.getElementById("result");
       if (main) {
@@ -92,7 +93,7 @@
         resultDiv.textContent = "選ばれたパートナーは見つかりませんでした。";
       }
 
-      // サブキャラ絞り込み
+      // サブキャラ絞り込み （性別・年代・タイプ・本人除外）
       let threshold = null;
       if (ageParam.endsWith("up")) {
         threshold = Number(ageParam.replace(/\D/g,""));
@@ -105,6 +106,7 @@
           : c.age === ageParam;
         return c.gender === partnerGender
             && ageMatch
+            && c.type === typeParam
             && c.name !== name;
       }).slice(0,4);
 
