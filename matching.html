@@ -79,7 +79,8 @@
         document.getElementById("characterImage").outerHTML = `<a href="${profileUrl}"><img id="characterImage" src="${best.img}" alt="キャラ画像" class="mx-auto w-48 h-48 rounded-full object-cover mb-4 border-4 border-white"></a>`;
         document.getElementById("characterPhrase").textContent = best.phrase || "";
         document.getElementById("characterIntro").textContent = best.intro || "";
-        document.getElementById("characterVideo").href = best.video || "#";
+        document.getElementById("characterVideo").href = profileUrl;
+        document.getElementById("characterVideo").textContent = "▶ プロフィールページを見る";
         document.getElementById("characterCard").classList.remove("hidden");
 
         // サブキャラ表示
