@@ -15,7 +15,6 @@
       color: #4b0082;
       perspective: 1200px;
     }
-
     .btn {
       background: #fcd1e5;
       color: #222;
@@ -26,12 +25,10 @@
       transition: 0.3s ease;
       min-width: 120px;
     }
-
     .btn:hover {
       background: #fbb6ce;
       transform: scale(1.05);
     }
-
     .question {
       display: none;
       opacity: 0;
@@ -39,18 +36,15 @@
       transform-origin: top;
       transition: all 1.2s ease-in-out;
     }
-
     .question.active {
       display: block;
       opacity: 1;
       transform: rotateX(0deg);
     }
-
     .question.fade-out {
       opacity: 0;
       transform: rotateX(90deg);
     }
-
     #intro-screen {
       position: fixed;
       inset: 0;
@@ -64,12 +58,10 @@
       opacity: 1;
       transition: opacity 2s ease;
     }
-
     #intro-screen.hide {
       opacity: 0;
       pointer-events: none;
     }
-
     @media (max-width: 640px) {
       .btn {
         padding: 0.5rem 1.2rem;
@@ -82,8 +74,7 @@
   </style>
 </head>
 <body class="text-center py-10 px-4">
-
-  <!-- ドラマティック導入画面 -->
+  <!-- 導入画面 -->
   <div id="intro-screen">
     <div>── 運命の扉が今、開かれます ──</div>
   </div>
@@ -115,7 +106,7 @@
         <button type="button" onclick="next('age','40up')" class="btn">40代以上</button>
       </div>
     </div>
-    <!-- Step 4: Relationship type -->
+    <!-- Step 4 -->
     <div class="question" data-step="4">
       <p class="mb-4 font-semibold">どんな関係性を求めますか？</p>
       <div class="flex flex-wrap justify-center gap-4">
@@ -128,7 +119,7 @@
     <div class="question" data-step="5">
       <p class="mb-4 font-semibold">あなたの名前を教えてください<br><span class="text-sm">(ニックネーム可)</span></p>
       <input type="text" id="username" class="w-full border border-pink-300 rounded px-4 py-2 mb-4" placeholder="例：ゆかり" />
-      <button type="button" onclick="submitForm()" class="btn w-full">診断結果を見る</button>
+      <button type="button" onclick="next('name', document.getElementById('username').value.trim())" class="btn w-full">入力して次へ</button>
     </div>
   </form>
 
@@ -136,32 +127,35 @@
     let step = 1;
     const answers = {};
     window.addEventListener('DOMContentLoaded', () => {
-      setTimeout(() => {
-        document.getElementById('intro-screen').classList.add('hide');
-      }, 2000);
+      setTimeout(() => document.getElementById('intro-screen').classList.add('hide'), 2000);
     });
+
     function next(key, value) {
+      if (!value) {
+        alert('入力または選択してください');
+        return;
+      }
+      console.log('step', step, key, value);
       answers[key] = value;
       const current = document.querySelector(`.question[data-step='${step}']`);
-      const nextQ = document.querySelector(`.question[data-step='${step + 1}']`);
-      if (current && nextQ) {
+      const nextQ   = document.querySelector(`.question[data-step='${step+1}']`);
+      // フェードアウト＆次へ
+      if (current) {
         current.classList.add('fade-out');
+      }
+      if (nextQ) {
         setTimeout(() => {
           current.classList.remove('active', 'fade-out');
           nextQ.classList.add('active');
         }, 1200);
         step++;
+      } else {
+        // 最後のステップなら送信
+        setTimeout(() => {
+          const qs = new URLSearchParams(answers).toString();
+          window.location.href = `matching.html?${qs}`;
+        }, 1200);
       }
-    }
-    function submitForm() {
-      const name = document.getElementById('username').value.trim();
-      if (!name) {
-        alert('名前を入力してください');
-        return;
-      }
-      answers.name = name;
-      const query = new URLSearchParams(answers).toString();
-      window.location.href = `matching.html?${query}`;
     }
   </script>
 </body>
