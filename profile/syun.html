@@ -1,0 +1,260 @@
+
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>高峰 瞬｜AIパートナー紹介</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: "Hiragino Kaku Gothic ProN", sans-serif;
+      background: #e6f7ff;
+      color: #333;
+    }
+    .profile-container {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 40px 20px;
+    }
+    .card {
+      background: #ffffff;
+      border-radius: 16px;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+    .hero img {
+      width: 100%;
+      height: auto;
+      display: block;
+      object-fit: cover;
+      border-bottom: 4px solid #91d5ff;
+    }
+    .hero-caption {
+      padding: 20px;
+      background: #d0ebff;
+      font-size: 22px;
+      font-weight: bold;
+      color: #3385aa;
+      text-align: center;
+      border-bottom: 2px solid #91d5ff;
+    }
+    .info {
+      padding: 20px 24px;
+    }
+    .section {
+      margin-bottom: 30px;
+    }
+    .section h2 {
+      font-size: 20px;
+      color: #3385aa;
+      border-left: 6px solid #91d5ff;
+      padding-left: 12px;
+      margin-bottom: 12px;
+    }
+    .section ul {
+      padding-left: 24px;
+      line-height: 1.8;
+      list-style: none;
+    }
+    .section ul li::before {
+      content: attr(data-icon);
+      display: inline-block;
+      width: 1.6em;
+      margin-left: -1.6em;
+      margin-right: 0.5em;
+    }
+    .section p {
+      line-height: 1.8;
+      margin-bottom: 10px;
+    }
+    .bubble {
+      position: relative;
+      background: #d0ebff;
+      border: 2px solid #91d5ff;
+      border-radius: 12px;
+      padding: 16px;
+      margin: 16px 0;
+      font-style: italic;
+      color: #444;
+    }
+    .bubble::before {
+      content: "";
+      position: absolute;
+      bottom: -20px;
+      left: 30px;
+      border: 10px solid transparent;
+      border-top-color: #91d5ff;
+    }
+    .bubble::after {
+      content: "";
+      position: absolute;
+      bottom: -18px;
+      left: 30px;
+      border: 9px solid transparent;
+      border-top-color: #d0ebff;
+    }
+    .video {
+      text-align: center;
+      margin-top: 30px;
+    }
+    .video-wrapper {
+      position: relative;
+      display: inline-block;
+      max-width: 720px;
+      width: 100%;
+      margin: auto;
+    }
+    .video-wrapper video {
+      width: 100%;
+      border-radius: 10px;
+      background: black;
+    }
+    .video-mask {
+      opacity: 0;
+      transition: opacity 0.8s ease;
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: black;
+      border-radius: 10px;
+      display: none;
+      z-index: 1;
+    }
+    .video-overlay {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: rgba(255, 255, 255, 0.95);
+      padding: 14px 28px;
+      border-radius: 30px;
+      font-size: 18px;
+      font-weight: bold;
+      color: #3385aa;
+      cursor: pointer;
+      box-shadow: 0 0 12px rgba(0,0,0,0.2);
+      display: none;
+      z-index: 2;
+    }
+    .video-mask.show {
+      opacity: 1;
+    }
+    .select-button {
+      display: block;
+      text-align: center;
+      margin: 40px auto;
+      padding: 14px 32px;
+      background-color: #4da6ff;
+      color: white;
+      font-weight: bold;
+      border-radius: 40px;
+      text-decoration: none;
+      width: fit-content;
+    }
+    .back-link {
+      display: block;
+      text-align: center;
+      margin: 20px auto;
+      padding: 10px 20px;
+      background-color: #f0f8ff;
+      color: #4da6ff;
+      font-weight: bold;
+      border: 2px solid #4da6ff;
+      border-radius: 25px;
+      text-decoration: none;
+      width: fit-content;
+      transition: all 0.3s ease;
+    }
+    .back-link:hover {
+      background-color: #e7f0fb;
+      transform: translateY(-2px);
+    }
+  </style>
+</head>
+<body>
+<div class="profile-container">
+  <div class="card">
+    <div class="hero">
+      <img src="../ga/image/character/syun.png" alt="高峰 瞬">
+    </div>
+    <div class="hero-caption">高峰 瞬（36歳）｜言葉の魔術師・コピーライター</div>
+    <div class="info">
+      <div class="section">
+        <h2>プロフィール</h2>
+        <ul>
+          <li data-icon="💼">職業：コピーライター（広告・雑誌・Webコンテンツ）</li>
+          <li data-icon="🎭">性格：ユーモアと知性を併せ持ち、気遣いができる大人タイプ</li>
+          <li data-icon="📚">背景：言葉の力で人の心を動かすことに情熱を注ぐ</li>
+          <li data-icon="🔮">感性：人の「本音」や「弱さ」に敏感で、それを肯定する文章を書くことで癒す</li>
+        </ul>
+      </div>
+      <div class="section">
+        <h2>瞬のひとこと</h2>
+        <div class="bubble">冗談も真剣な気持ちも、どちらも言葉にしないと伝わらない。君の心の声、ちゃんと届くようにしてみせるよ。</div>
+      </div>
+      <div class="section">
+        <h2>好きなもの・日常</h2>
+        <ul>
+          <li data-icon="📷">趣味：モノクロフィルム写真／街角スナップ</li>
+          <li data-icon="✏️">愛用品：万年筆と手書きのメモ帳、革の名刺入れ</li>
+          <li data-icon="☕">日課：カフェでの朝活。お気に入りはラテ＋クロワッサン</li>
+          <li data-icon="🎶">音楽：ボサノヴァとシティポップ、雨音ミックス</li>
+          <li data-icon="🛋️">休日の過ごし方：本屋と文房具店を巡る</li>
+        </ul>
+      </div>
+      <div class="section">
+        <h2>小さなエピソード</h2>
+        <p>大学時代に文章に救われた経験が原点。うまく話せなかった恋人とのすれ違いを、手紙で埋めた記憶がある。「言葉には、人を傷つける力も癒す力もある」と気づいた瞬間から、“伝える”ことの意味を考え続けている。</p>
+      </div>
+      <div class="section">
+        <h2>夢</h2>
+        <div class="bubble">言葉で誰かを抱きしめるような仕事がしたい。読んだ瞬間、世界が少しだけやさしくなるような…そんな文章を、これからも書いていきたい。</div>
+      </div>
+      <div class="video">
+        <h2>瞬の紹介動画</h2>
+        <div class="video-wrapper">
+          <video id="syunVideo" controls playsinline poster="">
+            <source src="../ga/mov/character/syun.mp4" type="video/mp4" />
+          </video>
+          <div class="video-mask" id="videoMask"></div>
+          <div class="video-overlay" id="videoOverlay" onclick="replayVideo()">▶ もう一度見る</div>
+        </div>
+      </div>
+      <a href="../matching_result.html?char=syun" class="select-button">高峰 瞬をパートナーに選ぶ</a>
+      <a href="../index.html" class="back-link">← TOPページに戻る</a>
+    </div>
+  </div>
+</div>
+<script>
+  const video = document.getElementById('syunVideo');
+  const overlay = document.getElementById('videoOverlay');
+  const mask = document.getElementById('videoMask');
+
+  function replayVideo() {
+    video.currentTime = 0;
+    video.play();
+    overlay.style.display = 'none';
+    mask.style.display = 'none';
+    mask.classList.remove('show');
+  }
+
+  video.addEventListener('ended', () => {
+    overlay.style.display = 'block';
+    mask.style.display = 'block';
+    requestAnimationFrame(() => mask.classList.add('show'));
+  });
+
+  video.addEventListener('play', () => {
+    overlay.style.display = 'none';
+    mask.style.display = 'none';
+    mask.classList.remove('show');
+  });
+
+  window.addEventListener('load', () => {
+    overlay.style.display = 'none';
+  });
+</script>
+</body>
+</html>

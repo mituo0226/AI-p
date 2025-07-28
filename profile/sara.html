@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>柚月沙羅｜AIパートナー紹介</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: "Hiragino Kaku Gothic ProN", sans-serif;
+      background: #fffafc;
+      color: #333;
+    }
+    .profile-container {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 40px 20px;
+    }
+    .card {
+      background: #ffffff;
+      border-radius: 16px;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+    .hero img {
+      width: 100%;
+      height: auto;
+      display: block;
+      object-fit: cover;
+      border-bottom: 4px solid #fbb6ce;
+    }
+    .hero-caption {
+      padding: 20px;
+      background: #fff0f5;
+      font-size: 22px;
+      font-weight: bold;
+      color: #d26a8a;
+      text-align: center;
+      border-bottom: 2px solid #fbb6ce;
+    }
+    .info {
+      padding: 20px 24px;
+    }
+    .section {
+      margin-bottom: 30px;
+    }
+    .section h2 {
+      font-size: 20px;
+      color: #d26a8a;
+      border-left: 6px solid #fbb6ce;
+      padding-left: 12px;
+      margin-bottom: 12px;
+    }
+    .section ul {
+      padding-left: 24px;
+      line-height: 1.8;
+      list-style: none;
+    }
+    .section ul li::before {
+      content: attr(data-icon);
+      display: inline-block;
+      width: 1.6em;
+      margin-left: -1.6em;
+      margin-right: 0.5em;
+    }
+    .section p {
+      line-height: 1.8;
+      margin-bottom: 10px;
+    }
+    .bubble {
+      position: relative;
+      background: #fff0f5;
+      border: 2px solid #fbb6ce;
+      border-radius: 12px;
+      padding: 16px;
+      margin: 16px 0;
+      font-style: italic;
+      color: #444;
+    }
+    .bubble::before {
+      content: "";
+      position: absolute;
+      bottom: -20px;
+      left: 30px;
+      border: 10px solid transparent;
+      border-top-color: #fbb6ce;
+    }
+    .bubble::after {
+      content: "";
+      position: absolute;
+      bottom: -18px;
+      left: 30px;
+      border: 9px solid transparent;
+      border-top-color: #fff0f5;
+    }
+    .video {
+      text-align: center;
+      margin-top: 30px;
+    }
+    .video-wrapper {
+      position: relative;
+      display: inline-block;
+      max-width: 720px;
+      width: 100%;
+      margin: auto;
+    }
+    .video-wrapper video {
+      width: 100%;
+      border-radius: 10px;
+      background: black;
+    }
+    .video-mask {
+      opacity: 0;
+      transition: opacity 0.8s ease;
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: black;
+      border-radius: 10px;
+      display: none;
+      z-index: 1;
+    }
+    .video-overlay {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: rgba(255, 255, 255, 0.95);
+      padding: 14px 28px;
+      border-radius: 30px;
+      font-size: 18px;
+      font-weight: bold;
+      color: #d26a8a;
+      cursor: pointer;
+      box-shadow: 0 0 12px rgba(0,0,0,0.2);
+      display: none;
+      z-index: 2;
+    }
+    .select-button {
+      display: block;
+      text-align: center;
+      margin: 40px auto;
+      padding: 14px 32px;
+      background-color: #f794a4;
+      color: white;
+      font-weight: bold;
+      border-radius: 40px;
+      text-decoration: none;
+      width: fit-content;
+    }
+    .back-link {
+      display: block;
+      text-align: center;
+      margin: 20px auto;
+      padding: 10px 20px;
+      background-color: #fef7f8;
+      color: #d26a8a;
+      font-weight: bold;
+      border: 2px solid #f794a4;
+      border-radius: 25px;
+      text-decoration: none;
+      width: fit-content;
+      transition: all 0.3s ease;
+    }
+    .back-link:hover {
+      background-color: #fce8ec;
+      transform: translateY(-2px);
+    }
+  
+    .video-mask.show {
+      opacity: 1;
+    }
+  </style>
+</head>
+<body>
+  <div class="profile-container">
+    <div class="card">
+      <div class="hero">
+        <img src="../ga/image/character/sara.png" alt="柚月沙羅">
+      </div>
+      <div class="hero-caption">柚月 沙羅（37歳）｜静寂を纏う書道家</div>
+      <div class="info">
+        <div class="section">
+          <h2>プロフィール</h2>
+          <ul>
+            <li data-icon="💼">職業：書道家・瞑想講師</li>
+            <li data-icon="😊">性格：落ち着きと厳しさを併せ持つ和の精神。余白に言葉を見いだす人</li>
+            <li data-icon="📖">背景：過去の激務で心を壊しかけ、“墨の香り”が救ってくれた</li>
+            <li data-icon="🔮">霊感：筆を通して相手の内面と“共鳴”する波動感受型</li>
+          </ul>
+        </div>
+        <div class="section">
+          <h2>沙羅のひとこと</h2>
+          <div class="bubble">何も書かれていない“間”にも、言葉はあるのよ。…あなたの心が、それを読めるなら。</div>
+        </div>
+        <div class="section">
+          <h2>好きなもの・日常</h2>
+          <ul>
+            <li data-icon="🐰">道具：墨・筆・和紙にこだわりを持つ。お気に入りは祖母の硯</li>
+            <li data-icon="🧥">愛用品：白磁の急須と漆塗りの茶托</li>
+            <li data-icon="🎧">音楽：琴の音、尺八、または自然の音だけの環境音</li>
+            <li data-icon="🍵">癒し時間：朝の玉露と墨を摺る静けさ</li>
+            <li data-icon="🛍️">休日の過ごし方：書のリトリートや山寺での座禅修行</li>
+          </ul>
+        </div>
+        <div class="section">
+          <h2>小さなエピソード</h2>
+          <p>小学生のころ、人付き合いがちょっと苦手だった沙羅。保健室のモルモットと心を通わせた体験が、今の「人と動物をつなぐ」優しさに変わりました。</p>
+        </div>
+        <div class="section">
+          <h2>夢</h2>
+          <div class="bubble">静けさと“内なる言葉”に出会える空間を、書と瞑想で届けたいの。<br>心のざわめきが落ち着く場所をつくること、それが私の夢です。</div>
+        </div>
+        <div class="video">
+          <h2>沙羅の紹介動画</h2>
+          <div class="video-wrapper">
+            <video id="saraVideo" controls playsinline>
+              <source src="../ga/mov/character/sara.mp4" type="video/mp4" />
+            </video>
+            <div id="videoMask" class="video-mask"></div>
+            <div id="videoOverlay" class="video-overlay" onclick="replayVideo()">▶ もう一度見る</div>
+          </div>
+        </div>
+        <a href="../matching_result.html?char=sara" class="select-button">沙羅をパートナーに選ぶ</a>
+        <a href="../index.html" class="back-link">← TOPページに戻る</a>
+      </div>
+    </div>
+  </div>
+  <script>
+    const video = document.getElementById('saraVideo');
+    const overlay = document.getElementById('videoOverlay');
+    const mask = document.getElementById('videoMask');
+
+    function replayVideo() {
+      video.currentTime = 0;
+      video.play();
+      overlay.style.display = 'none';
+      mask.style.display = 'none';
+    }
+
+    video.addEventListener('ended', () => {
+      overlay.style.display = 'block';
+      mask.style.display = 'block';
+      requestAnimationFrame(() => mask.classList.add('show'));
+    });
+  </script>
+</body>
+</html>

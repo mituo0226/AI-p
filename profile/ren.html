@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>神崎 蓮｜AIパートナー紹介</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: "Hiragino Kaku Gothic ProN", sans-serif;
+      background: #f0f8ff;
+      color: #333;
+    }
+    .profile-container {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 40px 20px;
+    }
+    .card {
+      background: #ffffff;
+      border-radius: 16px;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+    .hero img {
+      width: 100%;
+      height: auto;
+      display: block;
+      object-fit: cover;
+      border-bottom: 4px solid #a3c9f5;
+    }
+    .hero-caption {
+      padding: 20px;
+      background: #e7f0fb;
+      font-size: 22px;
+      font-weight: bold;
+      color: #3b6ea5;
+      text-align: center;
+      border-bottom: 2px solid #a3c9f5;
+    }
+    .info {
+      padding: 20px 24px;
+    }
+    .section {
+      margin-bottom: 30px;
+    }
+    .section h2 {
+      font-size: 20px;
+      color: #3b6ea5;
+      border-left: 6px solid #a3c9f5;
+      padding-left: 12px;
+      margin-bottom: 12px;
+    }
+    .section ul {
+      padding-left: 24px;
+      line-height: 1.8;
+      list-style: none;
+    }
+    .section ul li::before {
+      content: attr(data-icon);
+      display: inline-block;
+      width: 1.6em;
+      margin-left: -1.6em;
+      margin-right: 0.5em;
+    }
+    .section p {
+      line-height: 1.8;
+      margin-bottom: 10px;
+    }
+    .bubble {
+      position: relative;
+      background: #f0f8ff;
+      border: 2px solid #a3c9f5;
+      border-radius: 12px;
+      padding: 16px;
+      margin: 16px 0;
+      font-style: italic;
+      color: #444;
+    }
+    .bubble::before {
+      content: "";
+      position: absolute;
+      bottom: -20px;
+      left: 30px;
+      border: 10px solid transparent;
+      border-top-color: #a3c9f5;
+    }
+    .bubble::after {
+      content: "";
+      position: absolute;
+      bottom: -18px;
+      left: 30px;
+      border: 9px solid transparent;
+      border-top-color: #f0f8ff;
+    }
+    .video {
+      text-align: center;
+      margin-top: 30px;
+    }
+    .video-wrapper {
+      position: relative;
+      display: inline-block;
+      max-width: 720px;
+      width: 100%;
+      margin: auto;
+    }
+    .video-wrapper video {
+      width: 100%;
+      border-radius: 10px;
+      background: black;
+    }
+    .video-mask {
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: black;
+      border-radius: 10px;
+      display: none;
+      opacity: 0;
+      transition: opacity 0.8s ease;
+      z-index: 1;
+    }
+    .video-mask.show {
+      opacity: 1;
+    }
+    .video-overlay {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: rgba(255, 255, 255, 0.95);
+      padding: 14px 28px;
+      border-radius: 30px;
+      font-size: 18px;
+      font-weight: bold;
+      color: #3b6ea5;
+      cursor: pointer;
+      box-shadow: 0 0 12px rgba(0,0,0,0.2);
+      display: none;
+      z-index: 2;
+    }
+    .select-button {
+      display: block;
+      text-align: center;
+      margin: 40px auto;
+      padding: 14px 32px;
+      background-color: #3b6ea5;
+      color: white;
+      font-weight: bold;
+      border-radius: 40px;
+      text-decoration: none;
+      width: fit-content;
+    }
+    .back-link {
+      display: block;
+      text-align: center;
+      margin: 20px auto;
+      padding: 10px 20px;
+      background-color: #f0f8ff;
+      color: #3b6ea5;
+      font-weight: bold;
+      border: 2px solid #a3c9f5;
+      border-radius: 25px;
+      text-decoration: none;
+      width: fit-content;
+      transition: all 0.3s ease;
+    }
+    .back-link:hover {
+      background-color: #e7f0fb;
+      transform: translateY(-2px);
+    }
+  </style>
+</head>
+<body>
+  <div class="profile-container">
+    <div class="card">
+      <div class="hero">
+        <img src="../ga/image/character/ren.png" alt="朝倉蓮">
+      </div>
+      <div class="hero-caption">神崎 蓮（18歳）｜元刑事の道案内人</div>
+      <div class="info">
+        <div class="section">
+          <h2>プロフィール</h2>
+          <ul>
+            <li data-icon="🎭">職業：元刑事／人生相談の“道案内人”</li>
+            <li data-icon="🔥">性格：寡黙で頼れる、背中で語るタイプ</li>
+            <li data-icon="🌱">背景：人の闇を見てきた経験から、今は人の心を明るく照らす役割に転向</li>
+            <li data-icon="👀">魅力：言葉少なでも深みのある、静かに心を支える存在</li>
+          </ul>
+        </div>
+        <div class="section">
+          <h2>蓮のひとこと</h2>
+          <div class="bubble">……しんどい時は、俺に話せばいい。誰だって、弱くなる日がある</div>
+        </div>
+        <div class="section">
+          <h2>日常と好きなこと</h2>
+          <ul>
+            <li data-icon="📚">読書：舞台脚本と太宰治の「人間失格」を愛読</li>
+            <li data-icon="🎵">音楽：映画サントラやピアノソロで感情を整える</li>
+            <li data-icon="☕">休み時間：渡り廊下で一人台本を読むのが日課</li>
+            <li data-icon="📝">ノート：台本に感情メモを書き込む癖がある</li>
+            <li data-icon="💬">口癖：「…言葉って、むずかしいけど、伝えようとするのが大事だと思う」</li>
+          </ul>
+        </div>
+        <div class="section">
+          <h2>性格とふるまい</h2>
+          <p>
+            舞台の上では堂々としているけれど、普段は少し照れ屋でまじめ。<br>
+            相手のちょっとした言葉にも気づいて、返しに悩むこともある。<br>
+            自分に自信はないが、人に向き合う時は本気。舞台の裏では緊張で指先をギュッと握っていることも。
+          </p>
+        </div>
+        <div class="section">
+          <h2>将来について</h2>
+          <p>
+            「舞台の上だけじゃなくて、誰かの“心の奥”に届くような表現をしたい。<br>
+            台詞じゃなく、自分の言葉で誰かを励ませるようになれたら嬉しいな」<br>
+          </p>
+        </div>
+        <div class="video">
+          <h2>蓮の紹介動画</h2>
+          <div class="video-wrapper">
+            <video id="renVideo" controls playsinline>
+              <source src="../ga/mov/character/ren.mp4" type="video/mp4" />
+            </video>
+            <div id="renMask" class="video-mask"></div>
+            <div id="renOverlay" class="video-overlay" onclick="replayRen()">▶ もう一度見る</div>
+          </div>
+        </div>
+        <a href="../matching_result.html?char=ren" class="select-button">蓮をパートナーに選ぶ</a>
+        <a href="../index.html" class="back-link">← TOPページに戻る</a>
+      </div>
+    </div>
+  </div>
+  <script>
+    const video = document.getElementById('renVideo');
+    const overlay = document.getElementById('renOverlay');
+    const mask = document.getElementById('renMask');
+
+    function replayRen() {
+      video.currentTime = 0;
+      video.play();
+      overlay.style.display = 'none';
+      mask.classList.remove('show');
+    }
+
+    video.addEventListener('ended', () => {
+      mask.style.display = 'block';
+      requestAnimationFrame(() => mask.classList.add('show'));
+      overlay.style.display = 'block';
+    });
+  </script>
+</body>
+</html>

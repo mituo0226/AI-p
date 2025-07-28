@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>桜庭 理央｜AIパートナー紹介</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: "Hiragino Kaku Gothic ProN", sans-serif;
+      background: #fff8f8;
+      color: #333;
+    }
+    .profile-container {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 40px 20px;
+    }
+    .card {
+      background: #ffffff;
+      border-radius: 16px;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+    .hero img {
+      width: 100%;
+      height: auto;
+      display: block;
+      object-fit: cover;
+      border-bottom: 4px solid #f9c5d5;
+    }
+    .hero-caption {
+      padding: 20px;
+      background: #ffeef2;
+      font-size: 22px;
+      font-weight: bold;
+      color: #cc5e8c;
+      text-align: center;
+      border-bottom: 2px solid #f9c5d5;
+    }
+    .info {
+      padding: 20px 24px;
+    }
+    .section {
+      margin-bottom: 30px;
+    }
+    .section h2 {
+      font-size: 20px;
+      color: #cc5e8c;
+      border-left: 6px solid #f9c5d5;
+      padding-left: 12px;
+      margin-bottom: 12px;
+    }
+    .section ul {
+      padding-left: 24px;
+      line-height: 1.8;
+      list-style: none;
+    }
+    .section ul li::before {
+      content: attr(data-icon);
+      display: inline-block;
+      width: 1.6em;
+      margin-left: -1.6em;
+      margin-right: 0.5em;
+    }
+    .section p {
+      line-height: 1.8;
+      margin-bottom: 10px;
+    }
+    .bubble {
+      position: relative;
+      background: #fff0f5;
+      border: 2px solid #f9c5d5;
+      border-radius: 12px;
+      padding: 16px;
+      margin: 16px 0;
+      font-style: italic;
+      color: #444;
+    }
+    .bubble::before {
+      content: "";
+      position: absolute;
+      bottom: -20px;
+      left: 30px;
+      border: 10px solid transparent;
+      border-top-color: #f9c5d5;
+    }
+    .bubble::after {
+      content: "";
+      position: absolute;
+      bottom: -18px;
+      left: 30px;
+      border: 9px solid transparent;
+      border-top-color: #fff0f5;
+    }
+    .video {
+      text-align: center;
+      margin-top: 30px;
+    }
+    .video-wrapper {
+      position: relative;
+      display: inline-block;
+      max-width: 720px;
+      width: 100%;
+      margin: auto;
+    }
+    .video-wrapper video {
+      width: 100%;
+      border-radius: 10px;
+      background: black;
+    }
+    .video-mask {
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: black;
+      border-radius: 10px;
+      display: none;
+      opacity: 0;
+      transition: opacity 0.8s ease;
+      z-index: 1;
+    }
+    .video-mask.show {
+      opacity: 1;
+    }
+    .video-overlay {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: rgba(255, 255, 255, 0.95);
+      padding: 14px 28px;
+      border-radius: 30px;
+      font-size: 18px;
+      font-weight: bold;
+      color: #cc5e8c;
+      cursor: pointer;
+      box-shadow: 0 0 12px rgba(0,0,0,0.2);
+      display: none;
+      z-index: 2;
+    }
+    .select-button {
+      display: block;
+      text-align: center;
+      margin: 40px auto;
+      padding: 14px 32px;
+      background-color: #cc5e8c;
+      color: white;
+      font-weight: bold;
+      border-radius: 40px;
+      text-decoration: none;
+      width: fit-content;
+    }
+    .back-link {
+      display: block;
+      text-align: center;
+      margin: 20px auto;
+      padding: 10px 20px;
+      background-color: #fef7f8;
+      color: #cc5e8c;
+      font-weight: bold;
+      border: 2px solid #cc5e8c;
+      border-radius: 25px;
+      text-decoration: none;
+      width: fit-content;
+      transition: all 0.3s ease;
+    }
+    .back-link:hover {
+      background-color: #fce8ec;
+      transform: translateY(-2px);
+    }
+  </style>
+</head>
+<body>
+  <div class="profile-container">
+    <div class="card">
+      <div class="hero">
+        <img src="../ga/image/character/rio.png" alt="桜庭理央">
+      </div>
+      <div class="hero-caption">桜庭 理央（27歳）｜UXデザイナー兼タロット占い師</div>
+      <div class="info">
+        <div class="section">
+          <h2>プロフィール</h2>
+          <ul>
+            <li data-icon="🎨">職業：UXデザイナー兼占い師</li>
+            <li data-icon="🌸">性格：理性的で観察力に優れた論理派</li>
+            <li data-icon="🧘">日常：分析と共感のあいだで、人の迷いに寄り添う</li>
+            <li data-icon="💬">魅力：選択できない人の“背中”をそっと押すのが得意</li>
+          </ul>
+        </div>
+        <div class="section">
+          <h2>理央のひとこと</h2>
+          <div class="bubble">“正しさ”と“優しさ”、どちらかを選ぶのではなくて。両方を同時に届ける方法があると思うの。</div>
+        </div>
+        <div class="section">
+          <h2>趣味と日常</h2>
+          <ul>
+            <li data-icon="☕">カフェ：ラベンダーティーと木の香りの店が好き</li>
+            <li data-icon="📷">SNS：空の色だけを投稿する静かなアカウント</li>
+            <li data-icon="🎶">音楽：雨音とピアノの環境音</li>
+            <li data-icon="📖">読書：谷川俊太郎や吉本ばななの詩的なエッセイ</li>
+            <li data-icon="🧼">香り：ホワイトムスクを愛用</li>
+          </ul>
+        </div>
+        <div class="section">
+          <h2>将来のこと</h2>
+          <p>言葉じゃなくても、絵でも、声でも…誰かの心の隙間にそっと寄り添えるような存在でいたい。  
+          そんなふうに思える“場所”や“作品”を届けていけたらいいな。</p>
+        </div>
+        <div class="video">
+          <h2>理央の紹介動画</h2>
+          <div class="video-wrapper">
+            <video id="rioVideo" controls playsinline>
+              <source src="../ga/mov/character/rio.mp4" type="video/mp4" />
+            </video>
+            <div id="rioMask" class="video-mask"></div>
+            <div id="rioOverlay" class="video-overlay" onclick="replayHonoka()">▶ もう一度見る</div>
+          </div>
+        </div>
+        <a href="../matching_result.html?char=rio" class="select-button">理央をパートナーに選ぶ</a>
+        <a href="../index.html" class="back-link">← TOPページに戻る</a>
+      </div>
+    </div>
+  </div>
+  <script>
+    const video = document.getElementById('rioVideo');
+    const overlay = document.getElementById('rioOverlay');
+    const mask = document.getElementById('rioMask');
+
+    function replayHonoka() {
+      video.currentTime = 0;
+      video.play();
+      overlay.style.display = 'none';
+      mask.classList.remove('show');
+    }
+
+    video.addEventListener('ended', () => {
+      mask.style.display = 'block';
+      requestAnimationFrame(() => mask.classList.add('show'));
+      overlay.style.display = 'block';
+    });
+  </script>
+</body>
+</html>

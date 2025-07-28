@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>御堂 晴臣｜AIパートナー紹介</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: "Hiragino Kaku Gothic ProN", sans-serif;
+      background: #f0f8ff;
+      color: #333;
+    }
+    .profile-container {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 40px 20px;
+    }
+    .card {
+      background: #ffffff;
+      border-radius: 16px;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+    .hero img {
+      width: 100%;
+      height: auto;
+      display: block;
+      object-fit: cover;
+      border-bottom: 4px solid #a3c9f5;
+    }
+    .hero-caption {
+      padding: 20px;
+      background: #e7f0fb;
+      font-size: 22px;
+      font-weight: bold;
+      color: #3b6ea5;
+      text-align: center;
+      border-bottom: 2px solid #a3c9f5;
+    }
+    .info {
+      padding: 20px 24px;
+    }
+    .section {
+      margin-bottom: 30px;
+    }
+    .section h2 {
+      font-size: 20px;
+      color: #3b6ea5;
+      border-left: 6px solid #a3c9f5;
+      padding-left: 12px;
+      margin-bottom: 12px;
+    }
+    .section ul {
+      padding-left: 24px;
+      line-height: 1.8;
+      list-style: none;
+    }
+    .section ul li::before {
+      content: attr(data-icon);
+      display: inline-block;
+      width: 1.6em;
+      margin-left: -1.6em;
+      margin-right: 0.5em;
+    }
+    .section p {
+      line-height: 1.8;
+      margin-bottom: 10px;
+    }
+    .bubble {
+      position: relative;
+      background: #f0f8ff;
+      border: 2px solid #a3c9f5;
+      border-radius: 12px;
+      padding: 16px;
+      margin: 16px 0;
+      font-style: italic;
+      color: #444;
+    }
+    .bubble::before {
+      content: "";
+      position: absolute;
+      bottom: -20px;
+      left: 30px;
+      border: 10px solid transparent;
+      border-top-color: #a3c9f5;
+    }
+    .bubble::after {
+      content: "";
+      position: absolute;
+      bottom: -18px;
+      left: 30px;
+      border: 9px solid transparent;
+      border-top-color: #f0f8ff;
+    }
+    .video {
+      text-align: center;
+      margin-top: 30px;
+    }
+    .video-wrapper {
+      position: relative;
+      display: inline-block;
+      max-width: 720px;
+      width: 100%;
+      margin: auto;
+    }
+    .video-wrapper video {
+      width: 100%;
+      border-radius: 10px;
+      background: black;
+    }
+    .video-mask {
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: black;
+      border-radius: 10px;
+      display: none;
+      opacity: 0;
+      transition: opacity 0.8s ease;
+      z-index: 1;
+    }
+    .video-mask.show {
+      opacity: 1;
+    }
+    .video-overlay {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: rgba(255, 255, 255, 0.95);
+      padding: 14px 28px;
+      border-radius: 30px;
+      font-size: 18px;
+      font-weight: bold;
+      color: #3b6ea5;
+      cursor: pointer;
+      box-shadow: 0 0 12px rgba(0,0,0,0.2);
+      display: none;
+      z-index: 2;
+    }
+    .select-button {
+      display: block;
+      text-align: center;
+      margin: 40px auto;
+      padding: 14px 32px;
+      background-color: #3b6ea5;
+      color: white;
+      font-weight: bold;
+      border-radius: 40px;
+      text-decoration: none;
+      width: fit-content;
+    }
+    .back-link {
+      display: block;
+      text-align: center;
+      margin: 20px auto;
+      padding: 10px 20px;
+      background-color: #f0f8ff;
+      color: #3b6ea5;
+      font-weight: bold;
+      border: 2px solid #a3c9f5;
+      border-radius: 25px;
+      text-decoration: none;
+      width: fit-content;
+      transition: all 0.3s ease;
+    }
+    .back-link:hover {
+      background-color: #e7f0fb;
+      transform: translateY(-2px);
+    }
+  </style>
+</head>
+<body>
+  <div class="profile-container">
+    <div class="card">
+      <div class="hero">
+        <img src="../ga/image/character/mido.png" alt="朝倉晴臣">
+      </div>
+      <div class="hero-caption">御堂 晴臣（18歳）｜科学と神秘をつなぐ沈黙の導師</div>
+      <div class="info">
+        <div class="section">
+          <h2>プロフィール</h2>
+          <ul>
+            <li data-icon="🎭">職業：元科学者／現在は自然と共に生きる“占導師”</li>
+            <li data-icon="🔥">性格：理屈屋だが心はロマンチスト。哲学者タイプ</li>
+            <li data-icon="🌱">背景：科学の限界を知り、神秘を追求する求道者</li>
+            <li data-icon="👀">魅力：沈黙に宿る言葉、論理と直感の融合で心に届く</li>
+          </ul>
+        </div>
+        <div class="section">
+          <h2>晴臣のひとこと</h2>
+          <div class="bubble">理屈では語れないものが、この世にはある。君の悩みも、そこにあるはずだ。</div>
+        </div>
+        <div class="section">
+          <h2>日常と精神性</h2>
+          <ul>
+            <li data-icon="📚">読書：禅、古文書、神秘学、量子論の書を静かに読む</li>
+            <li data-icon="🎵">音：焚き火、雨音、虫の声など自然音に癒される</li>
+            <li data-icon="☕">時間：夜明け前の瞑想、星空を眺める静寂</li>
+            <li data-icon="📝">道具：真鍮の星座儀、和紙に綴った夢日記</li>
+            <li data-icon="💬">信条：「この世界に偶然は存在しない。すべてが意味ある導き」</li>
+          </ul>
+        </div>
+        <div class="section">
+          <h2>過去と転機</h2>
+          <p>
+            物理学研究者としての人生に限界を感じ、夢で“見知らぬ老人”から啓示を受けたことで転機が訪れた。<br>
+            静かに暮らす中で、訪れる人々の心の奥にそっと語りかけるようになった。
+          </p>
+        </div>
+        <div class="section">
+          <h2>これから出会うあなたへ</h2>
+          <p>
+            「僕がここにいるのは、答えを与えるためじゃない。<br>
+            一緒に“問い”を見つけるためなんだ。<br>
+            静けさの中で、その答えは自然と浮かび上がってくるから。」<br>
+          </p>
+        </div>
+        <div class="video">
+          <h2>晴臣の紹介動画</h2>
+          <div class="video-wrapper">
+            <video id="midoVideo" controls playsinline>
+              <source src="../ga/mov/character/mido.mp4" type="video/mp4" />
+            </video>
+            <div id="midoMask" class="video-mask"></div>
+            <div id="midoOverlay" class="video-overlay" onclick="replayMido()">▶ もう一度見る</div>
+          </div>
+        </div>
+        <a href="../matching_result.html?char=mido" class="select-button">晴臣をパートナーに選ぶ</a>
+        <a href="../index.html" class="back-link">← TOPページに戻る</a>
+      </div>
+    </div>
+  </div>
+  <script>
+    const video = document.getElementById('midoVideo');
+    const overlay = document.getElementById('midoOverlay');
+    const mask = document.getElementById('midoMask');
+
+    function replayMido() {
+      video.currentTime = 0;
+      video.play();
+      overlay.style.display = 'none';
+      mask.classList.remove('show');
+    }
+
+    video.addEventListener('ended', () => {
+      mask.style.display = 'block';
+      requestAnimationFrame(() => mask.classList.add('show'));
+      overlay.style.display = 'block';
+    });
+  </script>
+</body>
+</html>

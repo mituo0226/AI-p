@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+
+<html lang="ja">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>優真｜AIパートナー紹介</title>
+<style>
+    body {
+      margin: 0;
+      font-family: "Hiragino Kaku Gothic ProN", sans-serif;
+      background: #e6f7ff;
+      color: #333;
+    }
+    .profile-container {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 40px 20px;
+    }
+    .card {
+      background: #ffffff;
+      border-radius: 16px;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+    .hero img {
+      width: 100%;
+      height: auto;
+      display: block;
+      object-fit: cover;
+      border-bottom: 4px solid #91d5ff;
+    }
+    .hero-caption {
+      padding: 20px;
+      background: #d0ebff;
+      font-size: 22px;
+      font-weight: bold;
+      color: #3385aa;
+      text-align: center;
+      border-bottom: 2px solid #91d5ff;
+    }
+    .info {
+      padding: 20px 24px;
+    }
+    .section {
+      margin-bottom: 30px;
+    }
+    .section h2 {
+      font-size: 20px;
+      color: #3385aa;
+      border-left: 6px solid #91d5ff;
+      padding-left: 12px;
+      margin-bottom: 12px;
+    }
+    .section ul {
+      padding-left: 24px;
+      line-height: 1.8;
+      list-style: none;
+    }
+    .section ul li::before {
+      content: attr(data-icon);
+      display: inline-block;
+      width: 1.6em;
+      margin-left: -1.6em;
+      margin-right: 0.5em;
+    }
+    .section p {
+      line-height: 1.8;
+      margin-bottom: 10px;
+    }
+    .bubble {
+      position: relative;
+      background: #d0ebff;
+      border: 2px solid #91d5ff;
+      border-radius: 12px;
+      padding: 16px;
+      margin: 16px 0;
+      font-style: italic;
+      color: #444;
+    }
+    .bubble::before {
+      content: "";
+      position: absolute;
+      bottom: -20px;
+      left: 30px;
+      border: 10px solid transparent;
+      border-top-color: #91d5ff;
+    }
+    .bubble::after {
+      content: "";
+      position: absolute;
+      bottom: -18px;
+      left: 30px;
+      border: 9px solid transparent;
+      border-top-color: #d0ebff;
+    }
+    .video {
+      text-align: center;
+      margin-top: 30px;
+    }
+    .video-wrapper {
+      position: relative;
+      display: inline-block;
+      max-width: 720px;
+      width: 100%;
+      margin: auto;
+    }
+    .video-wrapper video {
+      width: 100%;
+      border-radius: 10px;
+      background: black;
+    }
+    .video-mask {
+      opacity: 0;
+      transition: opacity 0.8s ease;
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: black;
+      border-radius: 10px;
+      display: none;
+      z-index: 1;
+    }
+    .video-overlay {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: rgba(255, 255, 255, 0.95);
+      padding: 14px 28px;
+      border-radius: 30px;
+      font-size: 18px;
+      font-weight: bold;
+      color: #3385aa;
+      cursor: pointer;
+      box-shadow: 0 0 12px rgba(0,0,0,0.2);
+      display: none;
+      z-index: 2;
+    }
+    .select-button {
+      display: block;
+      text-align: center;
+      margin: 40px auto;
+      padding: 14px 32px;
+      background-color: #4da6ff;
+      color: white;
+      font-weight: bold;
+      border-radius: 40px;
+      text-decoration: none;
+      width: fit-content;
+    }
+    .back-link {
+      display: block;
+      text-align: center;
+      margin: 20px auto;
+      padding: 10px 20px;
+      background-color: #f0f8ff;
+      color: #4da6ff;
+      font-weight: bold;
+      border: 2px solid #4da6ff;
+      border-radius: 25px;
+      text-decoration: none;
+      width: fit-content;
+      transition: all 0.3s ease;
+    }
+    .back-link:hover {
+      background-color: #e7f0fb;
+      transform: translateY(-2px);
+    }
+  
+    .video-mask.show {
+      opacity: 1;
+    }
+  </style>
+</head>
+<body>
+<div class="profile-container">
+<div class="card">
+<div class="hero">
+<img alt="優真" src="../ga/image/character/yuma.png"/>
+</div>
+<div class="hero-caption">優真（28歳）｜静寂の中に寄り添う傾聴セラピスト</div>
+<div class="info">
+<div class="section">
+<h2>プロフィール</h2>
+<ul>
+<li data-icon="💼">職業：動物カフェのアルバイト</li>
+<li data-icon="😊">性格：素直でちょっぴり天然。感情が顔に出るタイプ</li>
+<li data-icon="📖">背景：動物を通じて、人と心を通わせる喜びを知る</li>
+<li data-icon="🔮">霊感：相手の感情を"肌で感じる"繊細な直感系</li>
+</ul>
+</div>
+<div class="section">
+<h2>ななのひとこと</h2>
+<div class="bubble">無理に話さなくても大丈夫。
+言葉が出てくるまで、ただ、ここに一緒にいるから。</div>
+</div>
+<div class="section">
+<h2>好きなもの・日常</h2>
+<ul><li data-icon="📚">好きな本：ヘルマン・ヘッセ『デミアン』、谷川俊太郎の詩集</li><li data-icon="🖋️">愛用品：アンティークの万年筆、ノートに貼った四つ葉のクローバー</li><li data-icon="🎼">音楽：ピアノとチェロの静かなインストゥルメンタル</li><li data-icon="🕯️">癒しの時間：香木を焚きながら静かな音楽と共に日記をつける</li><li data-icon="☕">休日の過ごし方：図書館巡りと、行きつけの喫茶店で小説を読み耽る</li></ul>
+</div>
+<div class="section">
+<h2>小さなエピソード</h2>
+<p>学生時代、他人とうまく話せなかった時期があった優真。
+でもある日、ずっと黙って寄り添ってくれた友人の存在が心を救ってくれた。
+「話せなくても、理解してもらえるんだ」という体験が、今の“傾聴”という仕事の原点になっている。
+自分がかつて救われたように、今度は誰かにその“沈黙の安心”を届ける側になりたいと願っている。</p>
+</div>
+<div class="section">
+<h2>夢</h2>
+<div class="bubble">沈黙を怖がらずにいられる「場所」をつくりたい。
+話せない時も、泣きたい夜も、ただ誰かが“聴いている”と感じられる空間を。</div>
+</div>
+<div class="video">
+<h2>ななの紹介動画</h2>
+<div class="video-wrapper">
+<video controls="" id="yumaVideo" playsinline="">
+<source src="../ga/mov/character/yuma.mp4" type="video/mp4"/>
+</video>
+<div class="video-mask" id="videoMask"></div>
+<div class="video-overlay" id="videoOverlay" onclick="replayVideo()">▶ もう一度見る</div>
+</div>
+</div>
+<a class="select-button" href="../matching_result.html?char=yuma">優真をパートナーに選ぶ</a>
+<a href="../index.html" class="back-link">← TOPページに戻る</a>
+</div>
+</div>
+</div>
+<script>
+    const video = document.getElementById('yumaVideo');
+    const overlay = document.getElementById('videoOverlay');
+    const mask = document.getElementById('videoMask');
+
+    function replayVideo() {
+      video.currentTime = 0;
+      video.play();
+      overlay.style.display = 'none';
+      mask.style.display = 'none';
+    }
+
+    video.addEventListener('ended', () => {
+      overlay.style.display = 'block';
+      mask.style.display = 'block';
+      requestAnimationFrame(() => mask.classList.add('show'));
+    });
+  </script>
+</body>
+</html>
