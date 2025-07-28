@@ -16,6 +16,11 @@
       color: #ffccff;
       font-size: 2em;
     }
+    .user-info {
+      margin-bottom: 1rem;
+      font-size: 0.9em;
+      color: #ccc;
+    }
     .main-character img {
       border-radius: 50%;
       width: 150px;
@@ -49,6 +54,7 @@
 </head>
 <body>
   <h1>あなたに選ばれたパートナー</h1>
+  <div id="user-info" class="user-info"></div>
   <div id="result" class="main-character"></div>
   <h2>他にも相性の良いパートナーたち</h2>
   <div id="sub-characters"></div>
@@ -57,10 +63,17 @@
     console.log("▶ matching script start");
     (async () => {
       const params        = new URLSearchParams(window.location.search);
-      const name          = decodeURIComponent(params.get("name") || "");
-      const ageParam      = params.get("age") || "";
+      const userGender    = params.get("gender") || "";
       const partnerGender = params.get("partner") || "";
+      const ageParam      = params.get("age") || "";
       const typeParam     = params.get("type") || "";
+      const name          = decodeURIComponent(params.get("name") || "");
+
+      // ユーザー情報表示
+      const userInfoDiv = document.getElementById('user-info');
+      if (userGender) {
+        userInfoDiv.textContent = `あなたの性別：${userGender === 'male' ? '男性' : '女性'}`;
+      }
 
       // JSON 読み込み
       let chars;
@@ -77,7 +90,7 @@
       const ages = chars.map(c => parseInt(c.age,10)).filter(n=>!isNaN(n));
       const maxAge = Math.max(...ages);
 
-      // メインキャラ描画（タイプ無視）
+      // メインキャラ描画
       const main = chars.find(c => c.name === name);
       const resultDiv = document.getElementById("result");
       if (main) {
