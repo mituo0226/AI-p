@@ -61,6 +61,7 @@
         const characters = await res.json();
 
         function toAbsolute(path) {
+  if (!path) return '';
           return path.startsWith("http") ? path : base + path;
         }
 
