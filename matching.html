@@ -19,7 +19,7 @@
     }
     .user-info {
       margin-bottom: 1rem;
-      font-size: 0.9em;
+      font-size: 1em;
       color: #ccc;
     }
     .main-character img {
@@ -76,14 +76,10 @@
       const partnerGender = params.get("partner") || "";
       const ageParam = params.get("age") || "";
       const typeParam = params.get("type") || "";
-      const name = decodeURIComponent(params.get("name") || "").trim();
-
-      console.log("🔍 params", { userGender, partnerGender, ageParam, typeParam, name });
+      const userName = decodeURIComponent(params.get("name") || "").trim();
 
       const userInfoDiv = document.getElementById('user-info');
-      if (userGender) {
-        userInfoDiv.textContent = `あなたの性別：${userGender === 'male' ? '男性' : '女性'}`;
-      }
+      userInfoDiv.textContent = `ようこそ、${userName} さん`;
 
       let chars;
       try {
@@ -98,7 +94,23 @@
       const ages = chars.map(c => parseInt(c.age, 10)).filter(n => !isNaN(n));
       const maxAge = Math.max(...ages);
 
-      const main = chars.find(c => c.name.trim() === name);
+      let threshold = null;
+      if (ageParam.endsWith("up")) {
+        threshold = Number(ageParam.replace(/\D/g, ""));
+        if (threshold > maxAge) threshold = maxAge;
+      }
+
+      const filtered = chars.filter(c => {
+        const ageNum = parseInt(c.age, 10);
+        const ageMatch = ageParam.endsWith("up")
+          ? ageNum >= threshold
+          : c.age === ageParam;
+        return c.gender === partnerGender &&
+               ageMatch &&
+               c.type === typeParam;
+      });
+
+      const main = filtered[0]; // 最初の一致キャラを選出
       const resultDiv = document.getElementById("result");
       if (main) {
         const ageLabel = getAgeLabel(main.age);
@@ -113,23 +125,7 @@
         resultDiv.textContent = "選ばれたパートナーは見つかりませんでした。";
       }
 
-      let threshold = null;
-      if (ageParam.endsWith("up")) {
-        threshold = Number(ageParam.replace(/\D/g, ""));
-        if (threshold > maxAge) threshold = maxAge;
-      }
-      const subs = chars.filter(c => {
-        const ageNum = parseInt(c.age, 10);
-        const ageMatch = ageParam.endsWith("up")
-          ? ageNum >= threshold
-          : c.age === ageParam;
-        return c.gender === partnerGender &&
-               ageMatch &&
-               c.type === typeParam &&
-               c.name.trim() !== name;
-      }).slice(0, 4);
-
-      console.log("subs:", subs.length, subs);
+      const subs = filtered.filter(c => c.name !== main?.name).slice(0, 4);
       const subDiv = document.getElementById("sub-characters");
       if (subs.length === 0) {
         subDiv.textContent = "他に相性の良いパートナーはいません。";
