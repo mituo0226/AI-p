@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="ja">
 <head>
@@ -60,22 +61,30 @@
   <div id="sub-characters"></div>
 
   <script>
+    function getAgeLabel(age) {
+      return age === "10s" ? "10代"
+           : age === "20s" ? "20代"
+           : age === "30s" ? "30代"
+           : age === "40up" ? "40代以上"
+           : age;
+    }
+
     console.log("▶ matching script start");
     (async () => {
-      const params        = new URLSearchParams(window.location.search);
-      const userGender    = params.get("gender") || "";
+      const params = new URLSearchParams(window.location.search);
+      const userGender = params.get("gender") || "";
       const partnerGender = params.get("partner") || "";
-      const ageParam      = params.get("age") || "";
-      const typeParam     = params.get("type") || "";
-      const name          = decodeURIComponent(params.get("name") || "");
+      const ageParam = params.get("age") || "";
+      const typeParam = params.get("type") || "";
+      const name = decodeURIComponent(params.get("name") || "").trim();
 
-      // ユーザー情報表示
+      console.log("🔍 params", { userGender, partnerGender, ageParam, typeParam, name });
+
       const userInfoDiv = document.getElementById('user-info');
       if (userGender) {
         userInfoDiv.textContent = `あなたの性別：${userGender === 'male' ? '男性' : '女性'}`;
       }
 
-      // JSON 読み込み
       let chars;
       try {
         const res = await fetch("characters.json");
@@ -86,18 +95,16 @@
         return;
       }
 
-      // 年代リスト＆最大年代取得
-      const ages = chars.map(c => parseInt(c.age,10)).filter(n=>!isNaN(n));
+      const ages = chars.map(c => parseInt(c.age, 10)).filter(n => !isNaN(n));
       const maxAge = Math.max(...ages);
 
-      // メインキャラ描画
-      const main = chars.find(c => c.name === name);
+      const main = chars.find(c => c.name.trim() === name);
       const resultDiv = document.getElementById("result");
       if (main) {
-        const ageNum = parseInt(main.age,10) || main.age;
+        const ageLabel = getAgeLabel(main.age);
         resultDiv.innerHTML = `
           <img src="${main.img}" alt="${main.name}" />
-          <h2>${main.name}（${ageNum}代）</h2>
+          <h2>${main.name}（${ageLabel}）</h2>
           <p><i>${main.phrase}</i></p>
           <p>${main.intro}</p>
           <p><a class="video-link" href="${main.profile}">▶ プロフィールを見る</a></p>
@@ -106,22 +113,21 @@
         resultDiv.textContent = "選ばれたパートナーは見つかりませんでした。";
       }
 
-      // サブキャラ絞り込み （性別・年代・タイプ・本人除外）
       let threshold = null;
       if (ageParam.endsWith("up")) {
-        threshold = Number(ageParam.replace(/\D/g,""));
+        threshold = Number(ageParam.replace(/\D/g, ""));
         if (threshold > maxAge) threshold = maxAge;
       }
       const subs = chars.filter(c => {
-        const ageNum = parseInt(c.age,10);
+        const ageNum = parseInt(c.age, 10);
         const ageMatch = ageParam.endsWith("up")
           ? ageNum >= threshold
           : c.age === ageParam;
-        return c.gender === partnerGender
-            && ageMatch
-            && c.type === typeParam
-            && c.name !== name;
-      }).slice(0,4);
+        return c.gender === partnerGender &&
+               ageMatch &&
+               c.type === typeParam &&
+               c.name.trim() !== name;
+      }).slice(0, 4);
 
       console.log("subs:", subs.length, subs);
       const subDiv = document.getElementById("sub-characters");
@@ -129,12 +135,12 @@
         subDiv.textContent = "他に相性の良いパートナーはいません。";
       } else {
         subs.forEach(c => {
-          const ageNum = parseInt(c.age,10) || c.age;
+          const ageLabel = getAgeLabel(c.age);
           const card = document.createElement("div");
           card.className = "character-card";
           card.innerHTML = `
             <img src="${c.img}" alt="${c.name}" />
-            <div class="character-name">${c.name}（${ageNum}代）</div>
+            <div class="character-name">${c.name}（${ageLabel}）</div>
             <p><i>${c.phrase}</i></p>
             <p>${c.intro}</p>
           `;
