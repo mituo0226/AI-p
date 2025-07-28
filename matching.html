@@ -33,6 +33,7 @@
       border-radius: 9999px;
       font-weight: bold;
       transition: 0.3s ease;
+      display: inline-block;
     }
     .btn:hover {
       background: #fbb6ce;
@@ -53,7 +54,9 @@
       <h2 id="characterName" class="text-2xl font-bold mb-2"></h2>
       <p id="characterPhrase" class="italic text-pink-200 mb-2"></p>
       <p id="characterIntro" class="text-sm text-pink-100 mb-4"></p>
-      <a id="characterProfileLink" href="#" target="_blank" class="btn">▶ このキャラの詳細を見る</a>
+      <div class="flex justify-center">
+        <a id="characterProfileLink" href="#" target="_blank" class="btn">▶ 詳細プロフィールページへ</a>
+      </div>
     </div>
   </div>
 
@@ -68,7 +71,7 @@
 
     async function loadCharactersAndMatch() {
       try {
-        const res = await fetch("characters.json?v=" + Date.now());
+        const res = await fetch("characters_with_profile.json?v=" + Date.now());
         const characters = await res.json();
 
         function calculateScore(char) {
