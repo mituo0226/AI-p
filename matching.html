@@ -56,7 +56,7 @@
     const partnerGender = params.get("partner");
 
     async function loadAndMatch() {
-      const res = await fetch("characters_with_profile.json");
+      const res = await fetch("characters.json");
       const characters = await res.json();
 
       const scored = characters.map(c => {
