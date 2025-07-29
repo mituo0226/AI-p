@@ -51,46 +51,6 @@
       color: #66ccff;
       font-size: 0.9em;
     }
-    .voice-controls {
-      position: fixed;
-      bottom: 20px;
-      right: 20px;
-      z-index: 1000;
-    }
-    .voice-btn {
-      background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
-      border: none;
-      border-radius: 50%;
-      width: 60px;
-      height: 60px;
-      color: white;
-      font-size: 24px;
-      cursor: pointer;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.3);
-      transition: all 0.3s ease;
-    }
-    .voice-btn:hover {
-      transform: scale(1.1);
-    }
-    .voice-btn.listening {
-      background: linear-gradient(45deg, #ff4757, #ff3838);
-      animation: pulse 1s infinite;
-    }
-    @keyframes pulse {
-      0% { transform: scale(1); }
-      50% { transform: scale(1.1); }
-      100% { transform: scale(1); }
-    }
-    .voice-status {
-      position: fixed;
-      top: 20px;
-      right: 20px;
-      background: rgba(0,0,0,0.8);
-      padding: 10px;
-      border-radius: 5px;
-      font-size: 14px;
-      display: none;
-    }
   </style>
 </head>
 <body>
@@ -100,126 +60,7 @@
   <h2>他にも相性の良いパートナーたち</h2>
   <div id="sub-characters"></div>
 
-  <!-- 音声コントロール -->
-  <div class="voice-controls">
-    <button id="voiceBtn" class="voice-btn" title="音声入力">🎤</button>
-  </div>
-  <div id="voiceStatus" class="voice-status"></div>
-
   <script>
-    // 音声認識と音声合成の設定
-    let recognition = null;
-    let synthesis = window.speechSynthesis;
-    let isListening = false;
-    let currentCharacter = null;
-
-    // 音声認識の初期化
-    function initSpeechRecognition() {
-      if ('webkitSpeechRecognition' in window || 'SpeechRecognition' in window) {
-        recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
-        recognition.continuous = false;
-        recognition.interimResults = false;
-        recognition.lang = 'ja-JP';
-
-        recognition.onstart = () => {
-          isListening = true;
-          document.getElementById('voiceBtn').classList.add('listening');
-          showVoiceStatus('音声を聞いています...');
-        };
-
-        recognition.onresult = (event) => {
-          const transcript = event.results[0][0].transcript;
-          handleVoiceCommand(transcript);
-        };
-
-        recognition.onend = () => {
-          isListening = false;
-          document.getElementById('voiceBtn').classList.remove('listening');
-          hideVoiceStatus();
-        };
-
-        recognition.onerror = (event) => {
-          console.error('音声認識エラー:', event.error);
-          speak('音声認識でエラーが発生しました');
-        };
-      } else {
-        console.log('音声認識がサポートされていません');
-        document.getElementById('voiceBtn').style.display = 'none';
-      }
-    }
-
-    // 音声合成
-    function speak(text) {
-      if (synthesis) {
-        const utterance = new SpeechSynthesisUtterance(text);
-        utterance.lang = 'ja-JP';
-        utterance.rate = 0.9;
-        utterance.pitch = 1.0;
-        synthesis.speak(utterance);
-      }
-    }
-
-    // 音声コマンドの処理
-    function handleVoiceCommand(transcript) {
-      console.log('音声コマンド:', transcript);
-      
-      if (transcript.includes('プロフィール') || transcript.includes('詳細')) {
-        if (currentCharacter) {
-          window.location.href = currentCharacter.profile;
-        }
-      } else if (transcript.includes('戻る') || transcript.includes('前のページ')) {
-        window.history.back();
-      } else if (transcript.includes('読み上げ') || transcript.includes('読んで')) {
-        readCurrentResult();
-      } else if (transcript.includes('次') || transcript.includes('次のキャラクター')) {
-        showNextCharacter();
-      } else if (transcript.includes('前') || transcript.includes('前のキャラクター')) {
-        showPreviousCharacter();
-      } else {
-        speak('コマンドが認識できませんでした。プロフィール、戻る、読み上げ、次、前などが使えます。');
-      }
-    }
-
-    // 現在の結果を読み上げ
-    function readCurrentResult() {
-      const resultDiv = document.getElementById('result');
-      if (resultDiv.textContent) {
-        speak(resultDiv.textContent);
-      }
-    }
-
-    // 次のキャラクターを表示
-    function showNextCharacter() {
-      // 実装予定
-      speak('次のキャラクター機能は準備中です');
-    }
-
-    // 前のキャラクターを表示
-    function showPreviousCharacter() {
-      // 実装予定
-      speak('前のキャラクター機能は準備中です');
-    }
-
-    // 音声ステータス表示
-    function showVoiceStatus(message) {
-      const status = document.getElementById('voiceStatus');
-      status.textContent = message;
-      status.style.display = 'block';
-    }
-
-    function hideVoiceStatus() {
-      document.getElementById('voiceStatus').style.display = 'none';
-    }
-
-    // 音声ボタンクリックイベント
-    document.getElementById('voiceBtn').addEventListener('click', () => {
-      if (isListening) {
-        recognition.stop();
-      } else {
-        recognition.start();
-      }
-    });
-
     function getAgeLabel(age) {
       return age === "10s" ? "10代"
            : age === "20s" ? "20代"
@@ -270,7 +111,6 @@
       });
 
       const main = filtered[0]; // 最初の一致キャラを選出
-      currentCharacter = main; // 音声コマンド用に保存
       const resultDiv = document.getElementById("result");
       if (main) {
         const ageLabel = getAgeLabel(main.age);
@@ -281,14 +121,8 @@
           <p>${main.intro}</p>
           <p><a class="video-link" href="${main.profile}">▶ プロフィールを見る</a></p>
         `;
-        
-        // 結果を音声で読み上げ
-        setTimeout(() => {
-          speak(`${main.name}があなたのパートナーに選ばれました。${main.phrase}`);
-        }, 1000);
       } else {
         resultDiv.textContent = "選ばれたパートナーは見つかりませんでした。";
-        speak("選ばれたパートナーは見つかりませんでした。");
       }
 
       const subs = filtered.filter(c => c.name !== main?.name).slice(0, 4);
@@ -309,9 +143,6 @@
           subDiv.appendChild(card);
         });
       }
-
-      // 音声認識を初期化
-      initSpeechRecognition();
     })();
   </script>
 </body>
