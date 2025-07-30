@@ -146,7 +146,11 @@
       .then(res => res.json())
       .then(characters => {
         const main = selectMainPartner(characters);
-        const sub = characters.filter(c => c.name !== main.name).slice(0, 4);
+        // サブパートナーも同じ性別条件で選択
+        const sub = characters.filter(c => 
+          c.name !== main.name && 
+          c.gender === main.gender
+        ).slice(0, 4);
 
         if (main) {
           document.getElementById("main-partner").innerHTML = `
