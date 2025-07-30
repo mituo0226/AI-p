@@ -39,6 +39,20 @@
       font-size: 16px;
       line-height: 1.6;
     }
+    .profile-btn {
+      display: inline-block;
+      margin-top: 15px;
+      padding: 10px 20px;
+      background: #f06;
+      color: #fff;
+      border-radius: 8px;
+      text-decoration: none;
+      font-size: 14px;
+      transition: background 0.3s ease;
+    }
+    .profile-btn:hover {
+      background: #d05;
+    }
     .sub-partners {
       display: flex;
       flex-wrap: wrap;
@@ -61,6 +75,11 @@
       height: auto;
       border-radius: 50%;
       margin-bottom: 15px;
+    }
+    .partner-card .profile-btn {
+      margin-top: 10px;
+      padding: 8px 16px;
+      font-size: 12px;
     }
     .btn {
       display: inline-block;
@@ -87,23 +106,48 @@
   <script>
     const params = new URLSearchParams(window.location.search);
     const nickname = params.get("nickname") || "あなた";
-    const mainName = "柚月 なな";
+    const gender = params.get("gender");
+    const partner = params.get("partner");
+    const age = params.get("age");
+    const type = params.get("type");
 
     document.getElementById("nickname").textContent = nickname;
+
+    // 診断結果に基づいてメインパートナーを選択する関数
+    function selectMainPartner(characters) {
+      // 条件に合うキャラクターをフィルタリング
+      let filtered = characters.filter(c => {
+        // 性別の条件
+        if (partner && c.gender !== partner) return false;
+        // 年齢の条件
+        if (age && c.age !== age) return false;
+        // タイプの条件
+        if (type && c.type !== type) return false;
+        return true;
+      });
+
+      // 条件に合うキャラクターがいない場合は、すべてのキャラクターから選択
+      if (filtered.length === 0) {
+        filtered = characters;
+      }
+
+      // ランダムに1つ選択（実際の診断ロジックに応じて変更可能）
+      const randomIndex = Math.floor(Math.random() * filtered.length);
+      return filtered[randomIndex];
+    }
 
     fetch("characters.json")
       .then(res => res.json())
       .then(characters => {
-        const main = characters.find(c => c.name === mainName);
-        const sub = characters.filter(c => c.name !== mainName).slice(0, 4);
+        const main = selectMainPartner(characters);
+        const sub = characters.filter(c => c.name !== main.name).slice(0, 4);
 
         if (main) {
           document.getElementById("main-partner").innerHTML = `
-            <a href="${main.profile}">
-              <img src="${main.img}" alt="${main.name}">
-            </a>
+            <img src="${main.img}" alt="${main.name}">
             <h2>${main.name}（${main.age}）</h2>
             <p>${main.phrase}<br>${main.intro}</p>
+            <a href="${main.profile}" class="profile-btn">プロフィール詳細を見る</a>
           `;
         }
 
@@ -112,11 +156,10 @@
           const card = document.createElement("div");
           card.className = "partner-card";
           card.innerHTML = `
-            <a href="${c.profile}">
-              <img src="${c.img}" alt="${c.name}">
-              <h3>${c.name}（${c.age}）</h3>
-            </a>
+            <img src="${c.img}" alt="${c.name}">
+            <h3>${c.name}（${c.age}）</h3>
             <p>${c.phrase}<br>${c.intro}</p>
+            <a href="${c.profile}" class="profile-btn">プロフィール詳細を見る</a>
           `;
           subContainer.appendChild(card);
         });
