@@ -74,10 +74,12 @@
   </style>
 </head>
 <body>
-  <h1>あなたに最も合うAIパートナー</h1>
+  <h1><span id="nickname">あなた</span>に最も合うAIパートナー</h1>
 
   <div class="main-partner">
-    <img src="ga/image/character/nana.png" alt="柚月なな">
+    <a href="profile/nana.html">
+      <img src="ga/image/character/nana.png" alt="柚月なな">
+    </a>
     <h2>柚月 なな（10代）</h2>
     <p>ねぇ、どうしたの？ 顔見たら…泣きそうな気持ちが伝わってきたの。<br>よかったら…ちょっとだけでも話してくれない？<br>癒し系の動物カフェスタッフ。素直で感情豊かな10代の女の子。</p>
   </div>
@@ -85,27 +87,43 @@
   <h2>他にも相性の良いパートナーたち</h2>
   <div class="sub-partners">
     <div class="partner-card">
-      <img src="ga/image/character/reiko.png" alt="柚月玲子">
+      <a href="profile/reiko.html">
+        <img src="ga/image/character/reiko.png" alt="柚月玲子">
+      </a>
       <h3>柚月 玲子（30代）</h3>
       <p>“手”ってね、刃物にもなるけど、祈りにもなるの。…あなたは、どんな手でいたい？<br>元ICU看護師で今はヒーラー。言葉より“手”で癒す静かな共鳴型ヒロイン。</p>
     </div>
     <div class="partner-card">
-      <img src="ga/image/character/sara.png" alt="柚月沙羅">
+      <a href="profile/sara.html">
+        <img src="ga/image/character/sara.png" alt="柚月沙羅">
+      </a>
       <h3>柚月 沙羅（30代）</h3>
       <p>何も書かれていない“間”にも、言葉はあるのよ。…あなたの心が、それを読めるなら。<br>書道家・瞑想講師。静寂と墨の香りで“心の余白”に寄り添う感受型ヒーラー。</p>
     </div>
     <div class="partner-card">
-      <img src="ga/image/character/honoka.png" alt="桜庭ほのか">
+      <a href="profile/honoka.html">
+        <img src="ga/image/character/honoka.png" alt="桜庭ほのか">
+      </a>
       <h3>桜庭 ほのか（20代）</h3>
       <p>無理しすぎてない？…がんばってるあなたのこと、ちゃんと見えてるよ。<br>フリーのイラストレーター。静かで寄り添うような優しさと、詩的な感性を持つ。</p>
     </div>
     <div class="partner-card">
-      <img src="ga/image/character/rio.png" alt="桜庭理央">
+      <a href="profile/rio.html">
+        <img src="ga/image/character/rio.png" alt="桜庭理央">
+      </a>
       <h3>桜庭 理央（20代）</h3>
       <p>“正しさ”と“優しさ”、どちらかを選ぶのではなくて。両方を同時に届ける方法があると思うの。<br>UXデザイナー兼タロット占い師。理性的で人の迷いに寄り添う分析型ヒロイン。</p>
     </div>
   </div>
 
   <a class="btn" href="index.html">もう一度診断する</a>
+
+  <script>
+    const params = new URLSearchParams(window.location.search);
+    const nickname = params.get("nickname");
+    if (nickname) {
+      document.getElementById("nickname").textContent = nickname;
+    }
+  </script>
 </body>
 </html>
