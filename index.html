@@ -84,7 +84,7 @@
       .then(characters => {
         const mainChar = characters[Math.floor(Math.random() * characters.length)];
         document.getElementById("heroImage").src = mainChar.img;
-        document.getElementById("heroName").textContent = `${mainChar.name}（${mainChar.age}）`;
+        document.getElementById("heroName").textContent = `${mainChar.name}（${mainChar.age}歳）`;
         document.getElementById("heroCatch").textContent = `"${mainChar.phrase}"`;
         document.getElementById("heroIntro").textContent = mainChar.intro;
         document.getElementById("heroProfile").href = mainChar.profile;
@@ -96,7 +96,7 @@
           card.className = "bg-white rounded-2xl shadow p-4 text-center";
           card.innerHTML = `
             <img src="${char.img}" alt="${char.name}" class="w-full rounded-lg mb-2" />
-            <h3 class="text-lg font-bold text-gray-800">${char.name}（${char.age}）</h3>
+            <h3 class="text-lg font-bold text-gray-800">${char.name}（${char.age}歳）</h3>
             <p class="text-sm text-gray-600 italic mb-1">"${char.phrase}"</p>
             <a href="${char.profile}" class="text-pink-600 text-xs hover:underline">▶ プロフィール詳細を見る</a>
           `;
