@@ -70,48 +70,18 @@
     &copy; 2025 AI LOVE Partner Project
   </footer>
   <script>
-    const profCharacters = [
-      {
-        name: "柚月 なな（19歳）",
-        catch: "“小動物みたいな笑顔で癒します。あなたの今日をやさしく包みたいな。”",
-        intro: "動物カフェで働く素直でピュアな癒し系キャラ。",
-        img: "http://ryu02262.moo.jp/aip/ga/ｍ/nana.png",
-        video: "http://ryu02262.moo.jp/aip/ga/v/nana.mp4",
-        gender: "female"
-      },
-      {
-        name: "高峰 瞬（36歳）",
-        catch: "“冗談もまじめも、全部まっすぐ届ける言葉の魔法使い。”",
-        intro: "コピーライターとして言葉に想いを込める、軽快で誠実な大人男子。",
-        img: "http://ryu02262.moo.jp/aip/ga/ｍ/syun.png",
-        video: "http://ryu02262.moo.jp/aip/ga/v/syun.mp4",
-        gender: "male"
-      },
-      {
-        name: "彩月 凛（26歳）",
-        catch: "“音の波で心に寄り添うシンガー。”",
-        intro: "感受性豊かなスピリチュアル系シンガー。あなたの“静かな痛み”に寄り添います。",
-        img: "http://ryu02262.moo.jp/aip/ga/ｍ/rin.png",
-        video: "http://ryu02262.moo.jp/aip/ga/v/rin.mp4",
-        gender: "female"
-      },
-      {
-        name: "玲子（33歳）",
-        catch: "“おかえりって言いたくなる声。”",
-        intro: "元看護師のヒーラー。共感と母性でそっと支える存在。",
-        img: "http://ryu02262.moo.jp/aip/ga/ｍ/reiko.png",
-        video: "http://ryu02262.moo.jp/aip/ga/v/reiko.mp4",
-        gender: "female"
-      },
-      {
-        name: "水瀬 海翔（25歳）",
-        catch: "“年下でも頼れる彼。”",
-        intro: "元アイドルのカフェ店員。ギャップに心惹かれる年下タイプ。",
-        img: "http://ryu02262.moo.jp/aip/ga/ｍ/kaito.png",
-        video: "http://ryu02262.moo.jp/aip/ga/v/kaito.mp4",
-        gender: "male"
+    // JSONファイルからキャラクター情報を読み込む
+    async function loadCharacters() {
+      try {
+        const response = await fetch('characters.json');
+        const characters = await response.json();
+        return characters;
+      } catch (error) {
+        console.error('キャラクター情報の読み込みに失敗しました:', error);
+        return [];
       }
-    ];
+    }
+
     function shuffle(array) {
       let arr = array.slice();
       for (let i = arr.length - 1; i > 0; i--) {
@@ -120,25 +90,51 @@
       }
       return arr;
     }
-    const mainChar = profCharacters[Math.floor(Math.random() * profCharacters.length)];
-    document.getElementById("heroImage").src = mainChar.img;
-    document.getElementById("heroName").textContent = mainChar.name;
-    document.getElementById("heroCatch").textContent = mainChar.catch;
-    document.getElementById("heroIntro").textContent = mainChar.intro;
-    document.getElementById("heroVideo").href = mainChar.video;
-    const otherChars = shuffle(profCharacters.filter(c => c !== mainChar)).slice(0, 4);
-    const container = document.getElementById("character-cards");
-    otherChars.forEach((char) => {
-      const card = document.createElement("div");
-      card.className = "bg-white rounded-2xl shadow p-4 text-center";
-      card.innerHTML = `
-        <img src="${char.img}" alt="${char.name}" class="w-full rounded-lg mb-2" />
-        <h3 class="text-lg font-bold text-gray-800">${char.name}</h3>
-        <p class="text-sm text-gray-600 italic mb-1">${char.catch}</p>
-        <a href="${char.video}" target="_blank" class="text-pink-600 text-xs hover:underline">▶ 動画を見る</a>
-      `;
-      container.appendChild(card);
-    });
+
+    async function initializePage() {
+      const characters = await loadCharacters();
+      if (characters.length === 0) return;
+
+      // メインキャラクターをランダムに選択
+      const mainChar = characters[Math.floor(Math.random() * characters.length)];
+      
+      // ヒーローセクションを更新
+      document.getElementById("heroImage").src = mainChar.img;
+      document.getElementById("heroName").textContent = mainChar.name;
+      document.getElementById("heroCatch").textContent = mainChar.phrase;
+      document.getElementById("heroIntro").textContent = mainChar.intro;
+      document.getElementById("heroVideo").href = mainChar.video;
+      
+      // プロフィールページへのリンクを追加
+      const heroCard = document.getElementById("heroCharacter");
+      const profileLink = document.createElement("a");
+      profileLink.href = mainChar.profile;
+      profileLink.className = "text-pink-600 text-sm font-semibold hover:underline mt-2 inline-block";
+      profileLink.textContent = "📋 プロフィール詳細を見る";
+      heroCard.appendChild(profileLink);
+
+      // 他のキャラクターを表示
+      const otherChars = shuffle(characters.filter(c => c !== mainChar)).slice(0, 4);
+      const container = document.getElementById("character-cards");
+      
+      otherChars.forEach((char) => {
+        const card = document.createElement("div");
+        card.className = "bg-white rounded-2xl shadow p-4 text-center hover:shadow-lg transition-shadow duration-300";
+        card.innerHTML = `
+          <img src="${char.img}" alt="${char.name}" class="w-full rounded-lg mb-2" />
+          <h3 class="text-lg font-bold text-gray-800">${char.name}</h3>
+          <p class="text-sm text-gray-600 italic mb-1">${char.phrase}</p>
+          <div class="flex flex-col gap-1">
+            <a href="${char.video}" target="_blank" class="text-pink-600 text-xs hover:underline">▶ 動画を見る</a>
+            <a href="${char.profile}" class="text-blue-600 text-xs hover:underline">📋 プロフィール詳細</a>
+          </div>
+        `;
+        container.appendChild(card);
+      });
+    }
+
+    // ページ読み込み時に初期化
+    document.addEventListener('DOMContentLoaded', initializePage);
   </script>
 </body>
 <!-- Test: GitHub Actions auto-deploy -->
