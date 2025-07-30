@@ -120,7 +120,13 @@
         // 性別の条件
         if (partner && c.gender !== partner) return false;
         // 年齢の条件
-        if (age && c.age !== age) return false;
+        if (age) {
+          let ageMatch = false;
+          if (age === "20s" && c.age >= 20 && c.age < 30) ageMatch = true;
+          else if (age === "30s" && c.age >= 30 && c.age < 40) ageMatch = true;
+          else if (age === "40up" && c.age >= 40) ageMatch = true;
+          if (!ageMatch) return false;
+        }
         // タイプの条件
         if (type && c.type !== type) return false;
         return true;
