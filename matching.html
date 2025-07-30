@@ -145,7 +145,7 @@
         if (main) {
           document.getElementById("main-partner").innerHTML = `
             <img src="${main.img}" alt="${main.name}">
-            <h2>${main.name}（${main.age}）</h2>
+            <h2>${main.name}（${main.age}歳）</h2>
             <p>${main.phrase}<br>${main.intro}</p>
             <a href="${main.profile}" class="profile-btn">プロフィール詳細を見る</a>
           `;
@@ -157,7 +157,7 @@
           card.className = "partner-card";
           card.innerHTML = `
             <img src="${c.img}" alt="${c.name}">
-            <h3>${c.name}（${c.age}）</h3>
+            <h3>${c.name}（${c.age}歳）</h3>
             <p>${c.phrase}<br>${c.intro}</p>
             <a href="${c.profile}" class="profile-btn">プロフィール詳細を見る</a>
           `;
