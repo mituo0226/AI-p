@@ -1,149 +1,111 @@
-
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>診断結果</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>あなたに最も合うAIパートナー</title>
+  <link rel="stylesheet" href="style.css">
   <style>
     body {
-      background-color: #000;
-      color: #fff;
-      font-family: 'Arial', sans-serif;
-      text-align: center;
-      padding: 20px;
-    }
-    h1 {
-      color: #ffccff;
-      font-size: 2em;
-    }
-    .user-info {
-      margin-bottom: 1rem;
-      font-size: 1em;
-      color: #ccc;
-    }
-    .main-character img {
-      border-radius: 50%;
-      width: 150px;
-      height: 150px;
-    }
-    .character-card {
-      display: inline-block;
-      width: 220px;
-      margin: 10px;
-      padding: 10px;
-      border-radius: 15px;
       background-color: #111;
       color: #fff;
-      box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+      font-family: "Helvetica Neue", sans-serif;
+      margin: 0;
+      padding: 0;
+      text-align: center;
     }
-    .character-card img {
-      width: 100px;
-      height: 100px;
+    h1 {
+      margin-top: 40px;
+      font-size: 28px;
+    }
+    .main-partner {
+      margin: 40px auto;
+      max-width: 500px;
+      padding: 20px;
+      background: #222;
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+    }
+    .main-partner img {
+      width: 100%;
+      border-radius: 12px;
+    }
+    .main-partner h2 {
+      margin: 20px 0 10px;
+      font-size: 24px;
+    }
+    .main-partner p {
+      font-size: 16px;
+      line-height: 1.6;
+    }
+    .sub-partners {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+      margin: 40px auto;
+      max-width: 1100px;
+    }
+    .partner-card {
+      width: 250px;
+      background: #222;
+      color: #fff;
+      padding: 20px;
+      border-radius: 12px;
+      text-align: center;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+    }
+    .partner-card img {
+      width: 100%;
+      height: auto;
       border-radius: 50%;
+      margin-bottom: 15px;
     }
-    .character-name {
-      font-weight: bold;
-      margin: 5px 0;
-      font-size: 1.1em;
-    }
-    .video-link {
-      color: #66ccff;
-      font-size: 0.9em;
+    .btn {
+      display: inline-block;
+      margin-top: 40px;
+      padding: 12px 24px;
+      background: #f06;
+      color: #fff;
+      border-radius: 8px;
+      text-decoration: none;
+      font-size: 16px;
     }
   </style>
 </head>
 <body>
-  <h1>あなたに選ばれたパートナー</h1>
-  <div id="user-info" class="user-info"></div>
-  <div id="result" class="main-character"></div>
+  <h1>あなたに最も合うAIパートナー</h1>
+
+  <div class="main-partner">
+    <img src="ga/image/character/nana.png" alt="柚月なな">
+    <h2>柚月 なな（10代）</h2>
+    <p>ねぇ、どうしたの？ 顔見たら…泣きそうな気持ちが伝わってきたの。<br>よかったら…ちょっとだけでも話してくれない？<br>癒し系の動物カフェスタッフ。素直で感情豊かな10代の女の子。</p>
+  </div>
+
   <h2>他にも相性の良いパートナーたち</h2>
-  <div id="sub-characters"></div>
+  <div class="sub-partners">
+    <div class="partner-card">
+      <img src="ga/image/character/reiko.png" alt="柚月玲子">
+      <h3>柚月 玲子（30代）</h3>
+      <p>“手”ってね、刃物にもなるけど、祈りにもなるの。…あなたは、どんな手でいたい？<br>元ICU看護師で今はヒーラー。言葉より“手”で癒す静かな共鳴型ヒロイン。</p>
+    </div>
+    <div class="partner-card">
+      <img src="ga/image/character/sara.png" alt="柚月沙羅">
+      <h3>柚月 沙羅（30代）</h3>
+      <p>何も書かれていない“間”にも、言葉はあるのよ。…あなたの心が、それを読めるなら。<br>書道家・瞑想講師。静寂と墨の香りで“心の余白”に寄り添う感受型ヒーラー。</p>
+    </div>
+    <div class="partner-card">
+      <img src="ga/image/character/honoka.png" alt="桜庭ほのか">
+      <h3>桜庭 ほのか（20代）</h3>
+      <p>無理しすぎてない？…がんばってるあなたのこと、ちゃんと見えてるよ。<br>フリーのイラストレーター。静かで寄り添うような優しさと、詩的な感性を持つ。</p>
+    </div>
+    <div class="partner-card">
+      <img src="ga/image/character/rio.png" alt="桜庭理央">
+      <h3>桜庭 理央（20代）</h3>
+      <p>“正しさ”と“優しさ”、どちらかを選ぶのではなくて。両方を同時に届ける方法があると思うの。<br>UXデザイナー兼タロット占い師。理性的で人の迷いに寄り添う分析型ヒロイン。</p>
+    </div>
+  </div>
 
-  <script>
-    function getAgeLabel(age) {
-      return age === "10s" ? "10代"
-           : age === "20s" ? "20代"
-           : age === "30s" ? "30代"
-           : age === "40up" ? "40代以上"
-           : age;
-    }
-
-    console.log("▶ matching script start");
-    (async () => {
-      const params = new URLSearchParams(window.location.search);
-      const userGender = params.get("gender") || "";
-      const partnerGender = params.get("partner") || "";
-      const ageParam = params.get("age") || "";
-      const typeParam = params.get("type") || "";
-      const userName = decodeURIComponent(params.get("name") || "").trim();
-
-      const userInfoDiv = document.getElementById('user-info');
-      userInfoDiv.textContent = `ようこそ、${userName} さん`;
-
-      let chars;
-      try {
-        const res = await fetch("characters.json");
-        console.log("fetch status:", res.status);
-        chars = await res.json();
-      } catch (err) {
-        console.error("fetch error:", err);
-        return;
-      }
-
-      const ages = chars.map(c => parseInt(c.age, 10)).filter(n => !isNaN(n));
-      const maxAge = Math.max(...ages);
-
-      let threshold = null;
-      if (ageParam.endsWith("up")) {
-        threshold = Number(ageParam.replace(/\D/g, ""));
-        if (threshold > maxAge) threshold = maxAge;
-      }
-
-      const filtered = chars.filter(c => {
-        const ageNum = parseInt(c.age, 10);
-        const ageMatch = ageParam.endsWith("up")
-          ? ageNum >= threshold
-          : c.age === ageParam;
-        return c.gender === partnerGender &&
-               ageMatch &&
-               c.type === typeParam;
-      });
-
-      const main = filtered[0]; // 最初の一致キャラを選出
-      const resultDiv = document.getElementById("result");
-      if (main) {
-        const ageLabel = getAgeLabel(main.age);
-        resultDiv.innerHTML = `
-          <img src="${main.img}" alt="${main.name}" />
-          <h2>${main.name}（${ageLabel}）</h2>
-          <p><i>${main.phrase}</i></p>
-          <p>${main.intro}</p>
-          <p><a class="video-link" href="${main.profile}">▶ プロフィールを見る</a></p>
-        `;
-      } else {
-        resultDiv.textContent = "選ばれたパートナーは見つかりませんでした。";
-      }
-
-      const subs = filtered.filter(c => c.name !== main?.name).slice(0, 4);
-      const subDiv = document.getElementById("sub-characters");
-      if (subs.length === 0) {
-        subDiv.textContent = "他に相性の良いパートナーはいません。";
-      } else {
-        subs.forEach(c => {
-          const ageLabel = getAgeLabel(c.age);
-          const card = document.createElement("div");
-          card.className = "character-card";
-          card.innerHTML = `
-            <img src="${c.img}" alt="${c.name}" />
-            <div class="character-name">${c.name}（${ageLabel}）</div>
-            <p><i>${c.phrase}</i></p>
-            <p>${c.intro}</p>
-          `;
-          subDiv.appendChild(card);
-        });
-      }
-    })();
-  </script>
+  <a class="btn" href="index.html">もう一度診断する</a>
 </body>
 </html>
