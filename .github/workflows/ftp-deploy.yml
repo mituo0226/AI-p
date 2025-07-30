@@ -19,5 +19,5 @@ jobs:
           server: ftp.lolipop.jp
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
-          local-dir: ./web/AI-p
+          local-dir: ./web/AI-p/
           server-dir: /web/AI-p/
