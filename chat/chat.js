@@ -1,3 +1,4 @@
+
 let responseIndex = 0;
 let responses = [];
 
@@ -15,14 +16,17 @@ document.getElementById('send-button').addEventListener('click', () => {
   appendMessage('user', text);
   input.value = '';
 
+  showTypingIndicator();
+
   setTimeout(() => {
+    removeTypingIndicator();
     if (responseIndex < responses.length) {
       appendMessage('asakura', responses[responseIndex]);
       responseIndex++;
     } else {
       appendMessage('asakura', 'この先の会話は有料プランで続けられるよ。またね。');
     }
-  }, 500);
+  }, 800); // Delay
 });
 
 function appendMessage(sender, text) {
@@ -32,4 +36,19 @@ function appendMessage(sender, text) {
   msg.innerText = text;
   log.appendChild(msg);
   log.scrollTop = log.scrollHeight;
+}
+
+function showTypingIndicator() {
+  const log = document.getElementById('chat-log');
+  const typing = document.createElement('div');
+  typing.className = 'message asakura typing';
+  typing.id = 'typing-indicator';
+  typing.innerText = '入力中...';
+  log.appendChild(typing);
+  log.scrollTop = log.scrollHeight;
+}
+
+function removeTypingIndicator() {
+  const typing = document.getElementById('typing-indicator');
+  if (typing) typing.remove();
 }
