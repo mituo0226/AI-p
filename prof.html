@@ -46,10 +46,14 @@
     <label class="mr-2 text-sm">年代:</label>
     <select id="ageFilter" class="text-black px-2 py-1 rounded mr-4">
       <option value="">すべて</option>
-      <option value="10s">10代</option>
-      <option value="20s">20代</option>
-      <option value="30s">30代</option>
-      <option value="40up">40代以上</option>
+      <option value="10代後半">10代後半</option>
+      <option value="20代前半">20代前半</option>
+      <option value="20代後半">20代後半</option>
+      <option value="30代前半">30代前半</option>
+      <option value="30代後半">30代後半</option>
+      <option value="40代前半">40代前半</option>
+      <option value="40代後半">40代後半</option>
+      <option value="50代以上">50代以上</option>
     </select>
 
     <label class="mr-2 text-sm">タイプ:</label>
@@ -81,9 +85,32 @@
 
       characters
         .filter(char => {
-          return (!genderVal || char.gender === genderVal) &&
-                 (!ageVal || char.age === ageVal) &&
-                 (!typeVal || char.type === typeVal);
+          // 性別フィルター
+          if (genderVal && char.gender !== genderVal) return false;
+          
+          // 年齢フィルター（age_labelを使用）
+          if (ageVal) {
+            let ageMatch = false;
+            if (char.age_label && char.age_label === ageVal) {
+              ageMatch = true;
+            } else if (typeof char.age === 'number') {
+              // フォールバック: 数値の年齢で判定
+              if (ageVal === "10代後半" && char.age >= 15 && char.age < 20) ageMatch = true;
+              else if (ageVal === "20代前半" && char.age >= 20 && char.age < 25) ageMatch = true;
+              else if (ageVal === "20代後半" && char.age >= 25 && char.age < 30) ageMatch = true;
+              else if (ageVal === "30代前半" && char.age >= 30 && char.age < 35) ageMatch = true;
+              else if (ageVal === "30代後半" && char.age >= 35 && char.age < 40) ageMatch = true;
+              else if (ageVal === "40代前半" && char.age >= 40 && char.age < 45) ageMatch = true;
+              else if (ageVal === "40代後半" && char.age >= 45 && char.age < 50) ageMatch = true;
+              else if (ageVal === "50代以上" && char.age >= 50) ageMatch = true;
+            }
+            if (!ageMatch) return false;
+          }
+          
+          // タイプフィルター
+          if (typeVal && char.type !== typeVal) return false;
+          
+          return true;
         })
         .forEach(char => {
 
