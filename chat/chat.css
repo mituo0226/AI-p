@@ -43,10 +43,6 @@ header h2 {
   font-size: 1.3rem;
 }
 
-header .phrase {
-  display: none;
-}
-
 #chat-log {
   flex-grow: 1;
   padding: 300px 16px 80px;
@@ -80,14 +76,13 @@ header .phrase {
   border-bottom-left-radius: 0;
 }
 
-/* 入力中... の吹き出し */
 .message.typing {
   background: #ffffff;
   color: #333;
   font-style: italic;
 }
 
-/* 入力中... のアニメーション */
+/* Typing animation */
 .typing-dots {
   display: inline-block;
 }
