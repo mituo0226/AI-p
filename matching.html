@@ -115,31 +115,49 @@
 
     // 診断結果に基づいてメインパートナーを選択する関数
     function selectMainPartner(characters) {
+      console.log('診断条件:', { partner, age, type });
+      
       // 条件に合うキャラクターをフィルタリング
       let filtered = characters.filter(c => {
         // 性別の条件
-        if (partner && c.gender !== partner) return false;
+        if (partner && c.gender !== partner) {
+          console.log(`${c.name}: 性別条件不一致 (${c.gender} !== ${partner})`);
+          return false;
+        }
         // 年齢の条件
         if (age) {
           let ageMatch = false;
           if (age === "20s" && c.age >= 20 && c.age < 30) ageMatch = true;
           else if (age === "30s" && c.age >= 30 && c.age < 40) ageMatch = true;
           else if (age === "40up" && c.age >= 40) ageMatch = true;
-          if (!ageMatch) return false;
+          if (!ageMatch) {
+            console.log(`${c.name}: 年齢条件不一致 (${c.age}歳, 希望: ${age})`);
+            return false;
+          }
         }
         // タイプの条件
-        if (type && c.type !== type) return false;
+        if (type && c.type !== type) {
+          console.log(`${c.name}: タイプ条件不一致 (${c.type} !== ${type})`);
+          return false;
+        }
+        console.log(`${c.name}: 条件一致`);
         return true;
       });
 
-      // 条件に合うキャラクターがいない場合は、すべてのキャラクターから選択
+      console.log('条件に合うキャラクター数:', filtered.length);
+      console.log('条件に合うキャラクター:', filtered.map(c => c.name));
+
+      // 条件に合うキャラクターがいない場合は、性別条件のみで絞り込み
       if (filtered.length === 0) {
-        filtered = characters;
+        console.log('条件に合うキャラクターがいないため、性別条件のみで絞り込み');
+        filtered = characters.filter(c => !partner || c.gender === partner);
       }
 
-      // ランダムに1つ選択（実際の診断ロジックに応じて変更可能）
+      // ランダムに1つ選択
       const randomIndex = Math.floor(Math.random() * filtered.length);
-      return filtered[randomIndex];
+      const selected = filtered[randomIndex];
+      console.log('選択されたキャラクター:', selected.name);
+      return selected;
     }
 
     fetch("characters.json")
