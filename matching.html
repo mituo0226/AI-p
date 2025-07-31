@@ -133,14 +133,16 @@
           }
           // フォールバック: 数値の年齢で判定
           else if (typeof c.age === 'number') {
-            if (age === "10代後半" && c.age >= 15 && c.age < 20) ageMatch = true;
+            if (age === "10代前半" && c.age >= 10 && c.age < 15) ageMatch = true;
+            else if (age === "10代後半" && c.age >= 15 && c.age < 20) ageMatch = true;
             else if (age === "20代前半" && c.age >= 20 && c.age < 25) ageMatch = true;
             else if (age === "20代後半" && c.age >= 25 && c.age < 30) ageMatch = true;
             else if (age === "30代前半" && c.age >= 30 && c.age < 35) ageMatch = true;
             else if (age === "30代後半" && c.age >= 35 && c.age < 40) ageMatch = true;
             else if (age === "40代前半" && c.age >= 40 && c.age < 45) ageMatch = true;
             else if (age === "40代後半" && c.age >= 45 && c.age < 50) ageMatch = true;
-            else if (age === "50代以上" && c.age >= 50) ageMatch = true;
+            else if (age === "50代後半" && c.age >= 55 && c.age < 60) ageMatch = true;
+            else if (age === "60代以上" && c.age >= 60) ageMatch = true;
           }
           // 文字列の年齢の場合（例："10s"）
           else if (typeof c.age === 'string') {
