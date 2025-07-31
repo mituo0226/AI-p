@@ -1,0 +1,84 @@
+.chat-container {
+  max-width: 600px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  font-family: sans-serif;
+}
+
+header {
+  background-color: #f3f3f3;
+  padding: 10px;
+  text-align: center;
+}
+
+header video {
+  width: 100%;
+  max-height: 200px;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+header h2 {
+  margin: 10px 0 5px;
+}
+
+header .phrase {
+  color: #555;
+  font-style: italic;
+}
+
+#chat-log {
+  flex-grow: 1;
+  padding: 10px;
+  background: #fff;
+  overflow-y: auto;
+  border-top: 1px solid #ccc;
+  border-bottom: 1px solid #ccc;
+  min-height: 300px;
+}
+
+.message {
+  margin: 10px 0;
+  padding: 10px;
+  border-radius: 12px;
+  max-width: 80%;
+  line-height: 1.5;
+  white-space: pre-wrap;
+}
+
+.message.user {
+  background: #d0f0fd;
+  align-self: flex-end;
+  margin-left: auto;
+}
+
+.message.asakura {
+  background: #f0e0ff;
+  align-self: flex-start;
+  margin-right: auto;
+}
+
+footer {
+  display: flex;
+  padding: 10px;
+  background: #fafafa;
+  border-top: 1px solid #ccc;
+}
+
+footer input {
+  flex-grow: 1;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  margin-right: 10px;
+}
+
+footer button {
+  padding: 8px 16px;
+  border: none;
+  background: #7b5bdc;
+  color: white;
+  border-radius: 8px;
+  cursor: pointer;
+}
