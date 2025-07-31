@@ -26,7 +26,7 @@ document.getElementById('send-button').addEventListener('click', () => {
     } else {
       appendMessage('asakura', 'この先の会話は有料プランで続けられるよ。またね。');
     }
-  }, 800); // Delay
+  }, 1500); // increased delay
 });
 
 function appendMessage(sender, text) {
@@ -43,7 +43,7 @@ function showTypingIndicator() {
   const typing = document.createElement('div');
   typing.className = 'message asakura typing';
   typing.id = 'typing-indicator';
-  typing.innerText = '入力中...';
+  typing.innerHTML = '<span class="typing-dots">入力中<span class="dot">.</span><span class="dot">.</span><span class="dot">.</span></span>';
   log.appendChild(typing);
   log.scrollTop = log.scrollHeight;
 }
