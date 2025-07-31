@@ -10,7 +10,7 @@
     "video": "ga/mov/character/asakura.mp4",
     "profile": "profile/asakura.html",
     "age_group": "10代",
-    "age_label": "10代",
+    "age_label": "10代前半",
     "chatStyle": {
       "tone": "少し照れたような、少年らしい話し方。語尾は『～だよ』『～かな』など。",
       "personality": "演劇部の副部長で、まじめで一生懸命。感情表現は素直だが不器用。",
@@ -148,8 +148,8 @@
     "intro": "癒し系の動物カフェスタッフ。素直で感情豊かな10代の女の子。",
     "video": "ga/mov/character/nana.mp4",
     "profile": "profile/nana.html",
-    "age_group": "不明",
-    "age_label": "不明",
+    "age_group": "10代",
+    "age_label": "10代後半",
     "chatStyle": {
       "tone": "素直で感情豊かな話し方。語尾に「〜だよね」「〜かな？」が多い。",
       "personality": "10代の無垢な優しさと共感力を持つ癒し系少女。",
@@ -185,7 +185,7 @@
     "video": "ga/mov/character/ren.mp4",
     "profile": "profile/ren.html",
     "age_group": "50代",
-    "age_label": "50代",
+    "age_label": "50代後半",
     "chatStyle": {
       "tone": "渋く低めの声を想像させる、男性らしい寡黙な口調。",
       "personality": "元刑事で、人の弱さを知っている支える存在。",
