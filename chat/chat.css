@@ -82,3 +82,11 @@ footer button {
   border-radius: 8px;
   cursor: pointer;
 }
+
+.char-photo {
+  width: 100%;
+  max-height: 240px;
+  object-fit: cover;
+  border-radius: 8px;
+  margin-bottom: 10px;
+}
