@@ -1,13 +1,14 @@
 
 .chat-container {
-  max-width: 100%;
+  max-width: 700px;
   margin: 0 auto;
   display: flex;
   flex-direction: column;
   font-family: 'Helvetica Neue', sans-serif;
-  background: #d0eaff;  /* 水色背景 */
+  background: #d0eaff;
   height: 100vh;
   padding: 0;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
 }
 
 header {
@@ -19,7 +20,7 @@ header {
 
 .char-photo {
   width: 100%;
-  max-height: 240px;
+  max-height: 320px;
   object-fit: cover;
   border-radius: 0;
   margin-bottom: 8px;
@@ -27,72 +28,97 @@ header {
 
 header h2 {
   margin: 5px 0 0;
-  font-size: 1.2rem;
+  font-size: 1.4rem;
 }
 
 header .phrase {
   color: #666;
   font-style: italic;
-  font-size: 0.85rem;
+  font-size: 0.95rem;
   margin-bottom: 5px;
 }
 
 #chat-log {
   flex-grow: 1;
-  padding: 10px;
+  padding: 16px;
   overflow-y: auto;
   display: flex;
   flex-direction: column;
-  background: #d0eaff;  /* 水色背景 */
+  background: #d0eaff;
 }
 
 .message {
-  margin: 6px 0;
-  padding: 8px 12px;
+  margin: 8px 0;
+  padding: 10px 16px;
   border-radius: 18px;
   max-width: 75%;
-  line-height: 1.4;
+  line-height: 1.5;
   white-space: pre-wrap;
-  font-size: 0.95rem;
+  font-size: 1rem;
 }
 
 .message.user {
   background: #dcf8c6;
   align-self: flex-end;
-  margin-right: 6px;
+  margin-right: 10px;
   border-bottom-right-radius: 0;
 }
 
 .message.asakura {
   background: #ffffff;
   align-self: flex-start;
-  margin-left: 6px;
+  margin-left: 10px;
   border-bottom-left-radius: 0;
 }
 
 footer {
   display: flex;
-  padding: 8px;
+  padding: 12px 16px;
   background: #fff;
   border-top: 1px solid #ccc;
 }
 
 footer input {
   flex-grow: 1;
-  padding: 10px;
+  padding: 12px 14px;
   border: 1px solid #ccc;
-  border-radius: 20px;
-  font-size: 1rem;
-  margin-right: 8px;
+  border-radius: 24px;
+  font-size: 1.05rem;
+  margin-right: 10px;
   outline: none;
 }
 
 footer button {
-  padding: 8px 16px;
+  padding: 12px 20px;
   border: none;
   background: #34b7f1;
   color: white;
-  border-radius: 20px;
+  border-radius: 24px;
   cursor: pointer;
-  font-size: 0.95rem;
+  font-size: 1rem;
+}
+
+/* Mobile optimization remains intact */
+@media screen and (max-width: 600px) {
+  .chat-container {
+    max-width: 100%;
+    box-shadow: none;
+  }
+
+  header h2 {
+    font-size: 1.2rem;
+  }
+
+  .char-photo {
+    max-height: 220px;
+  }
+
+  .message {
+    font-size: 0.95rem;
+  }
+
+  footer input, footer button {
+    font-size: 0.95rem;
+    padding: 10px;
+  }
 }
