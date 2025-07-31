@@ -9,38 +9,40 @@
   height: 100vh;
   padding: 0;
   box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
 }
 
 header {
-  text-align: center;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  max-width: 700px;
+  z-index: 1000;
   background: #fff;
-  padding: 10px 0 5px;
+  padding: 0;
+  text-align: center;
   border-bottom: 1px solid #ccc;
 }
 
 .char-photo {
   width: 100%;
-  max-height: 320px;
+  max-height: 280px;
   object-fit: cover;
   border-radius: 0;
-  margin-bottom: 8px;
 }
 
 header h2 {
-  margin: 5px 0 0;
-  font-size: 1.4rem;
+  margin: 4px 0 10px;
+  font-size: 1.3rem;
 }
 
 header .phrase {
-  color: #666;
-  font-style: italic;
-  font-size: 0.95rem;
-  margin-bottom: 5px;
+  display: none; /* キャラのひと言を非表示 */
 }
 
 #chat-log {
   flex-grow: 1;
-  padding: 16px;
+  padding: 300px 16px 16px;
   overflow-y: auto;
   display: flex;
   flex-direction: column;
@@ -98,7 +100,6 @@ footer button {
   font-size: 1rem;
 }
 
-/* Mobile optimization remains intact */
 @media screen and (max-width: 600px) {
   .chat-container {
     max-width: 100%;
@@ -111,6 +112,10 @@ footer button {
 
   .char-photo {
     max-height: 220px;
+  }
+
+  #chat-log {
+    padding-top: 260px;
   }
 
   .message {
