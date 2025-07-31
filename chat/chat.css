@@ -5,7 +5,7 @@
   display: flex;
   flex-direction: column;
   font-family: 'Helvetica Neue', sans-serif;
-  background: #e5ddd5;
+  background: #d0eaff;  /* 水色背景 */
   height: 100vh;
   padding: 0;
 }
@@ -43,7 +43,7 @@ header .phrase {
   overflow-y: auto;
   display: flex;
   flex-direction: column;
-  background: #e5ddd5;
+  background: #d0eaff;  /* 水色背景 */
 }
 
 .message {
