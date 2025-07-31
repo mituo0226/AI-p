@@ -26,7 +26,7 @@ document.getElementById('send-button').addEventListener('click', () => {
     } else {
       appendMessage('asakura', 'この先の会話は有料プランで続けられるよ。またね。');
     }
-  }, 2200); // Extended delay for realism
+  }, 2200); // 2.2 sec delay
 });
 
 function appendMessage(sender, text) {
