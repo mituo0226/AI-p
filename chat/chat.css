@@ -80,6 +80,33 @@ header .phrase {
   border-bottom-left-radius: 0;
 }
 
+/* 入力中... の吹き出し */
+.message.typing {
+  background: #ffffff;
+  color: #333;
+  font-style: italic;
+}
+
+/* 入力中... のアニメーション */
+.typing-dots {
+  display: inline-block;
+}
+.typing-dots .dot {
+  animation: blink 1.5s infinite;
+  opacity: 0.2;
+}
+.typing-dots .dot:nth-child(2) {
+  animation-delay: 0.2s;
+}
+.typing-dots .dot:nth-child(3) {
+  animation-delay: 0.4s;
+}
+@keyframes blink {
+  0%, 20% { opacity: 0.2; }
+  50% { opacity: 1; }
+  100% { opacity: 0.2; }
+}
+
 footer {
   position: fixed;
   bottom: 0;
@@ -139,24 +166,4 @@ footer button {
     font-size: 0.95rem;
     padding: 10px;
   }
-}
-
-/* 入力中... のアニメーション */
-.typing-dots {
-  display: inline-block;
-}
-.typing-dots .dot {
-  animation: blink 1.5s infinite;
-  opacity: 0.2;
-}
-.typing-dots .dot:nth-child(2) {
-  animation-delay: 0.2s;
-}
-.typing-dots .dot:nth-child(3) {
-  animation-delay: 0.4s;
-}
-@keyframes blink {
-  0%, 20% { opacity: 0.2; }
-  50% { opacity: 1; }
-  100% { opacity: 0.2; }
 }
