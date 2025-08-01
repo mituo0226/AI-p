@@ -23,10 +23,11 @@ document.getElementById('send-button').addEventListener('click', () => {
     if (responseIndex < responses.length) {
       appendMessage('asakura', responses[responseIndex]);
       responseIndex++;
-    } else {
-      appendMessage('asakura', 'この先の会話は有料プランで続けられるよ。またね。');
+      if (responseIndex === 5) {
+        showEndMessage();
+      }
     }
-  }, 2200); // 2.2 sec delay
+  }, 2200);
 });
 
 function appendMessage(sender, text) {
@@ -51,4 +52,12 @@ function showTypingIndicator() {
 function removeTypingIndicator() {
   const typing = document.getElementById('typing-indicator');
   if (typing) typing.remove();
+}
+
+function showEndMessage() {
+  const end = document.getElementById('end-message');
+  if (end) {
+    end.style.display = 'block';
+    end.scrollIntoView({ behavior: 'smooth' });
+  }
 }
