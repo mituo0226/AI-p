@@ -41,7 +41,7 @@ function ensureInputVisible() {
   }
 }
 
-// Android Chrome対応: シンプルな表示調整
+// LINEと同じ動作: テキスト入力開始時にチャット最下部を表示
 function adjustViewForInput() {
   const userInput = document.getElementById('user-input');
   const chatLog = document.getElementById('chat-log');
@@ -49,15 +49,37 @@ function adjustViewForInput() {
   if (userInput && chatLog) {
     // 入力フィールドにフォーカスが当たった時の処理
     userInput.addEventListener('focus', () => {
-      // チャットログを最下部にスクロール（ヘッダーは動かさない）
+      // LINEと同じ動作: チャットの最下部（最近の会話）を表示
+      setTimeout(() => {
+        // チャットログを最下部にスクロール
+        chatLog.scrollTop = chatLog.scrollHeight;
+        
+        // 入力エリアが確実に表示されるように調整
+        const chatContainer = document.querySelector('.chat-container');
+        if (chatContainer) {
+          // チャットコンテナの最下部を表示
+          chatContainer.scrollTop = chatContainer.scrollHeight;
+        }
+      }, 100);
+    });
+    
+    // 入力フィールドにタッチした時の処理（LINEと同じ動作）
+    userInput.addEventListener('touchstart', () => {
       setTimeout(() => {
         chatLog.scrollTop = chatLog.scrollHeight;
-      }, 100);
+      }, 50);
+    });
+    
+    // 入力フィールドをクリックした時の処理
+    userInput.addEventListener('click', () => {
+      setTimeout(() => {
+        chatLog.scrollTop = chatLog.scrollHeight;
+      }, 50);
     });
   }
 }
 
-// Android Chrome対応: キーボード表示時の処理（シンプル版）
+// LINEと同じ動作: キーボード表示時の処理
 function handleKeyboardVisibility() {
   let initialViewportHeight = window.innerHeight;
   
@@ -66,12 +88,18 @@ function handleKeyboardVisibility() {
     const userInput = document.getElementById('user-input');
     const chatLog = document.getElementById('chat-log');
     
-    // キーボードが表示された場合
+    // キーボードが表示された場合（LINEと同じ動作）
     if (currentViewportHeight < initialViewportHeight && userInput === document.activeElement) {
       setTimeout(() => {
         if (chatLog) {
-          // チャットログを最下部にスクロール
+          // チャットログを最下部にスクロール（最近の会話を表示）
           chatLog.scrollTop = chatLog.scrollHeight;
+          
+          // 入力エリアが確実に表示されるように
+          const chatContainer = document.querySelector('.chat-container');
+          if (chatContainer) {
+            chatContainer.scrollTop = chatContainer.scrollHeight;
+          }
         }
       }, 100);
     }
@@ -109,7 +137,7 @@ function appendMessage(content, sender = "bot") {
   messageDiv.appendChild(messageContent);
   chatLog.appendChild(messageDiv);
   
-  // スムーズスクロール
+  // LINEと同じ動作: メッセージ追加後に最下部にスクロール
   chatLog.scrollTop = chatLog.scrollHeight;
 }
 
@@ -129,6 +157,7 @@ function showTypingIndicator() {
   typingDiv.appendChild(typingContent);
   chatLog.appendChild(typingDiv);
   
+  // LINEと同じ動作: タイピング表示時に最下部にスクロール
   chatLog.scrollTop = chatLog.scrollHeight;
 }
 
@@ -164,7 +193,7 @@ sendButton.addEventListener("click", () => {
   appendMessage(text, "user");
   userInput.value = "";
   
-  // チャットログを最下部にスクロール
+  // LINEと同じ動作: メッセージ送信後に最下部にスクロール
   setTimeout(() => {
     chatLog.scrollTop = chatLog.scrollHeight;
   }, 100);
@@ -184,7 +213,7 @@ userInput.addEventListener("keydown", (e) => {
 // 入力フィールドにフォーカス
 userInput.focus();
 
-// Android Chrome対応: 初期化時にシンプルな表示調整を設定
+// LINEと同じ動作: 初期化時にテキスト入力時の表示調整を設定
 setTimeout(() => {
   adjustViewForInput();
   handleKeyboardVisibility();
