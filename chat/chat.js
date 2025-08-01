@@ -41,62 +41,34 @@ function ensureInputVisible() {
   }
 }
 
-// Android Chrome対応: テキスト入力時の表示調整
+// Android Chrome対応: シンプルな表示調整
 function adjustViewForInput() {
   const userInput = document.getElementById('user-input');
   const chatLog = document.getElementById('chat-log');
-  const header = document.querySelector('header');
   
-  if (userInput && chatLog && header) {
+  if (userInput && chatLog) {
     // 入力フィールドにフォーカスが当たった時の処理
     userInput.addEventListener('focus', () => {
+      // チャットログを最下部にスクロール（ヘッダーは動かさない）
       setTimeout(() => {
-        // ヘッダーの高さ分だけ下にスクロール
-        const headerHeight = header.offsetHeight;
-        const currentScrollTop = window.pageYOffset || document.documentElement.scrollTop;
-        
-        if (currentScrollTop < headerHeight) {
-          window.scrollTo({
-            top: headerHeight,
-            behavior: 'smooth'
-          });
-        }
-        
-        // チャットログを最下部にスクロール
         chatLog.scrollTop = chatLog.scrollHeight;
-      }, 300);
-    });
-    
-    // 入力フィールドからフォーカスが外れた時の処理
-    userInput.addEventListener('blur', () => {
-      setTimeout(() => {
-        // 必要に応じてスクロール位置を調整
-        const headerHeight = header.offsetHeight;
-        const currentScrollTop = window.pageYOffset || document.documentElement.scrollTop;
-        
-        if (currentScrollTop > headerHeight) {
-          window.scrollTo({
-            top: headerHeight,
-            behavior: 'smooth'
-          });
-        }
       }, 100);
     });
   }
 }
 
-// Android Chrome対応: キーボード表示時の処理
+// Android Chrome対応: キーボード表示時の処理（シンプル版）
 function handleKeyboardVisibility() {
   let initialViewportHeight = window.innerHeight;
   
   window.addEventListener('resize', () => {
     const currentViewportHeight = window.innerHeight;
     const userInput = document.getElementById('user-input');
+    const chatLog = document.getElementById('chat-log');
     
     // キーボードが表示された場合
     if (currentViewportHeight < initialViewportHeight && userInput === document.activeElement) {
       setTimeout(() => {
-        const chatLog = document.getElementById('chat-log');
         if (chatLog) {
           // チャットログを最下部にスクロール
           chatLog.scrollTop = chatLog.scrollHeight;
@@ -139,23 +111,6 @@ function appendMessage(content, sender = "bot") {
   
   // スムーズスクロール
   chatLog.scrollTop = chatLog.scrollHeight;
-  
-  // Android Chrome対応: メッセージ追加後に表示位置を調整
-  setTimeout(() => {
-    const header = document.querySelector('header');
-    if (header) {
-      const headerHeight = header.offsetHeight;
-      const currentScrollTop = window.pageYOffset || document.documentElement.scrollTop;
-      
-      // ヘッダーが隠れている場合は表示位置を調整
-      if (currentScrollTop > 0) {
-        window.scrollTo({
-          top: headerHeight,
-          behavior: 'smooth'
-        });
-      }
-    }
-  }, 100);
 }
 
 function showTypingIndicator() {
@@ -209,19 +164,9 @@ sendButton.addEventListener("click", () => {
   appendMessage(text, "user");
   userInput.value = "";
   
-  // 入力エリアが確実に表示されるように調整
+  // チャットログを最下部にスクロール
   setTimeout(() => {
-    ensureInputVisible();
-    
-    // Android Chrome対応: メッセージ送信後にチャットが見える位置に移動
-    const header = document.querySelector('header');
-    if (header) {
-      const headerHeight = header.offsetHeight;
-      window.scrollTo({
-        top: headerHeight,
-        behavior: 'smooth'
-      });
-    }
+    chatLog.scrollTop = chatLog.scrollHeight;
   }, 100);
   
   // 少し遅延させてから返信
@@ -239,7 +184,7 @@ userInput.addEventListener("keydown", (e) => {
 // 入力フィールドにフォーカス
 userInput.focus();
 
-// Android Chrome対応: 初期化時にテキスト入力時の表示調整を設定
+// Android Chrome対応: 初期化時にシンプルな表示調整を設定
 setTimeout(() => {
   adjustViewForInput();
   handleKeyboardVisibility();
