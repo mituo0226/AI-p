@@ -1,61 +1,48 @@
-document.addEventListener("DOMContentLoaded", function () {
-  const chatLog = document.getElementById("chat-log");
-  const userInput = document.getElementById("user-input");
-  const sendButton = document.getElementById("send-button");
-  const footer = document.querySelector(".chat-footer");
 
-  const messages = [
-    "やあ、朝倉悠真。緊張してるけど話してくれて、ありがとう。",
-    "返事ありがとう！その質問に答える前に、君がどんな子だか聞いていいかな！",
-    "なるほど･･･なんだかすごく仲良くなれそうな気がしてるよ、君はどうかな？",
-    "そっか、俺はかなり楽しいけど、君はもっと仲良くなろうと思ってくれてるかな･･･",
-    "◆ お知らせ ◆<br><strong>ここから先の会話は <u>チケット</u> が必要です。</strong>"
-  ];
-  let messageIndex = 0;
+const chatLog = document.getElementById("chat-log");
+const userInput = document.getElementById("user-input");
+const sendButton = document.getElementById("send-button");
+const typingIndicator = document.getElementById("typing-indicator");
 
-  function appendMessage(text, sender = "ai") {
-    const message = document.createElement("div");
-    message.classList.add("message", sender);
-    message.innerHTML = text;
-    chatLog.appendChild(message);
-    chatLog.scrollTop = chatLog.scrollHeight;
+const botReplies = [
+  "やあ、朝倉悠真。緊張してるけど話してくれて、ありがとう。",
+  "返事ありがとう！その質問に答える前に、君がどんな子だか聞いていいかな！",
+  "なるほど･･･なんだかすごく仲良くなれそうな気がしてるよ、君はどうかな？",
+  "そっか、俺はかなり楽しいけど、君はもっと仲良くなろうと思ってくれてるかな･･･",
+  "◆ お知らせ ◆<br>ここから先の会話は <strong>チケット</strong> が必要です。"
+];
+
+let step = 0;
+
+function appendMessage(content, sender = "bot") {
+  const msg = document.createElement("div");
+  msg.classList.add("message", sender);
+  msg.innerHTML = content;
+  chatLog.appendChild(msg);
+  chatLog.scrollTop = chatLog.scrollHeight;
+}
+
+function simulateReply() {
+  if (step < botReplies.length) {
+    typingIndicator.classList.remove("hidden");
+    setTimeout(() => {
+      typingIndicator.classList.add("hidden");
+      appendMessage(botReplies[step]);
+      step++;
+    }, 2500 + Math.random() * 1500);
   }
+}
 
-  sendButton.addEventListener("click", function () {
-    const input = userInput.value.trim();
-    if (input === "") return;
+sendButton.addEventListener("click", () => {
+  const text = userInput.value.trim();
+  if (!text) return;
+  appendMessage(text, "user");
+  userInput.value = "";
+  simulateReply();
+});
 
-    appendMessage(input, "user");
-    userInput.value = "";
-
-    if (messageIndex < messages.length) {
-      const typing = document.createElement("div");
-      typing.classList.add("message", "ai", "typing");
-      typing.textContent = "入力中…";
-      chatLog.appendChild(typing);
-      chatLog.scrollTop = chatLog.scrollHeight;
-
-      setTimeout(() => {
-        typing.remove();
-        appendMessage(messages[messageIndex], "ai");
-        messageIndex++;
-      }, 2000);
-    }
-  });
-
-  // Android キーボード対策
-  function adjustFooter() {
-    if (!window.visualViewport || !footer) return;
-    const offset = window.innerHeight - window.visualViewport.height;
-    const extraPadding = /Android/i.test(navigator.userAgent) ? 30 : 0;
-    footer.style.transform = `translateY(-${offset + extraPadding}px)`;
-  }
-
-  if (window.visualViewport) {
-    let timeoutId = null;
-    window.visualViewport.addEventListener("resize", () => {
-      if (timeoutId) clearTimeout(timeoutId);
-      timeoutId = setTimeout(adjustFooter, 100);
-    });
+userInput.addEventListener("keydown", (e) => {
+  if (e.key === "Enter") {
+    sendButton.click();
   }
 });
