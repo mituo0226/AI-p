@@ -1,20 +1,22 @@
+
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>朝倉 悠真とのチャット</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-  <link rel="stylesheet" href="chat.css">
+  <link rel="stylesheet" href="chat.css" />
 </head>
 <body>
   <div class="chat-container">
-    <header class="char-header">
-      <img src="https://ryu02262.moo.jp/web/AI-p/ga/image/character/asakura.png" alt="朝倉悠真" class="char-photo">
-      <h2 class="char-name">朝倉 悠真</h2>
+    <header>
+      <img src="../ga/image/character-rogo/asakura.png" alt="朝倉悠真" class="char-photo" />
+      <h2>朝倉 悠真</h2>
     </header>
     <main id="chat-log"></main>
+    <div id="typing-indicator" class="typing hidden">入力中...</div>
     <footer>
-      <input type="text" id="user-input" placeholder="メッセージを入力...">
+      <input type="text" id="user-input" placeholder="メッセージを入力..." />
       <button id="send-button">送信</button>
     </footer>
   </div>
