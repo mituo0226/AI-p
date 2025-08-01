@@ -3,6 +3,21 @@
 function setViewportHeight() {
   const vh = window.innerHeight * 0.01;
   document.documentElement.style.setProperty('--vh', `${vh}px`);
+  
+  // 入力エリアが確実に表示されるように調整
+  const chatContainer = document.querySelector('.chat-container');
+  const chatLog = document.getElementById('chat-log');
+  const footer = document.querySelector('footer');
+  
+  if (chatContainer && chatLog && footer) {
+    const containerHeight = window.innerHeight;
+    const headerHeight = document.querySelector('header').offsetHeight;
+    const footerHeight = footer.offsetHeight;
+    const availableHeight = containerHeight - headerHeight - footerHeight;
+    
+    // チャットログの最小高さを確保
+    chatLog.style.minHeight = `${Math.max(200, availableHeight * 0.6)}px`;
+  }
 }
 
 // 初期化時にビューポート高さを設定
@@ -17,6 +32,14 @@ window.addEventListener('orientationchange', () => {
 // Android Chrome対応: タッチイベントの最適化
 document.addEventListener('touchstart', function() {}, {passive: true});
 document.addEventListener('touchmove', function() {}, {passive: true});
+
+// 入力エリアが確実に表示されるようにスクロール調整
+function ensureInputVisible() {
+  const footer = document.querySelector('footer');
+  if (footer) {
+    footer.scrollIntoView({ behavior: 'smooth', block: 'end' });
+  }
+}
 
 const chatLog = document.getElementById("chat-log");
 const userInput = document.getElementById("user-input");
@@ -98,6 +121,11 @@ sendButton.addEventListener("click", () => {
   
   appendMessage(text, "user");
   userInput.value = "";
+  
+  // 入力エリアが確実に表示されるように調整
+  setTimeout(() => {
+    ensureInputVisible();
+  }, 100);
   
   // 少し遅延させてから返信
   setTimeout(() => {
