@@ -13,6 +13,21 @@ const botReplies = [
 
 let step = 0;
 
+// スマートフォン対応: ビューポート高さの動的調整
+function setViewportHeight() {
+  const vh = window.innerHeight * 0.01;
+  document.documentElement.style.setProperty('--vh', `${vh}px`);
+}
+
+// 初期化時にビューポート高さを設定
+setViewportHeight();
+
+// リサイズ時にビューポート高さを再設定
+window.addEventListener('resize', setViewportHeight);
+window.addEventListener('orientationchange', () => {
+  setTimeout(setViewportHeight, 100);
+});
+
 function scrollToBottom() {
   setTimeout(() => {
     chatLog.scrollTop = chatLog.scrollHeight;
@@ -57,6 +72,63 @@ function simulateReply() {
   }
 }
 
+// スマートフォン対応: キーボード表示時の処理
+function handleKeyboardVisibility() {
+  let initialViewportHeight = window.innerHeight;
+  
+  window.addEventListener('resize', () => {
+    const currentViewportHeight = window.innerHeight;
+    const userInput = document.getElementById('user-input');
+    
+    // キーボードが表示された場合
+    if (currentViewportHeight < initialViewportHeight && userInput === document.activeElement) {
+      setTimeout(() => {
+        scrollToBottom();
+      }, 100);
+    }
+    
+    // キーボードが隠された場合
+    if (currentViewportHeight > initialViewportHeight) {
+      initialViewportHeight = currentViewportHeight;
+    }
+  });
+}
+
+// スマートフォン対応: 入力フィールドの最適化
+function optimizeInputField() {
+  const userInput = document.getElementById('user-input');
+  
+  if (userInput) {
+    // フォーカス時の処理
+    userInput.addEventListener('focus', () => {
+      setTimeout(() => {
+        scrollToBottom();
+      }, 100);
+    });
+    
+    // タッチ時の処理
+    userInput.addEventListener('touchstart', () => {
+      setTimeout(() => {
+        scrollToBottom();
+      }, 50);
+    });
+    
+    // クリック時の処理
+    userInput.addEventListener('click', () => {
+      setTimeout(() => {
+        scrollToBottom();
+      }, 50);
+    });
+    
+    // 入力中の処理
+    userInput.addEventListener('input', () => {
+      setTimeout(() => {
+        scrollToBottom();
+      }, 10);
+    });
+  }
+}
+
 sendButton.addEventListener("click", () => {
   const text = userInput.value.trim();
   if (!text) return;
@@ -71,6 +143,12 @@ userInput.addEventListener("keydown", (e) => {
   }
 });
 
+// スマートフォン対応: タッチイベントの最適化
+sendButton.addEventListener("touchstart", (e) => {
+  e.preventDefault();
+  sendButton.click();
+});
+
 // 初期メッセージを表示
 window.addEventListener("load", () => {
   setTimeout(() => {
@@ -79,6 +157,13 @@ window.addEventListener("load", () => {
   }, 300);
 });
 
+// スマートフォン対応: 初期化処理
+setTimeout(() => {
+  handleKeyboardVisibility();
+  optimizeInputField();
+}, 500);
+
+// スマートフォン対応: Visual Viewport API
 if (window.visualViewport) {
   window.visualViewport.addEventListener("resize", () => {
     scrollToBottom();
