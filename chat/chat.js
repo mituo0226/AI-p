@@ -55,10 +55,14 @@ function removeTypingIndicator() {
 }
 
 function showSystemMessage() {
-  const msg = `
-    <strong>◆ ご案内 ◆</strong><br>
-    この先の会話を続けるには、チケット（時間制）のご購入が必要です。<br>
+  const log = document.getElementById('chat-log');
+  const msg = document.createElement('div');
+  msg.className = 'message system';
+  msg.innerHTML = `
+    <strong>◆ お知らせ ◆</strong><br>
+    ここから先の会話は <strong>チケット</strong> が必要です。<br>
     <a href="paid.html" class="ticket-link">▶ チケットの案内はこちら</a>
   `;
-  appendMessage('system', msg);
+  log.appendChild(msg);
+  log.scrollTop = log.scrollHeight;
 }
