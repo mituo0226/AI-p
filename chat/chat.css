@@ -1,5 +1,5 @@
 
-/* chat.css with fade and end-message styling */
+/* Final chat.css with notice message link */
 
 html, body {
   margin: 0;
@@ -119,24 +119,18 @@ header h2 {
   font-size: 1rem;
   animation: fadeInUp 0.8s ease forwards;
 }
-
 .end-message p {
   margin: 10px 0;
 }
-
-.button-area {
-  margin-top: 12px;
+.end-message a.ticket-link {
+  display: inline-block;
+  font-weight: bold;
+  color: #0066cc;
+  text-decoration: none;
+  font-size: 1.1rem;
 }
-
-.button-area button {
-  padding: 10px 16px;
-  margin: 6px;
-  font-size: 1rem;
-  border-radius: 24px;
-  border: none;
-  background: #3498db;
-  color: white;
-  cursor: pointer;
+.end-message a.ticket-link:hover {
+  text-decoration: underline;
 }
 
 footer {
