@@ -1,180 +1,3 @@
-
-// Android Chrome対応: ビューポート高さの動的調整
-function setViewportHeight() {
-  const vh = window.innerHeight * 0.01;
-  document.documentElement.style.setProperty('--vh', `${vh}px`);
-  
-  // 入力エリアが確実に表示されるように調整
-  const chatContainer = document.querySelector('.chat-container');
-  const chatLog = document.getElementById('chat-log');
-  const footer = document.querySelector('footer');
-  
-  if (chatContainer && chatLog && footer) {
-    const containerHeight = window.innerHeight;
-    const headerHeight = document.querySelector('header').offsetHeight;
-    const footerHeight = footer.offsetHeight;
-    const availableHeight = containerHeight - headerHeight - footerHeight;
-    
-    // チャットログの最小高さを確保
-    chatLog.style.minHeight = `${Math.max(200, availableHeight * 0.6)}px`;
-  }
-}
-
-// 初期化時にビューポート高さを設定
-setViewportHeight();
-
-// リサイズ時にビューポート高さを再設定
-window.addEventListener('resize', setViewportHeight);
-window.addEventListener('orientationchange', () => {
-  setTimeout(setViewportHeight, 100);
-});
-
-// Android Chrome対応: タッチイベントの最適化
-document.addEventListener('touchstart', function() {}, {passive: true});
-document.addEventListener('touchmove', function() {}, {passive: true});
-
-// 入力エリアが確実に表示されるようにスクロール調整
-function ensureInputVisible() {
-  const footer = document.querySelector('footer');
-  if (footer) {
-    footer.scrollIntoView({ behavior: 'smooth', block: 'end' });
-  }
-}
-
-// チャットの最新会話画面に推移する動き
-function scrollToLatestMessage() {
-  const chatLog = document.getElementById('chat-log');
-  if (chatLog) {
-    // スムーズに最新メッセージまでスクロール
-    chatLog.scrollTo({
-      top: chatLog.scrollHeight,
-      behavior: 'smooth'
-    });
-  }
-}
-
-// 会話が見える位置に強制的にスクロール
-function ensureChatVisible() {
-  const chatLog = document.getElementById('chat-log');
-  const chatContainer = document.querySelector('.chat-container');
-  
-  if (chatLog && chatContainer) {
-    // チャットログを最下部にスクロール
-    setTimeout(() => {
-      chatLog.scrollTop = chatLog.scrollHeight;
-      
-      // チャットコンテナも最下部にスクロール
-      chatContainer.scrollTop = chatContainer.scrollHeight;
-      
-      // 必要に応じてページ全体もスクロール
-      const header = document.querySelector('header');
-      if (header) {
-        const headerHeight = header.offsetHeight;
-        const currentScrollTop = window.pageYOffset || document.documentElement.scrollTop;
-        
-        // ヘッダーが隠れている場合は表示位置を調整
-        if (currentScrollTop > 0) {
-          window.scrollTo({
-            top: headerHeight,
-            behavior: 'smooth'
-          });
-        }
-      }
-    }, 100);
-  }
-}
-
-// 初回表示時にチャット画面の最上部からスタート
-function initializeChatView() {
-  const header = document.querySelector('header');
-  const chatLog = document.getElementById('chat-log');
-  
-  if (header && chatLog) {
-    // ページ全体を最上部にスクロール
-    window.scrollTo({
-      top: 0,
-      behavior: 'instant'
-    });
-    
-    // チャットログを最上部にスクロール
-    chatLog.scrollTop = 0;
-    
-    // チャットコンテナも最上部にスクロール
-    const chatContainer = document.querySelector('.chat-container');
-    if (chatContainer) {
-      chatContainer.scrollTop = 0;
-    }
-  }
-}
-
-// メッセージ入力開始時の動作
-function adjustViewForInput() {
-  const userInput = document.getElementById('user-input');
-  const chatLog = document.getElementById('chat-log');
-  
-  if (userInput && chatLog) {
-    // 入力フィールドにフォーカスが当たった時の処理
-    userInput.addEventListener('focus', () => {
-      // チャットの最新会話画面に推移
-      setTimeout(() => {
-        scrollToLatestMessage();
-        ensureChatVisible();
-      }, 100);
-    });
-    
-    // 入力フィールドにタッチした時の処理
-    userInput.addEventListener('touchstart', () => {
-      setTimeout(() => {
-        scrollToLatestMessage();
-        ensureChatVisible();
-      }, 50);
-    });
-    
-    // 入力フィールドをクリックした時の処理
-    userInput.addEventListener('click', () => {
-      setTimeout(() => {
-        scrollToLatestMessage();
-        ensureChatVisible();
-      }, 50);
-    });
-    
-    // 入力中にリアルタイムで最新位置に推移
-    userInput.addEventListener('input', () => {
-      setTimeout(() => {
-        scrollToLatestMessage();
-        ensureChatVisible();
-      }, 10);
-    });
-  }
-}
-
-// キーボード表示時の処理
-function handleKeyboardVisibility() {
-  let initialViewportHeight = window.innerHeight;
-  
-  window.addEventListener('resize', () => {
-    const currentViewportHeight = window.innerHeight;
-    const userInput = document.getElementById('user-input');
-    const chatLog = document.getElementById('chat-log');
-    
-    // キーボードが表示された場合
-    if (currentViewportHeight < initialViewportHeight && userInput === document.activeElement) {
-      setTimeout(() => {
-        if (chatLog) {
-          // チャットの最新会話画面に推移
-          scrollToLatestMessage();
-          ensureChatVisible();
-        }
-      }, 100);
-    }
-    
-    // キーボードが隠された場合
-    if (currentViewportHeight > initialViewportHeight) {
-      initialViewportHeight = currentViewportHeight;
-    }
-  });
-}
-
 const chatLog = document.getElementById("chat-log");
 const userInput = document.getElementById("user-input");
 const sendButton = document.getElementById("send-button");
@@ -190,89 +13,36 @@ const botReplies = [
 
 let step = 0;
 
+function scrollToBottom() {
+  chatLog.scrollTop = chatLog.scrollHeight;
+}
+
 function appendMessage(content, sender = "bot") {
-  const messageDiv = document.createElement("div");
-  messageDiv.classList.add("message", sender);
-  
-  const messageContent = document.createElement("div");
-  messageContent.classList.add("message-content");
-  messageContent.innerHTML = content;
-  
-  messageDiv.appendChild(messageContent);
-  chatLog.appendChild(messageDiv);
-  
-  // メッセージ追加後に最新会話画面に推移
-  setTimeout(() => {
-    scrollToLatestMessage();
-    ensureChatVisible();
-  }, 50);
-}
-
-function showTypingIndicator() {
-  const typingDiv = document.createElement("div");
-  typingDiv.classList.add("message", "bot", "typing");
-  typingDiv.id = "typing-indicator";
-  
-  const typingContent = document.createElement("div");
-  typingContent.classList.add("message-content");
-  
-  const typingDots = document.createElement("div");
-  typingDots.classList.add("typing-dots");
-  typingDots.innerHTML = '<span></span><span></span><span></span>';
-  
-  typingContent.appendChild(typingDots);
-  typingDiv.appendChild(typingContent);
-  chatLog.appendChild(typingDiv);
-  
-  // タイピング表示時に最新会話画面に推移
-  setTimeout(() => {
-    scrollToLatestMessage();
-    ensureChatVisible();
-  }, 50);
-}
-
-function hideTypingIndicator() {
-  const typingIndicator = document.getElementById("typing-indicator");
-  if (typingIndicator) {
-    typingIndicator.remove();
-  }
+  const msg = document.createElement("div");
+  msg.classList.add(sender === "user" ? "user-message" : "bot-message");
+  msg.innerHTML = content;
+  chatLog.appendChild(msg);
+  scrollToBottom();
 }
 
 function simulateReply() {
   if (step < botReplies.length) {
-    showTypingIndicator();
-    
+    typingIndicator.classList.remove("hidden");
+    scrollToBottom();
     setTimeout(() => {
-      hideTypingIndicator();
+      typingIndicator.classList.add("hidden");
       appendMessage(botReplies[step]);
       step++;
-    }, 1500 + Math.random() * 1000);
+    }, 2500 + Math.random() * 1000);
   }
 }
-
-// 初期メッセージを表示
-setTimeout(() => {
-  appendMessage("こんにちは！朝倉悠真だよ。よろしくね！", "bot");
-  step = 0;
-}, 500);
 
 sendButton.addEventListener("click", () => {
   const text = userInput.value.trim();
   if (!text) return;
-  
   appendMessage(text, "user");
   userInput.value = "";
-  
-  // メッセージ送信後に最新会話画面に推移（会話が見える位置に強制スクロール）
-  setTimeout(() => {
-    scrollToLatestMessage();
-    ensureChatVisible();
-  }, 100);
-  
-  // 少し遅延させてから返信
-  setTimeout(() => {
-    simulateReply();
-  }, 500);
+  simulateReply();
 });
 
 userInput.addEventListener("keydown", (e) => {
@@ -281,25 +51,10 @@ userInput.addEventListener("keydown", (e) => {
   }
 });
 
-// 入力フィールドにフォーカス
-userInput.focus();
-
-// 初期化時にチャット画面の最上部からスタート
-setTimeout(() => {
-  initializeChatView();
-  adjustViewForInput();
-  handleKeyboardVisibility();
-}, 100);
-
-// タッチデバイス対応
-sendButton.addEventListener("touchstart", (e) => {
-  e.preventDefault();
-  sendButton.click();
+// 初回メッセージ表示とスクロール
+window.addEventListener("load", () => {
+  setTimeout(() => {
+    appendMessage(botReplies[step]);
+    step++;
+  }, 800);
 });
-
-// メッセージの長さに応じてアニメーション時間を調整
-function getTypingDuration(text) {
-  const baseTime = 1000;
-  const charTime = 50;
-  return Math.min(baseTime + (text.length * charTime), 3000);
-}
