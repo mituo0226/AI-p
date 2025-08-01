@@ -193,3 +193,23 @@ footer button {
     padding: 10px;
   }
 }
+
+
+/* Additional .message.system styling for system message as chat bubble */
+
+.message.system {
+  background: #fff6cc;
+  border-left: 4px solid #ff9900;
+  color: #333;
+  font-size: 0.95rem;
+  align-self: center;
+  max-width: 85%;
+  white-space: pre-wrap;
+  animation: fadeInUp 0.5s ease forwards;
+}
+
+.message.system a {
+  color: #007acc;
+  text-decoration: underline;
+  font-weight: bold;
+}
