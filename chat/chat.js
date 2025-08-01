@@ -186,24 +186,36 @@ if (window.visualViewport) {
   });
 }
 
-document.getElementById("send-button").addEventListener("click", () => {
+document.addEventListener("DOMContentLoaded", () => {
+  const chatLog = document.getElementById("chat-log");
   const input = document.getElementById("user-input");
-  const message = input.value.trim();
+  const sendButton = document.getElementById("send-button");
 
-  if (message !== "") {
-    // 吹き出しを追加する処理（必要に応じて関数に置き換えてください）
-    const chatLog = document.getElementById("chat-log");
-    const userMessage = document.createElement("div");
-    userMessage.className = "message user";
-    userMessage.innerHTML = `<div class="message-content">${message}</div>`;
-    chatLog.appendChild(userMessage);
+  if (sendButton && input && chatLog) {
+    sendButton.addEventListener("touchend", (event) => {
+      event.preventDefault();
+      const message = input.value.trim();
 
-    input.value = "";
+      if (message !== "") {
+        // 吹き出し追加
+        const userMessage = document.createElement("div");
+        userMessage.className = "message user";
+        userMessage.innerHTML = `<div class="message-content">${message}</div>`;
+        chatLog.appendChild(userMessage);
 
-    // 🔽 ここでフォーカス解除（キーボードを閉じる）
-    input.blur();
+        input.value = "";
 
-    // 必要であればスクロール
-    chatLog.scrollTop = chatLog.scrollHeight;
+        // キーボード閉じる工夫
+        setTimeout(() => {
+          input.focus();
+          input.blur();
+        }, 50);
+
+        // 自動スクロール
+        setTimeout(() => {
+          chatLog.scrollTop = chatLog.scrollHeight;
+        }, 100);
+      }
+    });
   }
 });
