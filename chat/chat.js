@@ -187,31 +187,38 @@ if (window.visualViewport) {
 }
 
 document.addEventListener("DOMContentLoaded", () => {
-  const chatLog = document.getElementById("chat-log");
   const input = document.getElementById("user-input");
   const sendButton = document.getElementById("send-button");
+  const chatLog = document.getElementById("chat-log");
 
-  if (sendButton && input && chatLog) {
-    sendButton.addEventListener("touchend", (event) => {
-      event.preventDefault();
+  if (input && sendButton && chatLog) {
+    sendButton.addEventListener("click", (e) => {
+      e.preventDefault();
       const message = input.value.trim();
 
       if (message !== "") {
-        // 吹き出し追加
-        const userMessage = document.createElement("div");
-        userMessage.className = "message user";
-        userMessage.innerHTML = `<div class="message-content">${message}</div>`;
-        chatLog.appendChild(userMessage);
-
+        // 吹き出し生成
+        const div = document.createElement("div");
+        div.className = "message user";
+        div.innerHTML = `<div class="message-content">${message}</div>`;
+        chatLog.appendChild(div);
         input.value = "";
 
-        // キーボード閉じる工夫
+        // 🔽 スマホキーボードを確実に閉じる（ダミーinput方式）
+        const dummy = document.createElement("input");
+        dummy.setAttribute("type", "text");
+        dummy.style.position = "absolute";
+        dummy.style.opacity = "0";
+        dummy.style.height = "0";
+        dummy.style.zIndex = "-9999";
+        document.body.appendChild(dummy);
+        dummy.focus();
+        input.blur();
         setTimeout(() => {
-          input.focus();
-          input.blur();
-        }, 50);
+          document.body.removeChild(dummy);
+        }, 100);
 
-        // 自動スクロール
+        // スクロール下部へ
         setTimeout(() => {
           chatLog.scrollTop = chatLog.scrollHeight;
         }, 100);
