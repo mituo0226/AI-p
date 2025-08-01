@@ -20,22 +20,40 @@ function scrollToBottom() {
 }
 
 function appendMessage(content, sender = "bot") {
-  const msg = document.createElement("div");
-  msg.classList.add("message", sender === "user" ? "user" : "bot");
-  msg.innerHTML = content;
-  chatLog.appendChild(msg);
+  const messageDiv = document.createElement("div");
+  messageDiv.classList.add("message", sender);
+  
+  const messageContent = document.createElement("div");
+  messageContent.classList.add("message-content");
+  messageContent.innerHTML = content;
+  
+  messageDiv.appendChild(messageContent);
+  chatLog.appendChild(messageDiv);
   scrollToBottom();
+}
+
+function showTypingIndicator() {
+  if (typingIndicator) {
+    typingIndicator.classList.remove("hidden");
+    scrollToBottom();
+  }
+}
+
+function hideTypingIndicator() {
+  if (typingIndicator) {
+    typingIndicator.classList.add("hidden");
+  }
 }
 
 function simulateReply() {
   if (step < botReplies.length) {
-    typingIndicator.classList.remove("hidden");
-    scrollToBottom();
+    showTypingIndicator();
+    
     setTimeout(() => {
-      typingIndicator.classList.add("hidden");
+      hideTypingIndicator();
       appendMessage(botReplies[step]);
       step++;
-    }, 2500 + Math.random() * 1000);
+    }, 1500 + Math.random() * 1000);
   }
 }
 
@@ -53,11 +71,11 @@ userInput.addEventListener("keydown", (e) => {
   }
 });
 
+// 初期メッセージを表示
 window.addEventListener("load", () => {
   setTimeout(() => {
-    appendMessage(botReplies[step]);
-    step++;
-    scrollToBottom();
+    appendMessage("こんにちは！朝倉悠真だよ。よろしくね！", "bot");
+    step = 0;
   }, 300);
 });
 
