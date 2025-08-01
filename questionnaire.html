@@ -2,19 +2,33 @@
 <html lang="ja">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, viewport-fit=cover" />
+  <meta name="format-detection" content="telephone=no" />
   <title>運命のAIパートナー診断</title>
   <link href="https://unpkg.com/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet" />
   <style>
+    * {
+      -webkit-tap-highlight-color: transparent;
+      -webkit-touch-callout: none;
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
+    }
+    
     body {
       margin: 0;
-      font-family: "Hiragino Kaku Gothic ProN", Meiryo, sans-serif;
+      padding: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Hiragino Kaku Gothic ProN", "Hiragino Sans", Meiryo, sans-serif;
       background: radial-gradient(circle at top center, #fde6f3 0%, #dcd3f7 100%);
       background-attachment: fixed;
       overflow-x: hidden;
       color: #4b0082;
       perspective: 1200px;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
     }
+    
     .btn {
       background: #fcd1e5;
       color: #222;
@@ -22,16 +36,132 @@
       border-radius: 9999px;
       font-weight: bold;
       margin: 0.25rem;
-      transition: 0.3s ease;
+      transition: all 0.3s ease;
       min-width: 100px;
       font-size: 0.875rem;
+      border: none;
+      outline: none;
+      cursor: pointer;
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      appearance: none;
+      display: inline-block;
+      text-align: center;
+      text-decoration: none;
+      line-height: 1.2;
     }
-    .btn:hover { background: #fbb6ce; transform: scale(1.05); }
-    .question { display:none; opacity:0; transform:rotateX(-90deg); transform-origin:top; transition:all 1.2s ease; }
-    .question.active { display:block; opacity:1; transform:rotateX(0deg); }
-    .question.fade-out { opacity:0; transform:rotateX(90deg); }
-    #intro-screen { position:fixed; inset:0; background:#000; color:#fff; display:flex; align-items:center; justify-content:center; z-index:100; opacity:1; transition:opacity 2s ease; }
-    #intro-screen.hide { opacity:0; pointer-events:none; }
+    
+    .btn:active {
+      background: #fbb6ce;
+      transform: scale(0.98);
+    }
+    
+    .btn:hover {
+      background: #fbb6ce;
+      transform: scale(1.02);
+    }
+    
+    .question {
+      display: none;
+      opacity: 0;
+      transform: rotateX(-90deg);
+      transform-origin: top;
+      transition: all 1.2s ease;
+      -webkit-transform: rotateX(-90deg);
+      -webkit-transform-origin: top;
+      -webkit-transition: all 1.2s ease;
+    }
+    
+    .question.active {
+      display: block;
+      opacity: 1;
+      transform: rotateX(0deg);
+      -webkit-transform: rotateX(0deg);
+    }
+    
+    .question.fade-out {
+      opacity: 0;
+      transform: rotateX(90deg);
+      -webkit-transform: rotateX(90deg);
+    }
+    
+    #intro-screen {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: #000;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 100;
+      opacity: 1;
+      transition: opacity 2s ease;
+      -webkit-transition: opacity 2s ease;
+    }
+    
+    #intro-screen.hide {
+      opacity: 0;
+      pointer-events: none;
+    }
+    
+    .grid-container {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 0.75rem;
+      width: 100%;
+    }
+    
+    @media (min-width: 640px) {
+      .grid-container {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+    
+    .flex-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.75rem;
+      width: 100%;
+    }
+    
+    @media (min-width: 640px) {
+      .flex-container {
+        flex-direction: row;
+        justify-content: center;
+      }
+    }
+    
+    .flex-horizontal {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 1rem;
+      width: 100%;
+    }
+    
+    input[type="text"] {
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      appearance: none;
+      border-radius: 0.5rem;
+      border: 1px solid #fbb6ce;
+      padding: 0.5rem 1rem;
+      font-size: 1rem;
+      width: 100%;
+      box-sizing: border-box;
+      -webkit-box-sizing: border-box;
+      -moz-box-sizing: border-box;
+    }
+    
+    input[type="text"]:focus {
+      outline: none;
+      border-color: #f06;
+      box-shadow: 0 0 0 3px rgba(240, 102, 102, 0.1);
+    }
   </style>
 </head>
 <body class="text-center py-10 px-4">
@@ -41,7 +171,7 @@
     <!-- ステップ1 -->
     <div class="question active" data-step="1">
       <p class="mb-4 font-semibold">あなたの性別を教えてください</p>
-      <div class="flex justify-center gap-4">
+      <div class="flex-horizontal">
         <button class="btn" onclick="next('gender','male')">男性</button>
         <button class="btn" onclick="next('gender','female')">女性</button>
       </div>
@@ -49,7 +179,7 @@
     <!-- ステップ2 -->
     <div class="question" data-step="2">
       <p class="mb-4 font-semibold">どんなパートナーに惹かれますか？</p>
-      <div class="flex justify-center gap-4">
+      <div class="flex-horizontal">
         <button class="btn" onclick="next('partner','male')">男性</button>
         <button class="btn" onclick="next('partner','female')">女性</button>
       </div>
@@ -57,7 +187,7 @@
     <!-- ステップ3 -->
     <div class="question" data-step="3">
       <p class="mb-4 font-semibold">その方の年齢層は？</p>
-      <div class="grid grid-cols-2 sm:grid-cols-3 gap-3">
+      <div class="grid-container">
         <button class="btn" onclick="next('age','10代前半')">10代前半</button>
         <button class="btn" onclick="next('age','10代後半')">10代後半</button>
         <button class="btn" onclick="next('age','20代前半')">20代前半</button>
@@ -73,7 +203,7 @@
     <!-- ステップ4 -->
     <div class="question" data-step="4">
       <p class="mb-4 font-semibold">どんな関係性を求めますか？</p>
-      <div class="flex flex-col sm:flex-row justify-center gap-3">
+      <div class="flex-container">
         <button class="btn" onclick="next('type','friend')">友人タイプ</button>
         <button class="btn" onclick="next('type','advisor')">アドバイザータイプ</button>
         <button class="btn" onclick="next('type','lover')">恋人タイプ</button>
@@ -89,27 +219,60 @@
 
   <script>
     let step=1; const answers={};
-    window.addEventListener('DOMContentLoaded',()=>setTimeout(()=>document.getElementById('intro-screen').classList.add('hide'),2000));
+    
+    // DOMContentLoadedイベントの統一
+    function init() {
+      setTimeout(() => {
+        const introScreen = document.getElementById('intro-screen');
+        if (introScreen) {
+          introScreen.classList.add('hide');
+        }
+      }, 2000);
+    }
+    
+    // 複数のイベントリスナーで確実に実行
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', init);
+    } else {
+      init();
+    }
+    
+    window.addEventListener('load', init);
 
     function showNext(nextQ,current){
-      if(current){current.classList.add('fade-out');}
-      setTimeout(()=>{
-        current&&current.classList.remove('active','fade-out');
-        nextQ.classList.add('active');
-      },1200);
+      if(current){
+        current.classList.add('fade-out');
+      }
+      setTimeout(() => {
+        if(current) {
+          current.classList.remove('active','fade-out');
+        }
+        if(nextQ) {
+          nextQ.classList.add('active');
+        }
+      }, 1200);
     }
 
     function next(key,val){
-      if(!val){alert('選択してください');return;}
+      if(!val){
+        alert('選択してください');
+        return;
+      }
       answers[key]=val;
       const cur=document.querySelector(`[data-step='${step}']`);
       const nxt=document.querySelector(`[data-step='${step+1}']`);
-      if(nxt){showNext(nxt,cur);step++;}
+      if(nxt){
+        showNext(nxt,cur);
+        step++;
+      }
     }
 
     function submitForm(){
       const name=document.getElementById('username').value.trim();
-      if(!name){alert('名前を入力してください');return;}
+      if(!name){
+        alert('名前を入力してください');
+        return;
+      }
       answers.name=name;
       const qs=new URLSearchParams(answers).toString();
       const dest=new URL('matching.html',location.href).href.split('#')[0];
