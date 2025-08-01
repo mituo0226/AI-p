@@ -59,6 +59,7 @@ header {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  flex-shrink: 0;
 }
 
 .char-photo {
@@ -96,6 +97,7 @@ header h2 {
   -webkit-overflow-scrolling: touch;
   position: relative;
   min-height: 0;
+  margin-bottom: 0;
 }
 
 /* メッセージの基本スタイル */
@@ -267,7 +269,8 @@ header h2 {
 /* 入力エリア */
 footer {
   background: white;
-  padding: max(env(safe-area-inset-bottom), 16px) 16px max(env(safe-area-inset-bottom), 16px) 16px;
+  padding: 16px;
+  padding-bottom: max(env(safe-area-inset-bottom), 16px);
   border-top: 1px solid #e9ecef;
   display: flex;
   gap: 12px;
@@ -276,6 +279,7 @@ footer {
   position: relative;
   z-index: 10;
   flex-shrink: 0;
+  min-height: 80px;
 }
 
 #user-input {
@@ -293,6 +297,7 @@ footer {
   box-sizing: border-box;
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
+  min-height: 48px;
 }
 
 #user-input:focus {
@@ -316,6 +321,7 @@ footer {
   appearance: none;
   outline: none;
   -webkit-tap-highlight-color: transparent;
+  min-height: 48px;
 }
 
 #send-button:hover {
@@ -349,17 +355,21 @@ footer {
   }
   
   footer {
-    padding: max(env(safe-area-inset-bottom), 12px) 12px max(env(safe-area-inset-bottom), 12px) 12px;
+    padding: 12px;
+    padding-bottom: max(env(safe-area-inset-bottom), 12px);
+    min-height: 70px;
   }
   
   #user-input {
     padding: 10px 14px;
     font-size: 16px;
+    min-height: 44px;
   }
   
   #send-button {
     padding: 10px 16px;
     font-size: 14px;
+    min-height: 44px;
   }
 }
 
