@@ -138,6 +138,8 @@ header h2 {
   position: relative;
   min-height: 0;
   margin-bottom: 0;
+  /* 入力エリアが隠れないように最小高さを確保 */
+  min-height: 200px;
 }
 
 /* メッセージの基本スタイル */
@@ -326,6 +328,9 @@ footer {
   /* Android Chrome対応 */
   -webkit-transform: translateZ(0);
   transform: translateZ(0);
+  /* 入力エリアが確実に表示されるように */
+  position: sticky;
+  bottom: 0;
 }
 
 #user-input {
@@ -345,6 +350,9 @@ footer {
   -moz-box-sizing: border-box;
   min-height: 50px;
   box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+  /* 入力エリアが確実に表示されるように */
+  position: relative;
+  z-index: 1;
 }
 
 #user-input:focus {
@@ -391,7 +399,7 @@ footer {
   
   header {
     padding: 0 16px 16px 16px;
-    padding-top: calc(env(safe-area-inset-top) + 10px);
+    padding-top: max(10px, env(safe-area-inset-top));
     min-height: 110px;
   }
   
@@ -407,6 +415,8 @@ footer {
   
   #chat-log {
     padding: 16px 12px;
+    /* 入力エリアが隠れないように最小高さを確保 */
+    min-height: 150px;
   }
   
   .bot .message-content,
@@ -418,7 +428,7 @@ footer {
   
   footer {
     padding: 14px 16px;
-    padding-bottom: calc(env(safe-area-inset-bottom) + 14px);
+    padding-bottom: max(14px, env(safe-area-inset-bottom));
     min-height: 75px;
   }
   
@@ -461,11 +471,22 @@ footer {
   
   /* Android Chrome用のセーフエリア処理 */
   header {
-    padding-top: 12px !important;
+    padding-top: max(12px, env(safe-area-inset-top)) !important;
   }
   
   footer {
-    padding-bottom: 16px !important;
+    padding-bottom: max(16px, env(safe-area-inset-bottom)) !important;
+  }
+  
+  /* 入力エリアが確実に表示されるように */
+  #chat-log {
+    min-height: 200px !important;
+  }
+  
+  footer {
+    position: sticky !important;
+    bottom: 0 !important;
+    z-index: 1000 !important;
   }
 }
 
@@ -537,5 +558,16 @@ footer {
     height: calc(var(--vh, 1vh) * 100) !important;
     min-height: 100vh !important;
     min-height: calc(var(--vh, 1vh) * 100) !important;
+  }
+  
+  /* 入力エリアが確実に表示されるように */
+  #chat-log {
+    min-height: 150px !important;
+  }
+  
+  footer {
+    position: sticky !important;
+    bottom: 0 !important;
+    z-index: 1000 !important;
   }
 }
