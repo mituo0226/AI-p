@@ -14,7 +14,9 @@ const botReplies = [
 let step = 0;
 
 function scrollToBottom() {
-  chatLog.scrollTop = chatLog.scrollHeight;
+  setTimeout(() => {
+    chatLog.scrollTop = chatLog.scrollHeight;
+  }, 50); // 遅延で反映を安定化
 }
 
 function appendMessage(content, sender = "bot") {
@@ -51,10 +53,18 @@ userInput.addEventListener("keydown", (e) => {
   }
 });
 
-// 初回メッセージ表示とスクロール
+// 初回メッセージ表示後スクロール安定化（スマホ対応）
 window.addEventListener("load", () => {
   setTimeout(() => {
     appendMessage(botReplies[step]);
     step++;
-  }, 800);
+    scrollToBottom();
+  }, 300);
 });
+
+// キーボード開閉時に高さ再調整（特にAndroid向け）
+if (window.visualViewport) {
+  window.visualViewport.addEventListener("resize", () => {
+    scrollToBottom();
+  });
+}
