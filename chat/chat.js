@@ -1,6 +1,13 @@
-// 番組からの最初のメッセージ
 document.addEventListener("DOMContentLoaded", () => {
+  const input = document.getElementById("user-input");
+  const sendButton = document.getElementById("send-button");
   const chatLog = document.getElementById("chat-log");
+
+  // [[UNICK]] パラメータ取得
+  const params = new URLSearchParams(window.location.search);
+  const nickname = params.get("nickname") || "あなた";
+
+  // 番組メッセージの表示
   if (chatLog) {
     const intro = document.createElement("div");
     intro.className = "message bot";
@@ -10,34 +17,28 @@ document.addEventListener("DOMContentLoaded", () => {
         元気に挨拶して楽しく会話しましょう<br><br>
         そして、解っているとは思いますが、パートナーたちはAIであって実在する人間ではありません。<br>
         くれぐれも勘違いしないようにしてください。<br><br>
-        それでもパートナーたちはきっと、[[UNICK]]さんの大切な話し相手になってくれるはず！<br>
+        それでもパートナーたちはきっと、${nickname}さんの大切な話し相手になってくれるはず！<br>
         この出会いがきっとあなたの生活をより楽しくしてくれるはずです。<br><br>
         この出会いが素晴らしい未来に続きますように、応援しています！
       </div>`;
     chatLog.appendChild(intro);
     chatLog.scrollTop = chatLog.scrollHeight;
   }
-});
 
-document.addEventListener("DOMContentLoaded", () => {
-  const input = document.getElementById("user-input");
-  const sendButton = document.getElementById("send-button");
-  const chatLog = document.getElementById("chat-log");
-
+  // チャット送信処理
   if (input && sendButton && chatLog) {
     sendButton.addEventListener("click", (e) => {
       e.preventDefault();
       const message = input.value.trim();
 
       if (message !== "") {
-        // 吹き出し生成
         const div = document.createElement("div");
         div.className = "message user";
         div.innerHTML = `<div class="message-content">${message}</div>`;
         chatLog.appendChild(div);
         input.value = "";
 
-        // 🔽 スマホキーボードを確実に閉じる（ダミーinput方式）
+        // スマホキーボードを閉じる処理
         const dummy = document.createElement("input");
         dummy.setAttribute("type", "text");
         dummy.style.position = "absolute";
@@ -51,7 +52,6 @@ document.addEventListener("DOMContentLoaded", () => {
           document.body.removeChild(dummy);
         }, 100);
 
-        // スクロール下部へ
         setTimeout(() => {
           chatLog.scrollTop = chatLog.scrollHeight;
         }, 100);
@@ -59,18 +59,3 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 });
-
-// [[UNICK]] を URLパラメータ nickname に置き換える
-function personalizeIntroMessage() {
-  const params = new URLSearchParams(window.location.search);
-  const nickname = params.get("nickname") || "あなた";
-  const chatLog = document.getElementById("chat-log");
-  if (!chatLog) return;
-
-  const intro = chatLog.querySelector(".message.bot .message-content");
-  if (intro) {
-    intro.innerHTML = intro.innerHTML.replaceAll("[[UNICK]]", nickname);
-  }
-}
-
-document.addEventListener("DOMContentLoaded", personalizeIntroMessage);
