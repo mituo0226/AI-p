@@ -22,7 +22,18 @@
       <img src="../ga/image/character/asakura.png" alt="朝倉悠真" class="char-photo" />
       <h2>朝倉 悠真</h2>
     </header>
-    <main id="chat-log"></main>
+    <main id="chat-log">
+      <!-- タイピングインジケーター -->
+      <div id="typing-indicator" class="message bot typing hidden">
+        <div class="message-content">
+          <div class="typing-dots">
+            <span></span>
+            <span></span>
+            <span></span>
+          </div>
+        </div>
+      </div>
+    </main>
     <footer>
       <input type="text" id="user-input" placeholder="メッセージを入力..." autocomplete="off" />
       <button id="send-button">送信</button>
