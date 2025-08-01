@@ -1,10 +1,11 @@
+
 <!DOCTYPE html>
 <html lang="ja">
 <head>
   <meta charset="UTF-8">
   <title>朝倉 悠真とのチャット</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="chat.css?v=3">
+  <link rel="stylesheet" href="chat.css?v=4">
   <script src="https://ryu02262.moo.jp/web/AI-p/chat/viewport-fix.js"></script>
 </head>
 <body>
@@ -14,11 +15,19 @@
       <h2>朝倉 悠真</h2>
     </header>
     <main id="chat-log"></main>
+    <div class="end-message" id="end-message">
+      <p>🌙 朝倉 悠真とのチャットはここまで無料です。</p>
+      <p>この先の会話を続けるには、チャットチケット（時間制）が必要です。</p>
+      <div class="button-area">
+        <button onclick="alert('※有料ページは準備中です')">10分チケット（¥1000）で続ける</button>
+        <button onclick="location.href='index.html'">他のキャラを見てみる</button>
+      </div>
+    </div>
     <footer>
       <input type="text" id="user-input" placeholder="メッセージを入力...">
       <button id="send-button">送信</button>
     </footer>
   </div>
-  <script src="chat.js?v=3"></script>
+  <script src="chat.js?v=4"></script>
 </body>
 </html>
