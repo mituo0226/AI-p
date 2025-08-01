@@ -25,6 +25,8 @@ html {
   /* Android Chrome対応 */
   -webkit-text-size-adjust: 100%;
   -ms-text-size-adjust: 100%;
+  /* Android Chrome対応: スクロール動作の改善 */
+  scroll-behavior: smooth;
 }
 
 body {
@@ -49,6 +51,8 @@ body {
   /* Android Chrome対応 */
   -webkit-transform: translateZ(0);
   transform: translateZ(0);
+  /* Android Chrome対応: スクロール動作の改善 */
+  scroll-behavior: smooth;
 }
 
 .chat-container {
@@ -94,6 +98,9 @@ header {
   /* Android Chrome対応 */
   -webkit-transform: translateZ(0);
   transform: translateZ(0);
+  /* Android Chrome対応: ヘッダーが確実に表示されるように */
+  position: sticky;
+  top: 0;
 }
 
 .char-photo {
@@ -140,6 +147,8 @@ header h2 {
   margin-bottom: 0;
   /* 入力エリアが隠れないように最小高さを確保 */
   min-height: 200px;
+  /* Android Chrome対応: スクロール動作の改善 */
+  scroll-padding-top: 0;
 }
 
 /* メッセージの基本スタイル */
@@ -331,6 +340,8 @@ footer {
   /* 入力エリアが確実に表示されるように */
   position: sticky;
   bottom: 0;
+  /* Android Chrome対応: キーボード表示時の調整 */
+  transition: transform 0.3s ease;
 }
 
 #user-input {
@@ -353,12 +364,17 @@ footer {
   /* 入力エリアが確実に表示されるように */
   position: relative;
   z-index: 1;
+  /* Android Chrome対応: フォーカス時の調整 */
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
 }
 
 #user-input:focus {
   border-color: #667eea;
   box-shadow: 0 0 0 4px rgba(102, 126, 234, 0.15);
   transform: translateY(-1px);
+  /* Android Chrome対応: フォーカス時の表示調整 */
+  -webkit-transform: translateY(-1px) translateZ(0);
 }
 
 #send-button {
@@ -472,21 +488,28 @@ footer {
   /* Android Chrome用のセーフエリア処理 */
   header {
     padding-top: max(12px, env(safe-area-inset-top)) !important;
+    position: sticky !important;
+    top: 0 !important;
+    z-index: 1000 !important;
   }
   
   footer {
     padding-bottom: max(16px, env(safe-area-inset-bottom)) !important;
+    position: sticky !important;
+    bottom: 0 !important;
+    z-index: 1000 !important;
   }
   
   /* 入力エリアが確実に表示されるように */
   #chat-log {
     min-height: 200px !important;
+    scroll-padding-top: 0 !important;
   }
   
-  footer {
-    position: sticky !important;
-    bottom: 0 !important;
-    z-index: 1000 !important;
+  /* Android Chrome対応: キーボード表示時の調整 */
+  #user-input:focus {
+    -webkit-transform: translateY(-1px) translateZ(0) !important;
+    transform: translateY(-1px) translateZ(0) !important;
   }
 }
 
@@ -563,11 +586,18 @@ footer {
   /* 入力エリアが確実に表示されるように */
   #chat-log {
     min-height: 150px !important;
+    scroll-padding-top: 0 !important;
   }
   
   footer {
     position: sticky !important;
     bottom: 0 !important;
     z-index: 1000 !important;
+  }
+  
+  /* Android Chrome対応: キーボード表示時の調整 */
+  #user-input:focus {
+    -webkit-transform: translateY(-1px) translateZ(0) !important;
+    transform: translateY(-1px) translateZ(0) !important;
   }
 }
