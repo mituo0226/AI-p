@@ -98,9 +98,6 @@ header {
   /* Android Chrome対応 */
   -webkit-transform: translateZ(0);
   transform: translateZ(0);
-  /* Android Chrome対応: ヘッダーが確実に表示されるように */
-  position: sticky;
-  top: 0;
 }
 
 .char-photo {
@@ -337,11 +334,6 @@ footer {
   /* Android Chrome対応 */
   -webkit-transform: translateZ(0);
   transform: translateZ(0);
-  /* 入力エリアが確実に表示されるように */
-  position: sticky;
-  bottom: 0;
-  /* Android Chrome対応: キーボード表示時の調整 */
-  transition: transform 0.3s ease;
 }
 
 #user-input {
@@ -488,16 +480,10 @@ footer {
   /* Android Chrome用のセーフエリア処理 */
   header {
     padding-top: max(12px, env(safe-area-inset-top)) !important;
-    position: sticky !important;
-    top: 0 !important;
-    z-index: 1000 !important;
   }
   
   footer {
     padding-bottom: max(16px, env(safe-area-inset-bottom)) !important;
-    position: sticky !important;
-    bottom: 0 !important;
-    z-index: 1000 !important;
   }
   
   /* 入力エリアが確実に表示されるように */
@@ -586,18 +572,5 @@ footer {
   /* 入力エリアが確実に表示されるように */
   #chat-log {
     min-height: 150px !important;
-    scroll-padding-top: 0 !important;
-  }
-  
-  footer {
-    position: sticky !important;
-    bottom: 0 !important;
-    z-index: 1000 !important;
-  }
-  
-  /* Android Chrome対応: キーボード表示時の調整 */
-  #user-input:focus {
-    -webkit-transform: translateY(-1px) translateZ(0) !important;
-    transform: translateY(-1px) translateZ(0) !important;
   }
 }
