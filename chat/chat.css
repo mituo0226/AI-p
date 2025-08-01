@@ -140,8 +140,11 @@ header h2 {
   margin-bottom: 0;
   /* 入力エリアが隠れないように最小高さを確保 */
   min-height: 200px;
-  /* LINEと同じ動作: スクロール位置の調整 */
+  /* 最新会話画面への推移動作の調整 */
   scroll-padding-bottom: 20px;
+  /* スムーズなスクロール動作 */
+  -webkit-scroll-behavior: smooth;
+  scroll-behavior: smooth;
 }
 
 /* メッセージの基本スタイル */
@@ -352,7 +355,7 @@ footer {
   /* 入力エリアが確実に表示されるように */
   position: relative;
   z-index: 1;
-  /* LINEと同じ動作: フォーカス時の調整 */
+  /* 最新会話画面への推移動作の調整 */
   -webkit-transform: translateZ(0);
   transform: translateZ(0);
 }
@@ -361,7 +364,7 @@ footer {
   border-color: #667eea;
   box-shadow: 0 0 0 4px rgba(102, 126, 234, 0.15);
   transform: translateY(-1px);
-  /* LINEと同じ動作: フォーカス時の表示調整 */
+  /* 最新会話画面への推移動作の調整 */
   -webkit-transform: translateY(-1px) translateZ(0);
 }
 
@@ -486,9 +489,11 @@ footer {
   #chat-log {
     min-height: 200px !important;
     scroll-padding-bottom: 20px !important;
+    -webkit-scroll-behavior: smooth !important;
+    scroll-behavior: smooth !important;
   }
   
-  /* LINEと同じ動作: フォーカス時の調整 */
+  /* 最新会話画面への推移動作の調整 */
   #user-input:focus {
     -webkit-transform: translateY(-1px) translateZ(0) !important;
     transform: translateY(-1px) translateZ(0) !important;
@@ -569,9 +574,11 @@ footer {
   #chat-log {
     min-height: 150px !important;
     scroll-padding-bottom: 15px !important;
+    -webkit-scroll-behavior: smooth !important;
+    scroll-behavior: smooth !important;
   }
   
-  /* LINEと同じ動作: フォーカス時の調整 */
+  /* 最新会話画面への推移動作の調整 */
   #user-input:focus {
     -webkit-transform: translateY(-1px) translateZ(0) !important;
     transform: translateY(-1px) translateZ(0) !important;
