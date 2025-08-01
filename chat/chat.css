@@ -145,6 +145,8 @@ header h2 {
   /* スムーズなスクロール動作 */
   -webkit-scroll-behavior: smooth;
   scroll-behavior: smooth;
+  /* 会話が見える位置に確実に表示されるように */
+  scroll-snap-type: y proximity;
 }
 
 /* メッセージの基本スタイル */
@@ -155,6 +157,8 @@ header h2 {
   animation: fadeInUp 0.4s ease-out;
   position: relative;
   clear: both;
+  /* 会話が見える位置に確実に表示されるように */
+  scroll-snap-align: end;
 }
 
 @keyframes fadeInUp {
@@ -333,6 +337,8 @@ footer {
   /* Android Chrome対応 */
   -webkit-transform: translateZ(0);
   transform: translateZ(0);
+  /* 会話が見える位置に確実に表示されるように */
+  scroll-snap-align: end;
 }
 
 #user-input {
@@ -491,6 +497,12 @@ footer {
     scroll-padding-bottom: 20px !important;
     -webkit-scroll-behavior: smooth !important;
     scroll-behavior: smooth !important;
+    scroll-snap-type: y proximity !important;
+  }
+  
+  /* 会話が見える位置に確実に表示されるように */
+  .message {
+    scroll-snap-align: end !important;
   }
   
   /* 最新会話画面への推移動作の調整 */
@@ -576,6 +588,12 @@ footer {
     scroll-padding-bottom: 15px !important;
     -webkit-scroll-behavior: smooth !important;
     scroll-behavior: smooth !important;
+    scroll-snap-type: y proximity !important;
+  }
+  
+  /* 会話が見える位置に確実に表示されるように */
+  .message {
+    scroll-snap-align: end !important;
   }
   
   /* 最新会話画面への推移動作の調整 */
