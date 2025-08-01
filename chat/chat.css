@@ -222,3 +222,11 @@ footer button {
   margin-left: auto;
   margin-right: auto;
 }
+
+
+
+.message.asakura.system {
+  background: #fff6cc;
+  border-left: 4px solid #ff9900;
+  color: #333;
+}
