@@ -15,30 +15,75 @@ const botReplies = [
 let step = 0;
 
 function appendMessage(content, sender = "bot") {
-  const msg = document.createElement("div");
-  msg.classList.add("message", sender);
-  msg.innerHTML = content;
-  chatLog.appendChild(msg);
+  const messageDiv = document.createElement("div");
+  messageDiv.classList.add("message", sender);
+  
+  const messageContent = document.createElement("div");
+  messageContent.classList.add("message-content");
+  messageContent.innerHTML = content;
+  
+  messageDiv.appendChild(messageContent);
+  chatLog.appendChild(messageDiv);
+  
+  // スムーズスクロール
   chatLog.scrollTop = chatLog.scrollHeight;
+}
+
+function showTypingIndicator() {
+  const typingDiv = document.createElement("div");
+  typingDiv.classList.add("message", "bot", "typing");
+  typingDiv.id = "typing-indicator";
+  
+  const typingContent = document.createElement("div");
+  typingContent.classList.add("message-content");
+  
+  const typingDots = document.createElement("div");
+  typingDots.classList.add("typing-dots");
+  typingDots.innerHTML = '<span></span><span></span><span></span>';
+  
+  typingContent.appendChild(typingDots);
+  typingDiv.appendChild(typingContent);
+  chatLog.appendChild(typingDiv);
+  
+  chatLog.scrollTop = chatLog.scrollHeight;
+}
+
+function hideTypingIndicator() {
+  const typingIndicator = document.getElementById("typing-indicator");
+  if (typingIndicator) {
+    typingIndicator.remove();
+  }
 }
 
 function simulateReply() {
   if (step < botReplies.length) {
-    typingIndicator.classList.remove("hidden");
+    showTypingIndicator();
+    
     setTimeout(() => {
-      typingIndicator.classList.add("hidden");
+      hideTypingIndicator();
       appendMessage(botReplies[step]);
       step++;
-    }, 2500 + Math.random() * 1500);
+    }, 1500 + Math.random() * 1000);
   }
 }
+
+// 初期メッセージを表示
+setTimeout(() => {
+  appendMessage("こんにちは！朝倉悠真だよ。よろしくね！", "bot");
+  step = 0;
+}, 500);
 
 sendButton.addEventListener("click", () => {
   const text = userInput.value.trim();
   if (!text) return;
+  
   appendMessage(text, "user");
   userInput.value = "";
-  simulateReply();
+  
+  // 少し遅延させてから返信
+  setTimeout(() => {
+    simulateReply();
+  }, 500);
 });
 
 userInput.addEventListener("keydown", (e) => {
@@ -46,3 +91,19 @@ userInput.addEventListener("keydown", (e) => {
     sendButton.click();
   }
 });
+
+// 入力フィールドにフォーカス
+userInput.focus();
+
+// タッチデバイス対応
+sendButton.addEventListener("touchstart", (e) => {
+  e.preventDefault();
+  sendButton.click();
+});
+
+// メッセージの長さに応じてアニメーション時間を調整
+function getTypingDuration(text) {
+  const baseTime = 1000;
+  const charTime = 50;
+  return Math.min(baseTime + (text.length * charTime), 3000);
+}
