@@ -186,34 +186,24 @@ if (window.visualViewport) {
   });
 }
 
-document.addEventListener("DOMContentLoaded", () => {
-  const chatLog = document.getElementById("chat-log");
+document.getElementById("send-button").addEventListener("click", () => {
   const input = document.getElementById("user-input");
+  const message = input.value.trim();
 
-  function scrollToBottom(force = false) {
-    if (!chatLog) return;
-    requestAnimationFrame(() => {
-      setTimeout(() => {
-        chatLog.scrollTop = chatLog.scrollHeight;
-      }, force ? 500 : 100); // iOS対策として遅めにスクロール
-    });
+  if (message !== "") {
+    // 吹き出しを追加する処理（必要に応じて関数に置き換えてください）
+    const chatLog = document.getElementById("chat-log");
+    const userMessage = document.createElement("div");
+    userMessage.className = "message user";
+    userMessage.innerHTML = `<div class="message-content">${message}</div>`;
+    chatLog.appendChild(userMessage);
+
+    input.value = "";
+
+    // 🔽 ここでフォーカス解除（キーボードを閉じる）
+    input.blur();
+
+    // 必要であればスクロール
+    chatLog.scrollTop = chatLog.scrollHeight;
   }
-
-  if (input) {
-    input.addEventListener("focus", () => {
-      scrollToBottom(true);
-    });
-
-    input.addEventListener("input", () => {
-      scrollToBottom();
-    });
-  }
-
-  // キーボード表示による画面リサイズ時にも対応
-  window.addEventListener("resize", () => {
-    scrollToBottom(true);
-  });
-
-  // 初期ロード時にもスクロール
-  scrollToBottom(true);
 });
