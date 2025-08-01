@@ -25,6 +25,8 @@ html {
   /* Android Chrome対応 */
   -webkit-text-size-adjust: 100%;
   -ms-text-size-adjust: 100%;
+  /* 初回表示時に最上部からスタート */
+  scroll-behavior: auto;
 }
 
 body {
@@ -49,6 +51,8 @@ body {
   /* Android Chrome対応 */
   -webkit-transform: translateZ(0);
   transform: translateZ(0);
+  /* 初回表示時に最上部からスタート */
+  scroll-behavior: auto;
 }
 
 .chat-container {
@@ -72,6 +76,8 @@ body {
   /* Android Chrome対応 */
   -webkit-transform: translateZ(0);
   transform: translateZ(0);
+  /* 初回表示時に最上部からスタート */
+  scroll-behavior: auto;
 }
 
 /* ヘッダー画像と名前 */
@@ -94,6 +100,8 @@ header {
   /* Android Chrome対応 */
   -webkit-transform: translateZ(0);
   transform: translateZ(0);
+  /* 初回表示時に最上部からスタート */
+  scroll-snap-align: start;
 }
 
 .char-photo {
@@ -147,6 +155,8 @@ header h2 {
   scroll-behavior: smooth;
   /* 会話が見える位置に確実に表示されるように */
   scroll-snap-type: y proximity;
+  /* 初回表示時に最上部からスタート */
+  scroll-snap-align: start;
 }
 
 /* メッセージの基本スタイル */
@@ -485,6 +495,7 @@ footer {
   /* Android Chrome用のセーフエリア処理 */
   header {
     padding-top: max(12px, env(safe-area-inset-top)) !important;
+    scroll-snap-align: start !important;
   }
   
   footer {
@@ -498,6 +509,7 @@ footer {
     -webkit-scroll-behavior: smooth !important;
     scroll-behavior: smooth !important;
     scroll-snap-type: y proximity !important;
+    scroll-snap-align: start !important;
   }
   
   /* 会話が見える位置に確実に表示されるように */
@@ -589,6 +601,7 @@ footer {
     -webkit-scroll-behavior: smooth !important;
     scroll-behavior: smooth !important;
     scroll-snap-type: y proximity !important;
+    scroll-snap-align: start !important;
   }
   
   /* 会話が見える位置に確実に表示されるように */
