@@ -16,12 +16,12 @@ let step = 0;
 function scrollToBottom() {
   setTimeout(() => {
     chatLog.scrollTop = chatLog.scrollHeight;
-  }, 50); // 遅延で反映を安定化
+  }, 50);
 }
 
 function appendMessage(content, sender = "bot") {
   const msg = document.createElement("div");
-  msg.classList.add(sender === "user" ? "user-message" : "bot-message");
+  msg.classList.add("message", sender === "user" ? "user" : "bot");
   msg.innerHTML = content;
   chatLog.appendChild(msg);
   scrollToBottom();
@@ -53,7 +53,6 @@ userInput.addEventListener("keydown", (e) => {
   }
 });
 
-// 初回メッセージ表示後スクロール安定化（スマホ対応）
 window.addEventListener("load", () => {
   setTimeout(() => {
     appendMessage(botReplies[step]);
@@ -62,7 +61,6 @@ window.addEventListener("load", () => {
   }, 300);
 });
 
-// キーボード開閉時に高さ再調整（特にAndroid向け）
 if (window.visualViewport) {
   window.visualViewport.addEventListener("resize", () => {
     scrollToBottom();
