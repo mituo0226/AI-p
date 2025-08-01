@@ -74,3 +74,12 @@ if (window.visualViewport) {
     chatContainer.style.paddingBottom = bottomOffset + 'px';
   });
 }
+
+// Fixed footer transform for mobile keyboard
+if (window.visualViewport) {
+  const footer = document.querySelector('.chat-footer');
+  window.visualViewport.addEventListener('resize', () => {
+    const offset = window.innerHeight - window.visualViewport.height;
+    footer.style.transform = `translateY(-${offset}px)`;
+  });
+}
