@@ -186,14 +186,34 @@ if (window.visualViewport) {
   });
 }
 
-function scrollToBottom(force = false) {
+document.addEventListener("DOMContentLoaded", () => {
   const chatLog = document.getElementById("chat-log");
-  if (!chatLog) return;
-  setTimeout(() => {
-    chatLog.scrollTop = chatLog.scrollHeight;
-  }, force ? 500 : 150);
-}
+  const input = document.getElementById("user-input");
 
-document.getElementById("user-input").addEventListener("focus", () => {
+  function scrollToBottom(force = false) {
+    if (!chatLog) return;
+    requestAnimationFrame(() => {
+      setTimeout(() => {
+        chatLog.scrollTop = chatLog.scrollHeight;
+      }, force ? 500 : 100); // iOS対策として遅めにスクロール
+    });
+  }
+
+  if (input) {
+    input.addEventListener("focus", () => {
+      scrollToBottom(true);
+    });
+
+    input.addEventListener("input", () => {
+      scrollToBottom();
+    });
+  }
+
+  // キーボード表示による画面リサイズ時にも対応
+  window.addEventListener("resize", () => {
+    scrollToBottom(true);
+  });
+
+  // 初期ロード時にもスクロール
   scrollToBottom(true);
 });
