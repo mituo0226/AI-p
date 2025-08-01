@@ -230,3 +230,11 @@ footer button {
   border-left: 4px solid #ff9900;
   color: #333;
 }
+
+
+
+.message.user.system {
+  background: #fff6cc;
+  border-right: 4px solid #ff9900;
+  color: #333;
+}
