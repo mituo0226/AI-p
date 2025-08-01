@@ -28,9 +28,25 @@ window.addEventListener('orientationchange', () => {
   setTimeout(setViewportHeight, 100);
 });
 
-function scrollToBottom() {
+// 最新のチャットフキダシが見える位置にスクロール
+function scrollToLatestMessage() {
   setTimeout(() => {
-    chatLog.scrollTop = chatLog.scrollHeight;
+    const chatLog = document.getElementById('chat-log');
+    if (chatLog) {
+      // 最新メッセージが見える位置にスクロール
+      chatLog.scrollTop = chatLog.scrollHeight;
+      
+      // 入力フォームの上部に最新のフキダシが見えるように調整
+      const footer = document.querySelector('footer');
+      if (footer) {
+        const footerHeight = footer.offsetHeight;
+        const chatLogHeight = chatLog.offsetHeight;
+        const scrollPosition = chatLog.scrollHeight - chatLogHeight + footerHeight;
+        
+        // 最新メッセージが入力フォームの上部に見えるようにスクロール
+        chatLog.scrollTop = Math.max(0, scrollPosition - 100);
+      }
+    }
   }, 50);
 }
 
@@ -44,13 +60,13 @@ function appendMessage(content, sender = "bot") {
   
   messageDiv.appendChild(messageContent);
   chatLog.appendChild(messageDiv);
-  scrollToBottom();
+  scrollToLatestMessage();
 }
 
 function showTypingIndicator() {
   if (typingIndicator) {
     typingIndicator.classList.remove("hidden");
-    scrollToBottom();
+    scrollToLatestMessage();
   }
 }
 
@@ -83,7 +99,7 @@ function handleKeyboardVisibility() {
     // キーボードが表示された場合
     if (currentViewportHeight < initialViewportHeight && userInput === document.activeElement) {
       setTimeout(() => {
-        scrollToBottom();
+        scrollToLatestMessage();
       }, 100);
     }
     
@@ -102,28 +118,28 @@ function optimizeInputField() {
     // フォーカス時の処理
     userInput.addEventListener('focus', () => {
       setTimeout(() => {
-        scrollToBottom();
+        scrollToLatestMessage();
       }, 100);
     });
     
     // タッチ時の処理
     userInput.addEventListener('touchstart', () => {
       setTimeout(() => {
-        scrollToBottom();
+        scrollToLatestMessage();
       }, 50);
     });
     
     // クリック時の処理
     userInput.addEventListener('click', () => {
       setTimeout(() => {
-        scrollToBottom();
+        scrollToLatestMessage();
       }, 50);
     });
     
     // 入力中の処理
     userInput.addEventListener('input', () => {
       setTimeout(() => {
-        scrollToBottom();
+        scrollToLatestMessage();
       }, 10);
     });
   }
@@ -166,6 +182,6 @@ setTimeout(() => {
 // スマートフォン対応: Visual Viewport API
 if (window.visualViewport) {
   window.visualViewport.addEventListener("resize", () => {
-    scrollToBottom();
+    scrollToLatestMessage();
   });
 }
