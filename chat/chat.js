@@ -1,4 +1,3 @@
-
 let responseIndex = 0;
 let responses = [];
 
@@ -65,4 +64,13 @@ function showSystemMessage() {
   `;
   log.appendChild(msg);
   log.scrollTop = log.scrollHeight;
+}
+
+
+if (window.visualViewport) {
+  const chatContainer = document.querySelector('.chat-container');
+  window.visualViewport.addEventListener('resize', () => {
+    const bottomOffset = window.innerHeight - window.visualViewport.height;
+    chatContainer.style.paddingBottom = bottomOffset + 'px';
+  });
 }
