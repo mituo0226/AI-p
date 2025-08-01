@@ -8,6 +8,8 @@ html, body {
 }
 
 .chat-container {
+  padding-bottom: 60px;
+  transition: padding-bottom 0.2s ease-out;
   max-width: 700px;
   margin: 0 auto;
   display: flex;
@@ -166,6 +168,8 @@ footer button {
 
 @media screen and (max-width: 600px) {
   .chat-container {
+  padding-bottom: 60px;
+  transition: padding-bottom 0.2s ease-out;
     max-width: 100%;
     box-shadow: none;
   }
