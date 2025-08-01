@@ -84,6 +84,29 @@ function ensureChatVisible() {
   }
 }
 
+// 初回表示時にチャット画面の最上部からスタート
+function initializeChatView() {
+  const header = document.querySelector('header');
+  const chatLog = document.getElementById('chat-log');
+  
+  if (header && chatLog) {
+    // ページ全体を最上部にスクロール
+    window.scrollTo({
+      top: 0,
+      behavior: 'instant'
+    });
+    
+    // チャットログを最上部にスクロール
+    chatLog.scrollTop = 0;
+    
+    // チャットコンテナも最上部にスクロール
+    const chatContainer = document.querySelector('.chat-container');
+    if (chatContainer) {
+      chatContainer.scrollTop = 0;
+    }
+  }
+}
+
 // メッセージ入力開始時の動作
 function adjustViewForInput() {
   const userInput = document.getElementById('user-input');
@@ -261,11 +284,12 @@ userInput.addEventListener("keydown", (e) => {
 // 入力フィールドにフォーカス
 userInput.focus();
 
-// 初期化時にメッセージ入力時の表示調整を設定
+// 初期化時にチャット画面の最上部からスタート
 setTimeout(() => {
+  initializeChatView();
   adjustViewForInput();
   handleKeyboardVisibility();
-}, 500);
+}, 100);
 
 // タッチデバイス対応
 sendButton.addEventListener("touchstart", (e) => {
