@@ -41,7 +41,19 @@ function ensureInputVisible() {
   }
 }
 
-// LINEと同じ動作: テキスト入力開始時にチャット最下部を表示
+// チャットの最新会話画面に推移する動き
+function scrollToLatestMessage() {
+  const chatLog = document.getElementById('chat-log');
+  if (chatLog) {
+    // スムーズに最新メッセージまでスクロール
+    chatLog.scrollTo({
+      top: chatLog.scrollHeight,
+      behavior: 'smooth'
+    });
+  }
+}
+
+// メッセージ入力開始時の動作
 function adjustViewForInput() {
   const userInput = document.getElementById('user-input');
   const chatLog = document.getElementById('chat-log');
@@ -49,37 +61,36 @@ function adjustViewForInput() {
   if (userInput && chatLog) {
     // 入力フィールドにフォーカスが当たった時の処理
     userInput.addEventListener('focus', () => {
-      // LINEと同じ動作: チャットの最下部（最近の会話）を表示
+      // チャットの最新会話画面に推移
       setTimeout(() => {
-        // チャットログを最下部にスクロール
-        chatLog.scrollTop = chatLog.scrollHeight;
-        
-        // 入力エリアが確実に表示されるように調整
-        const chatContainer = document.querySelector('.chat-container');
-        if (chatContainer) {
-          // チャットコンテナの最下部を表示
-          chatContainer.scrollTop = chatContainer.scrollHeight;
-        }
+        scrollToLatestMessage();
       }, 100);
     });
     
-    // 入力フィールドにタッチした時の処理（LINEと同じ動作）
+    // 入力フィールドにタッチした時の処理
     userInput.addEventListener('touchstart', () => {
       setTimeout(() => {
-        chatLog.scrollTop = chatLog.scrollHeight;
+        scrollToLatestMessage();
       }, 50);
     });
     
     // 入力フィールドをクリックした時の処理
     userInput.addEventListener('click', () => {
       setTimeout(() => {
-        chatLog.scrollTop = chatLog.scrollHeight;
+        scrollToLatestMessage();
       }, 50);
+    });
+    
+    // 入力中にリアルタイムで最新位置に推移
+    userInput.addEventListener('input', () => {
+      setTimeout(() => {
+        scrollToLatestMessage();
+      }, 10);
     });
   }
 }
 
-// LINEと同じ動作: キーボード表示時の処理
+// キーボード表示時の処理
 function handleKeyboardVisibility() {
   let initialViewportHeight = window.innerHeight;
   
@@ -88,18 +99,12 @@ function handleKeyboardVisibility() {
     const userInput = document.getElementById('user-input');
     const chatLog = document.getElementById('chat-log');
     
-    // キーボードが表示された場合（LINEと同じ動作）
+    // キーボードが表示された場合
     if (currentViewportHeight < initialViewportHeight && userInput === document.activeElement) {
       setTimeout(() => {
         if (chatLog) {
-          // チャットログを最下部にスクロール（最近の会話を表示）
-          chatLog.scrollTop = chatLog.scrollHeight;
-          
-          // 入力エリアが確実に表示されるように
-          const chatContainer = document.querySelector('.chat-container');
-          if (chatContainer) {
-            chatContainer.scrollTop = chatContainer.scrollHeight;
-          }
+          // チャットの最新会話画面に推移
+          scrollToLatestMessage();
         }
       }, 100);
     }
@@ -137,8 +142,10 @@ function appendMessage(content, sender = "bot") {
   messageDiv.appendChild(messageContent);
   chatLog.appendChild(messageDiv);
   
-  // LINEと同じ動作: メッセージ追加後に最下部にスクロール
-  chatLog.scrollTop = chatLog.scrollHeight;
+  // メッセージ追加後に最新会話画面に推移
+  setTimeout(() => {
+    scrollToLatestMessage();
+  }, 50);
 }
 
 function showTypingIndicator() {
@@ -157,8 +164,10 @@ function showTypingIndicator() {
   typingDiv.appendChild(typingContent);
   chatLog.appendChild(typingDiv);
   
-  // LINEと同じ動作: タイピング表示時に最下部にスクロール
-  chatLog.scrollTop = chatLog.scrollHeight;
+  // タイピング表示時に最新会話画面に推移
+  setTimeout(() => {
+    scrollToLatestMessage();
+  }, 50);
 }
 
 function hideTypingIndicator() {
@@ -193,9 +202,9 @@ sendButton.addEventListener("click", () => {
   appendMessage(text, "user");
   userInput.value = "";
   
-  // LINEと同じ動作: メッセージ送信後に最下部にスクロール
+  // メッセージ送信後に最新会話画面に推移
   setTimeout(() => {
-    chatLog.scrollTop = chatLog.scrollHeight;
+    scrollToLatestMessage();
   }, 100);
   
   // 少し遅延させてから返信
@@ -213,7 +222,7 @@ userInput.addEventListener("keydown", (e) => {
 // 入力フィールドにフォーカス
 userInput.focus();
 
-// LINEと同じ動作: 初期化時にテキスト入力時の表示調整を設定
+// 初期化時にメッセージ入力時の表示調整を設定
 setTimeout(() => {
   adjustViewForInput();
   handleKeyboardVisibility();
