@@ -53,6 +53,37 @@ function scrollToLatestMessage() {
   }
 }
 
+// 会話が見える位置に強制的にスクロール
+function ensureChatVisible() {
+  const chatLog = document.getElementById('chat-log');
+  const chatContainer = document.querySelector('.chat-container');
+  
+  if (chatLog && chatContainer) {
+    // チャットログを最下部にスクロール
+    setTimeout(() => {
+      chatLog.scrollTop = chatLog.scrollHeight;
+      
+      // チャットコンテナも最下部にスクロール
+      chatContainer.scrollTop = chatContainer.scrollHeight;
+      
+      // 必要に応じてページ全体もスクロール
+      const header = document.querySelector('header');
+      if (header) {
+        const headerHeight = header.offsetHeight;
+        const currentScrollTop = window.pageYOffset || document.documentElement.scrollTop;
+        
+        // ヘッダーが隠れている場合は表示位置を調整
+        if (currentScrollTop > 0) {
+          window.scrollTo({
+            top: headerHeight,
+            behavior: 'smooth'
+          });
+        }
+      }
+    }, 100);
+  }
+}
+
 // メッセージ入力開始時の動作
 function adjustViewForInput() {
   const userInput = document.getElementById('user-input');
@@ -64,6 +95,7 @@ function adjustViewForInput() {
       // チャットの最新会話画面に推移
       setTimeout(() => {
         scrollToLatestMessage();
+        ensureChatVisible();
       }, 100);
     });
     
@@ -71,6 +103,7 @@ function adjustViewForInput() {
     userInput.addEventListener('touchstart', () => {
       setTimeout(() => {
         scrollToLatestMessage();
+        ensureChatVisible();
       }, 50);
     });
     
@@ -78,6 +111,7 @@ function adjustViewForInput() {
     userInput.addEventListener('click', () => {
       setTimeout(() => {
         scrollToLatestMessage();
+        ensureChatVisible();
       }, 50);
     });
     
@@ -85,6 +119,7 @@ function adjustViewForInput() {
     userInput.addEventListener('input', () => {
       setTimeout(() => {
         scrollToLatestMessage();
+        ensureChatVisible();
       }, 10);
     });
   }
@@ -105,6 +140,7 @@ function handleKeyboardVisibility() {
         if (chatLog) {
           // チャットの最新会話画面に推移
           scrollToLatestMessage();
+          ensureChatVisible();
         }
       }, 100);
     }
@@ -145,6 +181,7 @@ function appendMessage(content, sender = "bot") {
   // メッセージ追加後に最新会話画面に推移
   setTimeout(() => {
     scrollToLatestMessage();
+    ensureChatVisible();
   }, 50);
 }
 
@@ -167,6 +204,7 @@ function showTypingIndicator() {
   // タイピング表示時に最新会話画面に推移
   setTimeout(() => {
     scrollToLatestMessage();
+    ensureChatVisible();
   }, 50);
 }
 
@@ -202,9 +240,10 @@ sendButton.addEventListener("click", () => {
   appendMessage(text, "user");
   userInput.value = "";
   
-  // メッセージ送信後に最新会話画面に推移
+  // メッセージ送信後に最新会話画面に推移（会話が見える位置に強制スクロール）
   setTimeout(() => {
     scrollToLatestMessage();
+    ensureChatVisible();
   }, 100);
   
   // 少し遅延させてから返信
