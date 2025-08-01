@@ -334,27 +334,20 @@ header h2 {
 footer {
   background: white;
   padding: 16px 20px;
-  /* Android Chrome対応: セーフエリアの処理を統一 */
   padding-bottom: max(16px, env(safe-area-inset-bottom));
   border-top: 1px solid #e9ecef;
   display: flex;
   gap: 12px;
   align-items: center;
   box-shadow: 0 -4px 20px rgba(0,0,0,0.1);
-  position: relative;
-  z-index: 10;
-  flex-shrink: 0;
-  min-height: 80px;
-  /* Android Chrome対応 */
-  -webkit-transform: translateZ(0);
-  transform: translateZ(0);
-  /* 会話が見える位置に確実に表示されるように */
-  scroll-snap-align: end;
-  /* スマートフォン対応: 画面下部に固定 */
-  position: sticky;
+  position: fixed;
   bottom: 0;
   left: 0;
   right: 0;
+  z-index: 9999;
+  min-height: 80px;
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
 }
 
 #user-input {
@@ -474,16 +467,23 @@ footer {
   }
   
   footer {
-    padding: 14px 16px;
-    padding-bottom: max(14px, env(safe-area-inset-bottom));
-    min-height: 75px;
-    /* スマートフォン対応: 画面下部に固定 */
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    z-index: 1000;
-  }
+  background: white;
+  padding: 16px 20px;
+  padding-bottom: max(16px, env(safe-area-inset-bottom));
+  border-top: 1px solid #e9ecef;
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  box-shadow: 0 -4px 20px rgba(0,0,0,0.1);
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 9999;
+  min-height: 80px;
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
+}
   
   #user-input {
     padding: 12px 16px;
@@ -532,14 +532,23 @@ footer {
   }
   
   footer {
-    padding-bottom: max(16px, env(safe-area-inset-bottom)) !important;
-    /* スマートフォン対応: 画面下部に固定 */
-    position: fixed !important;
-    bottom: 0 !important;
-    left: 0 !important;
-    right: 0 !important;
-    z-index: 1000 !important;
-  }
+  background: white;
+  padding: 16px 20px;
+  padding-bottom: max(16px, env(safe-area-inset-bottom));
+  border-top: 1px solid #e9ecef;
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  box-shadow: 0 -4px 20px rgba(0,0,0,0.1);
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 9999;
+  min-height: 80px;
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
+}
   
   /* 入力エリアが確実に表示されるように */
   #chat-log {
@@ -572,8 +581,23 @@ footer {
   }
   
   footer {
-    padding-bottom: max(16px, env(safe-area-inset-bottom));
-  }
+  background: white;
+  padding: 16px 20px;
+  padding-bottom: max(16px, env(safe-area-inset-bottom));
+  border-top: 1px solid #e9ecef;
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  box-shadow: 0 -4px 20px rgba(0,0,0,0.1);
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 9999;
+  min-height: 80px;
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
+}
 }
 
 /* Android Chrome用の追加修正 */
