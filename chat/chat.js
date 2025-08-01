@@ -5,7 +5,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const intro = document.createElement("div");
     intro.className = "message bot";
     intro.innerHTML = `
-      <div class="message-content">
+      <div class="message-content program-message">
         朝倉悠真君とのchatがはじまります！<br>
         元気に挨拶して楽しく会話しましょう<br><br>
         そして、解っているとは思いますが、パートナーたちはAIであって実在する人間ではありません。<br>
