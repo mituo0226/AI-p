@@ -329,7 +329,7 @@ header h2 {
   display: none !important;
 }
 
-/* 入力エリア */
+/* 入力エリア - スマートフォン対応 */
 footer {
   background: white;
   padding: 16px 20px;
@@ -349,6 +349,11 @@ footer {
   transform: translateZ(0);
   /* 会話が見える位置に確実に表示されるように */
   scroll-snap-align: end;
+  /* スマートフォン対応: 画面下部に固定 */
+  position: sticky;
+  bottom: 0;
+  left: 0;
+  right: 0;
 }
 
 #user-input {
@@ -374,6 +379,14 @@ footer {
   /* 最新会話画面への推移動作の調整 */
   -webkit-transform: translateZ(0);
   transform: translateZ(0);
+  /* スマートフォン対応: キーボード連携 */
+  -webkit-user-select: text;
+  -moz-user-select: text;
+  -ms-user-select: text;
+  user-select: text;
+  /* スマートフォン対応: 入力最適化 */
+  -webkit-text-size-adjust: 100%;
+  -ms-text-size-adjust: 100%;
 }
 
 #user-input:focus {
@@ -402,6 +415,12 @@ footer {
   -webkit-tap-highlight-color: transparent;
   min-height: 50px;
   box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+  /* スマートフォン対応: タッチ最適化 */
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
 
 #send-button:hover {
@@ -414,10 +433,12 @@ footer {
   box-shadow: 0 2px 10px rgba(102, 126, 234, 0.3);
 }
 
-/* レスポンシブ対応 */
+/* レスポンシブ対応 - スマートフォン最適化 */
 @media (max-width: 480px) {
   .chat-container {
     margin: 0;
+    height: 100vh !important;
+    height: calc(var(--vh, 1vh) * 100) !important;
   }
   
   header {
@@ -453,12 +474,21 @@ footer {
     padding: 14px 16px;
     padding-bottom: max(14px, env(safe-area-inset-bottom));
     min-height: 75px;
+    /* スマートフォン対応: 画面下部に固定 */
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
   }
   
   #user-input {
     padding: 12px 16px;
     font-size: 16px;
     min-height: 46px;
+    /* スマートフォン対応: キーボード連携 */
+    -webkit-user-select: text;
+    user-select: text;
   }
   
   #send-button {
@@ -500,6 +530,12 @@ footer {
   
   footer {
     padding-bottom: max(16px, env(safe-area-inset-bottom)) !important;
+    /* スマートフォン対応: 画面下部に固定 */
+    position: fixed !important;
+    bottom: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    z-index: 1000 !important;
   }
   
   /* 入力エリアが確実に表示されるように */
