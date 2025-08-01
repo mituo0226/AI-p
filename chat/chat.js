@@ -57,7 +57,7 @@ function removeTypingIndicator() {
 function showSystemMessage() {
   const log = document.getElementById('chat-log');
   const msg = document.createElement('div');
-  msg.className = 'message asakura system';
+  msg.className = 'message user system';  // ← display as user-style (right aligned)
   msg.innerHTML = `
     <strong>◆ お知らせ ◆</strong><br>
     ここから先の会話は <strong>チケット</strong> が必要です。<br>
