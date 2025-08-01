@@ -185,3 +185,15 @@ if (window.visualViewport) {
     scrollToLatestMessage();
   });
 }
+
+function scrollToBottom(force = false) {
+  const chatLog = document.getElementById("chat-log");
+  if (!chatLog) return;
+  setTimeout(() => {
+    chatLog.scrollTop = chatLog.scrollHeight;
+  }, force ? 500 : 150);
+}
+
+document.getElementById("user-input").addEventListener("focus", () => {
+  scrollToBottom(true);
+});
