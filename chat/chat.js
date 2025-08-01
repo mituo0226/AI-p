@@ -7,17 +7,8 @@ document.addEventListener("DOMContentLoaded", () => {
   const params = new URLSearchParams(window.location.search);
   const nickname = params.get("nickname") || "あなた";
 
-  // 送信画面が確実に表示されるように初期化
-  function initializeChatInterface() {
-    const footer = document.querySelector('footer');
-    if (footer) {
-      // 送信画面を確実に表示
-      footer.style.display = 'flex';
-      footer.style.visibility = 'visible';
-      footer.style.opacity = '1';
-      footer.style.zIndex = '9999';
-    }
-  }
+  // 初期化確認ログ
+  console.log("✅ チャット初期化開始");
 
   // 番組メッセージの表示
   if (chatLog) {
@@ -35,6 +26,8 @@ document.addEventListener("DOMContentLoaded", () => {
       </div>`;
     chatLog.appendChild(intro);
     chatLog.scrollTop = chatLog.scrollHeight;
+  } else {
+    console.warn("❌ chatLog 要素が見つかりません");
   }
 
   // チャット送信処理
@@ -42,6 +35,7 @@ document.addEventListener("DOMContentLoaded", () => {
     sendButton.addEventListener("click", (e) => {
       e.preventDefault();
       const message = input.value.trim();
+      console.log("📤 入力内容:", message);
 
       if (message !== "") {
         const div = document.createElement("div");
@@ -64,42 +58,15 @@ document.addEventListener("DOMContentLoaded", () => {
           document.body.removeChild(dummy);
         }, 100);
 
+        // スクロール下部へ
         setTimeout(() => {
           chatLog.scrollTop = chatLog.scrollHeight;
         }, 100);
+      } else {
+        console.log("⚠️ 空メッセージは送信しません");
       }
     });
-
-    // 入力フィールドのフォーカス時に送信画面を確実に表示
-    input.addEventListener("focus", () => {
-      initializeChatInterface();
-    });
-
-    // タッチ時に送信画面を確実に表示
-    input.addEventListener("touchstart", () => {
-      initializeChatInterface();
-    });
-
-    // クリック時に送信画面を確実に表示
-    input.addEventListener("click", () => {
-      initializeChatInterface();
-    });
+  } else {
+    console.warn("❌ 必要な要素 (input/sendButton/chatLog) のどれかが取得できていません");
   }
-
-  // 初期化時に送信画面を確実に表示
-  setTimeout(() => {
-    initializeChatInterface();
-  }, 100);
-
-  // ビューポート変更時に送信画面を確実に表示
-  if (window.visualViewport) {
-    window.visualViewport.addEventListener("resize", () => {
-      initializeChatInterface();
-    });
-  }
-
-  // リサイズ時に送信画面を確実に表示
-  window.addEventListener("resize", () => {
-    initializeChatInterface();
-  });
 });
