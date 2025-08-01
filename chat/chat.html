@@ -3,16 +3,19 @@
 <html lang="ja">
 <head>
   <meta charset="UTF-8" />
-  <!-- Android Chrome対応: ビューポート設定を調整 -->
+  <!-- スマートフォン対応: ビューポート設定を調整 -->
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, viewport-fit=cover, height=device-height, minimum-scale=1.0, maximum-scale=1.0" />
   <meta name="format-detection" content="telephone=no" />
   <meta name="mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="default" />
   <meta name="theme-color" content="#667eea" />
-  <!-- Android Chrome対応: 追加設定 -->
+  <!-- スマートフォン対応: 追加設定 -->
   <meta name="msapplication-tap-highlight" content="no" />
   <meta name="msapplication-config" content="none" />
+  <!-- スマートフォン対応: キーボード連携 -->
+  <meta name="viewport-fit" content="cover" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
   <title>朝倉 悠真とのチャット</title>
   <link rel="stylesheet" href="chat.css" />
 </head>
@@ -35,7 +38,7 @@
       </div>
     </main>
     <footer>
-      <input type="text" id="user-input" placeholder="メッセージを入力..." autocomplete="off" />
+      <input type="text" id="user-input" placeholder="メッセージを入力..." autocomplete="off" inputmode="text" />
       <button id="send-button">送信</button>
     </footer>
   </div>
