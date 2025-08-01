@@ -24,7 +24,7 @@ document.getElementById('send-button').addEventListener('click', () => {
       appendMessage('asakura', responses[responseIndex]);
       responseIndex++;
       if (responseIndex === 5) {
-        showEndMessage();
+        showSystemMessage();
       }
     }
   }, 2200);
@@ -34,7 +34,7 @@ function appendMessage(sender, text) {
   const log = document.getElementById('chat-log');
   const msg = document.createElement('div');
   msg.className = 'message ' + sender;
-  msg.innerText = text;
+  msg.innerHTML = text;
   log.appendChild(msg);
   log.scrollTop = log.scrollHeight;
 }
@@ -54,10 +54,11 @@ function removeTypingIndicator() {
   if (typing) typing.remove();
 }
 
-function showEndMessage() {
-  const end = document.getElementById('end-message');
-  if (end) {
-    end.style.display = 'block';
-    end.scrollIntoView({ behavior: 'smooth' });
-  }
+function showSystemMessage() {
+  const msg = `
+    <strong>◆ ご案内 ◆</strong><br>
+    この先の会話を続けるには、チケット（時間制）のご購入が必要です。<br>
+    <a href="paid.html" class="ticket-link">▶ チケットの案内はこちら</a>
+  `;
+  appendMessage('system', msg);
 }
