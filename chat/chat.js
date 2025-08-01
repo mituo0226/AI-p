@@ -7,6 +7,18 @@ document.addEventListener("DOMContentLoaded", () => {
   const params = new URLSearchParams(window.location.search);
   const nickname = params.get("nickname") || "あなた";
 
+  // 送信画面が確実に表示されるように初期化
+  function initializeChatInterface() {
+    const footer = document.querySelector('footer');
+    if (footer) {
+      // 送信画面を確実に表示
+      footer.style.display = 'flex';
+      footer.style.visibility = 'visible';
+      footer.style.opacity = '1';
+      footer.style.zIndex = '9999';
+    }
+  }
+
   // 番組メッセージの表示
   if (chatLog) {
     const intro = document.createElement("div");
@@ -57,5 +69,37 @@ document.addEventListener("DOMContentLoaded", () => {
         }, 100);
       }
     });
+
+    // 入力フィールドのフォーカス時に送信画面を確実に表示
+    input.addEventListener("focus", () => {
+      initializeChatInterface();
+    });
+
+    // タッチ時に送信画面を確実に表示
+    input.addEventListener("touchstart", () => {
+      initializeChatInterface();
+    });
+
+    // クリック時に送信画面を確実に表示
+    input.addEventListener("click", () => {
+      initializeChatInterface();
+    });
   }
+
+  // 初期化時に送信画面を確実に表示
+  setTimeout(() => {
+    initializeChatInterface();
+  }, 100);
+
+  // ビューポート変更時に送信画面を確実に表示
+  if (window.visualViewport) {
+    window.visualViewport.addEventListener("resize", () => {
+      initializeChatInterface();
+    });
+  }
+
+  // リサイズ時に送信画面を確実に表示
+  window.addEventListener("resize", () => {
+    initializeChatInterface();
+  });
 });
