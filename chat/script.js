@@ -2,7 +2,6 @@
 const chatMessages = document.getElementById('chatMessages');
 const chatInput = document.getElementById('chatInput');
 const sendButton = document.getElementById('sendButton');
-const chatInputContainer = document.getElementById('chatInputContainer');
 
 function showMessage(text, sender = 'user') {
   const messageDiv = document.createElement('div');
@@ -55,12 +54,3 @@ sendButton.addEventListener('click', () => {
     }, 1600);
   }, 1000);
 });
-
-// Android用：キーボード表示時に入力欄を密着
-if (window.visualViewport) {
-  window.visualViewport.addEventListener('resize', () => {
-    const height = window.visualViewport.height;
-    const offset = window.innerHeight - height;
-    chatInputContainer.style.bottom = offset > 0 ? offset + 'px' : '0px';
-  });
-}
