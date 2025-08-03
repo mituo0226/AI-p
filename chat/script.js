@@ -32,9 +32,16 @@ function hideTypingIndicator() {
 }
 
 window.addEventListener('DOMContentLoaded', () => {
-  // Android detection for layout fix
+  // Android layout fix
   if (/Android/i.test(navigator.userAgent)) {
     document.documentElement.classList.add('android');
+  }
+
+  // iPhone Chrome 初回スクロール補正
+  if (/iPhone/i.test(navigator.userAgent) && /CriOS/i.test(navigator.userAgent)) {
+    setTimeout(() => {
+      document.getElementById("chatInput").scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }, 1000);
   }
 
   setTimeout(() => {
