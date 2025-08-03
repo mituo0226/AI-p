@@ -5,7 +5,6 @@ body {
   padding-top: env(safe-area-inset-top);
   padding-bottom: env(safe-area-inset-bottom);
 }
-
 .chat-header {
   position: fixed;
   top: 0;
@@ -20,14 +19,12 @@ body {
   color: white;
   z-index: 1000;
 }
-
 .chat-title {
-  font-size: 17px;
+  font-size: 16px;
   font-weight: bold;
   text-align: center;
   flex: 1;
 }
-
 .chat-actions button,
 .back-button {
   background: none;
@@ -36,16 +33,13 @@ body {
   font-size: 18px;
   margin-left: 8px;
 }
-
 .chat-container {
   margin-top: 60px;
   -webkit-backface-visibility: hidden;
 }
-
 .chat-messages {
   padding: 20px 12px 100px;
 }
-
 .chat-input-container {
   position: fixed;
   left: 0;
@@ -58,7 +52,6 @@ body {
   box-shadow: 0 -1px 4px rgba(0,0,0,0.1);
   z-index: 999;
 }
-
 .chat-input {
   flex: 1;
   padding: 14px 18px;
@@ -67,7 +60,6 @@ body {
   border: 1px solid #ccc;
   margin-right: 10px;
 }
-
 .send-button {
   background: linear-gradient(to right, #667eea, #764ba2);
   color: white;
@@ -77,34 +69,35 @@ body {
   height: 40px;
   font-size: 18px;
 }
-
 .message {
   margin-bottom: 10px;
   display: flex;
   flex-direction: column;
 }
-
 .message.user {
   align-items: flex-end;
 }
-
 .message.character {
   align-items: flex-start;
 }
-
 .message-content {
   max-width: 80%;
   background: #fff;
-  padding: 14px 18px;
+  padding: 12px 16px;
   border-radius: 16px;
   box-shadow: 0 2px 4px rgba(0,0,0,0.1);
   font-size: 15px;
 }
-
-/* Android only override */
+/* Android専用 */
 @media screen and (max-width: 768px) {
   html.android .chat-input-container {
     position: absolute !important;
     bottom: 0 !important;
+    padding: 22px 10px !important;
   }
+}
+/* ミントブルー：ユーザーの吹き出し */
+.message.user .message-content {
+  background-color: #e0f7ff;
+  color: #333;
 }
