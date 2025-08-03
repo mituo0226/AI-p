@@ -3,53 +3,41 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>AIパートナー一覧（横スクロール）</title>
+  <title>AIパートナー一覧（縦一列・箇条書き）</title>
   <link rel="stylesheet" href="style.css" />
   <style>
     .character-list {
       display: flex;
-      overflow-x: auto;
+      flex-direction: column;
       gap: 16px;
       padding: 20px;
-      scroll-snap-type: x mandatory;
-      -webkit-overflow-scrolling: touch;
+      max-width: 640px;
+      margin: auto;
     }
 
-    .character-list::-webkit-scrollbar {
-      display: none;
-    }
-
-    .character-card {
-      flex: 0 0 auto;
-      width: 180px;
-      scroll-snap-align: start;
-      background: #fff;
-      border-radius: 12px;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-      text-align: center;
-      transition: transform 0.2s;
-    }
-
-    .character-card:hover {
-      transform: scale(1.03);
-    }
-
-    .character-card img {
-      width: 100%;
-      height: auto;
-      border-bottom: 1px solid #eee;
-    }
-
-    .character-card .name {
-      margin-top: 8px;
-      font-weight: bold;
+    .character-item {
+      background: #f9f9f9;
+      padding: 12px 16px;
+      border-left: 4px solid #667eea;
+      border-radius: 6px;
       font-size: 15px;
     }
 
-    .character-card .type {
-      font-size: 12px;
+    .character-item .name {
+      font-weight: bold;
+    }
+
+    .character-item .type {
       color: #666;
-      margin-bottom: 10px;
+      font-size: 13px;
+    }
+
+    .character-item a {
+      display: inline-block;
+      margin-top: 6px;
+      color: #667eea;
+      text-decoration: none;
+      font-size: 14px;
     }
   </style>
 </head>
@@ -64,27 +52,25 @@
         const container = document.getElementById('characterList');
 
         characters.forEach(char => {
-          const card = document.createElement('div');
-          card.className = 'character-card';
+          const item = document.createElement('div');
+          item.className = 'character-item';
 
           const typeLabel = char.type === 'lover' ? '恋人タイプ' :
                             char.type === 'friend' ? '友人タイプ' :
                             char.type === 'advisor' ? 'アドバイザー' : 'パートナー';
 
-          card.innerHTML = `
-            <a href="${char.profile}">
-              <img src="${char.img}" alt="${char.name}">
-              <div class="name">${char.name}</div>
-              <div class="type">${char.age_label}・${typeLabel}</div>
-            </a>
+          item.innerHTML = `
+            <div class="name">◉ ${char.name}（${char.age_label}・${typeLabel}）</div>
+            <a href="${char.profile}" target="_blank">▶ プロフィールを見る</a>
           `;
 
-          container.appendChild(card);
+          container.appendChild(item);
         });
       } catch (error) {
         console.error("キャラクターの読み込みエラー:", error);
       }
     }
+
     document.addEventListener('DOMContentLoaded', loadCharacters);
   </script>
 </body>
