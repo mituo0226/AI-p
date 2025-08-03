@@ -31,12 +31,13 @@
 
       .card {
         all: unset;
-        background: #fff;
+        display: flex;
+        align-items: center;
+        gap: 12px;
         padding: 12px 16px;
         border-left: 4px solid #667eea;
         border-radius: 6px;
-        font-size: 15px;
-        box-shadow: none;
+        background: #fff;
       }
 
       .card:hover {
@@ -44,7 +45,15 @@
       }
 
       .card img {
-        display: none;
+        display: block;
+        width: 64px;
+        height: 64px;
+        object-fit: cover;
+        border-radius: 8px;
+      }
+
+      .card-content {
+        flex: 1;
       }
 
       .card h2 {
@@ -83,11 +92,13 @@
           card.className = "card";
 
           card.innerHTML = `
-            <img src="${char.img}" alt="${char.name}" class="w-full rounded-lg mb-3">
-            <h2 class="text-lg font-bold text-gray-800 mb-1">${char.name}</h2>
-            <p class="text-sm italic text-pink-600 mb-2">“${char.phrase}”</p>
-            <p class="text-sm text-gray-700">${char.intro}</p>
-            <a href="${char.profile}" target="_blank" class="text-indigo-600 text-sm mt-2 block hover:underline">▶ プロフィールページを見る</a>
+            <img src="${char.img}" alt="${char.name}" class="w-full rounded-lg mb-3 block md:hidden">
+            <div class="card-content">
+              <h2 class="text-lg font-bold text-gray-800 mb-1">${char.name}</h2>
+              <p class="text-sm italic text-pink-600 mb-2">“${char.phrase}”</p>
+              <p class="text-sm text-gray-700">${char.intro}</p>
+              <a href="${char.profile}" target="_blank" class="text-indigo-600 text-sm mt-2 block hover:underline">▶ プロフィールページを見る</a>
+            </div>
           `;
 
           container.appendChild(card);
