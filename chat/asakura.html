@@ -71,6 +71,9 @@
       background: white;
       border-top: 1px solid #eee;
       display: flex;
+      position: sticky;
+      bottom: 0;
+      z-index: 10;
     }
     .chat-input {
       flex: 1;
@@ -158,6 +161,17 @@
         e.preventDefault();
         sendMessage();
       }
+    });
+
+    // 初回スクロール調整（スマホ対応）
+    window.addEventListener('load', () => {
+      setTimeout(() => {
+        chatMessages.scrollTop = chatMessages.scrollHeight;
+      }, 300);
+    });
+
+    window.addEventListener('resize', () => {
+      chatMessages.scrollTop = chatMessages.scrollHeight;
     });
   </script>
 </body>
