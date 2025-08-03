@@ -138,3 +138,31 @@ body {
 .chat-container {
   -webkit-backface-visibility: hidden;
 }
+
+/* Safari向けビジュアル強化 */
+@media not all and (min-resolution:.001dpcm) {
+  @supports (-webkit-appearance:none) {
+    body {
+      font-size: 17px;
+    }
+    .chat-title {
+      font-size: 18px;
+    }
+    .chat-input {
+      font-size: 16px;
+      padding: 14px 22px;
+      min-height: 50px;
+    }
+    .message-content {
+      font-size: 16px;
+      line-height: 1.7;
+      padding: 16px 20px;
+      border-radius: 20px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    }
+    .send-button {
+      min-width: 48px;
+      min-height: 48px;
+    }
+  }
+}
