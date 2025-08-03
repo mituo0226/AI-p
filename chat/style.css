@@ -7,6 +7,7 @@ body {
   display: flex;
   flex-direction: column;
   padding-bottom: 90px;
+  scroll-padding-bottom: 150px;
 }
 .chat-container {
   flex: 1;
@@ -69,6 +70,7 @@ body {
   width: 100%;
   background: white;
   padding: 10px;
+  padding-bottom: calc(10px + env(safe-area-inset-bottom));
   border-top: 1px solid #ccc;
   display: flex;
   z-index: 999;
