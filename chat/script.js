@@ -32,6 +32,11 @@ function hideTypingIndicator() {
 }
 
 window.addEventListener('DOMContentLoaded', () => {
+  // Android detection for layout fix
+  if (/Android/i.test(navigator.userAgent)) {
+    document.documentElement.classList.add('android');
+  }
+
   setTimeout(() => {
     showTypingIndicator();
     setTimeout(() => {
