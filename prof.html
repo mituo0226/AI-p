@@ -3,48 +3,53 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>AIパートナー一覧</title>
+  <title>AIパートナー一覧（横スクロール）</title>
   <link rel="stylesheet" href="style.css" />
   <style>
     .character-list {
       display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 20px;
+      overflow-x: auto;
+      gap: 16px;
       padding: 20px;
+      scroll-snap-type: x mandatory;
+      -webkit-overflow-scrolling: touch;
     }
+
+    .character-list::-webkit-scrollbar {
+      display: none;
+    }
+
     .character-card {
-      width: 200px;
-      text-align: center;
-      font-size: 14px;
+      flex: 0 0 auto;
+      width: 180px;
+      scroll-snap-align: start;
       background: #fff;
       border-radius: 12px;
       box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-      overflow: hidden;
+      text-align: center;
       transition: transform 0.2s;
     }
+
     .character-card:hover {
-      transform: scale(1.02);
+      transform: scale(1.03);
     }
+
     .character-card img {
       width: 100%;
       height: auto;
       border-bottom: 1px solid #eee;
     }
+
     .character-card .name {
+      margin-top: 8px;
       font-weight: bold;
-      margin-top: 10px;
-      font-size: 16px;
+      font-size: 15px;
     }
+
     .character-card .type {
+      font-size: 12px;
       color: #666;
-      font-size: 13px;
-      margin-bottom: 12px;
-    }
-    @media screen and (max-width: 768px) {
-      .character-card {
-        width: 46%;
-      }
+      margin-bottom: 10px;
     }
   </style>
 </head>
@@ -73,6 +78,7 @@
               <div class="type">${char.age_label}・${typeLabel}</div>
             </a>
           `;
+
           container.appendChild(card);
         });
       } catch (error) {
