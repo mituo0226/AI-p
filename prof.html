@@ -10,80 +10,83 @@
       background-color: #fdf4ff;
     }
 
+    #characterGrid {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
     .card {
+      display: flex;
+      align-items: center;
+      gap: 16px;
       background: white;
-      border-radius: 1rem;
-      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-      padding: 1rem;
-      transition: transform 0.3s ease;
+      border-radius: 12px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+      padding: 16px 20px;
+      transition: transform 0.2s;
     }
 
     .card:hover {
-      transform: translateY(-5px);
+      transform: translateY(-4px);
     }
 
     .card img {
-      width: 100%;
-      border-radius: 0.5rem;
-      margin-bottom: 0.75rem;
+      width: 80px;
+      height: 80px;
+      object-fit: cover;
+      border-radius: 10px;
+      flex-shrink: 0;
+    }
+
+    .card-content {
+      flex: 1;
+    }
+
+    .card-content h2 {
+      font-size: 18px;
+      font-weight: bold;
+      margin-bottom: 4px;
+    }
+
+    .card-content p {
+      font-size: 14px;
+      margin: 2px 0;
+    }
+
+    .card-content a {
+      font-size: 14px;
+      color: #667eea;
+      text-decoration: none;
     }
 
     @media (max-width: 768px) {
-      #characterGrid {
-        display: flex !important;
-        flex-direction: column;
-        gap: 12px;
-      }
-
       .card {
-        all: unset;
-        display: flex;
-        align-items: center;
+        padding: 12px 14px;
         gap: 10px;
-        padding: 10px 12px;
-        border-left: 4px solid #667eea;
-        border-radius: 6px;
-        background: #fff;
-      }
-
-      .card:hover {
-        transform: none;
       }
 
       .card img {
         width: 40px;
         height: 40px;
-        object-fit: cover;
         border-radius: 6px;
-        margin-bottom: 0;
       }
 
-      .card-content {
-        flex: 1;
-      }
-
-      .card h2 {
+      .card-content h2 {
         font-size: 15px;
-        font-weight: bold;
-        margin-bottom: 2px;
       }
 
-      .card p,
-      .card a {
+      .card-content p,
+      .card-content a {
         font-size: 13px;
-        margin: 1px 0;
-      }
-
-      .card a {
-        color: #667eea;
       }
     }
   </style>
 </head>
 <body class="font-sans text-gray-800 leading-relaxed">
-  <div class="max-w-7xl mx-auto px-6 py-12">
+  <div class="max-w-4xl mx-auto px-4 py-10">
     <h1 class="text-3xl font-bold text-center text-pink-600 mb-10">AIパートナーキャラクター一覧</h1>
-    <div id="characterGrid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8"></div>
+    <div id="characterGrid"></div>
   </div>
 
   <script>
@@ -106,7 +109,7 @@
             <div class="card-content">
               <h2>${char.name}</h2>
               <p>${char.age_label}・${typeLabel}</p>
-              <a href="${char.profile}" target="_blank">▶ プロフィール</a>
+              <a href="${char.profile}" target="_blank">▶ プロフィールを見る</a>
             </div>
           `;
 
