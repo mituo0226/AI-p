@@ -56,7 +56,6 @@ body {
   display: flex;
   align-items: center;
   box-shadow: 0 -1px 4px rgba(0,0,0,0.1);
-  transition: bottom 0.2s ease;
   z-index: 999;
 }
 
@@ -102,12 +101,10 @@ body {
   font-size: 15px;
 }
 
-/* Androidだけ密着表示 */
+/* Android only override */
 @media screen and (max-width: 768px) {
-  @supports (-webkit-appearance:none) {
-    .chat-input-container {
-      position: absolute !important;
-      bottom: 0 !important;
-    }
+  html.android .chat-input-container {
+    position: absolute !important;
+    bottom: 0 !important;
   }
 }
