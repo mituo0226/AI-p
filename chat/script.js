@@ -33,6 +33,32 @@ function showMessage(text, sender = 'character') {
   content.scrollIntoView({ behavior: 'smooth', block: 'center' });
 }
 
+function showTypingIndicator() {
+  const typing = document.createElement('div');
+  typing.id = 'typing';
+  typing.className = 'typing-indicator';
+  typing.innerHTML = `
+    <div class="typing-dot"></div>
+    <div class="typing-dot"></div>
+    <div class="typing-dot"></div>
+  `;
+  chatMessages.appendChild(typing);
+  chatMessages.scrollTop = chatMessages.scrollHeight;
+}
+
+function hideTypingIndicator() {
+  const typing = document.getElementById('typing');
+  if (typing) typing.remove();
+}
+
+function respondWithDelay(text) {
+  showTypingIndicator();
+  setTimeout(() => {
+    hideTypingIndicator();
+    showMessage(text, 'character');
+  }, 1800);
+}
+
 function sendMessage() {
   const text = chatInput.value.trim();
   if (!text) return;
@@ -40,11 +66,8 @@ function sendMessage() {
   chatInput.value = '';
 
   if (messageIndex < messages.length) {
-    setTimeout(() => {
-      const type = messageIndex === messages.length - 1 ? 'notice' : 'character';
-      showMessage(messages[messageIndex], type);
-      messageIndex++;
-    }, 1000);
+    respondWithDelay(messages[messageIndex]);
+    messageIndex++;
   }
 }
 
@@ -64,15 +87,3 @@ window.addEventListener('load', () => {
 window.addEventListener('resize', () => {
   chatMessages.scrollTop = chatMessages.scrollHeight;
 });
-
-// Android特化スクロール補正
-function adjustForAndroidKeyboard() {
-  const isAndroid = /android/i.test(navigator.userAgent);
-  if (isAndroid) {
-    setTimeout(() => {
-      chatInput.scrollIntoView({ behavior: 'smooth', block: 'center' });
-    }, 150);
-  }
-}
-window.addEventListener('focusin', adjustForAndroidKeyboard);
-window.addEventListener('resize', adjustForAndroidKeyboard);
