@@ -3,140 +3,83 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>AIパートナー 一覧</title>
-  <link href="https://unpkg.com/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet" />
+  <title>AIパートナー一覧</title>
+  <link rel="stylesheet" href="style.css" />
   <style>
-    body {
-      background: #111;
-      color: white;
-      font-family: 'Helvetica Neue', sans-serif;
-      padding: 2rem;
+    .character-list {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+      padding: 20px;
     }
-    .card {
-      background-color: #222;
-      border-radius: 1rem;
-      padding: 1rem;
+    .character-card {
+      width: 200px;
       text-align: center;
+      font-size: 14px;
+      background: #fff;
+      border-radius: 12px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      overflow: hidden;
       transition: transform 0.2s;
     }
-    .card:hover {
-      transform: scale(1.03);
+    .character-card:hover {
+      transform: scale(1.02);
     }
-    .profile-img {
-      width: 120px;
-      height: 120px;
-      object-fit: cover;
-      border-radius: 9999px;
-      border: 3px solid white;
-      margin: auto;
+    .character-card img {
+      width: 100%;
+      height: auto;
+      border-bottom: 1px solid #eee;
+    }
+    .character-card .name {
+      font-weight: bold;
+      margin-top: 10px;
+      font-size: 16px;
+    }
+    .character-card .type {
+      color: #666;
+      font-size: 13px;
+      margin-bottom: 12px;
+    }
+    @media screen and (max-width: 768px) {
+      .character-card {
+        width: 46%;
+      }
     }
   </style>
 </head>
 <body>
-  <h1 class="text-3xl font-bold text-center text-pink-300 mb-10">AIパートナー 一覧</h1>
-  
-  <div class="mb-6 text-center">
-    <label class="mr-2 text-sm">性別:</label>
-    <select id="genderFilter" class="text-black px-2 py-1 rounded mr-4">
-      <option value="">すべて</option>
-      <option value="male">男性</option>
-      <option value="female">女性</option>
-    </select>
-
-    <label class="mr-2 text-sm">年代:</label>
-    <select id="ageFilter" class="text-black px-2 py-1 rounded mr-4">
-      <option value="">すべて</option>
-      <option value="10代前半">10代前半</option>
-      <option value="10代後半">10代後半</option>
-      <option value="20代前半">20代前半</option>
-      <option value="20代後半">20代後半</option>
-      <option value="30代前半">30代前半</option>
-      <option value="30代後半">30代後半</option>
-      <option value="40代前半">40代前半</option>
-      <option value="40代後半">40代後半</option>
-      <option value="50代後半">50代後半</option>
-      <option value="60代以上">60代以上</option>
-    </select>
-
-    <label class="mr-2 text-sm">タイプ:</label>
-    <select id="typeFilter" class="text-black px-2 py-1 rounded">
-      <option value="">すべて</option>
-      <option value="lover">恋人</option>
-      <option value="friend">友達</option>
-      <option value="advisor">相談役</option>
-    </select>
-  </div>
-
-  <div id="cardContainer"
- class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6"></div>
-
+  <h1 style="text-align:center; padding-top: 20px;">あなたに合うAIパートナー一覧</h1>
+  <div id="characterList" class="character-list"></div>
   <script>
-    const base = "https://ryu02262.moo.jp/web/AI-p/";
-
     async function loadCharacters() {
-      const res = await fetch("characters.json");
-      const characters = await res.json();
+      try {
+        const response = await fetch('characters.json');
+        const characters = await response.json();
+        const container = document.getElementById('characterList');
 
-      const container = document.getElementById("cardContainer");
-      
-      const genderVal = document.getElementById("genderFilter").value;
-      const ageVal = document.getElementById("ageFilter").value;
-      const typeVal = document.getElementById("typeFilter").value;
+        characters.forEach(char => {
+          const card = document.createElement('div');
+          card.className = 'character-card';
 
-      container.innerHTML = "";
+          const typeLabel = char.type === 'lover' ? '恋人タイプ' :
+                            char.type === 'friend' ? '友人タイプ' :
+                            char.type === 'advisor' ? 'アドバイザー' : 'パートナー';
 
-      characters
-        .filter(char => {
-          // 性別フィルター
-          if (genderVal && char.gender !== genderVal) return false;
-          
-          // 年齢フィルター（age_labelを使用）
-          if (ageVal) {
-            let ageMatch = false;
-            if (char.age_label && char.age_label === ageVal) {
-              ageMatch = true;
-            } else if (typeof char.age === 'number') {
-              // フォールバック: 数値の年齢で判定
-              if (ageVal === "10代後半" && char.age >= 15 && char.age < 20) ageMatch = true;
-              else if (ageVal === "20代前半" && char.age >= 20 && char.age < 25) ageMatch = true;
-              else if (ageVal === "20代後半" && char.age >= 25 && char.age < 30) ageMatch = true;
-              else if (ageVal === "30代前半" && char.age >= 30 && char.age < 35) ageMatch = true;
-              else if (ageVal === "30代後半" && char.age >= 35 && char.age < 40) ageMatch = true;
-              else if (ageVal === "40代前半" && char.age >= 40 && char.age < 45) ageMatch = true;
-              else if (ageVal === "40代後半" && char.age >= 45 && char.age < 50) ageMatch = true;
-              else if (ageVal === "50代以上" && char.age >= 50) ageMatch = true;
-            }
-            if (!ageMatch) return false;
-          }
-          
-          // タイプフィルター
-          if (typeVal && char.type !== typeVal) return false;
-          
-          return true;
-        })
-        .forEach(char => {
-
-        const card = document.createElement("div");
-        card.className = "card";
-        card.innerHTML = `
-          <img src="${base + char.img}" alt="${char.name}" class="profile-img mb-3" />
-          <h2 class="text-lg font-bold text-pink-200 mb-1">${char.name}</h2>
-          <p class="text-sm italic text-gray-300 mb-1">“${char.phrase}”</p>
-          <p class="text-xs text-gray-400 mb-2">${char.intro}</p>
-          <a href="${base + char.profile}" target="_blank" class="text-blue-400 text-sm underline">▶ プロフィールを見る</a>
-        `;
-        container.appendChild(card);
-      });
+          card.innerHTML = `
+            <a href="${char.profile}">
+              <img src="${char.img}" alt="${char.name}">
+              <div class="name">${char.name}</div>
+              <div class="type">${char.age_label}・${typeLabel}</div>
+            </a>
+          `;
+          container.appendChild(card);
+        });
+      } catch (error) {
+        console.error("キャラクターの読み込みエラー:", error);
+      }
     }
-
-    
-    window.onload = () => {
-      loadCharacters();
-      document.getElementById("genderFilter").onchange = loadCharacters;
-      document.getElementById("ageFilter").onchange = loadCharacters;
-      document.getElementById("typeFilter").onchange = loadCharacters;
-    };
-
+    document.addEventListener('DOMContentLoaded', loadCharacters);
   </script>
 </body>
 </html>
