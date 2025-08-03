@@ -51,12 +51,14 @@ function hideTypingIndicator() {
   if (typing) typing.remove();
 }
 
-function respondWithDelay(text) {
-  showTypingIndicator();
+function respondRealistically(text) {
   setTimeout(() => {
-    hideTypingIndicator();
-    showMessage(text, 'character');
-  }, 1800);
+    showTypingIndicator();
+    setTimeout(() => {
+      hideTypingIndicator();
+      showMessage(text, 'character');
+    }, 1800); // タイピング中の時間
+  }, 1000); // メールを読む間
 }
 
 function sendMessage() {
@@ -66,7 +68,7 @@ function sendMessage() {
   chatInput.value = '';
 
   if (messageIndex < messages.length) {
-    respondWithDelay(messages[messageIndex]);
+    respondRealistically(messages[messageIndex]);
     messageIndex++;
   }
 }
