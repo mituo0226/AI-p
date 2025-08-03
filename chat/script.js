@@ -2,105 +2,24 @@
 const chatMessages = document.getElementById('chatMessages');
 const chatInput = document.getElementById('chatInput');
 const sendButton = document.getElementById('sendButton');
-const systemMessage = document.getElementById('systemMessage');
 
-const params = new URLSearchParams(window.location.search);
-const nickname = params.get('nickname') || 'あなた';
-
-const introText = `朝倉君とのchatが始まります！\n楽しいお話をしてもりあがってくださいね★\n\nchatをする仲間はAIで、実在はしません･･･そこだけご理解ください\n\nそれでもみんな素敵な仲間、きっと${nickname}の生活を明るくしてくれるでしょう！\n\n応援しています!📣`;
-systemMessage.textContent = introText;
-
-const messages = [
-  `はじめまして、朝倉悠真です！✨ 僕を選んでくれてありがとう😊`,
-  `えっと･･･その質問は言うけど、その前に${nickname}さんはどんな人か知りたいかも❗️👀 社会人なのかな？`,
-  `そうなんだね(*^－^)👍 僕みたいな若い、まだ人生経験の浅い男でも大丈夫なのかな…💦 ${nickname}さんに相応しいのかちょっと不安だよ😳`,
-  `ありがとう😊 いろいろ話して仲良くなれれば僕もかなり嬉しいよ🎵 ${nickname}に気に入ってもらえるように頑張るから、よろしくお願いします💪✨`,
-  `◆AIパートナーより◆この先はチケットが必要になります🎫 希望の方はこちら → 購入リンク🛒`
-];
-
-let messageIndex = 0;
-
-function showMessage(text, sender = 'character') {
+function showMessage(text, sender = 'user') {
   const messageDiv = document.createElement('div');
-  messageDiv.className = 'message ' + (sender === 'user' ? 'user' : 'character');
-
+  messageDiv.className = 'message ' + sender;
   const content = document.createElement('div');
-  content.className = sender === 'notice' ? 'notice-message' : 'message-content';
+  content.className = 'message-content';
   content.textContent = text;
-
   messageDiv.appendChild(content);
   chatMessages.appendChild(messageDiv);
   content.scrollIntoView({ behavior: 'smooth', block: 'center' });
 }
 
-function showTypingIndicator() {
-  const typing = document.createElement('div');
-  typing.id = 'typing';
-  typing.className = 'typing-indicator';
-  typing.innerHTML = `
-    <div class="typing-dot"></div>
-    <div class="typing-dot"></div>
-    <div class="typing-dot"></div>
-  `;
-  chatMessages.appendChild(typing);
-  chatMessages.scrollTop = chatMessages.scrollHeight;
-}
-
-function hideTypingIndicator() {
-  const typing = document.getElementById('typing');
-  if (typing) typing.remove();
-}
-
-function respondRealistically(text) {
-  setTimeout(() => {
-    showTypingIndicator();
-    setTimeout(() => {
-      hideTypingIndicator();
-      showMessage(text, 'character');
-    }, 1800);
-  }, 1000);
-}
-
-function sendMessage() {
+sendButton.addEventListener('click', () => {
   const text = chatInput.value.trim();
   if (!text) return;
   showMessage(text, 'user');
   chatInput.value = '';
-
-  if (messageIndex < messages.length) {
-    respondRealistically(messages[messageIndex]);
-    messageIndex++;
-  }
-}
-
-sendButton.addEventListener('click', sendMessage);
-chatInput.addEventListener('keypress', (e) => {
-  if (e.key === 'Enter') {
-    e.preventDefault();
-    sendMessage();
-  }
-});
-
-window.addEventListener('load', () => {
   setTimeout(() => {
-    chatMessages.scrollTop = chatMessages.scrollHeight;
-  }, 300);
+    showMessage('はじめまして、朝倉悠真です！✨ 僕を選んでくれてありがとう😊', 'character');
+  }, 1200);
 });
-window.addEventListener('resize', () => {
-  chatMessages.scrollTop = chatMessages.scrollHeight;
-});
-
-// Android特化スクロール補正（連続スクロール）
-function adjustForAndroidKeyboard() {
-  const isAndroid = /android/i.test(navigator.userAgent);
-  if (isAndroid) {
-    setTimeout(() => {
-      chatInput.scrollIntoView({ behavior: 'smooth', block: 'center' });
-    }, 300);
-    setTimeout(() => {
-      chatInput.scrollIntoView({ behavior: 'smooth', block: 'center' });
-    }, 600);
-  }
-}
-window.addEventListener('focusin', adjustForAndroidKeyboard);
-window.addEventListener('resize', adjustForAndroidKeyboard);
