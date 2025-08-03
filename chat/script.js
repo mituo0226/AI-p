@@ -2,6 +2,7 @@
 const chatMessages = document.getElementById('chatMessages');
 const chatInput = document.getElementById('chatInput');
 const sendButton = document.getElementById('sendButton');
+const chatInputContainer = document.getElementById('chatInputContainer');
 
 function showMessage(text, sender = 'user') {
   const messageDiv = document.createElement('div');
@@ -14,7 +15,6 @@ function showMessage(text, sender = 'user') {
   content.scrollIntoView({ behavior: 'smooth', block: 'center' });
 }
 
-// タイピング演出（省略可能）
 function showTypingIndicator() {
   const typing = document.createElement('div');
   typing.className = 'message character';
@@ -32,7 +32,6 @@ function hideTypingIndicator() {
   if (typing) typing.remove();
 }
 
-// 初期ロードでキャラが話しかける
 window.addEventListener('DOMContentLoaded', () => {
   setTimeout(() => {
     showTypingIndicator();
@@ -56,3 +55,12 @@ sendButton.addEventListener('click', () => {
     }, 1600);
   }, 1000);
 });
+
+// Android用：キーボード表示時に入力欄を密着
+if (window.visualViewport) {
+  window.visualViewport.addEventListener('resize', () => {
+    const height = window.visualViewport.height;
+    const offset = window.innerHeight - height;
+    chatInputContainer.style.bottom = offset > 0 ? offset + 'px' : '0px';
+  });
+}
