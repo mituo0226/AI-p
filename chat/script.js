@@ -56,7 +56,6 @@ chatInput.addEventListener('keypress', (e) => {
   }
 });
 
-// スクロール補正
 window.addEventListener('load', () => {
   setTimeout(() => {
     chatMessages.scrollTop = chatMessages.scrollHeight;
