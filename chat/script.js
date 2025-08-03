@@ -57,8 +57,8 @@ function respondRealistically(text) {
     setTimeout(() => {
       hideTypingIndicator();
       showMessage(text, 'character');
-    }, 1800); // タイピング中の時間
-  }, 1000); // メールを読む間
+    }, 1800);
+  }, 1000);
 }
 
 function sendMessage() {
@@ -89,3 +89,18 @@ window.addEventListener('load', () => {
 window.addEventListener('resize', () => {
   chatMessages.scrollTop = chatMessages.scrollHeight;
 });
+
+// Android特化スクロール補正（連続スクロール）
+function adjustForAndroidKeyboard() {
+  const isAndroid = /android/i.test(navigator.userAgent);
+  if (isAndroid) {
+    setTimeout(() => {
+      chatInput.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }, 300);
+    setTimeout(() => {
+      chatInput.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }, 600);
+  }
+}
+window.addEventListener('focusin', adjustForAndroidKeyboard);
+window.addEventListener('resize', adjustForAndroidKeyboard);
