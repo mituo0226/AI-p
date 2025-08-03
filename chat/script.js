@@ -3,7 +3,6 @@ const chatMessages = document.getElementById('chatMessages');
 const chatInput = document.getElementById('chatInput');
 const sendButton = document.getElementById('sendButton');
 const systemMessage = document.getElementById('systemMessage');
-const inputContainer = document.getElementById('chatInputContainer');
 
 const params = new URLSearchParams(window.location.search);
 const nickname = params.get('nickname') || 'あなた';
@@ -31,7 +30,7 @@ function showMessage(text, sender = 'character') {
 
   messageDiv.appendChild(content);
   chatMessages.appendChild(messageDiv);
-  chatMessages.scrollTop = chatMessages.scrollHeight;
+  content.scrollIntoView({ behavior: 'smooth', block: 'center' });
 }
 
 function sendMessage() {
@@ -66,14 +65,13 @@ window.addEventListener('resize', () => {
   chatMessages.scrollTop = chatMessages.scrollHeight;
 });
 
-// ✅ Android対策：focus時に強制スクロール
+// Android特化スクロール補正
 function adjustForAndroidKeyboard() {
   const isAndroid = /android/i.test(navigator.userAgent);
   if (isAndroid) {
     setTimeout(() => {
-      window.scrollTo(0, document.body.scrollHeight);
-      chatMessages.scrollTop = chatMessages.scrollHeight;
-    }, 100);
+      chatInput.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }, 150);
   }
 }
 window.addEventListener('focusin', adjustForAndroidKeyboard);
