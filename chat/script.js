@@ -3,6 +3,7 @@ const chatMessages = document.getElementById('chatMessages');
 const chatInput = document.getElementById('chatInput');
 const sendButton = document.getElementById('sendButton');
 const systemMessage = document.getElementById('systemMessage');
+const inputContainer = document.getElementById('chatInputContainer');
 
 const params = new URLSearchParams(window.location.search);
 const nickname = params.get('nickname') || 'あなた';
@@ -64,3 +65,16 @@ window.addEventListener('load', () => {
 window.addEventListener('resize', () => {
   chatMessages.scrollTop = chatMessages.scrollHeight;
 });
+
+// ✅ Android対策：focus時に強制スクロール
+function adjustForAndroidKeyboard() {
+  const isAndroid = /android/i.test(navigator.userAgent);
+  if (isAndroid) {
+    setTimeout(() => {
+      window.scrollTo(0, document.body.scrollHeight);
+      chatMessages.scrollTop = chatMessages.scrollHeight;
+    }, 100);
+  }
+}
+window.addEventListener('focusin', adjustForAndroidKeyboard);
+window.addEventListener('resize', adjustForAndroidKeyboard);
