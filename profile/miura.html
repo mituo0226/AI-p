@@ -51,8 +51,8 @@
             <video controls id="miuraVideo" playsinline poster="">
               <source src="../ga/mov/character/miura.mp4" type="video/mp4" />
             </video>
-            <div class="video-mask" id="videoMask"></div>
-            <div class="video-overlay" id="videoOverlay" onclick="replayVideo()">▶️ 翔太の動画を見る</div>
+            <div class="video-mask" id="miuraMask"></div>
+            <div class="video-overlay" id="miuraOverlay" onclick="replayMiura()">▶ もう一度見る</div>
           </div>
         </div>
         <a class="select-button" href="../matching_result.html?char=miura">翔太をパートナーに選ぶ</a>
@@ -62,10 +62,10 @@
   </div>
   <script>
     const video = document.getElementById('miuraVideo');
-    const overlay = document.getElementById('videoOverlay');
-    const mask = document.getElementById('videoMask');
+    const overlay = document.getElementById('miuraOverlay');
+    const mask = document.getElementById('miuraMask');
 
-    function replayVideo() {
+    function replayMiura() {
       video.currentTime = 0;
       video.play();
       overlay.style.display = 'none';
