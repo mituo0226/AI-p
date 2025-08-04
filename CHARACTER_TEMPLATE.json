@@ -1,0 +1,22 @@
+{
+  "name": "例：神谷 陽菜（22歳）",
+  "id": "kamiya",
+  "gender": "female",
+  "age": 22,
+  "age_label": "20代前半",
+  "type": "lover",
+  "img": "ga/image/character/kamiya.png",
+  "video": "ga/mov/character/kamiya.mp4",
+  "phrase": "あなたの声が、心に優しく響いた気がしたの…",
+  "intro": "職業：アロマショップスタッフ／性格：温かく包み込む癒し系",
+  "profile": "profile/kamiya.html",
+  "chatStyle": {
+    "tone": "やわらかく、親しみやすい",
+    "opening": "ゆったりと安心させる語り口で始める",
+    "topics": [
+      "癒し",
+      "感情",
+      "小さな幸せ"
+    ]
+  }
+}
