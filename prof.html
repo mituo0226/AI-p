@@ -115,8 +115,8 @@
           card.className = "card";
 
           const typeLabel = char.type === 'lover' ? '恋人タイプ' :
-                            char.type === 'friend' ? '友人タイプ' :
-                            char.type === 'advisor' ? 'アドバイザー' : 'パートナー';
+                            char.type === 'friend' ? '親友タイプ' :
+                            char.type === 'advisor' ? '相談相手タイプ' : 'キャラクター';
 
           card.innerHTML = `
             <img src="${char.img}" alt="${char.name}">
