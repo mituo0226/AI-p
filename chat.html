@@ -29,37 +29,43 @@
     const unick = params.get("name") || "あなた";
 
     async function loadCharacterData() {
-      const [charRes, scriptRes] = await Promise.all([
-        fetch("characters.json"),
-        fetch("chatScript.json")
-      ]);
+      try {
+        const [charRes, scriptRes] = await Promise.all([
+          fetch("characters.json"),
+          fetch("chatScript.json")
+        ]);
 
-      const [characters, scripts] = await Promise.all([
-        charRes.json(),
-        scriptRes.json()
-      ]);
+        const [characters, scripts] = await Promise.all([
+          charRes.json(),
+          scriptRes.json()
+        ]);
 
-      const character = characters.find(c => c.profile.includes(charId));
-      const messages = scripts[charId];
+        const character = characters.find(c => c.id === charId);
+        const messages = scripts[charId];
 
-      if (!character || !messages) {
-        document.getElementById("chatMessages").innerHTML = "<p>キャラクター情報が見つかりません。</p>";
-        return;
+        if (!character || !messages) {
+          document.getElementById("chatMessages").innerHTML = "<p style='color:red;'>キャラクター情報が見つかりません（ID: " + charId + "）。</p>";
+          console.warn("キャラ未検出", charId, character, messages);
+          return;
+        }
+
+        document.getElementById("chatTitle").textContent = character.name;
+
+        const container = document.getElementById("chatMessages");
+
+        messages.forEach((msg, i) => {
+          setTimeout(() => {
+            const bubble = document.createElement("div");
+            bubble.className = "message character";
+            bubble.innerHTML = `<div class="message-content">${msg.replaceAll('[[UNICK]]', unick)}</div>`;
+            container.appendChild(bubble);
+            container.scrollTop = container.scrollHeight;
+          }, 600 * i);
+        });
+      } catch (err) {
+        document.getElementById("chatMessages").innerHTML = "<p style='color:red;'>読み込み中にエラーが発生しました。</p>";
+        console.error("読み込みエラー", err);
       }
-
-      document.getElementById("chatTitle").textContent = character.name;
-
-      const container = document.getElementById("chatMessages");
-
-      messages.forEach((msg, i) => {
-        setTimeout(() => {
-          const bubble = document.createElement("div");
-          bubble.className = "message character";
-          bubble.innerHTML = `<div class="message-content">${msg.replaceAll('[[UNICK]]', unick)}</div>`;
-          container.appendChild(bubble);
-          container.scrollTop = container.scrollHeight;
-        }, 600 * i);
-      });
     }
 
     window.onload = loadCharacterData;
