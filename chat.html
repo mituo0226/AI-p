@@ -112,9 +112,13 @@
         const messages = scripts[charId];
         
         if (messages && messageIndex < messages.length - 1) {
-          messageIndex++;
+                  messageIndex++;
+      }, 1000);
           setTimeout(() => {
-            showCharacterMessage(messages[messageIndex]);
+            showTypingIndicator();
+      setTimeout(() => {
+        removeTypingIndicator();
+        showCharacterMessage(messages[messageIndex]);
             // 入力フィールドを再有効化
             input.disabled = false;
             document.querySelector(".send-button").disabled = false;
@@ -135,6 +139,22 @@
         document.querySelector(".send-button").disabled = false;
       }
     }
+
+    
+      function showTypingIndicator() {
+        const container = document.getElementById("chatMessages");
+        const typing = document.createElement("div");
+        typing.className = "message character typing";
+        typing.innerHTML = `<div class="message-content">...</div>`;
+        typing.id = "typing-indicator";
+        container.appendChild(typing);
+        container.scrollTop = container.scrollHeight;
+      }
+
+      function removeTypingIndicator() {
+        const typing = document.getElementById("typing-indicator");
+        if (typing) typing.remove();
+      }
 
     window.onload = loadCharacterData;
   </script>
