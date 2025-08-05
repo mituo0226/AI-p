@@ -265,17 +265,17 @@
     }
   },
   {
-    "name": "柚月 詩織",
+    "name": "楠本 詩織",
     "img": "ga/image/character/siori.png",
     "gender": "female",
-    "age": 41,
+    "age": 48,
     "type": "advisor",
     "phrase": "本の中でしか出会えなかった“誰か”に、あなた自身がなれるのよ。",
     "intro": "文筆家・大学講師。内省的で静かな強さを持ち、文字に込められた残り香を読み取る。",
     "video": "ga/mov/character/siori.mp4",
     "profile": "profile/siori.html",
     "age_group": "40代",
-    "age_label": "40代前半",
+    "age_label": "40代後半",
     "chatStyle": {
       "tone": "知的で落ち着いた口調。やや文学的な表現を交える。",
       "personality": "文筆家で大学講師。内省的で深い洞察を持つ。",
