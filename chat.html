@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>チャット - AIパートナー</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="chat-header">
+    <button class="back-button" onclick="history.back()">←</button>
+    <div class="chat-title" id="chatTitle">AIパートナー</div>
+  </div>
+
+  <div class="chat-container">
+    <div class="chat-messages" id="chatMessages">
+      <!-- チャットメッセージがここに追加されます -->
+    </div>
+  </div>
+
+  <div class="chat-input-container">
+    <input id="chatInput" type="text" class="chat-input" placeholder="メッセージを入力..." disabled />
+    <button class="send-button" disabled>▶</button>
+  </div>
+
+  <script>
+    const params = new URLSearchParams(window.location.search);
+    const charId = params.get("char") || "";
+    const unick = params.get("name") || "あなた";
+
+    async function loadCharacterData() {
+      const [charRes, scriptRes] = await Promise.all([
+        fetch("characters.json"),
+        fetch("chatScript.json")
+      ]);
+
+      const [characters, scripts] = await Promise.all([
+        charRes.json(),
+        scriptRes.json()
+      ]);
+
+      const character = characters.find(c => c.profile.includes(charId));
+      const messages = scripts[charId];
+
+      if (!character || !messages) {
+        document.getElementById("chatMessages").innerHTML = "<p>キャラクター情報が見つかりません。</p>";
+        return;
+      }
+
+      document.getElementById("chatTitle").textContent = character.name;
+
+      const container = document.getElementById("chatMessages");
+
+      messages.forEach((msg, i) => {
+        setTimeout(() => {
+          const bubble = document.createElement("div");
+          bubble.className = "message character";
+          bubble.innerHTML = `<div class="message-content">${msg.replaceAll('[[UNICK]]', unick)}</div>`;
+          container.appendChild(bubble);
+          container.scrollTop = container.scrollHeight;
+        }, 600 * i);
+      });
+    }
+
+    window.onload = loadCharacterData;
+  </script>
+</body>
+</html>
