@@ -3,32 +3,70 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>チャット - AIパートナー</title>
+  <title>AIパートナー - チャット</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
   <div class="chat-header">
     <button class="back-button" onclick="history.back()">←</button>
     <div class="chat-title" id="chatTitle">AIパートナー</div>
+    <div class="chat-actions">
+      <button class="action-button">🔍</button>
+      <button class="action-button">📞</button>
+      <button class="action-button">≡</button>
+    </div>
   </div>
 
   <div class="chat-container">
     <div class="chat-messages" id="chatMessages">
-      <!-- チャットメッセージがここに追加されます -->
+      <!-- メッセージがここに表示されます -->
     </div>
   </div>
 
   <div class="chat-input-container">
     <input id="chatInput" type="text" class="chat-input" placeholder="メッセージを入力..." />
-    <button class="send-button" onclick="sendMessage()">▶</button>
+    <button id="sendButton" class="send-button">▶</button>
   </div>
 
   <script>
     const params = new URLSearchParams(window.location.search);
     const charId = params.get("char") || "";
     const unick = params.get("name") || "あなた";
-    let character = null;
+
+    const chatMessages = document.getElementById('chatMessages');
+    const chatInput = document.getElementById('chatInput');
+    const sendButton = document.getElementById('sendButton');
+
+    let messages = [];
     let messageIndex = 0;
+
+    function showMessage(text, sender = 'user') {
+      const messageDiv = document.createElement('div');
+      messageDiv.className = 'message ' + sender;
+      const content = document.createElement('div');
+      content.className = 'message-content';
+      content.textContent = text;
+      messageDiv.appendChild(content);
+      chatMessages.appendChild(messageDiv);
+      content.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
+
+    function showTypingIndicator() {
+      const typing = document.createElement('div');
+      typing.className = 'message character';
+      typing.id = 'typing';
+      const dots = document.createElement('div');
+      dots.className = 'message-content';
+      dots.textContent = '...';
+      typing.appendChild(dots);
+      chatMessages.appendChild(typing);
+      dots.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
+
+    function hideTypingIndicator() {
+      const typing = document.getElementById('typing');
+      if (typing) typing.remove();
+    }
 
     async function loadCharacterData() {
       try {
@@ -42,121 +80,62 @@
           scriptRes.json()
         ]);
 
-        character = characters.find(c => c.id === charId);
-        const messages = scripts[charId];
+        const character = characters.find(c => c.id === charId);
+        messages = scripts[charId];
 
         if (!character || !messages) {
-          document.getElementById("chatMessages").innerHTML = "<p style='color:red;'>キャラクター情報が見つかりません（ID: " + charId + "）。</p>";
-          console.warn("キャラ未検出", charId, character, messages);
+          showMessage("キャラクター情報が見つかりません。", 'character');
           return;
         }
 
         document.getElementById("chatTitle").textContent = character.name;
 
-        // 最初のメッセージのみ表示
-        showCharacterMessage(messages[0]);
-        
-        // 入力フィールドを有効化
-        document.getElementById("chatInput").disabled = false;
-        document.querySelector(".send-button").disabled = false;
-        
-        // Enterキーでメッセージ送信
-        document.getElementById("chatInput").addEventListener("keypress", function(e) {
-          if (e.key === "Enter") {
-            sendMessage();
-          }
-        });
+        setTimeout(() => {
+          showTypingIndicator();
+          setTimeout(() => {
+            hideTypingIndicator();
+            showMessage(messages[0].replaceAll('[[UNICK]]', unick), 'character');
+            messageIndex = 1;
+          }, 1500);
+        }, 800);
 
-      } catch (err) {
-        document.getElementById("chatMessages").innerHTML = "<p style='color:red;'>読み込み中にエラーが発生しました。</p>";
-        console.error("読み込みエラー", err);
+      } catch (error) {
+        showMessage("読み込みエラーが発生しました。", 'character');
+        console.error(error);
       }
     }
 
-    function showCharacterMessage(message) {
-      const container = document.getElementById("chatMessages");
-      const bubble = document.createElement("div");
-      bubble.className = "message character";
-      bubble.innerHTML = `<div class="message-content">${message.replaceAll('[[UNICK]]', unick)}</div>`;
-      container.appendChild(bubble);
-      container.scrollTop = container.scrollHeight;
-    }
-
-    function showUserMessage(message) {
-      const container = document.getElementById("chatMessages");
-      const bubble = document.createElement("div");
-      bubble.className = "message user";
-      bubble.innerHTML = `<div class="message-content">${message}</div>`;
-      container.appendChild(bubble);
-      container.scrollTop = container.scrollHeight;
-    }
-
-    async function sendMessage() {
-      const input = document.getElementById("chatInput");
-      const message = input.value.trim();
-      
-      if (!message) return;
-      
-      // ユーザーメッセージを表示
-      showUserMessage(message);
-      input.value = "";
-      
-      // 入力フィールドを一時的に無効化
-      input.disabled = true;
-      document.querySelector(".send-button").disabled = true;
-      
-      // キャラクターの応答を取得
-      try {
-        const scriptRes = await fetch("chatScript.json");
-        const scripts = await scriptRes.json();
-        const messages = scripts[charId];
-        
-        if (messages && messageIndex < messages.length - 1) {
-                  messageIndex++;
-      }, 1000);
-          setTimeout(() => {
-            showTypingIndicator();
+    sendButton.addEventListener('click', () => {
+      const text = chatInput.value.trim();
+      if (!text) return;
+      showMessage(text, 'user');
+      chatInput.value = '';
       setTimeout(() => {
-        removeTypingIndicator();
-        showCharacterMessage(messages[messageIndex]);
-            // 入力フィールドを再有効化
-            input.disabled = false;
-            document.querySelector(".send-button").disabled = false;
-            input.focus();
-          }, 1000);
-        } else {
-          // メッセージが終わった場合の処理
-          setTimeout(() => {
-            showCharacterMessage("ありがとうございました。お話しできて嬉しかったです。");
-            input.disabled = false;
-            document.querySelector(".send-button").disabled = false;
-            input.focus();
-          }, 1000);
-        }
-      } catch (err) {
-        console.error("メッセージ送信エラー", err);
-        input.disabled = false;
-        document.querySelector(".send-button").disabled = false;
-      }
-    }
+        showTypingIndicator();
+        setTimeout(() => {
+          hideTypingIndicator();
+          if (messageIndex < messages.length) {
+            showMessage(messages[messageIndex].replaceAll('[[UNICK]]', unick), 'character');
+            messageIndex++;
+          } else {
+            showMessage("※これ以上の会話にはポイントが必要です。", 'character');
+          }
+        }, 1500);
+      }, 800);
+    });
 
-    
-      function showTypingIndicator() {
-        const container = document.getElementById("chatMessages");
-        const typing = document.createElement("div");
-        typing.className = "message character typing";
-        typing.innerHTML = `<div class="message-content">...</div>`;
-        typing.id = "typing-indicator";
-        container.appendChild(typing);
-        container.scrollTop = container.scrollHeight;
-      }
+    window.addEventListener('DOMContentLoaded', () => {
+      loadCharacterData();
 
-      function removeTypingIndicator() {
-        const typing = document.getElementById("typing-indicator");
-        if (typing) typing.remove();
+      if (/Android/i.test(navigator.userAgent)) {
+        document.documentElement.classList.add('android');
       }
-
-    window.onload = loadCharacterData;
+      if (/iPhone/i.test(navigator.userAgent) && /CriOS/i.test(navigator.userAgent)) {
+        setTimeout(() => {
+          chatInput.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }, 1000);
+      }
+    });
   </script>
 </body>
 </html>
