@@ -19,14 +19,16 @@
   </div>
 
   <div class="chat-input-container">
-    <input id="chatInput" type="text" class="chat-input" placeholder="メッセージを入力..." disabled />
-    <button class="send-button" disabled>▶</button>
+    <input id="chatInput" type="text" class="chat-input" placeholder="メッセージを入力..." />
+    <button class="send-button" onclick="sendMessage()">▶</button>
   </div>
 
   <script>
     const params = new URLSearchParams(window.location.search);
     const charId = params.get("char") || "";
     const unick = params.get("name") || "あなた";
+    let character = null;
+    let messageIndex = 0;
 
     async function loadCharacterData() {
       try {
@@ -40,7 +42,7 @@
           scriptRes.json()
         ]);
 
-        const character = characters.find(c => c.id === charId);
+        character = characters.find(c => c.id === charId);
         const messages = scripts[charId];
 
         if (!character || !messages) {
@@ -51,20 +53,86 @@
 
         document.getElementById("chatTitle").textContent = character.name;
 
-        const container = document.getElementById("chatMessages");
-
-        messages.forEach((msg, i) => {
-          setTimeout(() => {
-            const bubble = document.createElement("div");
-            bubble.className = "message character";
-            bubble.innerHTML = `<div class="message-content">${msg.replaceAll('[[UNICK]]', unick)}</div>`;
-            container.appendChild(bubble);
-            container.scrollTop = container.scrollHeight;
-          }, 600 * i);
+        // 最初のメッセージのみ表示
+        showCharacterMessage(messages[0]);
+        
+        // 入力フィールドを有効化
+        document.getElementById("chatInput").disabled = false;
+        document.querySelector(".send-button").disabled = false;
+        
+        // Enterキーでメッセージ送信
+        document.getElementById("chatInput").addEventListener("keypress", function(e) {
+          if (e.key === "Enter") {
+            sendMessage();
+          }
         });
+
       } catch (err) {
         document.getElementById("chatMessages").innerHTML = "<p style='color:red;'>読み込み中にエラーが発生しました。</p>";
         console.error("読み込みエラー", err);
+      }
+    }
+
+    function showCharacterMessage(message) {
+      const container = document.getElementById("chatMessages");
+      const bubble = document.createElement("div");
+      bubble.className = "message character";
+      bubble.innerHTML = `<div class="message-content">${message.replaceAll('[[UNICK]]', unick)}</div>`;
+      container.appendChild(bubble);
+      container.scrollTop = container.scrollHeight;
+    }
+
+    function showUserMessage(message) {
+      const container = document.getElementById("chatMessages");
+      const bubble = document.createElement("div");
+      bubble.className = "message user";
+      bubble.innerHTML = `<div class="message-content">${message}</div>`;
+      container.appendChild(bubble);
+      container.scrollTop = container.scrollHeight;
+    }
+
+    async function sendMessage() {
+      const input = document.getElementById("chatInput");
+      const message = input.value.trim();
+      
+      if (!message) return;
+      
+      // ユーザーメッセージを表示
+      showUserMessage(message);
+      input.value = "";
+      
+      // 入力フィールドを一時的に無効化
+      input.disabled = true;
+      document.querySelector(".send-button").disabled = true;
+      
+      // キャラクターの応答を取得
+      try {
+        const scriptRes = await fetch("chatScript.json");
+        const scripts = await scriptRes.json();
+        const messages = scripts[charId];
+        
+        if (messages && messageIndex < messages.length - 1) {
+          messageIndex++;
+          setTimeout(() => {
+            showCharacterMessage(messages[messageIndex]);
+            // 入力フィールドを再有効化
+            input.disabled = false;
+            document.querySelector(".send-button").disabled = false;
+            input.focus();
+          }, 1000);
+        } else {
+          // メッセージが終わった場合の処理
+          setTimeout(() => {
+            showCharacterMessage("ありがとうございました。お話しできて嬉しかったです。");
+            input.disabled = false;
+            document.querySelector(".send-button").disabled = false;
+            input.focus();
+          }, 1000);
+        }
+      } catch (err) {
+        console.error("メッセージ送信エラー", err);
+        input.disabled = false;
+        document.querySelector(".send-button").disabled = false;
       }
     }
 
