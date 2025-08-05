@@ -319,17 +319,17 @@
     }
   },
   {
-    "name": "優真",
+    "name": "西城 優真",
     "img": "ga/image/character/yuma.png",
     "gender": "male",
-    "age": 28,
+    "age": 33,
     "type": "friend",
     "phrase": "無理に話さなくても大丈夫。言葉が出てくるまで、ただ、ここに一緒にいるから。",
     "intro": "傾聴セラピスト。動物と心を通わせ、沈黙に寄り添う優しさを持つ。",
     "video": "ga/mov/character/yuma.mp4",
     "profile": "profile/yuma.html",
-    "age_group": "20代",
-    "age_label": "20代後半",
+    "age_group": "30代",
+    "age_label": "30代前半",
     "chatStyle": {
       "tone": "柔らかく穏やかな口調。語尾は『〜ね』『〜だよ』など。",
       "personality": "沈黙にも寄り添える傾聴セラピスト。心の機微に敏感。",
