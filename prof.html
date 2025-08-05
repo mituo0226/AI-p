@@ -110,6 +110,9 @@
         const characters = await res.json();
         const container = document.getElementById("characterGrid");
 
+        // 年齢順（若い順）にソート
+        characters.sort((a, b) => a.age - b.age);
+
         characters.forEach(char => {
           const card = document.createElement("div");
           card.className = "card";
