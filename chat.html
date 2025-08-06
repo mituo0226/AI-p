@@ -185,13 +185,12 @@
         const messages = document.querySelectorAll('.message-content');
         let found = false;
 
-        for (let i = 0; i < messages.length; i++) {
-          const msg = messages[i];
+        for (const msg of messages) {
           if (msg.textContent.toLowerCase().includes(query)) {
             msg.classList.add('highlight');
             msg.scrollIntoView({ behavior: 'smooth', block: 'center' });
             found = true;
-            break; // この break は for ループ内で有効
+            break;
           }
         }
 
