@@ -1,11 +1,12 @@
 <!DOCTYPE html>
+
 <html lang="ja">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>AIパートナー - チャット</title>
-  <link rel="stylesheet" href="style.css" />
-  <style>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>AIパートナー - チャット</title>
+<link href="style.css" rel="stylesheet"/>
+<style>
     .highlight {
       background-color: #e8f5e8;
       border: 1px solid #a8d8a8;
@@ -40,34 +41,30 @@
   </style>
 </head>
 <body>
-  <div class="chat-header">
-    <div class="chat-normal-header" style="display: flex; align-items: center; width: 100%;">
-      <a href="prof.html" class="back-button" style="margin-right: 10px;">←</a>
-      <div class="chat-title" id="chatTitle" style="flex: 1;">AIパートナー</div>
-      <div class="chat-actions">
-        <button class="action-button" onclick="toggleSearch()">🔍</button>
-        <button class="action-button">📞</button>
-        <button class="action-button">≡</button>
-      </div>
-    </div>
-
-    <div class="chat-search-header" style="width: 100%;">
-      <a href="javascript:void(0);" onclick="cancelSearch()" style="font-size: 18px;">←</a>
-      <input type="text" id="searchInput" placeholder="キーワード検索..." />
-      <button onclick="cancelSearch()">キャンセル</button>
-    </div>
-  </div>
-
-  <div class="chat-container">
-    <div class="chat-messages" id="chatMessages"></div>
-  </div>
-
-  <div class="chat-input-container">
-    <input id="chatInput" type="text" class="chat-input" placeholder="メッセージを入力..." />
-    <button id="sendButton" class="send-button">▶</button>
-  </div>
-
-  <script>
+<div class="chat-header">
+<div class="chat-normal-header" style="display: flex; align-items: center; width: 100%;">
+<a class="back-button" href="prof.html" style="margin-right: 10px;">←</a>
+<div class="chat-title" id="chatTitle" style="flex: 1;">AIパートナー</div>
+<div class="chat-actions">
+<button class="action-button" onclick="toggleSearch()">🔍</button>
+<button class="action-button" onclick="window.location.href='paid/ticket.html'">🎫</button>
+<button class="action-button">≡</button>
+</div>
+</div>
+<div class="chat-search-header" style="width: 100%;">
+<a href="javascript:void(0);" onclick="cancelSearch()" style="font-size: 18px;">←</a>
+<input id="searchInput" placeholder="キーワード検索..." type="text"/>
+<button onclick="cancelSearch()">キャンセル</button>
+</div>
+</div>
+<div class="chat-container">
+<div class="chat-messages" id="chatMessages"></div>
+</div>
+<div class="chat-input-container">
+<input class="chat-input" id="chatInput" placeholder="メッセージを入力..." type="text"/>
+<button class="send-button" id="sendButton">▶</button>
+</div>
+<script>
     const params = new URLSearchParams(window.location.search);
     const charId = params.get("char") || "";
     const unick = params.get("name") || "あなた";
