@@ -5,16 +5,27 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>AIパートナー - チャット</title>
   <link rel="stylesheet" href="style.css" />
+  <style>
+    .highlight {
+      background-color: yellow;
+      font-weight: bold;
+    }
+  </style>
 </head>
 <body>
   <div class="chat-header">
     <a href="prof.html" class="back-button">←</a>
     <div class="chat-title" id="chatTitle">AIパートナー</div>
     <div class="chat-actions">
-      <button class="action-button">🔍</button>
+      <button class="action-button" onclick="toggleSearch()">🔍</button>
       <button class="action-button">📞</button>
       <button class="action-button">≡</button>
     </div>
+  </div>
+
+  <div id="searchBar" style="display:none; padding: 10px; background: #fff;">
+    <input type="text" id="searchInput" placeholder="キーワード検索..." style="width: 80%; padding: 8px; font-size: 16px;" />
+    <button onclick="cancelSearch()" style="padding: 8px;">キャンセル</button>
   </div>
 
   <div class="chat-container">
@@ -94,8 +105,8 @@
             hideTypingIndicator();
             showMessage(messages[0].replaceAll('[[UNICK]]', unick), 'character');
             messageIndex = 1;
-          }, 2500); // タイピング表示時間
-        }, 1500); // 落ち込む時間（前振り）
+          }, 2500);
+        }, 1500);
 
       } catch (error) {
         showMessage("読み込みエラーが発生しました。", 'character');
@@ -120,6 +131,38 @@
           }
         }, 2500);
       }, 1500);
+    });
+
+    function toggleSearch() {
+      const bar = document.getElementById('searchBar');
+      bar.style.display = (bar.style.display === 'none') ? 'block' : 'none';
+    }
+
+    function cancelSearch() {
+      document.getElementById('searchBar').style.display = 'none';
+      document.getElementById('searchInput').value = '';
+      clearHighlights();
+    }
+
+    function clearHighlights() {
+      document.querySelectorAll('.highlight').forEach(el => {
+        el.classList.remove('highlight');
+      });
+    }
+
+    document.addEventListener('input', function (e) {
+      if (e.target.id === 'searchInput') {
+        const query = e.target.value.toLowerCase();
+        clearHighlights();
+        const messages = document.querySelectorAll('.message-content');
+        for (const msg of messages) {
+          if (msg.textContent.toLowerCase().includes(query)) {
+            msg.classList.add('highlight');
+            msg.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            break;
+          }
+        }
+      }
     });
 
     window.addEventListener('DOMContentLoaded', () => {
