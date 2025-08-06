@@ -211,11 +211,11 @@
         <div class="video">
           <h2>ルナの紹介動画</h2>
           <div class="video-wrapper">
-            <video id="lunaVideo" controls playsinline>
-              <source src="../ga/mov/character/luna.mp4" type="video/mp4" />
+            <video id="runaVideo" controls autoplay muted playsinline>
+              <source src="../ga/mov/character/runa.mp4" type="video/mp4" />
             </video>
-            <div id="lunaMask" class="video-mask"></div>
-            <div id="lunaOverlay" class="video-overlay" onclick="replayHonoka()">▶ もう一度見る</div>
+            <div id="runaMask" class="video-mask"></div>
+            <div id="runaOverlay" class="video-overlay" onclick="replayRuna()">▶ もう一度見る</div>
           </div>
         </div>
         <a href="../chat.html?char=runa&name=あなた" class="select-button">ルナとチャットを始める</a>
@@ -225,11 +225,11 @@
     </div>
   </div>
   <script>
-    const video = document.getElementById('lunaVideo');
-    const overlay = document.getElementById('lunaOverlay');
-    const mask = document.getElementById('lunaMask');
+    const video = document.getElementById('runaVideo');
+    const overlay = document.getElementById('runaOverlay');
+    const mask = document.getElementById('runaMask');
 
-    function replayHonoka() {
+    function replayRuna() {
       video.currentTime = 0;
       video.play();
       overlay.style.display = 'none';
@@ -241,6 +241,13 @@
       requestAnimationFrame(() => mask.classList.add('show'));
       overlay.style.display = 'block';
     });
-  </script>
+  
+  // 初期化：ロード後はボタンとマスク非表示
+  document.addEventListener('DOMContentLoaded', () => {
+    overlay.style.display = 'none';
+    mask.classList.remove('show');
+  });
+
+</script>
 </body>
 </html>
