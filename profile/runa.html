@@ -211,7 +211,7 @@
         <div class="video">
           <h2>ルナの紹介動画</h2>
           <div class="video-wrapper">
-            <video id="runaVideo" controls autoplay muted playsinline>
+            <video id="runaVideo" controls playsinline>
               <source src="../ga/mov/character/runa.mp4" type="video/mp4" />
             </video>
             <div id="runaMask" class="video-mask"></div>
@@ -241,13 +241,6 @@
       requestAnimationFrame(() => mask.classList.add('show'));
       overlay.style.display = 'block';
     });
-  
-  // 初期化：ロード後はボタンとマスク非表示
-  document.addEventListener('DOMContentLoaded', () => {
-    overlay.style.display = 'none';
-    mask.classList.remove('show');
-  });
-
-</script>
+  </script>
 </body>
 </html>
