@@ -183,10 +183,20 @@
         const query = e.target.value.toLowerCase();
         clearHighlights();
         const messages = document.querySelectorAll('.message-content');
+        let found = false;
         for (const msg of messages) {
           if (msg.textContent.toLowerCase().includes(query)) {
             msg.classList.add('highlight');
             msg.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            found = true;
+            break;
+          }
+        }
+        if (!found && query !== "") {
+          showMessage("検索結果がありません。", "character");
+        }
+      }
+    });
             break;
           }
         }
