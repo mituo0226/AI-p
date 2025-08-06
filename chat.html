@@ -185,13 +185,38 @@
       document.querySelectorAll('.highlight').forEach(el => {
         el.classList.remove('highlight');
       });
+      
+      // 検索結果メッセージも削除
+      const searchMessages = document.querySelectorAll('.search-result-message');
+      searchMessages.forEach(msg => msg.remove());
+    }
+
+    function showSearchMessage(text) {
+      // 既存の検索結果メッセージを削除
+      const existingSearchMessages = document.querySelectorAll('.search-result-message');
+      existingSearchMessages.forEach(msg => msg.remove());
+      
+      // 新しい検索結果メッセージを表示
+      const messageDiv = document.createElement('div');
+      messageDiv.className = 'message character search-result-message';
+      const content = document.createElement('div');
+      content.className = 'message-content';
+      content.textContent = text;
+      messageDiv.appendChild(content);
+      chatMessages.appendChild(messageDiv);
+      content.scrollIntoView({ behavior: 'smooth', block: 'center' });
     }
 
     document.addEventListener('input', function (e) {
       if (e.target.id === 'searchInput') {
         const query = e.target.value.toLowerCase();
         clearHighlights();
-        const messages = document.querySelectorAll('.message-content');
+        
+        if (query === "") {
+          return; // 空の検索では何もしない
+        }
+        
+        const messages = document.querySelectorAll('.message-content:not(.search-result-message .message-content)');
         let found = false;
 
         for (const msg of messages) {
@@ -203,8 +228,8 @@
           }
         }
 
-        if (!found && query !== "") {
-          showMessage("検索結果がありません。", "character");
+        if (!found) {
+          showSearchMessage("検索結果がありません。");
         }
       }
     });
