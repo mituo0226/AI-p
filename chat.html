@@ -10,22 +10,48 @@
       background-color: yellow;
       font-weight: bold;
     }
+    .chat-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 8px 12px;
+      background: linear-gradient(to right, #6a11cb, #2575fc);
+      color: white;
+    }
+    .chat-search-header {
+      display: none;
+      align-items: center;
+      padding: 8px 12px;
+      background: #f2f2f2;
+    }
+    .chat-search-header input {
+      flex: 1;
+      padding: 8px;
+      font-size: 16px;
+      margin-left: 8px;
+    }
+    .chat-search-header button {
+      margin-left: 8px;
+    }
   </style>
 </head>
 <body>
   <div class="chat-header">
-    <a href="prof.html" class="back-button">←</a>
-    <div class="chat-title" id="chatTitle">AIパートナー</div>
-    <div class="chat-actions">
-      <button class="action-button" onclick="toggleSearch()">🔍</button>
-      <button class="action-button">📞</button>
-      <button class="action-button">≡</button>
+    <div class="chat-normal-header" style="display: flex; align-items: center; width: 100%;">
+      <a href="prof.html" class="back-button" style="margin-right: 10px;">←</a>
+      <div class="chat-title" id="chatTitle" style="flex: 1;">AIパートナー</div>
+      <div class="chat-actions">
+        <button class="action-button" onclick="toggleSearch()">🔍</button>
+        <button class="action-button">📞</button>
+        <button class="action-button">≡</button>
+      </div>
     </div>
-  </div>
 
-    <div id="searchBar" style="display:none; position:relative; z-index:10; padding: 10px; background: #fff; border-bottom: 1px solid #ccc; margin-top: -1px;">
-    <input type="text" id="searchInput" placeholder="キーワード検索..." style="width: 80%; padding: 8px; font-size: 16px;" />
-    <button onclick="cancelSearch()" style="padding: 8px;">キャンセル</button>
+    <div class="chat-search-header" style="width: 100%;">
+      <a href="javascript:void(0);" onclick="cancelSearch()" style="font-size: 18px;">←</a>
+      <input type="text" id="searchInput" placeholder="キーワード検索..." />
+      <button onclick="cancelSearch()">キャンセル</button>
+    </div>
   </div>
 
   <div class="chat-container">
@@ -134,12 +160,14 @@
     });
 
     function toggleSearch() {
-      const bar = document.getElementById('searchBar');
-      bar.style.display = (bar.style.display === 'none') ? 'block' : 'none';
+      document.querySelector('.chat-normal-header').style.display = 'none';
+      document.querySelector('.chat-search-header').style.display = 'flex';
+      document.getElementById('searchInput').focus();
     }
 
     function cancelSearch() {
-      document.getElementById('searchBar').style.display = 'none';
+      document.querySelector('.chat-search-header').style.display = 'none';
+      document.querySelector('.chat-normal-header').style.display = 'flex';
       document.getElementById('searchInput').value = '';
       clearHighlights();
     }
@@ -167,15 +195,6 @@
 
     window.addEventListener('DOMContentLoaded', () => {
       loadCharacterData();
-
-      if (/Android/i.test(navigator.userAgent)) {
-        document.documentElement.classList.add('android');
-      }
-      if (/iPhone/i.test(navigator.userAgent) && /CriOS/i.test(navigator.userAgent)) {
-        setTimeout(() => {
-          chatInput.scrollIntoView({ behavior: 'smooth', block: 'center' });
-        }, 1000);
-      }
     });
   </script>
 </body>
