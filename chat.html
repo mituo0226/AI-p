@@ -94,8 +94,8 @@
             hideTypingIndicator();
             showMessage(messages[0].replaceAll('[[UNICK]]', unick), 'character');
             messageIndex = 1;
-          }, 1500);
-        }, 800);
+          }, 2500); // タイピング表示時間
+        }, 1500); // 落ち込む時間（前振り）
 
       } catch (error) {
         showMessage("読み込みエラーが発生しました。", 'character');
@@ -118,8 +118,8 @@
           } else {
             showMessage("※これ以上の会話にはポイントが必要です。", 'character');
           }
-        }, 1500);
-      }, 800);
+        }, 2500);
+      }, 1500);
     });
 
     window.addEventListener('DOMContentLoaded', () => {
