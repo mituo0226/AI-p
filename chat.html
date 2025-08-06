@@ -155,7 +155,7 @@
             showMessage(messages[messageIndex].replaceAll('[[UNICK]]', unick), 'character');
             messageIndex++;
           } else {
-            showMessage("※この先の会話を楽しむには、<span style=\"color:blue;text-decoration:underline;cursor:pointer;\" onclick=\"window.location.href='paid/ticket.html'\">チケットの購入</span>が必要です。", 'character');
+            showMessage("◆この先のチャットにはチケットが必要です◆\n<a href='paid/ticket.html' style=\"color:blue;text-decoration:underline\">チケット案内はこちら</a>", 'character');
           }
         }, 1500);
       }, 800);
