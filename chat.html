@@ -69,6 +69,20 @@
     const charId = params.get("char") || "";
     const unick = params.get("name") || "あなた";
 
+    // --- 無料キャラクター制限チェック（テストモード対応） ---
+    const isTestMode = params.get('test') === '1';
+    const currentCharId = params.get('char');
+    const savedFreeChar = localStorage.getItem('freeCharacterId');
+
+    if (!savedFreeChar && !isTestMode) {
+      localStorage.setItem('freeCharacterId', currentCharId);
+    } else if (savedFreeChar !== currentCharId && !isTestMode) {
+      document.addEventListener("DOMContentLoaded", () => {
+        showMessage("このキャラクターとのチャットにはチケットが必要です。<br><a href='paid/ticket.html' style='color:blue;text-decoration:underline'>チケット案内はこちら</a>", "character");
+        document.querySelector(".chat-input-container").style.display = "none";
+      });
+    }
+
     const chatMessages = document.getElementById('chatMessages');
     const chatInput = document.getElementById('chatInput');
     const sendButton = document.getElementById('sendButton');
