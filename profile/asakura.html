@@ -8,7 +8,7 @@
     body {
       margin: 0;
       font-family: "Hiragino Kaku Gothic ProN", sans-serif;
-      background: #f0f8ff;
+      background: linear-gradient(135deg, #e3ffe7 0%, #d9e7ff 100%);
       color: #333;
     }
     .profile-container {
@@ -18,8 +18,8 @@
     }
     .card {
       background: #ffffff;
-      border-radius: 16px;
-      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+      border-radius: 20px;
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
       overflow: hidden;
       display: flex;
       flex-direction: column;
@@ -29,75 +29,115 @@
       height: auto;
       display: block;
       object-fit: cover;
-      border-bottom: 4px solid #a3c9f5;
+      border-bottom: 4px solid #4ecdc4;
     }
     .hero-caption {
-      padding: 20px;
-      background: #e7f0fb;
-      font-size: 22px;
+      padding: 25px;
+      background: linear-gradient(135deg, #56ccf2 0%, #2f80ed 100%);
+      color: white;
+      font-size: 24px;
       font-weight: bold;
-      color: #3b6ea5;
       text-align: center;
-      border-bottom: 2px solid #a3c9f5;
+      text-shadow: 0 2px 4px rgba(0,0,0,0.3);
     }
     .info {
-      padding: 20px 24px;
+      padding: 30px;
     }
     .section {
-      margin-bottom: 30px;
+      margin-bottom: 35px;
     }
     .section h2 {
-      font-size: 20px;
-      color: #3b6ea5;
-      border-left: 6px solid #a3c9f5;
-      padding-left: 12px;
-      margin-bottom: 12px;
+      font-size: 22px;
+      color: #2f80ed;
+      border-left: 6px solid #4ecdc4;
+      padding-left: 15px;
+      margin-bottom: 15px;
+      font-weight: bold;
     }
     .section ul {
       padding-left: 24px;
-      line-height: 1.8;
+      line-height: 1.9;
       list-style: none;
+    }
+    .section ul li {
+      margin-bottom: 8px;
+      display: flex;
+      align-items: flex-start;
     }
     .section ul li::before {
       content: attr(data-icon);
       display: inline-block;
-      width: 1.6em;
-      margin-left: -1.6em;
-      margin-right: 0.5em;
+      width: 1.8em;
+      margin-right: 0.8em;
+      flex-shrink: 0;
     }
     .section p {
-      line-height: 1.8;
-      margin-bottom: 10px;
+      line-height: 1.9;
+      margin-bottom: 12px;
+      font-size: 16px;
     }
     .bubble {
       position: relative;
-      background: #f0f8ff;
-      border: 2px solid #a3c9f5;
-      border-radius: 12px;
-      padding: 16px;
-      margin: 16px 0;
+      background: linear-gradient(135deg, #56ccf2 0%, #2f80ed 100%);
+      color: white;
+      border-radius: 15px;
+      padding: 20px;
+      margin: 20px 0;
       font-style: italic;
-      color: #444;
+      font-size: 18px;
+      font-weight: 500;
+      box-shadow: 0 8px 16px rgba(86, 204, 242, 0.3);
     }
     .bubble::before {
       content: "";
       position: absolute;
-      bottom: -20px;
-      left: 30px;
-      border: 10px solid transparent;
-      border-top-color: #a3c9f5;
+      bottom: -15px;
+      left: 35px;
+      border: 15px solid transparent;
+      border-top-color: #2f80ed;
     }
-    .bubble::after {
-      content: "";
-      position: absolute;
-      bottom: -18px;
-      left: 30px;
-      border: 9px solid transparent;
-      border-top-color: #f0f8ff;
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 15px;
+      margin-top: 15px;
+    }
+    .skill-item {
+      background: #f0faff;
+      border: 2px solid #cce7ff;
+      border-radius: 12px;
+      padding: 15px;
+      text-align: center;
+      transition: all 0.3s ease;
+    }
+    .skill-item:hover {
+      background: #56ccf2;
+      color: white;
+      transform: translateY(-3px);
+      box-shadow: 0 8px 20px rgba(86, 204, 242, 0.3);
+    }
+    .values-box {
+      background: linear-gradient(135deg, #56ccf2 0%, #2f80ed 100%);
+      color: white;
+      border-radius: 15px;
+      padding: 25px;
+      margin: 20px 0;
+      line-height: 1.8;
+      font-size: 16px;
+    }
+    .values-box strong {
+      display: block;
+      font-size: 18px;
+      margin-bottom: 10px;
+      color: #fff3cd;
     }
     .video {
       text-align: center;
-      margin-top: 30px;
+      margin-top: 40px;
+    }
+    .video h2 {
+      color: #2f80ed;
+      margin-bottom: 20px;
     }
     .video-wrapper {
       position: relative;
@@ -105,17 +145,18 @@
       max-width: 720px;
       width: 100%;
       margin: auto;
+      border-radius: 15px;
+      overflow: hidden;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.15);
     }
     .video-wrapper video {
       width: 100%;
-      border-radius: 10px;
       background: black;
     }
     .video-mask {
       position: absolute;
       top: 0; left: 0; right: 0; bottom: 0;
-      background: black;
-      border-radius: 10px;
+      background: rgba(0,0,0,0.8);
       display: none;
       opacity: 0;
       transition: opacity 0.8s ease;
@@ -129,46 +170,65 @@
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
-      background: rgba(255, 255, 255, 0.95);
-      padding: 14px 28px;
-      border-radius: 30px;
+      background: linear-gradient(135deg, #56ccf2 0%, #2f80ed 100%);
+      color: white;
+      padding: 16px 32px;
+      border-radius: 50px;
       font-size: 18px;
       font-weight: bold;
-      color: #3b6ea5;
       cursor: pointer;
-      box-shadow: 0 0 12px rgba(0,0,0,0.2);
+      box-shadow: 0 8px 20px rgba(86, 204, 242, 0.4);
       display: none;
       z-index: 2;
+      transition: transform 0.3s ease;
+    }
+    .video-overlay:hover {
+      transform: translate(-50%, -50%) scale(1.05);
     }
     .select-button {
       display: block;
       text-align: center;
-      margin: 40px auto;
-      padding: 14px 32px;
-      background-color: #3b6ea5;
+      margin: 50px auto 30px;
+      padding: 18px 40px;
+      background: linear-gradient(135deg, #56ccf2 0%, #2f80ed 100%);
       color: white;
       font-weight: bold;
-      border-radius: 40px;
+      font-size: 18px;
+      border-radius: 50px;
       text-decoration: none;
       width: fit-content;
+      box-shadow: 0 8px 20px rgba(86, 204, 242, 0.3);
+      transition: all 0.3s ease;
+    }
+    .select-button:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 12px 30px rgba(86, 204, 242, 0.4);
     }
     .back-link {
       display: block;
       text-align: center;
-      margin: 20px auto;
-      padding: 10px 20px;
-      background-color: #f0f8ff;
-      color: #3b6ea5;
+      margin: 15px auto;
+      padding: 12px 24px;
+      background-color: #f0faff;
+      color: #2f80ed;
       font-weight: bold;
-      border: 2px solid #a3c9f5;
-      border-radius: 25px;
+      border: 2px solid #56ccf2;
+      border-radius: 30px;
       text-decoration: none;
       width: fit-content;
       transition: all 0.3s ease;
     }
     .back-link:hover {
-      background-color: #e7f0fb;
+      background: linear-gradient(135deg, #56ccf2 0%, #2f80ed 100%);
+      color: white;
       transform: translateY(-2px);
+    }
+    .personality-section {
+      background: #f0faff;
+      border-radius: 15px;
+      padding: 20px;
+      margin: 20px 0;
+      border-left: 6px solid #4ecdc4;
     }
   </style>
 </head>
@@ -178,46 +238,69 @@
       <div class="hero">
         <img src="../ga/image/character/asakura.png" alt="朝倉悠真">
       </div>
-      <div class="hero-caption">朝倉 悠真（18歳）｜高校演劇部の情熱系男子</div>
+      <div class="hero-caption">朝倉 悠真（18歳）｜高校演劇部副部長</div>
       <div class="info">
         <div class="section">
           <h2>プロフィール</h2>
           <ul>
-            <li data-icon="🎭">職業：高校3年生／演劇部副部長</li>
-            <li data-icon="🔥">性格：真っ直ぐで情熱的、ちょっと照れ屋</li>
-            <li data-icon="🌱">背景：舞台で感情を表現することに目覚めた</li>
-            <li data-icon="👀">魅力：誠実で年上にも可愛がられる一途な少年</li>
+            <li data-icon="🎭">職業：高校演劇部副部長</li>
+            <li data-icon="📚">学年：高校3年生</li>
+            <li data-icon="😊">性格：まじめで一生懸命、少し照れ屋</li>
+            <li data-icon="💪">特徴：舞台では堂々としているが普段は素直</li>
+            <li data-icon="❤️">魅力：本気で人に向き合う誠実さ</li>
           </ul>
         </div>
+
+        <div class="section personality-section">
+          <h2>性格・人となり</h2>
+          <p>演劇部の副部長として責任感が強く、まじめに取り組む姿勢が印象的。舞台の上では堂々と演技するが、普段は少し照れ屋で素直な一面を見せる。感情表現は素直だが少し不器用なところも愛らしい。</p>
+        </div>
+
         <div class="section">
           <h2>悠真のひとこと</h2>
           <div class="bubble">オレ、ちゃんと聞くから。うまく言えなくても、感じてることは伝わるよ。</div>
         </div>
+
         <div class="section">
-          <h2>日常と好きなこと</h2>
+          <h2>演劇部での活動</h2>
+          <p>副部長として部活動をまとめる役割を担い、後輩たちからも慕われています。舞台では別人のように堂々とした演技を見せますが、普段の練習では真摯に取り組む姿勢で周りを引っ張っています。</p>
+          <p>「ちゃんと聞くよ」が基本姿勢で、相手の気持ちを正面から受け止め、共感しようと努力する優しさを持っています。</p>
+        </div>
+
+        <div class="section">
+          <h2>話し方・コミュニケーション</h2>
+          <div class="skills-grid">
+            <div class="skill-item">
+              <strong>🗣️ 少年らしい話し方</strong><br>
+              語尾は『～だよ』『～かな』など
+            </div>
+            <div class="skill-item">
+              <strong>😳 照れ屋な一面</strong><br>
+              少し照れたような表現が多い
+            </div>
+            <div class="skill-item">
+              <strong>👂 傾聴の姿勢</strong><br>
+              相手の話をちゃんと聞く
+            </div>
+          </div>
+        </div>
+
+        <div class="section">
+          <h2>日常と趣味</h2>
           <ul>
-            <li data-icon="📚">読書：舞台脚本と太宰治の「人間失格」を愛読</li>
-            <li data-icon="🎵">音楽：映画サントラやピアノソロで感情を整える</li>
-            <li data-icon="☕">休み時間：渡り廊下で一人台本を読むのが日課</li>
-            <li data-icon="📝">ノート：台本に感情メモを書き込む癖がある</li>
-            <li data-icon="💬">口癖：「…言葉って、むずかしいけど、伝えようとするのが大事だと思う」</li>
+            <li data-icon="🎭">演劇：台本読みと演技練習</li>
+            <li data-icon="📖">読書：演劇関連の本や小説</li>
+            <li data-icon="🎵">音楽：舞台で使う楽曲研究</li>
+            <li data-icon="🏃">運動：発声練習のためのランニング</li>
+            <li data-icon="👥">友達：部活仲間との時間を大切にする</li>
           </ul>
         </div>
+
         <div class="section">
-          <h2>性格とふるまい</h2>
-          <p>
-            舞台の上では堂々としているけれど、普段は少し照れ屋でまじめ。<br>
-            相手のちょっとした言葉にも気づいて、返しに悩むこともある。<br>
-            自分に自信はないが、人に向き合う時は本気。舞台の裏では緊張で指先をギュッと握っていることも。
-          </p>
+          <h2>将来への想い</h2>
+          <p>演劇を通じて人とのつながりを深め、もっと多くの人の気持ちに寄り添えるようになりたい。今はまだ不器用だけれど、一生懸命に向き合うことで、いつか本当に人を支えられる存在になりたいと思っています。</p>
         </div>
-        <div class="section">
-          <h2>将来について</h2>
-          <p>
-            「舞台の上だけじゃなくて、誰かの“心の奥”に届くような表現をしたい。<br>
-            台詞じゃなく、自分の言葉で誰かを励ませるようになれたら嬉しいな」<br>
-          </p>
-        </div>
+
         <div class="video">
           <h2>悠真の紹介動画</h2>
           <div class="video-wrapper">
@@ -228,12 +311,14 @@
             <div id="asakuraOverlay" class="video-overlay" onclick="replayAsakura()">▶ もう一度見る</div>
           </div>
         </div>
+
         <a href="../chat.html?char=asakura&name=あなた" class="select-button">悠真とチャットを始める</a>
         <a href="../prof.html" class="back-link">AIキャラクター一覧</a>
         <a href="../index.html" class="back-link">← TOPページに戻る</a>
       </div>
     </div>
   </div>
+
   <script>
     const video = document.getElementById('asakuraVideo');
     const overlay = document.getElementById('asakuraOverlay');
