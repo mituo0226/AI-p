@@ -41,6 +41,16 @@
   </style>
 </head>
 <body>
+<header class="site-header">
+<nav class="nav">
+<a href="./index.html">TOP</a>
+<a href="./matching.html">キャラクター一覧</a>
+<a href="./paid/ticket.html">チケット案内</a>
+<a href="./auth/register.html">登録/ログイン</a>
+<a href="./chat.html">チャット</a>
+</nav>
+</header>
+
 <div class="chat-header">
 <div class="chat-normal-header" style="display: flex; align-items: center; width: 100%;">
 <a class="back-button" href="prof.html" style="margin-right: 10px;">←</a>
@@ -253,5 +263,13 @@
       loadCharacterData();
     });
   </script>
+
+<script>
+  if (location.protocol === 'file:') {
+    console.warn('ローカル直開きはJSONの読み込みに失敗する可能性があります。');
+    alert('開発時は "npx serve" 等でHTTPサーバを使ってください。');
+  }
+</script>
+
 </body>
 </html>
