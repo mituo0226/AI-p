@@ -77,7 +77,12 @@
 <script>
     const params = new URLSearchParams(window.location.search);
     const charId = params.get("char") || "";
-    const unick = params.get("name") || "あなた";
+
+    // ニックネーム取得（未入力や空白の場合は「あなた」に固定）
+    let unick = (params.get("name") || "").trim();
+    if (!unick) {
+      unick = "あなた";
+    }
 
     // --- 無料キャラクター制限チェック（テストモード対応） ---
     const isTestMode = params.get('test') === '1';
