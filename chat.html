@@ -136,8 +136,8 @@
     async function loadCharacterData() {
       try {
         const [charRes, scriptRes] = await Promise.all([
-          fetch("characters.json"),
-          fetch("chatScript.json")
+          fetch("\./data/characters.json"),
+          fetch("\./data/chatScript.json")
         ]);
 
         const [characters, scripts] = await Promise.all([
