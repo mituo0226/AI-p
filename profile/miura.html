@@ -1,16 +1,14 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-  <meta charset="utf-8"/>
-  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-  <title>三浦翔太｜AIパートナー紹介</title>
-  
-
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>三浦 翔太｜AIパートナー紹介</title>
   <style>
     body {
       margin: 0;
       font-family: "Hiragino Kaku Gothic ProN", sans-serif;
-      background: #f0f8ff;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
       color: #333;
     }
     .profile-container {
@@ -20,8 +18,8 @@
     }
     .card {
       background: #ffffff;
-      border-radius: 16px;
-      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+      border-radius: 20px;
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
       overflow: hidden;
       display: flex;
       flex-direction: column;
@@ -31,75 +29,140 @@
       height: auto;
       display: block;
       object-fit: cover;
-      border-bottom: 4px solid #a3c9f5;
+      border-bottom: 4px solid #4a90e2;
     }
     .hero-caption {
-      padding: 20px;
-      background: #e7f0fb;
-      font-size: 22px;
+      padding: 25px;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      font-size: 24px;
       font-weight: bold;
-      color: #3b6ea5;
       text-align: center;
-      border-bottom: 2px solid #a3c9f5;
+      text-shadow: 0 2px 4px rgba(0,0,0,0.3);
     }
     .info {
-      padding: 20px 24px;
+      padding: 30px;
     }
     .section {
-      margin-bottom: 30px;
+      margin-bottom: 35px;
     }
     .section h2 {
-      font-size: 20px;
-      color: #3b6ea5;
-      border-left: 6px solid #a3c9f5;
-      padding-left: 12px;
-      margin-bottom: 12px;
+      font-size: 22px;
+      color: #4a90e2;
+      border-left: 6px solid #7bb3f0;
+      padding-left: 15px;
+      margin-bottom: 15px;
+      font-weight: bold;
     }
     .section ul {
       padding-left: 24px;
-      line-height: 1.8;
+      line-height: 1.9;
       list-style: none;
+    }
+    .section ul li {
+      margin-bottom: 8px;
+      display: flex;
+      align-items: flex-start;
     }
     .section ul li::before {
       content: attr(data-icon);
       display: inline-block;
-      width: 1.6em;
-      margin-left: -1.6em;
-      margin-right: 0.5em;
+      width: 1.8em;
+      margin-right: 0.8em;
+      flex-shrink: 0;
     }
     .section p {
-      line-height: 1.8;
-      margin-bottom: 10px;
+      line-height: 1.9;
+      margin-bottom: 12px;
+      font-size: 16px;
     }
     .bubble {
       position: relative;
-      background: #f0f8ff;
-      border: 2px solid #a3c9f5;
-      border-radius: 12px;
-      padding: 16px;
-      margin: 16px 0;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      border-radius: 15px;
+      padding: 20px;
+      margin: 20px 0;
       font-style: italic;
-      color: #444;
+      font-size: 18px;
+      font-weight: 500;
+      box-shadow: 0 8px 16px rgba(102, 126, 234, 0.3);
     }
     .bubble::before {
       content: "";
       position: absolute;
-      bottom: -20px;
-      left: 30px;
-      border: 10px solid transparent;
-      border-top-color: #a3c9f5;
+      bottom: -15px;
+      left: 35px;
+      border: 15px solid transparent;
+      border-top-color: #764ba2;
     }
-    .bubble::after {
-      content: "";
-      position: absolute;
-      bottom: -18px;
-      left: 30px;
-      border: 9px solid transparent;
-      border-top-color: #f0f8ff;
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 15px;
+      margin-top: 15px;
+    }
+    .skill-item {
+      background: #f8faff;
+      border: 2px solid #e1e9ff;
+      border-radius: 12px;
+      padding: 15px;
+      text-align: center;
+      transition: all 0.3s ease;
+    }
+    .skill-item:hover {
+      background: #667eea;
+      color: white;
+      transform: translateY(-3px);
+      box-shadow: 0 8px 20px rgba(102, 126, 234, 0.3);
+    }
+    .values-box {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      border-radius: 15px;
+      padding: 25px;
+      margin: 20px 0;
+      line-height: 1.8;
+      font-size: 16px;
+    }
+    .values-box strong {
+      display: block;
+      font-size: 18px;
+      margin-bottom: 10px;
+      color: #e3f2fd;
+    }
+    .ocean-section {
+      background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%);
+      border-radius: 15px;
+      padding: 20px;
+      margin: 20px 0;
+      border-left: 6px solid #4a90e2;
+    }
+    .research-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 15px;
+      margin-top: 15px;
+    }
+    .research-item {
+      background: #f8faff;
+      border: 2px solid #e1e9ff;
+      border-radius: 12px;
+      padding: 20px;
+      text-align: center;
+      transition: all 0.3s ease;
+    }
+    .research-item:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 20px rgba(74, 144, 226, 0.2);
     }
     .video {
       text-align: center;
-      margin-top: 30px;
+      margin-top: 40px;
+    }
+    .video h2 {
+      color: #4a90e2;
+      margin-bottom: 20px;
     }
     .video-wrapper {
       position: relative;
@@ -107,17 +170,18 @@
       max-width: 720px;
       width: 100%;
       margin: auto;
+      border-radius: 15px;
+      overflow: hidden;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.15);
     }
     .video-wrapper video {
       width: 100%;
-      border-radius: 10px;
       background: black;
     }
     .video-mask {
       position: absolute;
       top: 0; left: 0; right: 0; bottom: 0;
-      background: black;
-      border-radius: 10px;
+      background: rgba(0,0,0,0.8);
       display: none;
       opacity: 0;
       transition: opacity 0.8s ease;
@@ -131,105 +195,179 @@
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
-      background: rgba(255, 255, 255, 0.95);
-      padding: 14px 28px;
-      border-radius: 30px;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      padding: 16px 32px;
+      border-radius: 50px;
       font-size: 18px;
       font-weight: bold;
-      color: #3b6ea5;
       cursor: pointer;
-      box-shadow: 0 0 12px rgba(0,0,0,0.2);
+      box-shadow: 0 8px 20px rgba(102, 126, 234, 0.4);
       display: none;
       z-index: 2;
+      transition: transform 0.3s ease;
+    }
+    .video-overlay:hover {
+      transform: translate(-50%, -50%) scale(1.05);
     }
     .select-button {
       display: block;
       text-align: center;
-      margin: 40px auto;
-      padding: 14px 32px;
-      background-color: #3b6ea5;
+      margin: 50px auto 30px;
+      padding: 18px 40px;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
       color: white;
       font-weight: bold;
-      border-radius: 40px;
+      font-size: 18px;
+      border-radius: 50px;
       text-decoration: none;
       width: fit-content;
+      box-shadow: 0 8px 20px rgba(102, 126, 234, 0.3);
+      transition: all 0.3s ease;
+    }
+    .select-button:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 12px 30px rgba(102, 126, 234, 0.4);
     }
     .back-link {
       display: block;
       text-align: center;
-      margin: 20px auto;
-      padding: 10px 20px;
-      background-color: #f0f8ff;
-      color: #3b6ea5;
+      margin: 15px auto;
+      padding: 12px 24px;
+      background-color: #f8faff;
+      color: #4a90e2;
       font-weight: bold;
-      border: 2px solid #a3c9f5;
-      border-radius: 25px;
+      border: 2px solid #667eea;
+      border-radius: 30px;
       text-decoration: none;
       width: fit-content;
       transition: all 0.3s ease;
     }
     .back-link:hover {
-      background-color: #e7f0fb;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
       transform: translateY(-2px);
     }
   </style>
-
 </head>
 <body>
   <div class="profile-container">
     <div class="card">
       <div class="hero">
-        <img alt="三浦 翔太" src="../ga/image/character/miura.png" />
+        <img src="../ga/image/character/miura.png" alt="三浦翔太">
       </div>
-      <div class="hero-caption">三浦 翔太（25歳）｜海と心に寄り添う静かな癒し手</div>
+      <div class="hero-caption">三浦 翔太（25歳）｜海洋研究助手</div>
       <div class="info">
         <div class="section">
           <h2>プロフィール</h2>
           <ul>
-            <li data-icon="💼">職業：海洋研究助手／ヨットスクールインストラクター</li>
-            <li data-icon="😊">性格：物静かで思慮深い。沈黙を大切にするタイプ</li>
-            <li data-icon="📖">背景：幼少期に海難事故を経験し、自然との対話を人生の軸に</li>
-            <li data-icon="🔮">霊感：人の“揺れ”を潮の満ち引きのように感じ取れる</li>
+            <li data-icon="🌊">職業：海洋研究助手</li>
+            <li data-icon="🔬">専門：海洋生物学・環境調査</li>
+            <li data-icon="🤔">性格：静かで思慮深い</li>
+            <li data-icon="💙">特徴：距離感の中に癒しを与える存在</li>
+            <li data-icon="🌙">魅力：沈黙を恐れない落ち着いた雰囲気</li>
           </ul>
         </div>
+
+        <div class="section ocean-section">
+          <h2>海洋研究への想い</h2>
+          <p>大学で海洋生物学を学び、現在は研究所で海洋環境の調査に携わっています。海の広大さと神秘性に魅力を感じ、毎日新しい発見に胸を躍らせています。研究を通じて海洋保護の重要性を伝えていきたいと考えています。</p>
+        </div>
+
         <div class="section">
           <h2>翔太のひとこと</h2>
-          <div class="bubble">無理に話さなくてもいいよ。<br/>沈黙の中にも、ちゃんと想いって伝わるから。</div>
+          <div class="bubble">無理に話さなくてもいいよ。沈黙の中にも、ちゃんと想いって伝わるから。</div>
         </div>
+
         <div class="section">
-          <h2>好きなもの・日常</h2>
+          <h2>研究分野・専門知識</h2>
+          <div class="research-grid">
+            <div class="research-item">
+              <strong>🐟 海洋生物学</strong><br>
+              魚類・プランクトンの生態研究
+            </div>
+            <div class="research-item">
+              <strong>🌡️ 環境調査</strong><br>
+              水温・塩分濃度の測定
+            </div>
+            <div class="research-item">
+              <strong>📊 データ分析</strong><br>
+              調査結果の統計解析
+            </div>
+            <div class="research-item">
+              <strong>🔬 実験技術</strong><br>
+              サンプル採取・培養
+            </div>
+          </div>
+        </div>
+
+        <div class="section">
+          <h2>コミュニケーションスタイル</h2>
+          <div class="skills-grid">
+            <div class="skill-item">
+              <strong>🌊 物静かな話し方</strong><br>
+              落ち着いた言葉選びを重視
+            </div>
+            <div class="skill-item">
+              <strong>👁️ 観察力重視</strong><br>
+              相手をよく見て理解する
+            </div>
+            <div class="skill-item">
+              <strong>🤝 程よい距離感</strong><br>
+              安心感を与える接し方
+            </div>
+          </div>
+        </div>
+
+        <div class="section">
+          <h2>価値観・哲学</h2>
+          <div class="values-box">
+            <strong>「沈黙にも意味がある。急がずに、相手のペースで」</strong>
+            海と向き合う研究生活の中で、沈黙の大切さを学びました。必要なときにだけ言葉をかけ、相手の心の波を静かに観察することで、本当に必要な支えを提供したいと思っています。言葉に頼らないコミュニケーションの力を信じています。
+          </div>
+        </div>
+
+        <div class="section">
+          <h2>日常と趣味</h2>
           <ul>
-            <li data-icon="🐰">趣味：夜のヨット航海と星空観察</li>
-            <li data-icon="🧥">愛用品：白シャツと航海日誌。風の音が録音されたカセットテープ</li>
-            <li data-icon="🎧">音楽：R&Bやピアノのインストゥルメンタル</li>
-            <li data-icon="🍵">癒し時間：朝のカフェラテ＋波の音を聴く時間</li>
-            <li data-icon="🛍️">休日の過ごし方：港のベンチで本を読む</li>
+            <li data-icon="🌊">海辺散歩：潮の音を聞きながらの思索時間</li>
+            <li data-icon="📚">読書：海洋学の専門書と哲学書</li>
+            <li data-icon="📷">写真：海の表情を捉える風景撮影</li>
+            <li data-icon="🎵">音楽：波音や自然音の環境音楽</li>
+            <li data-icon="☕">カフェ：海が見える静かな店での作業時間</li>
+            <li data-icon="🧘">瞑想：夕日を見ながらの静寂の時間</li>
           </ul>
         </div>
+
         <div class="section">
-          <h2>小さなエピソード</h2>
-          <p>小学生のころ、人付き合いがちょっと苦手だった翔太。保健室のモルモットと心を通わせた体験が、今の「人と動物をつなぐ」優しさに変わりました。</p>
+          <h2>研究者としての日常</h2>
+          <p>早朝から研究所に向かい、海洋データの分析や実験に没頭する日々。フィールドワークでは船に乗って沖合いでのサンプル採取も行います。同僚たちとは必要最小限の会話で連携を取りながら、効率的に研究を進めています。</p>
+          <p>研究の合間には海を眺めながら、データの意味や新しい仮説について静かに考え込むことが多く、その集中力と洞察力で周りからも信頼されています。</p>
         </div>
+
         <div class="section">
-          <h2>夢</h2>
-          <div class="bubble">誰かにとっての“避難港”みたいな存在になりたい。<br/>嵐が去ったあと、戻ってこられる穏やかな場所でありたい。</div>
+          <h2>将来への想い</h2>
+          <p>海洋環境の変化を通じて地球の未来を考え、研究成果を社会に還元したい。また、人との関わりにおいても、海のような深い包容力で相手を受け入れ、必要なときにそっと支えられる存在でいたいと思っています。</p>
         </div>
+
         <div class="video">
           <h2>翔太の紹介動画</h2>
           <div class="video-wrapper">
-            <video controls id="miuraVideo" playsinline poster="">
+            <video id="miuraVideo" controls playsinline>
               <source src="../ga/mov/character/miura.mp4" type="video/mp4" />
             </video>
-            <div class="video-mask" id="miuraMask"></div>
-            <div class="video-overlay" id="miuraOverlay" onclick="replayMiura()">▶ もう一度見る</div>
+            <div id="miuraMask" class="video-mask"></div>
+            <div id="miuraOverlay" class="video-overlay" onclick="replayMiura()">▶ もう一度見る</div>
           </div>
         </div>
-        <a class="select-button" href="../chat.html?char=miura&name=あなた">翔太とチャットを始める</a>
+
+        <a href="../chat.html?char=miura&name=あなた" class="select-button">翔太とチャットを始める</a>
         <a href="../prof.html" class="back-link">AIキャラクター一覧</a>
         <a href="../index.html" class="back-link">← TOPページに戻る</a>
       </div>
     </div>
   </div>
+
   <script>
     const video = document.getElementById('miuraVideo');
     const overlay = document.getElementById('miuraOverlay');
@@ -239,13 +377,13 @@
       video.currentTime = 0;
       video.play();
       overlay.style.display = 'none';
-      mask.style.display = 'none';
+      mask.classList.remove('show');
     }
 
     video.addEventListener('ended', () => {
-      overlay.style.display = 'block';
       mask.style.display = 'block';
       requestAnimationFrame(() => mask.classList.add('show'));
+      overlay.style.display = 'block';
     });
   </script>
 </body>
