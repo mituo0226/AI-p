@@ -3,12 +3,12 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>井上真帆｜AIパートナー紹介</title>
+  <title>井上 真帆｜AIパートナー紹介</title>
   <style>
     body {
       margin: 0;
       font-family: "Hiragino Kaku Gothic ProN", sans-serif;
-      background: #fffafc;
+      background: linear-gradient(135deg, #d4cbb6 0%, #e8d5b7 100%);
       color: #333;
     }
     .profile-container {
@@ -18,8 +18,8 @@
     }
     .card {
       background: #ffffff;
-      border-radius: 16px;
-      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+      border-radius: 20px;
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
       overflow: hidden;
       display: flex;
       flex-direction: column;
@@ -29,75 +29,183 @@
       height: auto;
       display: block;
       object-fit: cover;
-      border-bottom: 4px solid #fbb6ce;
+      border-bottom: 4px solid #8d6e63;
     }
     .hero-caption {
-      padding: 20px;
-      background: #fff0f5;
-      font-size: 22px;
+      padding: 25px;
+      background: linear-gradient(135deg, #8d6e63 0%, #a1887f 100%);
+      color: white;
+      font-size: 24px;
       font-weight: bold;
-      color: #d26a8a;
       text-align: center;
-      border-bottom: 2px solid #fbb6ce;
+      text-shadow: 0 2px 4px rgba(0,0,0,0.3);
     }
     .info {
-      padding: 20px 24px;
+      padding: 30px;
     }
     .section {
-      margin-bottom: 30px;
+      margin-bottom: 35px;
     }
     .section h2 {
-      font-size: 20px;
-      color: #d26a8a;
-      border-left: 6px solid #fbb6ce;
-      padding-left: 12px;
-      margin-bottom: 12px;
+      font-size: 22px;
+      color: #6d4c41;
+      border-left: 6px solid #8d6e63;
+      padding-left: 15px;
+      margin-bottom: 15px;
+      font-weight: bold;
     }
     .section ul {
       padding-left: 24px;
-      line-height: 1.8;
+      line-height: 1.9;
       list-style: none;
+    }
+    .section ul li {
+      margin-bottom: 8px;
+      display: flex;
+      align-items: flex-start;
     }
     .section ul li::before {
       content: attr(data-icon);
       display: inline-block;
-      width: 1.6em;
-      margin-left: -1.6em;
-      margin-right: 0.5em;
+      width: 1.8em;
+      margin-right: 0.8em;
+      flex-shrink: 0;
     }
     .section p {
-      line-height: 1.8;
-      margin-bottom: 10px;
+      line-height: 1.9;
+      margin-bottom: 12px;
+      font-size: 16px;
     }
     .bubble {
       position: relative;
-      background: #fff0f5;
-      border: 2px solid #fbb6ce;
-      border-radius: 12px;
-      padding: 16px;
-      margin: 16px 0;
+      background: linear-gradient(135deg, #8d6e63 0%, #a1887f 100%);
+      color: white;
+      border-radius: 15px;
+      padding: 20px;
+      margin: 20px 0;
       font-style: italic;
-      color: #444;
+      font-size: 18px;
+      font-weight: 500;
+      box-shadow: 0 8px 16px rgba(141, 110, 99, 0.3);
     }
     .bubble::before {
       content: "";
       position: absolute;
-      bottom: -20px;
-      left: 30px;
-      border: 10px solid transparent;
-      border-top-color: #fbb6ce;
+      bottom: -15px;
+      left: 35px;
+      border: 15px solid transparent;
+      border-top-color: #a1887f;
     }
-    .bubble::after {
-      content: "";
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 15px;
+      margin-top: 15px;
+    }
+    .skill-item {
+      background: #f5f0e8;
+      border: 2px solid #e0cfc4;
+      border-radius: 12px;
+      padding: 15px;
+      text-align: center;
+      transition: all 0.3s ease;
+    }
+    .skill-item:hover {
+      background: #8d6e63;
+      color: white;
+      transform: translateY(-3px);
+      box-shadow: 0 8px 20px rgba(141, 110, 99, 0.3);
+    }
+    .values-box {
+      background: linear-gradient(135deg, #8d6e63 0%, #a1887f 100%);
+      color: white;
+      border-radius: 15px;
+      padding: 25px;
+      margin: 20px 0;
+      line-height: 1.8;
+      font-size: 16px;
+    }
+    .values-box strong {
+      display: block;
+      font-size: 18px;
+      margin-bottom: 10px;
+      color: #fafafa;
+    }
+    .aromatherapy-section {
+      background: linear-gradient(135deg, #f5f0e8 0%, #ede7d9 100%);
+      border-radius: 15px;
+      padding: 20px;
+      margin: 20px 0;
+      border-left: 6px solid #8d6e63;
+    }
+    .aroma-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 15px;
+      margin-top: 15px;
+    }
+    .aroma-item {
+      background: #f5f0e8;
+      border: 2px solid #e0cfc4;
+      border-radius: 12px;
+      padding: 20px;
+      text-align: center;
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+    .aroma-item:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 20px rgba(141, 110, 99, 0.2);
+    }
+    .aroma-item::before {
+      content: '';
       position: absolute;
-      bottom: -18px;
-      left: 30px;
-      border: 9px solid transparent;
-      border-top-color: #fff0f5;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle, rgba(141, 110, 99, 0.1) 0%, transparent 70%);
+      animation: aromaWave 4s infinite;
+    }
+    @keyframes aromaWave {
+      0%, 100% { transform: scale(0.8) rotate(0deg); opacity: 0.3; }
+      50% { transform: scale(1.2) rotate(180deg); opacity: 0.1; }
+    }
+    .motherhood-section {
+      background: linear-gradient(135deg, #ede7d9 0%, #f5f0e8 100%);
+      border-radius: 15px;
+      padding: 20px;
+      margin: 20px 0;
+      border: 2px solid #bcaaa4;
+    }
+    .healing-techniques {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 15px;
+      margin-top: 15px;
+    }
+    .technique-item {
+      background: #f5f0e8;
+      border: 2px solid #e0cfc4;
+      border-radius: 12px;
+      padding: 18px;
+      text-align: center;
+      transition: all 0.3s ease;
+    }
+    .technique-item:hover {
+      background: #bcaaa4;
+      color: white;
+      transform: translateY(-3px);
+      box-shadow: 0 8px 20px rgba(188, 170, 164, 0.3);
     }
     .video {
       text-align: center;
-      margin-top: 30px;
+      margin-top: 40px;
+    }
+    .video h2 {
+      color: #6d4c41;
+      margin-bottom: 20px;
     }
     .video-wrapper {
       position: relative;
@@ -105,71 +213,83 @@
       max-width: 720px;
       width: 100%;
       margin: auto;
+      border-radius: 15px;
+      overflow: hidden;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.15);
     }
     .video-wrapper video {
       width: 100%;
-      border-radius: 10px;
       background: black;
     }
     .video-mask {
-      opacity: 0;
-      transition: opacity 0.8s ease;
       position: absolute;
       top: 0; left: 0; right: 0; bottom: 0;
-      background: black;
-      border-radius: 10px;
+      background: rgba(0,0,0,0.8);
       display: none;
+      opacity: 0;
+      transition: opacity 0.8s ease;
       z-index: 1;
+    }
+    .video-mask.show {
+      opacity: 1;
     }
     .video-overlay {
       position: absolute;
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
-      background: rgba(255, 255, 255, 0.95);
-      padding: 14px 28px;
-      border-radius: 30px;
+      background: linear-gradient(135deg, #8d6e63 0%, #a1887f 100%);
+      color: white;
+      padding: 16px 32px;
+      border-radius: 50px;
       font-size: 18px;
       font-weight: bold;
-      color: #d26a8a;
       cursor: pointer;
-      box-shadow: 0 0 12px rgba(0,0,0,0.2);
+      box-shadow: 0 8px 20px rgba(141, 110, 99, 0.4);
       display: none;
       z-index: 2;
+      transition: transform 0.3s ease;
+    }
+    .video-overlay:hover {
+      transform: translate(-50%, -50%) scale(1.05);
     }
     .select-button {
       display: block;
       text-align: center;
-      margin: 40px auto;
-      padding: 14px 32px;
-      background-color: #f794a4;
+      margin: 50px auto 30px;
+      padding: 18px 40px;
+      background: linear-gradient(135deg, #8d6e63 0%, #a1887f 100%);
       color: white;
       font-weight: bold;
-      border-radius: 40px;
+      font-size: 18px;
+      border-radius: 50px;
       text-decoration: none;
       width: fit-content;
+      box-shadow: 0 8px 20px rgba(141, 110, 99, 0.3);
+      transition: all 0.3s ease;
+    }
+    .select-button:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 12px 30px rgba(141, 110, 99, 0.4);
     }
     .back-link {
       display: block;
       text-align: center;
-      margin: 20px auto;
-      padding: 10px 20px;
-      background-color: #fef7f8;
-      color: #d26a8a;
+      margin: 15px auto;
+      padding: 12px 24px;
+      background-color: #f5f0e8;
+      color: #6d4c41;
       font-weight: bold;
-      border: 2px solid #f794a4;
-      border-radius: 25px;
+      border: 2px solid #8d6e63;
+      border-radius: 30px;
       text-decoration: none;
       width: fit-content;
       transition: all 0.3s ease;
     }
     .back-link:hover {
-      background-color: #fce8ec;
+      background: linear-gradient(135deg, #8d6e63 0%, #a1887f 100%);
+      color: white;
       transform: translateY(-2px);
-    }
-  
-    .video-mask.show {
-      opacity: 1;
     }
   </style>
 </head>
@@ -179,71 +299,159 @@
       <div class="hero">
         <img src="../ga/image/character/maho.png" alt="井上真帆">
       </div>
-      <div class="hero-caption">井上 真帆（32歳）｜シングルマザーのアロマセラピスト</div>
+      <div class="hero-caption">井上 真帆（32歳）｜シングルマザー・アロマセラピスト</div>
       <div class="info">
         <div class="section">
           <h2>プロフィール</h2>
           <ul>
-            <li data-icon="💼">職業：アロマセラピスト（フリーランス）</li>
-            <li data-icon="😊">性格：落ち着いていて穏やか。芯の強さを内に秘める</li>
-            <li data-icon="📖">背景：一人娘と共に生きる日々の中で、人の癒しを追求してきた</li>
-            <li data-icon="🔮">霊感：手を通して相手の疲れや不安を感じ取る体感型ヒーリング</li>
+            <li data-icon="🌿">職業：アロマセラピスト</li>
+            <li data-icon="👩‍👧">立場：シングルマザー</li>
+            <li data-icon="🤲">特技：香りと手の感覚で人を癒す</li>
+            <li data-icon="💆">専門：体感型ヒーリング</li>
+            <li data-icon="🕊️">性格：穏やかで包み込むような優しさ</li>
           </ul>
         </div>
+
+        <div class="section aromatherapy-section">
+          <h2>アロマセラピストとしての専門性</h2>
+          <p>植物の持つ自然の力を信じ、エッセンシャルオイルの効能を深く理解しています。お客様一人ひとりの心身の状態に合わせて、最適な香りとタッチングを組み合わせた施術を行います。</p>
+          <p>単なるリラクゼーションではなく、香りが心に与える影響と、手の温もりが伝える安心感を通じて、根本的な癒しを提供することを大切にしています。</p>
+        </div>
+
         <div class="section">
           <h2>真帆のひとこと</h2>
           <div class="bubble">…疲れてる？　深く息を吐くだけで、少し心は軽くなるんだよ</div>
         </div>
+
+        <div class="section motherhood-section">
+          <h2>シングルマザーとしての経験</h2>
+          <p>一人で子育てをする中で得た強さと、同時に人への深い共感力を持っています。忙しい日常の中で疲れやストレスを感じる人の気持ちを、自分の経験を通して理解することができます。</p>
+          <p>母親としての経験が、アロマセラピストとしての包容力にも活かされており、来店されるお客様からは「安心できる」「心が軽くなる」という声をいただいています。</p>
+        </div>
+
         <div class="section">
-          <h2>好きなもの・日常</h2>
+          <h2>使用する精油・アロマ</h2>
+          <div class="aroma-grid">
+            <div class="aroma-item">
+              <strong>🌸 ラベンダー</strong><br>
+              リラックス・安眠効果
+            </div>
+            <div class="aroma-item">
+              <strong>🍊 ベルガモット</strong><br>
+              気分転換・不安軽減
+            </div>
+            <div class="aroma-item">
+              <strong>🌿 ユーカリ</strong><br>
+              呼吸器系の浄化
+            </div>
+            <div class="aroma-item">
+              <strong>🌹 ローズ</strong><br>
+              女性ホルモンバランス調整
+            </div>
+          </div>
+        </div>
+
+        <div class="section">
+          <h2>ヒーリング技術</h2>
+          <div class="healing-techniques">
+            <div class="technique-item">
+              <strong>🤲 ハンドトリートメント</strong><br>
+              温もりのある手による癒し
+            </div>
+            <div class="technique-item">
+              <strong>🌬️ 呼吸法指導</strong><br>
+              深い呼吸でリラックス誘導
+            </div>
+            <div class="technique-item">
+              <strong>💆 フェイシャルケア</strong><br>
+              アロマを使った顔のケア
+            </div>
+          </div>
+        </div>
+
+        <div class="section">
+          <h2>コミュニケーションスタイル</h2>
+          <div class="skills-grid">
+            <div class="skill-item">
+              <strong>🕊️ 母性的な口調</strong><br>
+              穏やかでゆっくりした話し方
+            </div>
+            <div class="skill-item">
+              <strong>🌿 癒しのプロ</strong><br>
+              香りと触れ合いで包み込む
+            </div>
+            <div class="skill-item">
+              <strong>💨 呼吸重視</strong><br>
+              心の落ち着きを大切にする
+            </div>
+          </div>
+        </div>
+
+        <div class="section">
+          <h2>価値観・ヒーリング哲学</h2>
+          <div class="values-box">
+            <strong>「急がず、焦らず、自分のペースで」</strong>
+            シングルマザーとして忙しい毎日を送る中で学んだのは、心にも呼吸が必要だということ。疲れた時は無理をせず、深く息を吐いて、一旦立ち止まる時間を作ることの大切さ。香りと手の温もりを通じて、そんな安らぎの時間を提供したいと思っています。
+          </div>
+        </div>
+
+        <div class="section">
+          <h2>日常と子育て</h2>
           <ul>
-            <li data-icon="🐰">香り：ラベンダー＆ベルガモットのブレンドが定番</li>
-            <li data-icon="🧥">愛用品：娘と選んだ木製のアロマディフューザー</li>
-            <li data-icon="🎧">音楽：静かなピアノジャズ or ヒーリングミュージック</li>
-            <li data-icon="🍵">癒し時間：娘とのパン屋さんタイム＋夜のハーブティー</li>
-            <li data-icon="🛍️">休日の過ごし方：娘と絵本カフェでゆっくり過ごす</li>
+            <li data-icon="👧">子育て：娘との時間を最優先に</li>
+            <li data-icon="🌿">ガーデニング：ハーブと香草の栽培</li>
+            <li data-icon="📚">勉強：アロマテラピーの新しい技術習得</li>
+            <li data-icon="🛁">入浴：お気に入りの精油でリラックス</li>
+            <li data-icon="🎵">音楽：ヒーリング音楽でのんびり時間</li>
+            <li data-icon="☕">ティータイム：ハーブティーで一息</li>
           </ul>
         </div>
+
         <div class="section">
-          <h2>小さなエピソード</h2>
-          <p>小学生のころ、人付き合いがちょっと苦手だった真帆。保健室のモルモットと心を通わせた体験が、今の「人と動物をつなぐ」優しさに変わりました。</p>
+          <h2>お客様への想い</h2>
+          <p>サロンに来てくださるお客様一人ひとりが、日々の疲れから解放され、本来の自分らしさを取り戻せるようお手伝いしたい。特に同じように子育てや仕事で忙しい女性たちに、ほんの少しでも癒しの時間を提供できることが私の喜びです。</p>
+          <p>香りには記憶を呼び覚ます力があります。サロンで感じた安らぎを、日常でも思い出してもらえるよう、お客様に合ったホームケア用の精油もお勧めしています。</p>
         </div>
+
         <div class="section">
-          <h2>夢</h2>
-          <div class="bubble">“自分を後回しにしてきた人”が、香りと共に自分を思い出せるようなサロンを開きたいの。</div>
+          <h2>将来への想い</h2>
+          <p>娘が成長したら、親子で参加できるアロマワークショップを開催したい。自然の恵みである植物の力を多くの人に知ってもらい、日常生活にアロマを取り入れることで、もっと心穏やかに過ごせる人を増やしていきたいと思っています。</p>
         </div>
+
         <div class="video">
           <h2>真帆の紹介動画</h2>
           <div class="video-wrapper">
             <video id="mahoVideo" controls playsinline>
               <source src="../ga/mov/character/maho.mp4" type="video/mp4" />
             </video>
-            <div id="videoMask" class="video-mask"></div>
-            <div id="videoOverlay" class="video-overlay" onclick="replayVideo()">▶ もう一度見る</div>
+            <div id="mahoMask" class="video-mask"></div>
+            <div id="mahoOverlay" class="video-overlay" onclick="replayMaho()">▶ もう一度見る</div>
           </div>
         </div>
+
         <a href="../chat.html?char=maho&name=あなた" class="select-button">真帆とチャットを始める</a>
         <a href="../prof.html" class="back-link">AIキャラクター一覧</a>
         <a href="../index.html" class="back-link">← TOPページに戻る</a>
       </div>
     </div>
   </div>
+
   <script>
     const video = document.getElementById('mahoVideo');
-    const overlay = document.getElementById('videoOverlay');
-    const mask = document.getElementById('videoMask');
+    const overlay = document.getElementById('mahoOverlay');
+    const mask = document.getElementById('mahoMask');
 
-    function replayVideo() {
+    function replayMaho() {
       video.currentTime = 0;
       video.play();
       overlay.style.display = 'none';
-      mask.style.display = 'none';
+      mask.classList.remove('show');
     }
 
     video.addEventListener('ended', () => {
-      overlay.style.display = 'block';
       mask.style.display = 'block';
       requestAnimationFrame(() => mask.classList.add('show'));
+      overlay.style.display = 'block';
     });
   </script>
 </body>
