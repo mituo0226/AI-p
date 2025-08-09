@@ -191,7 +191,7 @@
       return selected;
     }
 
-    fetch("characters.json")
+    fetch("\./data/characters.json")
       .then(res => res.json())
       .then(characters => {
         const main = selectMainPartner(characters);
