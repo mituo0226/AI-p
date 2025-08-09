@@ -1,251 +1,321 @@
-<!DOCTYPE html>
+import { useState, useRef } from 'react';
 
-<html lang="ja">
-<head>
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>笹岡真理子｜AIパートナー紹介</title>
-<style>
-    body {
-      margin: 0;
-      font-family: "Hiragino Kaku Gothic ProN", sans-serif;
-      background: #fffafc;
-      color: #333;
-    }
-    .profile-container {
-      max-width: 900px;
-      margin: 0 auto;
-      padding: 40px 20px;
-    }
-    .card {
-      background: #ffffff;
-      border-radius: 16px;
-      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
-      overflow: hidden;
-      display: flex;
-      flex-direction: column;
-    }
-    .hero img {
-      width: 100%;
-      height: auto;
-      display: block;
-      object-fit: cover;
-      border-bottom: 4px solid #fbb6ce;
-    }
-    .hero-caption {
-      padding: 20px;
-      background: #fff0f5;
-      font-size: 22px;
-      font-weight: bold;
-      color: #d26a8a;
-      text-align: center;
-      border-bottom: 2px solid #fbb6ce;
-    }
-    .info {
-      padding: 20px 24px;
-    }
-    .section {
-      margin-bottom: 30px;
-    }
-    .section h2 {
-      font-size: 20px;
-      color: #d26a8a;
-      border-left: 6px solid #fbb6ce;
-      padding-left: 12px;
-      margin-bottom: 12px;
-    }
-    .section ul {
-      padding-left: 24px;
-      line-height: 1.8;
-      list-style: none;
-    }
-    .section ul li::before {
-      content: attr(data-icon);
-      display: inline-block;
-      width: 1.6em;
-      margin-left: -1.6em;
-      margin-right: 0.5em;
-    }
-    .section p {
-      line-height: 1.8;
-      margin-bottom: 10px;
-    }
-    .bubble {
-      position: relative;
-      background: #fff0f5;
-      border: 2px solid #fbb6ce;
-      border-radius: 12px;
-      padding: 16px;
-      margin: 16px 0;
-      font-style: italic;
-      color: #444;
-    }
-    .bubble::before {
-      content: "";
-      position: absolute;
-      bottom: -20px;
-      left: 30px;
-      border: 10px solid transparent;
-      border-top-color: #fbb6ce;
-    }
-    .bubble::after {
-      content: "";
-      position: absolute;
-      bottom: -18px;
-      left: 30px;
-      border: 9px solid transparent;
-      border-top-color: #fff0f5;
-    }
-    .video {
-      text-align: center;
-      margin-top: 30px;
-    }
-    .video-wrapper {
-      position: relative;
-      display: inline-block;
-      max-width: 720px;
-      width: 100%;
-      margin: auto;
-    }
-    .video-wrapper video {
-      width: 100%;
-      border-radius: 10px;
-      background: black;
-    }
-    .video-mask {
-      opacity: 0;
-      transition: opacity 0.8s ease;
-      position: absolute;
-      top: 0; left: 0; right: 0; bottom: 0;
-      background: black;
-      border-radius: 10px;
-      display: none;
-      z-index: 1;
-    }
-    .video-overlay {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      background: rgba(255, 255, 255, 0.95);
-      padding: 14px 28px;
-      border-radius: 30px;
-      font-size: 18px;
-      font-weight: bold;
-      color: #d26a8a;
-      cursor: pointer;
-      box-shadow: 0 0 12px rgba(0,0,0,0.2);
-      display: none;
-      z-index: 2;
-    }
-    .select-button {
-      display: block;
-      text-align: center;
-      margin: 40px auto;
-      padding: 14px 32px;
-      background-color: #f794a4;
-      color: white;
-      font-weight: bold;
-      border-radius: 40px;
-      text-decoration: none;
-      width: fit-content;
-    }
-    .back-link {
-      display: block;
-      text-align: center;
-      margin: 20px auto;
-      padding: 10px 20px;
-      background-color: #fef7f8;
-      color: #d26a8a;
-      font-weight: bold;
-      border: 2px solid #f794a4;
-      border-radius: 25px;
-      text-decoration: none;
-      width: fit-content;
-      transition: all 0.3s ease;
-    }
-    .back-link:hover {
-      background-color: #fce8ec;
-      transform: translateY(-2px);
-    }
-  
-    .video-mask.show {
-      opacity: 1;
-    }
-  </style>
-</head>
-<body>
-<div class="profile-container">
-<div class="card">
-<div class="hero">
-<img alt="笹岡 真理子" src="../ga/image/character/mariko.png"/>
-</div>
-<div class="hero-caption">笹岡 真理子（45歳）｜大人の気品と美しさを纏う 恋と美の指南役</div>
-<div class="info">
-<div class="section">
-<h2>プロフィール</h2>
-<ul>
-<li data-icon="💼">職業：美容コンサルタント／恋愛コラムニスト</li>
-<li data-icon="😊">性格：自信がない人の魅力を引き出す“包容力”と“会話力”を持つ</li>
-<li data-icon="📖">背景：コンプレックスと向き合った過去を活かし、心と肌を癒す道へ</li>
-<li data-icon="🔮">霊感：その人の“美の可能性”が光って見えると言われている</li>
-</ul>
-</div>
-<div class="section">
-<h2>真理子のひとこと</h2>
-<div class="bubble">ねえ、自分のこと後回しにしてない？<br/>ちゃんと“あなた”を好きになる時間、つくってあげて？</div>
-</div>
-<div class="section">
-<h2>好きなもの・日常</h2>
-<ul>
-<li data-icon="🐰">美容習慣：オーガニックアロマとハーブでの毎日のセルフケア</li>
-<li data-icon="🧥">愛用品：香水はシャネル19番。指輪とピンヒールが自分を整える鍵</li>
-<li data-icon="🎧">音楽：夜のジャズピアノやシャンソン。R&amp;Bで心をほどく</li>
-<li data-icon="🍵">癒し時間：お気に入りの赤ワインとビターチョコで一人乾杯</li>
-<li data-icon="🛍️">休日の過ごし方：連載コラムの執筆や後輩女性とのお茶会</li>
-</ul>
-</div>
-<div class="section">
-<h2>小さなエピソード</h2>
-<p>小学生のころ、人付き合いがちょっと苦手だった真理子。保健室のモルモットと心を通わせた体験が、今の「人と動物をつなぐ」優しさに変わりました。</p>
-</div>
-<div class="section">
-<h2>夢</h2>
-<div class="bubble">年齢を重ねることを“隠す”のではなく“楽しむ”人生へ導くこと。<br/>心と肌を整える“生き方の美容室”を作るのが夢。</div>
-</div>
-<div class="video">
-<h2>真理子の紹介動画</h2>
-<div class="video-wrapper">
-<video controls="" id="marikoVideo" playsinline="" poster="">
-<source src="../ga/mov/character/mariko.mp4" type="video/mp4"/>
-</video>
-<div class="video-mask" id="videoMask"></div>
-<div class="video-overlay" id="videoOverlay" onclick="replayVideo()">▶️ 真理子の動画を見る</div>
-</div>
-</div>
-        <a class="select-button" href="../chat.html?char=mariko&name=あなた">真理子とチャットを始める</a>
-        <a href="../prof.html" class="back-link">AIキャラクター一覧</a>
-        <a href="../index.html" class="back-link">← TOPページに戻る</a>
-</div>
-</div>
-</div>
-<script>
-    const video = document.getElementById('marikoVideo');
-    const overlay = document.getElementById('videoOverlay');
-    const mask = document.getElementById('videoMask');
+export default function MarikoProfile() {
+  const [isVideoEnded, setIsVideoEnded] = useState(false);
+  const videoRef = useRef(null);
 
-    function replayVideo() {
-      video.currentTime = 0;
-      video.play();
-      overlay.style.display = 'none';
-      mask.style.display = 'none';
+  const replayVideo = () => {
+    if (videoRef.current) {
+      videoRef.current.currentTime = 0;
+      videoRef.current.play();
+      setIsVideoEnded(false);
     }
+  };
 
-    video.addEventListener('ended', () => {
-      overlay.style.display = 'block';
-      mask.style.display = 'block';
-      requestAnimationFrame(() => mask.classList.add('show'));
-    });
-  </script>
-</body>
-</html>
+  const handleVideoEnd = () => {
+    setIsVideoEnded(true);
+  };
+
+  return (
+    <div className="min-h-screen" style={{
+      background: 'linear-gradient(135deg, #ffeef8 0%, #f8e7ff 100%)',
+      fontFamily: '"Hiragino Kaku Gothic ProN", sans-serif',
+      color: '#333'
+    }}>
+      <div className="max-w-4xl mx-auto px-5 py-10">
+        <div className="bg-white rounded-3xl shadow-2xl overflow-hidden">
+          {/* Hero Section */}
+          <div className="relative">
+            <img 
+              src="../ga/image/character/mariko.png" 
+              alt="笹岡真理子"
+              className="w-full h-auto object-cover border-b-4"
+              style={{ borderBottomColor: '#e91e63' }}
+            />
+          </div>
+          
+          <div 
+            className="px-6 py-6 text-white text-2xl font-bold text-center"
+            style={{
+              background: 'linear-gradient(135deg, #ff6b6b 0%, #ee5a24 100%)',
+              textShadow: '0 2px 4px rgba(0,0,0,0.3)'
+            }}
+          >
+            笹岡 真理子（45歳）｜美容コンサルタント・恋愛コラムニスト
+          </div>
+
+          <div className="p-8">
+            {/* プロフィール */}
+            <div className="mb-9">
+              <h2 className="text-2xl font-bold mb-4 pl-4 border-l-8" style={{ 
+                color: '#e91e63', 
+                borderLeftColor: '#ff6b6b' 
+              }}>
+                プロフィール
+              </h2>
+              <ul className="space-y-2 ml-6">
+                <li className="flex items-start">
+                  <span className="mr-3 text-xl">💄</span>
+                  <span>職業：美容コンサルタント・恋愛コラムニスト</span>
+                </li>
+                <li className="flex items-start">
+                  <span className="mr-3 text-xl">✨</span>
+                  <span>専門：年齢を重ねる魅力の提案</span>
+                </li>
+                <li className="flex items-start">
+                  <span className="mr-3 text-xl">👑</span>
+                  <span>性格：洗練された大人の女性、自信と包容力を持つ</span>
+                </li>
+                <li className="flex items-start">
+                  <span className="mr-3 text-xl">💖</span>
+                  <span>特徴：経験に裏打ちされた美容と恋愛の達人</span>
+                </li>
+                <li className="flex items-start">
+                  <span className="mr-3 text-xl">🌸</span>
+                  <span>魅力：自己肯定感を高める優しい導き</span>
+                </li>
+              </ul>
+            </div>
+
+            {/* 性格・人となり */}
+            <div className="mb-9">
+              <div className="bg-pink-50 rounded-2xl p-6 border-l-8 border-pink-400">
+                <h2 className="text-2xl font-bold mb-4" style={{ color: '#e91e63' }}>
+                  性格・人となり
+                </h2>
+                <p className="leading-relaxed text-gray-700">
+                  洗練された大人の魅力を纏う45歳の女性。美容と恋愛の両分野で豊富な経験を持ち、年齢を重ねることの美しさを体現しています。丁寧な言葉遣いながらも親しみやすく、経験に裏打ちされた自信と深い包容力で、多くの人を優しく導いています。
+                </p>
+              </div>
+            </div>
+
+            {/* 真理子のひとこと */}
+            <div className="mb-9">
+              <h2 className="text-2xl font-bold mb-4 pl-4 border-l-8" style={{ 
+                color: '#e91e63', 
+                borderLeftColor: '#ff6b6b' 
+              }}>
+                真理子のひとこと
+              </h2>
+              <div 
+                className="relative text-white rounded-2xl p-6 text-lg font-medium italic shadow-lg"
+                style={{ background: 'linear-gradient(135deg, #ff6b6b 0%, #ee5a24 100%)' }}
+              >
+                ねえ、自分のこと後回しにしてない？ちゃんと"あなた"を好きになる時間、つくってあげて？
+                <div 
+                  className="absolute -bottom-4 left-9 w-0 h-0"
+                  style={{
+                    borderLeft: '15px solid transparent',
+                    borderRight: '15px solid transparent',
+                    borderTop: '15px solid #ee5a24'
+                  }}
+                ></div>
+              </div>
+            </div>
+
+            {/* 美容コンサルタントとしての実績 */}
+            <div className="mb-9">
+              <div 
+                className="rounded-2xl p-6 border-2"
+                style={{ 
+                  background: 'linear-gradient(135deg, #fff5f5 0%, #ffeef8 100%)',
+                  borderColor: '#ffb3d9'
+                }}
+              >
+                <h2 className="text-2xl font-bold mb-4" style={{ color: '#e91e63' }}>
+                  美容コンサルタント・コラムニストとしての実績
+                </h2>
+                <p className="mb-3 leading-relaxed">
+                  <strong>美容分野：</strong>20年以上のキャリアを持つ美容のスペシャリスト。年齢に応じたスキンケアやメイクアップ、ファッションコーディネートを得意とし、「年齢を重ねることの美しさ」を提案し続けています。
+                </p>
+                <p className="leading-relaxed">
+                  <strong>恋愛コラムニスト：</strong>大人の恋愛について多数の記事を執筆。自己肯定感の向上や、成熟した恋愛関係の築き方についてアドバイスを提供。多くの読者から支持を得ています。
+                </p>
+              </div>
+            </div>
+
+            {/* 専門分野・得意領域 */}
+            <div className="mb-9">
+              <h2 className="text-2xl font-bold mb-4 pl-4 border-l-8" style={{ 
+                color: '#e91e63', 
+                borderLeftColor: '#ff6b6b' 
+              }}>
+                専門分野・得意領域
+              </h2>
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                <div className="bg-pink-50 border-2 border-pink-200 rounded-xl p-4 text-center transition-all hover:bg-pink-500 hover:text-white hover:-translate-y-1 hover:shadow-lg">
+                  <strong className="block mb-2">💄 美容コンサルティング</strong>
+                  <span className="text-sm">年齢に応じたスキンケア・メイク</span>
+                </div>
+                <div className="bg-pink-50 border-2 border-pink-200 rounded-xl p-4 text-center transition-all hover:bg-pink-500 hover:text-white hover:-translate-y-1 hover:shadow-lg">
+                  <strong className="block mb-2">💖 恋愛カウンセリング</strong>
+                  <span className="text-sm">大人の恋愛関係構築サポート</span>
+                </div>
+                <div className="bg-pink-50 border-2 border-pink-200 rounded-xl p-4 text-center transition-all hover:bg-pink-500 hover:text-white hover:-translate-y-1 hover:shadow-lg">
+                  <strong className="block mb-2">✨ 自己肯定感向上</strong>
+                  <span className="text-sm">内面からの美しさを引き出す</span>
+                </div>
+              </div>
+            </div>
+
+            {/* コミュニケーション・話し方 */}
+            <div className="mb-9">
+              <h2 className="text-2xl font-bold mb-4 pl-4 border-l-8" style={{ 
+                color: '#e91e63', 
+                borderLeftColor: '#ff6b6b' 
+              }}>
+                コミュニケーション・話し方
+              </h2>
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                <div className="bg-pink-50 border-2 border-pink-200 rounded-xl p-4 text-center transition-all hover:bg-pink-500 hover:text-white hover:-translate-y-1 hover:shadow-lg">
+                  <strong className="block mb-2">🗣️ 洗練された言葉遣い</strong>
+                  <span className="text-sm">丁寧語ながら親しみやすい語り口</span>
+                </div>
+                <div className="bg-pink-50 border-2 border-pink-200 rounded-xl p-4 text-center transition-all hover:bg-pink-500 hover:text-white hover:-translate-y-1 hover:shadow-lg">
+                  <strong className="block mb-2">💝 励ましの言葉</strong>
+                  <span className="text-sm">自己肯定感を高める優しい導き</span>
+                </div>
+                <div className="bg-pink-50 border-2 border-pink-200 rounded-xl p-4 text-center transition-all hover:bg-pink-500 hover:text-white hover:-translate-y-1 hover:shadow-lg">
+                  <strong className="block mb-2">👩‍🎓 経験に基づく助言</strong>
+                  <span className="text-sm">実体験を活かした具体的なアドバイス</span>
+                </div>
+              </div>
+            </div>
+
+            {/* 美容・恋愛哲学 */}
+            <div className="mb-9">
+              <h2 className="text-2xl font-bold mb-4 pl-4 border-l-8" style={{ 
+                color: '#e91e63', 
+                borderLeftColor: '#ff6b6b' 
+              }}>
+                美容・恋愛哲学
+              </h2>
+              <div 
+                className="text-white rounded-2xl p-6 leading-relaxed"
+                style={{ background: 'linear-gradient(135deg, #ff6b6b 0%, #ee5a24 100%)' }}
+              >
+                <strong className="block text-lg mb-3 text-yellow-100">
+                  「年齢を重ねることは、新しい魅力を発見すること」
+                </strong>
+                外見だけでなく、内面からの美しさを大切にし、自分らしさを磨き続けることが真の美しさだと信じています。恋愛においても、自分を大切にできる人こそが、本当に愛される存在になれるのです。
+              </div>
+            </div>
+
+            {/* 美容ルーティン・ライフスタイル */}
+            <div className="mb-9">
+              <h2 className="text-2xl font-bold mb-4 pl-4 border-l-8" style={{ 
+                color: '#e91e63', 
+                borderLeftColor: '#ff6b6b' 
+              }}>
+                美容ルーティン・ライフスタイル
+              </h2>
+              <ul className="space-y-2 ml-6">
+                <li className="flex items-start">
+                  <span className="mr-3 text-xl">🌅</span>
+                  <span>朝のスキンケア：丁寧な保湿とUVケア</span>
+                </li>
+                <li className="flex items-start">
+                  <span className="mr-3 text-xl">💆‍♀️</span>
+                  <span>セルフケア：週2回のフェイシャルマッサージ</span>
+                </li>
+                <li className="flex items-start">
+                  <span className="mr-3 text-xl">🥗</span>
+                  <span>食事：美肌を意識したバランスの良い食生活</span>
+                </li>
+                <li className="flex items-start">
+                  <span className="mr-3 text-xl">🏃‍♀️</span>
+                  <span>運動：週3回のピラティスとウォーキング</span>
+                </li>
+                <li className="flex items-start">
+                  <span className="mr-3 text-xl">📚</span>
+                  <span>学習：最新美容情報・恋愛心理学の研究</span>
+                </li>
+              </ul>
+            </div>
+
+            {/* 読者・クライアントへの想い */}
+            <div className="mb-9">
+              <h2 className="text-2xl font-bold mb-4 pl-4 border-l-8" style={{ 
+                color: '#e91e63', 
+                borderLeftColor: '#ff6b6b' 
+              }}>
+                読者・クライアントへの想い
+              </h2>
+              <p className="leading-relaxed mb-3">
+                一人ひとりが持つ個性的な魅力を見つけ出し、それを最大限に引き出すお手伝いをしたいと思っています。年齢を重ねることへの不安ではなく、新しい自分への期待を持てるようにサポートします。
+              </p>
+              <p className="leading-relaxed">
+                「自分を好きになること」から始まる真の美しさと愛される力を、一緒に育てていきましょう。あなたの中にある輝きを、もっと信じてあげてくださいね。
+              </p>
+            </div>
+
+            {/* 動画セクション */}
+            <div className="mb-9 text-center">
+              <h2 className="text-2xl font-bold mb-6" style={{ color: '#e91e63' }}>
+                真理子の紹介動画
+              </h2>
+              <div className="relative inline-block max-w-3xl w-full rounded-2xl overflow-hidden shadow-xl">
+                <video 
+                  ref={videoRef}
+                  className="w-full bg-black"
+                  controls 
+                  playsInline
+                  onEnded={handleVideoEnd}
+                >
+                  <source src="../ga/mov/character/mariko.mp4" type="video/mp4" />
+                </video>
+                {isVideoEnded && (
+                  <>
+                    <div className="absolute inset-0 bg-black bg-opacity-80 transition-opacity duration-700"></div>
+                    <button 
+                      onClick={replayVideo}
+                      className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 px-8 py-4 text-white font-bold text-lg rounded-full shadow-lg transition-transform hover:scale-105"
+                      style={{ background: 'linear-gradient(135deg, #ff6b6b 0%, #ee5a24 100%)' }}
+                    >
+                      ▶ もう一度見る
+                    </button>
+                  </>
+                )}
+              </div>
+            </div>
+
+            {/* ボタン */}
+            <div className="text-center space-y-4">
+              <a 
+                href="../chat.html?char=mariko&name=あなた" 
+                className="inline-block px-10 py-5 text-white font-bold text-lg rounded-full shadow-lg transition-all hover:-translate-y-1 hover:shadow-xl"
+                style={{ background: 'linear-gradient(135deg, #ff6b6b 0%, #ee5a24 100%)' }}
+              >
+                真理子とチャットを始める
+              </a>
+              <div className="space-y-2">
+                <a 
+                  href="../prof.html" 
+                  className="block mx-auto w-fit px-6 py-3 font-bold border-2 rounded-full transition-all hover:-translate-y-1"
+                  style={{ 
+                    backgroundColor: '#fff5f5',
+                    color: '#e91e63',
+                    borderColor: '#ff6b6b'
+                  }}
+                >
+                  AIキャラクター一覧
+                </a>
+                <a 
+                  href="../index.html" 
+                  className="block mx-auto w-fit px-6 py-3 font-bold border-2 rounded-full transition-all hover:-translate-y-1"
+                  style={{ 
+                    backgroundColor: '#fff5f5',
+                    color: '#e91e63',
+                    borderColor: '#ff6b6b'
+                  }}
+                >
+                  ← TOPページに戻る
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
