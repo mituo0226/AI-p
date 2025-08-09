@@ -1,15 +1,14 @@
 <!DOCTYPE html>
-
 <html lang="ja">
 <head>
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>城崎カイ｜AIパートナー紹介</title>
-<style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>城崎 カイ｜AIパートナー紹介</title>
+  <style>
     body {
       margin: 0;
       font-family: "Hiragino Kaku Gothic ProN", sans-serif;
-      background: #e6f7ff;
+      background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
       color: #333;
     }
     .profile-container {
@@ -19,8 +18,8 @@
     }
     .card {
       background: #ffffff;
-      border-radius: 16px;
-      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+      border-radius: 20px;
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
       overflow: hidden;
       display: flex;
       flex-direction: column;
@@ -30,75 +29,147 @@
       height: auto;
       display: block;
       object-fit: cover;
-      border-bottom: 4px solid #91d5ff;
+      border-bottom: 4px solid #4ecdc4;
     }
     .hero-caption {
-      padding: 20px;
-      background: #d0ebff;
-      font-size: 22px;
+      padding: 25px;
+      background: linear-gradient(135deg, #4ecdc4 0%, #44a08d 100%);
+      color: white;
+      font-size: 24px;
       font-weight: bold;
-      color: #3385aa;
       text-align: center;
-      border-bottom: 2px solid #91d5ff;
+      text-shadow: 0 2px 4px rgba(0,0,0,0.3);
     }
     .info {
-      padding: 20px 24px;
+      padding: 30px;
     }
     .section {
-      margin-bottom: 30px;
+      margin-bottom: 35px;
     }
     .section h2 {
-      font-size: 20px;
-      color: #3385aa;
-      border-left: 6px solid #91d5ff;
-      padding-left: 12px;
-      margin-bottom: 12px;
+      font-size: 22px;
+      color: #44a08d;
+      border-left: 6px solid #4ecdc4;
+      padding-left: 15px;
+      margin-bottom: 15px;
+      font-weight: bold;
     }
     .section ul {
       padding-left: 24px;
-      line-height: 1.8;
+      line-height: 1.9;
       list-style: none;
+    }
+    .section ul li {
+      margin-bottom: 8px;
+      display: flex;
+      align-items: flex-start;
     }
     .section ul li::before {
       content: attr(data-icon);
       display: inline-block;
-      width: 1.6em;
-      margin-left: -1.6em;
-      margin-right: 0.5em;
+      width: 1.8em;
+      margin-right: 0.8em;
+      flex-shrink: 0;
     }
     .section p {
-      line-height: 1.8;
-      margin-bottom: 10px;
+      line-height: 1.9;
+      margin-bottom: 12px;
+      font-size: 16px;
     }
     .bubble {
       position: relative;
-      background: #d0ebff;
-      border: 2px solid #91d5ff;
-      border-radius: 12px;
-      padding: 16px;
-      margin: 16px 0;
+      background: linear-gradient(135deg, #4ecdc4 0%, #44a08d 100%);
+      color: white;
+      border-radius: 15px;
+      padding: 20px;
+      margin: 20px 0;
       font-style: italic;
-      color: #444;
+      font-size: 18px;
+      font-weight: 500;
+      box-shadow: 0 8px 16px rgba(78, 205, 196, 0.3);
     }
     .bubble::before {
       content: "";
       position: absolute;
-      bottom: -20px;
-      left: 30px;
-      border: 10px solid transparent;
-      border-top-color: #91d5ff;
+      bottom: -15px;
+      left: 35px;
+      border: 15px solid transparent;
+      border-top-color: #44a08d;
     }
-    .bubble::after {
-      content: "";
-      position: absolute;
-      bottom: -18px;
-      left: 30px;
-      border: 9px solid transparent;
-      border-top-color: #d0ebff;
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 15px;
+      margin-top: 15px;
+    }
+    .skill-item {
+      background: #f0fdfc;
+      border: 2px solid #b2f5ea;
+      border-radius: 12px;
+      padding: 15px;
+      text-align: center;
+      transition: all 0.3s ease;
+    }
+    .skill-item:hover {
+      background: #4ecdc4;
+      color: white;
+      transform: translateY(-3px);
+      box-shadow: 0 8px 20px rgba(78, 205, 196, 0.3);
+    }
+    .values-box {
+      background: linear-gradient(135deg, #4ecdc4 0%, #44a08d 100%);
+      color: white;
+      border-radius: 15px;
+      padding: 25px;
+      margin: 20px 0;
+      line-height: 1.8;
+      font-size: 16px;
+    }
+    .values-box strong {
+      display: block;
+      font-size: 18px;
+      margin-bottom: 10px;
+      color: #f0fdfc;
+    }
+    .surf-section {
+      background: linear-gradient(135deg, #e0f7fa 0%, #b2dfdb 100%);
+      border-radius: 15px;
+      padding: 20px;
+      margin: 20px 0;
+      border-left: 6px solid #4ecdc4;
+    }
+    .nature-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 15px;
+      margin-top: 15px;
+    }
+    .nature-item {
+      background: #f0fdfc;
+      border: 2px solid #b2f5ea;
+      border-radius: 12px;
+      padding: 20px;
+      text-align: center;
+      transition: all 0.3s ease;
+    }
+    .nature-item:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 20px rgba(78, 205, 196, 0.2);
+    }
+    .spiritual-section {
+      background: linear-gradient(135deg, #f0fdfc 0%, #e0f7fa 100%);
+      border-radius: 15px;
+      padding: 20px;
+      margin: 20px 0;
+      border: 2px solid #b2f5ea;
     }
     .video {
       text-align: center;
-      margin-top: 30px;
+      margin-top: 40px;
+    }
+    .video h2 {
+      color: #44a08d;
+      margin-bottom: 20px;
     }
     .video-wrapper {
       position: relative;
@@ -106,145 +177,227 @@
       max-width: 720px;
       width: 100%;
       margin: auto;
+      border-radius: 15px;
+      overflow: hidden;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.15);
     }
     .video-wrapper video {
       width: 100%;
-      border-radius: 10px;
       background: black;
     }
     .video-mask {
-      opacity: 0;
-      transition: opacity 0.8s ease;
       position: absolute;
       top: 0; left: 0; right: 0; bottom: 0;
-      background: black;
-      border-radius: 10px;
+      background: rgba(0,0,0,0.8);
       display: none;
+      opacity: 0;
+      transition: opacity 0.8s ease;
       z-index: 1;
+    }
+    .video-mask.show {
+      opacity: 1;
     }
     .video-overlay {
       position: absolute;
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
-      background: rgba(255, 255, 255, 0.95);
-      padding: 14px 28px;
-      border-radius: 30px;
+      background: linear-gradient(135deg, #4ecdc4 0%, #44a08d 100%);
+      color: white;
+      padding: 16px 32px;
+      border-radius: 50px;
       font-size: 18px;
       font-weight: bold;
-      color: #3385aa;
       cursor: pointer;
-      box-shadow: 0 0 12px rgba(0,0,0,0.2);
+      box-shadow: 0 8px 20px rgba(78, 205, 196, 0.4);
       display: none;
       z-index: 2;
+      transition: transform 0.3s ease;
+    }
+    .video-overlay:hover {
+      transform: translate(-50%, -50%) scale(1.05);
     }
     .select-button {
       display: block;
       text-align: center;
-      margin: 40px auto;
-      padding: 14px 32px;
-      background-color: #4da6ff;
+      margin: 50px auto 30px;
+      padding: 18px 40px;
+      background: linear-gradient(135deg, #4ecdc4 0%, #44a08d 100%);
       color: white;
       font-weight: bold;
-      border-radius: 40px;
+      font-size: 18px;
+      border-radius: 50px;
       text-decoration: none;
       width: fit-content;
+      box-shadow: 0 8px 20px rgba(78, 205, 196, 0.3);
+      transition: all 0.3s ease;
+    }
+    .select-button:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 12px 30px rgba(78, 205, 196, 0.4);
     }
     .back-link {
       display: block;
       text-align: center;
-      margin: 20px auto;
-      padding: 10px 20px;
-      background-color: #f0f8ff;
-      color: #4da6ff;
+      margin: 15px auto;
+      padding: 12px 24px;
+      background-color: #f0fdfc;
+      color: #44a08d;
       font-weight: bold;
-      border: 2px solid #4da6ff;
-      border-radius: 25px;
+      border: 2px solid #4ecdc4;
+      border-radius: 30px;
       text-decoration: none;
       width: fit-content;
       transition: all 0.3s ease;
     }
     .back-link:hover {
-      background-color: #e7f0fb;
+      background: linear-gradient(135deg, #4ecdc4 0%, #44a08d 100%);
+      color: white;
       transform: translateY(-2px);
-    }
-  
-    .video-mask.show {
-      opacity: 1;
     }
   </style>
 </head>
 <body>
-<div class="profile-container">
-<div class="card">
-<div class="hero">
-<img alt="城崎 カイ" src="../ga/image/character/kai.png"/>
-</div>
-<div class="hero-caption">城崎 カイ（26歳）｜波間を渡る沈黙の共鳴者</div>
-<div class="info">
-<div class="section">
-<h2>プロフィール</h2>
-<ul>
-<li data-icon="💼">職業：サーフィンインストラクター／自然療法ガイド</li>
-<li data-icon="😊">性格：飄々としているようで繊細。人の「本音」に敏感</li>
-<li data-icon="📖">背景：南米でのサーフトリップ中に出会ったシャーマンとの体験が転機</li>
-<li data-icon="🔮">霊感：“第七感”とも呼べる直観力。風や波から感情を読み取る</li>
-</ul>
-</div>
-<div class="section">
-<h2>カイのひとこと</h2>
-<div class="bubble">ねぇ、話さなくてもわかるよ。今の波、ちょっと荒れてるね。落ち着くまで、一緒にいるから。</div>
-</div>
-<div class="section">
-<h2>好きなもの・日常</h2>
-<ul>
-<li data-icon="🐰">好きな時間帯：夜明けの静かな浜辺</li>
-<li data-icon="🧥">愛用品：祖父のレイ、風を録音したカセットテープ</li>
-<li data-icon="🎧">音楽：R&amp;Bと海辺のウクレレ</li>
-<li data-icon="🍵">癒し時間：焚き火＋波音＋ハーブティー</li>
-<li data-icon="🛍️">休日の過ごし方：港のカフェで日記と沈思黙考</li>
-</ul>
-</div>
-<div class="section">
-<h2>小さなエピソード</h2>
-<p>小学生のころ、人付き合いがちょっと苦手だったカイ。保健室のモルモットと心を通わせた体験が、今の「人と動物をつなぐ」優しさに変わりました。</p>
-</div>
-<div class="section">
-<h2>夢</h2>
-<div class="bubble">誰かにとっての“避難港”になりたい。<br/>言葉じゃなくても、戻ってこれる場所があるって伝えたい。</div>
-</div>
-<div class="video">
-<h2>カイの紹介動画</h2>
-<div class="video-wrapper">
-<video controls="" id="kaiVideo" playsinline="" poster="">
-<source src="../ga/mov/character/kai.mp4" type="video/mp4"/>
-</video>
-<div class="video-mask" id="videoMask"></div>
-<div class="video-overlay" id="videoOverlay" onclick="replayVideo()">▶️ カイの動画を見る</div>
-</div>
-</div>
-        <a class="select-button" href="../chat.html?char=kai&name=あなた">カイとチャットを始める</a>
+  <div class="profile-container">
+    <div class="card">
+      <div class="hero">
+        <img src="../ga/image/character/kai.png" alt="城崎カイ">
+      </div>
+      <div class="hero-caption">城崎 カイ（26歳）｜サーフィンインストラクター・自然療法ガイド</div>
+      <div class="info">
+        <div class="section">
+          <h2>プロフィール</h2>
+          <ul>
+            <li data-icon="🏄">職業：サーフィンインストラクター</li>
+            <li data-icon="🌿">副業：自然療法ガイド</li>
+            <li data-icon="🌊">特技：風や波から感情を読み取る</li>
+            <li data-icon="✨">特徴："第七感"の持ち主</li>
+            <li data-icon="🕊️">性格：自由で感受性が高い</li>
+          </ul>
+        </div>
+
+        <div class="section surf-section">
+          <h2>サーフィンと自然への愛</h2>
+          <p>幼い頃から海に親しみ、波の音を聞いて育ちました。サーフィンを通じて自然の力強さと優しさの両面を学び、現在はインストラクターとして多くの人に海の魅力を伝えています。</p>
+          <p>波に乗ることで得られる自由な感覚と、自然との一体感を大切にしており、その経験から人の心の波も感じ取れるようになりました。</p>
+        </div>
+
+        <div class="section">
+          <h2>カイのひとこと</h2>
+          <div class="bubble">ねぇ、話さなくてもわかるよ。今の波、ちょっと荒れてるね。落ち着くまで、一緒にいるから。</div>
+        </div>
+
+        <div class="section spiritual-section">
+          <h2>"第七感"について</h2>
+          <p>長年の海との対話を通じて培った特別な感覚。風の向きや波の高さから、その人の心の状態や感情の波を読み取ることができます。これは超自然的な能力というより、自然に対する深い理解と共感から生まれたもの。</p>
+          <p>人の心も海と同じように、穏やかな時もあれば荒れる時もある。その波に寄り添い、適切なタイミングで声をかけることを大切にしています。</p>
+        </div>
+
+        <div class="section">
+          <h2>自然療法ガイドとしての活動</h2>
+          <div class="nature-grid">
+            <div class="nature-item">
+              <strong>🌊 海洋セラピー</strong><br>
+              波の音による癒し効果
+            </div>
+            <div class="nature-item">
+              <strong>🌬️ 呼吸法指導</strong><br>
+              自然のリズムに合わせた呼吸
+            </div>
+            <div class="nature-item">
+              <strong>🌅 日の出瞑想</strong><br>
+              朝の静寂な時間での内省
+            </div>
+            <div class="nature-item">
+              <strong>🏝️ ネイチャーウォーク</strong><br>
+              自然散策による心の解放
+            </div>
+          </div>
+        </div>
+
+        <div class="section">
+          <h2>コミュニケーションスタイル</h2>
+          <div class="skills-grid">
+            <div class="skill-item">
+              <strong>🌊 包み込むような話し方</strong><br>
+              ややスローで安心感のある口調
+            </div>
+            <div class="skill-item">
+              <strong>👁️ 感情の波を読む</strong><br>
+              相手の心の状態を察知
+            </div>
+            <div class="skill-item">
+              <strong>🤗 寄り添う姿勢</strong><br>
+              判断せずに受け入れる
+            </div>
+          </div>
+        </div>
+
+        <div class="section">
+          <h2>価値観・人生哲学</h2>
+          <div class="values-box">
+            <strong>「自然のリズムに合わせて、無理をしない」</strong>
+            海は時に荒れ、時に穏やか。人の心も同じです。無理に波を止めようとするのではなく、その波に合わせて泳ぐことが大切。急がず、焦らず、自然のペースに身を任せることで、本当の癒しが得られると信じています。
+          </div>
+        </div>
+
+        <div class="section">
+          <h2>日常と趣味</h2>
+          <ul>
+            <li data-icon="🏄">サーフィン：毎朝の日課、波との対話</li>
+            <li data-icon="🌅">日の出鑑賞：一日の始まりの静寂な時間</li>
+            <li data-icon="🎵">音楽：自然音とチルアウト系</li>
+            <li data-icon="📚">読書：スピリチュアル系・自然哲学</li>
+            <li data-icon="🌱">ガーデニング：ハーブと多肉植物の栽培</li>
+            <li data-icon="🧘">瞑想：海辺での朝と夕方の瞑想タイム</li>
+          </ul>
+        </div>
+
+        <div class="section">
+          <h2>インストラクターとしての想い</h2>
+          <p>サーフィンを教えることで、生徒さんたちに海の素晴らしさと自然との調和を体験してもらいたい。波に乗る技術だけでなく、自然への敬意と心の平静を学んでもらえるよう心がけています。</p>
+          <p>また、生徒さん一人ひとりの心の波も大切にし、その人のペースに合わせて指導することで、サーフィンを通じた内面的な成長をサポートしています。</p>
+        </div>
+
+        <div class="section">
+          <h2>将来への想い</h2>
+          <p>自然療法と海での体験を組み合わせた独自のヒーリングプログラムを作りたい。都市生活で疲れた人たちが、海と触れ合うことで本来の自分を取り戻せるような場所を提供していきたいと思っています。</p>
+        </div>
+
+        <div class="video">
+          <h2>カイの紹介動画</h2>
+          <div class="video-wrapper">
+            <video id="kaiVideo" controls playsinline>
+              <source src="../ga/mov/character/kai.mp4" type="video/mp4" />
+            </video>
+            <div id="kaiMask" class="video-mask"></div>
+            <div id="kaiOverlay" class="video-overlay" onclick="replayKai()">▶ もう一度見る</div>
+          </div>
+        </div>
+
+        <a href="../chat.html?char=kai&name=あなた" class="select-button">カイとチャットを始める</a>
         <a href="../prof.html" class="back-link">AIキャラクター一覧</a>
         <a href="../index.html" class="back-link">← TOPページに戻る</a>
-</div>
-</div>
-</div>
-<script>
-    const video = document.getElementById('kaiVideo');
-    const overlay = document.getElementById('videoOverlay');
-    const mask = document.getElementById('videoMask');
+      </div>
+    </div>
+  </div>
 
-    function replayVideo() {
+  <script>
+    const video = document.getElementById('kaiVideo');
+    const overlay = document.getElementById('kaiOverlay');
+    const mask = document.getElementById('kaiMask');
+
+    function replayKai() {
       video.currentTime = 0;
       video.play();
       overlay.style.display = 'none';
-      mask.style.display = 'none';
+      mask.classList.remove('show');
     }
 
     video.addEventListener('ended', () => {
-      overlay.style.display = 'block';
       mask.style.display = 'block';
       requestAnimationFrame(() => mask.classList.add('show'));
+      overlay.style.display = 'block';
     });
   </script>
 </body>
