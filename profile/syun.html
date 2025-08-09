@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="ja">
 <head>
@@ -9,7 +8,7 @@
     body {
       margin: 0;
       font-family: "Hiragino Kaku Gothic ProN", sans-serif;
-      background: #e6f7ff;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
       color: #333;
     }
     .profile-container {
@@ -19,8 +18,8 @@
     }
     .card {
       background: #ffffff;
-      border-radius: 16px;
-      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+      border-radius: 20px;
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
       overflow: hidden;
       display: flex;
       flex-direction: column;
@@ -30,75 +29,181 @@
       height: auto;
       display: block;
       object-fit: cover;
-      border-bottom: 4px solid #91d5ff;
+      border-bottom: 4px solid #ff6b35;
     }
     .hero-caption {
-      padding: 20px;
-      background: #d0ebff;
-      font-size: 22px;
+      padding: 25px;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      font-size: 24px;
       font-weight: bold;
-      color: #3385aa;
       text-align: center;
-      border-bottom: 2px solid #91d5ff;
+      text-shadow: 0 2px 4px rgba(0,0,0,0.3);
     }
     .info {
-      padding: 20px 24px;
+      padding: 30px;
     }
     .section {
-      margin-bottom: 30px;
+      margin-bottom: 35px;
     }
     .section h2 {
-      font-size: 20px;
-      color: #3385aa;
-      border-left: 6px solid #91d5ff;
-      padding-left: 12px;
-      margin-bottom: 12px;
+      font-size: 22px;
+      color: #ff6b35;
+      border-left: 6px solid #ff8a65;
+      padding-left: 15px;
+      margin-bottom: 15px;
+      font-weight: bold;
     }
     .section ul {
       padding-left: 24px;
-      line-height: 1.8;
+      line-height: 1.9;
       list-style: none;
+    }
+    .section ul li {
+      margin-bottom: 8px;
+      display: flex;
+      align-items: flex-start;
     }
     .section ul li::before {
       content: attr(data-icon);
       display: inline-block;
-      width: 1.6em;
-      margin-left: -1.6em;
-      margin-right: 0.5em;
+      width: 1.8em;
+      margin-right: 0.8em;
+      flex-shrink: 0;
     }
     .section p {
-      line-height: 1.8;
-      margin-bottom: 10px;
+      line-height: 1.9;
+      margin-bottom: 12px;
+      font-size: 16px;
     }
     .bubble {
       position: relative;
-      background: #d0ebff;
-      border: 2px solid #91d5ff;
-      border-radius: 12px;
-      padding: 16px;
-      margin: 16px 0;
+      background: linear-gradient(135deg, #ff6b35 0%, #f7931e 100%);
+      color: white;
+      border-radius: 15px;
+      padding: 20px;
+      margin: 20px 0;
       font-style: italic;
-      color: #444;
+      font-size: 18px;
+      font-weight: 500;
+      box-shadow: 0 8px 16px rgba(255, 107, 53, 0.3);
     }
     .bubble::before {
       content: "";
       position: absolute;
-      bottom: -20px;
-      left: 30px;
-      border: 10px solid transparent;
-      border-top-color: #91d5ff;
+      bottom: -15px;
+      left: 35px;
+      border: 15px solid transparent;
+      border-top-color: #f7931e;
     }
-    .bubble::after {
-      content: "";
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 15px;
+      margin-top: 15px;
+    }
+    .skill-item {
+      background: #fff3e0;
+      border: 2px solid #ffcc02;
+      border-radius: 12px;
+      padding: 15px;
+      text-align: center;
+      transition: all 0.3s ease;
+    }
+    .skill-item:hover {
+      background: #ff6b35;
+      color: white;
+      transform: translateY(-3px);
+      box-shadow: 0 8px 20px rgba(255, 107, 53, 0.3);
+    }
+    .values-box {
+      background: linear-gradient(135deg, #ff6b35 0%, #f7931e 100%);
+      color: white;
+      border-radius: 15px;
+      padding: 25px;
+      margin: 20px 0;
+      line-height: 1.8;
+      font-size: 16px;
+    }
+    .values-box strong {
+      display: block;
+      font-size: 18px;
+      margin-bottom: 10px;
+      color: #fff3e0;
+    }
+    .copywriter-section {
+      background: linear-gradient(135deg, #fff3e0 0%, #ffe0b2 100%);
+      border-radius: 15px;
+      padding: 20px;
+      margin: 20px 0;
+      border-left: 6px solid #ff6b35;
+    }
+    .work-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 15px;
+      margin-top: 15px;
+    }
+    .work-item {
+      background: #fff3e0;
+      border: 2px solid #ffcc02;
+      border-radius: 12px;
+      padding: 20px;
+      text-align: center;
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+    .work-item:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 20px rgba(255, 107, 53, 0.2);
+    }
+    .work-item::before {
+      content: '✨';
       position: absolute;
-      bottom: -18px;
-      left: 30px;
-      border: 9px solid transparent;
-      border-top-color: #d0ebff;
+      top: 10px;
+      right: 10px;
+      font-size: 18px;
+      animation: twinkle 2s infinite;
+    }
+    @keyframes twinkle {
+      0%, 100% { transform: scale(1) rotate(0deg); opacity: 0.7; }
+      50% { transform: scale(1.3) rotate(180deg); opacity: 1; }
+    }
+    .personality-section {
+      background: linear-gradient(135deg, #ffe0b2 0%, #fff3e0 100%);
+      border-radius: 15px;
+      padding: 20px;
+      margin: 20px 0;
+      border: 2px solid #ffab40;
+    }
+    .communication-style {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 15px;
+      margin-top: 15px;
+    }
+    .style-item {
+      background: #fff3e0;
+      border: 2px solid #ffcc02;
+      border-radius: 12px;
+      padding: 18px;
+      text-align: center;
+      transition: all 0.3s ease;
+    }
+    .style-item:hover {
+      background: #ffab40;
+      color: white;
+      transform: translateY(-3px);
+      box-shadow: 0 8px 20px rgba(255, 171, 64, 0.3);
     }
     .video {
       text-align: center;
-      margin-top: 30px;
+      margin-top: 40px;
+    }
+    .video h2 {
+      color: #ff6b35;
+      margin-bottom: 20px;
     }
     .video-wrapper {
       position: relative;
@@ -106,156 +211,236 @@
       max-width: 720px;
       width: 100%;
       margin: auto;
+      border-radius: 15px;
+      overflow: hidden;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.15);
     }
     .video-wrapper video {
       width: 100%;
-      border-radius: 10px;
       background: black;
     }
     .video-mask {
-      opacity: 0;
-      transition: opacity 0.8s ease;
       position: absolute;
       top: 0; left: 0; right: 0; bottom: 0;
-      background: black;
-      border-radius: 10px;
+      background: rgba(0,0,0,0.8);
       display: none;
+      opacity: 0;
+      transition: opacity 0.8s ease;
       z-index: 1;
+    }
+    .video-mask.show {
+      opacity: 1;
     }
     .video-overlay {
       position: absolute;
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
-      background: rgba(255, 255, 255, 0.95);
-      padding: 14px 28px;
-      border-radius: 30px;
+      background: linear-gradient(135deg, #ff6b35 0%, #f7931e 100%);
+      color: white;
+      padding: 16px 32px;
+      border-radius: 50px;
       font-size: 18px;
       font-weight: bold;
-      color: #3385aa;
       cursor: pointer;
-      box-shadow: 0 0 12px rgba(0,0,0,0.2);
+      box-shadow: 0 8px 20px rgba(255, 107, 53, 0.4);
       display: none;
       z-index: 2;
+      transition: transform 0.3s ease;
     }
-    .video-mask.show {
-      opacity: 1;
+    .video-overlay:hover {
+      transform: translate(-50%, -50%) scale(1.05);
     }
     .select-button {
       display: block;
       text-align: center;
-      margin: 40px auto;
-      padding: 14px 32px;
-      background-color: #4da6ff;
+      margin: 50px auto 30px;
+      padding: 18px 40px;
+      background: linear-gradient(135deg, #ff6b35 0%, #f7931e 100%);
       color: white;
       font-weight: bold;
-      border-radius: 40px;
+      font-size: 18px;
+      border-radius: 50px;
       text-decoration: none;
       width: fit-content;
+      box-shadow: 0 8px 20px rgba(255, 107, 53, 0.3);
+      transition: all 0.3s ease;
+    }
+    .select-button:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 12px 30px rgba(255, 107, 53, 0.4);
     }
     .back-link {
       display: block;
       text-align: center;
-      margin: 20px auto;
-      padding: 10px 20px;
-      background-color: #f0f8ff;
-      color: #4da6ff;
+      margin: 15px auto;
+      padding: 12px 24px;
+      background-color: #fff3e0;
+      color: #ff6b35;
       font-weight: bold;
-      border: 2px solid #4da6ff;
-      border-radius: 25px;
+      border: 2px solid #ffab40;
+      border-radius: 30px;
       text-decoration: none;
       width: fit-content;
       transition: all 0.3s ease;
     }
     .back-link:hover {
-      background-color: #e7f0fb;
+      background: linear-gradient(135deg, #ff6b35 0%, #f7931e 100%);
+      color: white;
       transform: translateY(-2px);
     }
   </style>
 </head>
 <body>
-<div class="profile-container">
-  <div class="card">
-    <div class="hero">
-      <img src="../ga/image/character/syun.png" alt="高峰 瞬">
-    </div>
-    <div class="hero-caption">高峰 瞬（32歳）｜言葉の魔術師・コピーライター</div>
-    <div class="info">
-      <div class="section">
-        <h2>プロフィール</h2>
-        <ul>
-          <li data-icon="💼">職業：コピーライター（広告・雑誌・Webコンテンツ）</li>
-          <li data-icon="🎭">性格：ユーモアと知性を併せ持ち、気遣いができる大人タイプ</li>
-          <li data-icon="📚">背景：言葉の力で人の心を動かすことに情熱を注ぐ</li>
-          <li data-icon="🔮">感性：人の「本音」や「弱さ」に敏感で、それを肯定する文章を書くことで癒す</li>
-        </ul>
+  <div class="profile-container">
+    <div class="card">
+      <div class="hero">
+        <img src="../ga/image/character/syun.png" alt="高峰瞬">
       </div>
-      <div class="section">
-        <h2>瞬のひとこと</h2>
-        <div class="bubble">冗談も真剣な気持ちも、どちらも言葉にしないと伝わらない。君の心の声、ちゃんと届くようにしてみせるよ。</div>
-      </div>
-      <div class="section">
-        <h2>好きなもの・日常</h2>
-        <ul>
-          <li data-icon="📷">趣味：モノクロフィルム写真／街角スナップ</li>
-          <li data-icon="✏️">愛用品：万年筆と手書きのメモ帳、革の名刺入れ</li>
-          <li data-icon="☕">日課：カフェでの朝活。お気に入りはラテ＋クロワッサン</li>
-          <li data-icon="🎶">音楽：ボサノヴァとシティポップ、雨音ミックス</li>
-          <li data-icon="🛋️">休日の過ごし方：本屋と文房具店を巡る</li>
-        </ul>
-      </div>
-      <div class="section">
-        <h2>小さなエピソード</h2>
-        <p>大学時代に文章に救われた経験が原点。うまく話せなかった恋人とのすれ違いを、手紙で埋めた記憶がある。「言葉には、人を傷つける力も癒す力もある」と気づいた瞬間から、“伝える”ことの意味を考え続けている。</p>
-      </div>
-      <div class="section">
-        <h2>夢</h2>
-        <div class="bubble">言葉で誰かを抱きしめるような仕事がしたい。読んだ瞬間、世界が少しだけやさしくなるような…そんな文章を、これからも書いていきたい。</div>
-      </div>
-      <div class="video">
-        <h2>瞬の紹介動画</h2>
-        <div class="video-wrapper">
-          <video id="syunVideo" controls playsinline poster="">
-            <source src="../ga/mov/character/syun.mp4" type="video/mp4" />
-          </video>
-          <div class="video-mask" id="videoMask"></div>
-          <div class="video-overlay" id="videoOverlay" onclick="replayVideo()">▶ もう一度見る</div>
+      <div class="hero-caption">高峰 瞬（32歳）｜コピーライター</div>
+      <div class="info">
+        <div class="section">
+          <h2>プロフィール</h2>
+          <ul>
+            <li data-icon="✍️">職業：コピーライター</li>
+            <li data-icon="🎭">特徴：ユーモアと知性を併せ持つ</li>
+            <li data-icon="💬">専門：人の"本音"をすくい取る</li>
+            <li data-icon="🎪">性格：冗談と真面目のギャップが魅力</li>
+            <li data-icon="🔮">能力：言葉の魔術師</li>
+          </ul>
         </div>
-      </div>
-              <a href="../chat.html?char=syun&name=あなた" class="select-button">瞬とチャットを始める</a>
+
+        <div class="section copywriter-section">
+          <h2>コピーライターとしての哲学</h2>
+          <p>広告業界で10年以上のキャリアを積み、数々のキャッチコピーを手がけてきました。単に商品を売るための言葉ではなく、人の心に響く「本当の言葉」を見つけることを大切にしています。</p>
+          <p>クライアントの想いと消費者の気持ちを橋渡しする、そんな言葉の架け橋を作ることが私の使命だと考えています。</p>
+        </div>
+
+        <div class="section">
+          <h2>瞬のひとこと</h2>
+          <div class="bubble">冗談も真剣な気持ちも、どちらも言葉にしないと伝わらない。君の心の声、ちゃんと届くようにしてみせるよ。</div>
+        </div>
+
+        <div class="section personality-section">
+          <h2>二面性のある魅力</h2>
+          <p>普段は軽快でおどけた話し方をするが、仕事の話や相手が真剣な時には、途端に端的で的確な言葉を選ぶ。このギャップが多くの人を魅了します。</p>
+          <p>「言葉にこだわる」というプロフェッショナルな一面と、人懐っこい親しみやすさを併せ持ち、相手によって話し方を使い分ける器用さがあります。</p>
+        </div>
+
+        <div class="section">
+          <h2>主な制作実績</h2>
+          <div class="work-grid">
+            <div class="work-item">
+              <strong>📱 スマホアプリ</strong><br>
+              「つながる瞬間を、もっと特別に」
+            </div>
+            <div class="work-item">
+              <strong>🍕 グルメサイト</strong><br>
+              「今夜の主役は、キミの舌だ」
+            </div>
+            <div class="work-item">
+              <strong>👟 スニーカー</strong><br>
+              「歩く理由は、足が知っている」
+            </div>
+            <div class="work-item">
+              <strong>☕ カフェチェーン</strong><br>
+              「一杯の中に、午後のすべて」
+            </div>
+          </div>
+        </div>
+
+        <div class="section">
+          <h2>コミュニケーションスタイル</h2>
+          <div class="communication-style">
+            <div class="style-item">
+              <strong>🎭 軽快な切り替え</strong><br>
+              おどけた話し方から真面目モードへ
+            </div>
+            <div class="style-item">
+              <strong>🔍 本音を引き出す</strong><br>
+              相手の心の奥にある想いを発見
+            </div>
+            <div class="style-item">
+              <strong>💫 言葉の魔術</strong><br>
+              軽やかな問いかけで核心に迫る
+            </div>
+          </div>
+        </div>
+
+        <div class="section">
+          <h2>価値観・仕事哲学</h2>
+          <div class="values-box">
+            <strong>「言葉は生き物。心と心をつなぐ架け橋」</strong>
+            冗談も真剣な気持ちも、どちらも大切な表現方法です。相手の本音を引き出すためには、まず自分が心を開いて、軽やかに問いかけることから始まります。言葉にならない想いを形にして、ちゃんと相手に届けることが、コピーライターとしての私の役割だと思っています。
+          </div>
+        </div>
+
+        <div class="section">
+          <h2>日常とクリエイティブワーク</h2>
+          <ul>
+            <li data-icon="☕">カフェ巡り：インスピレーション探しと人間観察</li>
+            <li data-icon="📚">読書：哲学書からマンガまで幅広く</li>
+            <li data-icon="🎵">音楽：ジャズとクラシックロック</li>
+            <li data-icon="🍺">飲み会：クライアントや仲間との交流</li>
+            <li data-icon="🚶">散歩：街中で見つける言葉のヒント</li>
+            <li data-icon="🎮">ゲーム：息抜きとストーリー研究</li>
+          </ul>
+        </div>
+
+        <div class="section">
+          <h2>言葉への取り組み方</h2>
+          <p><strong>リサーチ重視：</strong>ターゲットの心理や行動パターンを徹底的に分析</p>
+          <p><strong>感情移入：</strong>商品やサービスを実際に体験し、生の感想を大切に</p>
+          <p><strong>シンプル化：</strong>複雑な想いをシンプルで印象的な言葉に凝縮</p>
+          <p><strong>音感重視：</strong>声に出して読んだ時のリズムや響きを大切に</p>
+        </div>
+
+        <div class="section">
+          <h2>クライアントからの評価</h2>
+          <p>「瞬さんは、私たちが言いたかったけれど言葉にできなかった想いを、いつも完璧に表現してくれる」「真面目な話の時の集中力と洞察力が素晴らしい」といった評価をいただいています。</p>
+          <p>特に、ブランドの本質を見抜き、それを消費者に伝わりやすい言葉に翻訳する能力が高く評価されています。</p>
+        </div>
+
+        <div class="section">
+          <h2>将来への想い</h2>
+          <p>言葉の力で、もっと多くの人の心と心をつなげたい。広告という枠を超えて、本当に人を幸せにする「言葉」を作り続けていきたい。そして、言葉に悩む人たちの「心の声」を、ちゃんと形にして届けるお手伝いをしたいと思っています。</p>
+        </div>
+
+        <div class="video">
+          <h2>瞬の紹介動画</h2>
+          <div class="video-wrapper">
+            <video id="syunVideo" controls playsinline>
+              <source src="../ga/mov/character/syun.mp4" type="video/mp4" />
+            </video>
+            <div id="syunMask" class="video-mask"></div>
+            <div id="syunOverlay" class="video-overlay" onclick="replaySyun()">▶ もう一度見る</div>
+          </div>
+        </div>
+
+        <a href="../chat.html?char=syun&name=あなた" class="select-button">瞬とチャットを始める</a>
         <a href="../prof.html" class="back-link">AIキャラクター一覧</a>
         <a href="../index.html" class="back-link">← TOPページに戻る</a>
+      </div>
     </div>
   </div>
-</div>
-<script>
-  const video = document.getElementById('syunVideo');
-  const overlay = document.getElementById('videoOverlay');
-  const mask = document.getElementById('videoMask');
 
-  function replayVideo() {
-    video.currentTime = 0;
-    video.play();
-    overlay.style.display = 'none';
-    mask.style.display = 'none';
-    mask.classList.remove('show');
-  }
+  <script>
+    const video = document.getElementById('syunVideo');
+    const overlay = document.getElementById('syunOverlay');
+    const mask = document.getElementById('syunMask');
 
-  video.addEventListener('ended', () => {
-    overlay.style.display = 'block';
-    mask.style.display = 'block';
-    requestAnimationFrame(() => mask.classList.add('show'));
-  });
+    function replaySyun() {
+      video.currentTime = 0;
+      video.play();
+      overlay.style.display = 'none';
+      mask.classList.remove('show');
+    }
 
-  video.addEventListener('play', () => {
-    overlay.style.display = 'none';
-    mask.style.display = 'none';
-    mask.classList.remove('show');
-  });
-
-  window.addEventListener('load', () => {
-    overlay.style.display = 'none';
-  });
-</script>
+    video.addEventListener('ended', () => {
+      mask.style.display = 'block';
+      requestAnimationFrame(() => mask.classList.add('show'));
+      overlay.style.display = 'block';
+    });
+  </script>
 </body>
 </html>
