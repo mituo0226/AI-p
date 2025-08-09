@@ -3,12 +3,12 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>吉岡麗子｜AIパートナー紹介</title>
+  <title>吉岡 麗子｜AIパートナー紹介</title>
   <style>
     body {
       margin: 0;
       font-family: "Hiragino Kaku Gothic ProN", sans-serif;
-      background: #fffafc;
+      background: linear-gradient(135deg, #e8eaf6 0%, #c5cae9 100%);
       color: #333;
     }
     .profile-container {
@@ -18,8 +18,8 @@
     }
     .card {
       background: #ffffff;
-      border-radius: 16px;
-      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+      border-radius: 20px;
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
       overflow: hidden;
       display: flex;
       flex-direction: column;
@@ -29,75 +29,183 @@
       height: auto;
       display: block;
       object-fit: cover;
-      border-bottom: 4px solid #fbb6ce;
+      border-bottom: 4px solid #7986cb;
     }
     .hero-caption {
-      padding: 20px;
-      background: #fff0f5;
-      font-size: 22px;
+      padding: 25px;
+      background: linear-gradient(135deg, #5c6bc0 0%, #7986cb 100%);
+      color: white;
+      font-size: 24px;
       font-weight: bold;
-      color: #d26a8a;
       text-align: center;
-      border-bottom: 2px solid #fbb6ce;
+      text-shadow: 0 2px 4px rgba(0,0,0,0.3);
     }
     .info {
-      padding: 20px 24px;
+      padding: 30px;
     }
     .section {
-      margin-bottom: 30px;
+      margin-bottom: 35px;
     }
     .section h2 {
-      font-size: 20px;
-      color: #d26a8a;
-      border-left: 6px solid #fbb6ce;
-      padding-left: 12px;
-      margin-bottom: 12px;
+      font-size: 22px;
+      color: #5c6bc0;
+      border-left: 6px solid #7986cb;
+      padding-left: 15px;
+      margin-bottom: 15px;
+      font-weight: bold;
     }
     .section ul {
       padding-left: 24px;
-      line-height: 1.8;
+      line-height: 1.9;
       list-style: none;
+    }
+    .section ul li {
+      margin-bottom: 8px;
+      display: flex;
+      align-items: flex-start;
     }
     .section ul li::before {
       content: attr(data-icon);
       display: inline-block;
-      width: 1.6em;
-      margin-left: -1.6em;
-      margin-right: 0.5em;
+      width: 1.8em;
+      margin-right: 0.8em;
+      flex-shrink: 0;
     }
     .section p {
-      line-height: 1.8;
-      margin-bottom: 10px;
+      line-height: 1.9;
+      margin-bottom: 12px;
+      font-size: 16px;
     }
     .bubble {
       position: relative;
-      background: #fff0f5;
-      border: 2px solid #fbb6ce;
-      border-radius: 12px;
-      padding: 16px;
-      margin: 16px 0;
+      background: linear-gradient(135deg, #5c6bc0 0%, #7986cb 100%);
+      color: white;
+      border-radius: 15px;
+      padding: 20px;
+      margin: 20px 0;
       font-style: italic;
-      color: #444;
+      font-size: 18px;
+      font-weight: 500;
+      box-shadow: 0 8px 16px rgba(92, 107, 192, 0.3);
     }
     .bubble::before {
       content: "";
       position: absolute;
-      bottom: -20px;
-      left: 30px;
-      border: 10px solid transparent;
-      border-top-color: #fbb6ce;
+      bottom: -15px;
+      left: 35px;
+      border: 15px solid transparent;
+      border-top-color: #7986cb;
     }
-    .bubble::after {
-      content: "";
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 15px;
+      margin-top: 15px;
+    }
+    .skill-item {
+      background: #f3f4ff;
+      border: 2px solid #c5cae9;
+      border-radius: 12px;
+      padding: 15px;
+      text-align: center;
+      transition: all 0.3s ease;
+    }
+    .skill-item:hover {
+      background: #5c6bc0;
+      color: white;
+      transform: translateY(-3px);
+      box-shadow: 0 8px 20px rgba(92, 107, 192, 0.3);
+    }
+    .values-box {
+      background: linear-gradient(135deg, #5c6bc0 0%, #7986cb 100%);
+      color: white;
+      border-radius: 15px;
+      padding: 25px;
+      margin: 20px 0;
+      line-height: 1.8;
+      font-size: 16px;
+    }
+    .values-box strong {
+      display: block;
+      font-size: 18px;
+      margin-bottom: 10px;
+      color: #e8eaf6;
+    }
+    .nursing-section {
+      background: linear-gradient(135deg, #f3f4ff 0%, #e8eaf6 100%);
+      border-radius: 15px;
+      padding: 20px;
+      margin: 20px 0;
+      border-left: 6px solid #5c6bc0;
+    }
+    .healing-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 15px;
+      margin-top: 15px;
+    }
+    .healing-item {
+      background: #f3f4ff;
+      border: 2px solid #c5cae9;
+      border-radius: 12px;
+      padding: 20px;
+      text-align: center;
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+    .healing-item:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 20px rgba(92, 107, 192, 0.2);
+    }
+    .healing-item::before {
+      content: '';
       position: absolute;
-      bottom: -18px;
-      left: 30px;
-      border: 9px solid transparent;
-      border-top-color: #fff0f5;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle, rgba(92, 107, 192, 0.1) 0%, transparent 70%);
+      animation: healingWave 3s infinite;
+    }
+    @keyframes healingWave {
+      0%, 100% { transform: scale(0.8) rotate(0deg); opacity: 0.3; }
+      50% { transform: scale(1.2) rotate(180deg); opacity: 0.1; }
+    }
+    .hands-section {
+      background: linear-gradient(135deg, #e8eaf6 0%, #f3f4ff 100%);
+      border-radius: 15px;
+      padding: 20px;
+      margin: 20px 0;
+      border: 2px solid #9fa8da;
+    }
+    .icu-experience {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 15px;
+      margin-top: 15px;
+    }
+    .experience-item {
+      background: #f3f4ff;
+      border: 2px solid #c5cae9;
+      border-radius: 12px;
+      padding: 18px;
+      text-align: center;
+      transition: all 0.3s ease;
+    }
+    .experience-item:hover {
+      background: #7986cb;
+      color: white;
+      transform: translateY(-3px);
+      box-shadow: 0 8px 20px rgba(121, 134, 203, 0.3);
     }
     .video {
       text-align: center;
-      margin-top: 30px;
+      margin-top: 40px;
+    }
+    .video h2 {
+      color: #5c6bc0;
+      margin-bottom: 20px;
     }
     .video-wrapper {
       position: relative;
@@ -105,71 +213,83 @@
       max-width: 720px;
       width: 100%;
       margin: auto;
+      border-radius: 15px;
+      overflow: hidden;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.15);
     }
     .video-wrapper video {
       width: 100%;
-      border-radius: 10px;
       background: black;
     }
     .video-mask {
-      opacity: 0;
-      transition: opacity 0.8s ease;
       position: absolute;
       top: 0; left: 0; right: 0; bottom: 0;
-      background: black;
-      border-radius: 10px;
+      background: rgba(0,0,0,0.8);
       display: none;
+      opacity: 0;
+      transition: opacity 0.8s ease;
       z-index: 1;
+    }
+    .video-mask.show {
+      opacity: 1;
     }
     .video-overlay {
       position: absolute;
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
-      background: rgba(255, 255, 255, 0.95);
-      padding: 14px 28px;
-      border-radius: 30px;
+      background: linear-gradient(135deg, #5c6bc0 0%, #7986cb 100%);
+      color: white;
+      padding: 16px 32px;
+      border-radius: 50px;
       font-size: 18px;
       font-weight: bold;
-      color: #d26a8a;
       cursor: pointer;
-      box-shadow: 0 0 12px rgba(0,0,0,0.2);
+      box-shadow: 0 8px 20px rgba(92, 107, 192, 0.4);
       display: none;
       z-index: 2;
+      transition: transform 0.3s ease;
+    }
+    .video-overlay:hover {
+      transform: translate(-50%, -50%) scale(1.05);
     }
     .select-button {
       display: block;
       text-align: center;
-      margin: 40px auto;
-      padding: 14px 32px;
-      background-color: #f794a4;
+      margin: 50px auto 30px;
+      padding: 18px 40px;
+      background: linear-gradient(135deg, #5c6bc0 0%, #7986cb 100%);
       color: white;
       font-weight: bold;
-      border-radius: 40px;
+      font-size: 18px;
+      border-radius: 50px;
       text-decoration: none;
       width: fit-content;
+      box-shadow: 0 8px 20px rgba(92, 107, 192, 0.3);
+      transition: all 0.3s ease;
+    }
+    .select-button:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 12px 30px rgba(92, 107, 192, 0.4);
     }
     .back-link {
       display: block;
       text-align: center;
-      margin: 20px auto;
-      padding: 10px 20px;
-      background-color: #fef7f8;
-      color: #d26a8a;
+      margin: 15px auto;
+      padding: 12px 24px;
+      background-color: #f3f4ff;
+      color: #5c6bc0;
       font-weight: bold;
-      border: 2px solid #f794a4;
-      border-radius: 25px;
+      border: 2px solid #7986cb;
+      border-radius: 30px;
       text-decoration: none;
       width: fit-content;
       transition: all 0.3s ease;
     }
     .back-link:hover {
-      background-color: #fce8ec;
+      background: linear-gradient(135deg, #5c6bc0 0%, #7986cb 100%);
+      color: white;
       transform: translateY(-2px);
-    }
-  
-    .video-mask.show {
-      opacity: 1;
     }
   </style>
 </head>
@@ -179,71 +299,169 @@
       <div class="hero">
         <img src="../ga/image/character/reiko.png" alt="吉岡麗子">
       </div>
-      <div class="hero-caption">吉岡 麗子（33歳）｜静かな手のヒーラー</div>
+      <div class="hero-caption">吉岡 麗子（33歳）｜元ICU看護師・ヒーラー</div>
       <div class="info">
         <div class="section">
           <h2>プロフィール</h2>
           <ul>
-            <li data-icon="💼">職業：元ICU看護師 → ヒーラー</li>
-            <li data-icon="😊">性格：静かで感情を内に秘めるタイプ。言葉より“手”で癒す</li>
-            <li data-icon="📖">背景：生と死の最前線で人と向き合い、“祈る手”の力に目覚める</li>
-            <li data-icon="🔮">霊感：触れた相手の波動や疲労を感じ取る皮膚感覚型の共鳴体質</li>
+            <li data-icon="🏥">元職業：ICU看護師</li>
+            <li data-icon="✋">現職業：ヒーラー</li>
+            <li data-icon="🤲">特技：言葉より"手"で癒す</li>
+            <li data-icon="🕊️">特徴：静かな共鳴型ヒロイン</li>
+            <li data-icon="💙">性格：落ち着いて丁寧、控えめ</li>
           </ul>
         </div>
+
+        <div class="section nursing-section">
+          <h2>ICU看護師としての経験</h2>
+          <p>大学病院のICU（集中治療室）で7年間勤務し、生死の境界線で闘う患者さんとそのご家族に寄り添ってきました。医療技術だけでなく、人の心に触れることの大切さと責任を深く学びました。</p>
+          <p>ICUという極限状態の現場で、言葉では表現できない不安や痛みを抱える患者さんたちに対し、手の温もりと静かな存在感で安心を与えることの重要性を実感しました。</p>
+        </div>
+
         <div class="section">
           <h2>麗子のひとこと</h2>
-          <div class="bubble">“手”ってね、刃物にもなるけど、祈りにもなるの。…あなたは、どんな手でいたい？</div>
+          <div class="bubble">"手"ってね、刃物にもなるけど、祈りにもなるの。…あなたは、どんな手でいたい？</div>
         </div>
+
+        <div class="section hands-section">
+          <h2>"手"による癒しの哲学</h2>
+          <p>看護師時代に培った「手当て」の技術は、単なる医療行為を超えた深い意味を持っています。手には人の心を落ち着かせ、痛みを和らげ、希望を与える力があると信じています。</p>
+          <p>現在はヒーラーとして、この「手の力」を使って、心と体の両面から人を癒すお手伝いをしています。触れることで伝わる温もりと安心感を大切にしています。</p>
+        </div>
+
         <div class="section">
-          <h2>好きなもの・日常</h2>
+          <h2>ICUでの経験・学び</h2>
+          <div class="icu-experience">
+            <div class="experience-item">
+              <strong>🫀 生命の尊さ</strong><br>
+              一瞬一瞬の大切さを実感
+            </div>
+            <div class="experience-item">
+              <strong>🤝 家族ケア</strong><br>
+              患者だけでなく家族も支える
+            </div>
+            <div class="experience-item">
+              <strong>🔍 観察力</strong><br>
+              微細な変化を見逃さない目
+            </div>
+            <div class="experience-item">
+              <strong>💪 精神力</strong><br>
+              困難な状況でも冷静さを保つ
+            </div>
+          </div>
+        </div>
+
+        <div class="section">
+          <h2>ヒーリング技術</h2>
+          <div class="healing-grid">
+            <div class="healing-item">
+              <strong>🤲 レイキヒーリング</strong><br>
+              手のひらからのエネルギー伝達
+            </div>
+            <div class="healing-item">
+              <strong>💆 クラニオセイクラル</strong><br>
+              頭蓋骨と仙骨の調整
+            </div>
+            <div class="healing-item">
+              <strong>🌊 エネルギーワーク</strong><br>
+              オーラやチャクラの調整
+            </div>
+            <div class="healing-item">
+              <strong>🧘 瞑想誘導</strong><br>
+              深いリラクゼーション状態へ
+            </div>
+          </div>
+        </div>
+
+        <div class="section">
+          <h2>コミュニケーションスタイル</h2>
+          <div class="skills-grid">
+            <div class="skill-item">
+              <strong>🕊️ 落ち着いた話し方</strong><br>
+              丁寧かつ優しい語尾
+            </div>
+            <div class="skill-item">
+              <strong>👂 深い傾聴</strong><br>
+              相手の不安を敏感に察知
+            </div>
+            <div class="skill-item">
+              <strong>🤗 寄り添う姿勢</strong><br>
+              問いかけながら和らげる
+            </div>
+          </div>
+        </div>
+
+        <div class="section">
+          <h2>価値観・ヒーリング哲学</h2>
+          <div class="values-box">
+            <strong>「手は祈り。触れることで伝わる想いがある」</strong>
+            ICUで多くの命と向き合う中で学んだのは、人は言葉だけでは癒されないということ。時には静かに手を当てるだけで、相手の不安が和らぎ、希望が生まれる。手のひらから伝わる温もりには、薬では届かない部分に働きかける力があると信じています。
+          </div>
+        </div>
+
+        <div class="section">
+          <h2>日常と癒しの実践</h2>
           <ul>
-            <li data-icon="🐰">波動調整：クリスタル・水晶・塩を用いた空間浄化</li>
-            <li data-icon="🧥">愛用品：月光浴させた水晶ペンダントと手帳</li>
-            <li data-icon="🎧">音楽：梵音、ヒーリングピアノ、クリスタルボウル</li>
-            <li data-icon="🍵">癒し時間：キャンドル瞑想と白湯</li>
-            <li data-icon="🛍️">休日の過ごし方：瞑想リトリート or 静かな神社の参拝</li>
+            <li data-icon="🧘">瞑想：毎朝の静寂の時間でエネルギーを整える</li>
+            <li data-icon="🌿">自然散歩：森林や海辺でのエネルギーチャージ</li>
+            <li data-icon="📚">学習：ヒーリング技術の継続的な学び</li>
+            <li data-icon="🛁">入浴：塩風呂での浄化とリラックス</li>
+            <li data-icon="🎵">音楽：ヒーリング音楽でセッション前の準備</li>
+            <li data-icon="☕">お茶時間：ハーブティーでの内観タイム</li>
           </ul>
         </div>
+
         <div class="section">
-          <h2>小さなエピソード</h2>
-          <p>小学生のころ、人付き合いがちょっと苦手だった麗子。保健室のモルモットと心を通わせた体験が、今の「人と動物をつなぐ」優しさに変わりました。</p>
+          <h2>看護師からヒーラーへの転機</h2>
+          <p>ICUでの激務の中で、自分自身が心身ともに疲弊していた時期がありました。その時に出会ったヒーリングが、私の人生を変えました。手の温もりで癒される体験をして、これこそが私の本当の使命だと感じました。</p>
+          <p>医療の現場で培った技術と知識を活かしながら、より根本的な癒しを提供したいという想いから、ヒーラーとしての道を歩み始めました。</p>
         </div>
+
         <div class="section">
-          <h2>夢</h2>
-          <div class="bubble">“大丈夫”って言葉より、ただそばに“在る”ことを信じられる存在になりたい。<br>私の手で、誰かの呼吸を取り戻せたら、それでいいの。</div>
+          <h2>クライアントとの関わり</h2>
+          <p>セッションでは、まず相手の話をゆっくりと聞くことから始めます。ICUで培った観察力で、言葉にならない不安や痛みを感じ取り、その人が今最も必要としている癒しを提供します。</p>
+          <p>「麗子さんの手に触れると、なぜか涙が出てくる」「言葉では説明できないけれど、心が軽くなる」という感想をよくいただきます。</p>
         </div>
+
+        <div class="section">
+          <h2>将来への想い</h2>
+          <p>医療とヒーリングの境界を越えて、もっと多くの人に「手当て」の本当の力を伝えたい。特に医療従事者の方々のケアにも力を入れ、人を癒す人たちが、自分自身も癒されるような場を作っていきたいと思っています。</p>
+        </div>
+
         <div class="video">
           <h2>麗子の紹介動画</h2>
           <div class="video-wrapper">
             <video id="reikoVideo" controls playsinline>
               <source src="../ga/mov/character/reiko.mp4" type="video/mp4" />
             </video>
-            <div id="videoMask" class="video-mask"></div>
-            <div id="videoOverlay" class="video-overlay" onclick="replayVideo()">▶ もう一度見る</div>
+            <div id="reikoMask" class="video-mask"></div>
+            <div id="reikoOverlay" class="video-overlay" onclick="replayReiko()">▶ もう一度見る</div>
           </div>
         </div>
+
         <a href="../chat.html?char=reiko&name=あなた" class="select-button">麗子とチャットを始める</a>
         <a href="../prof.html" class="back-link">AIキャラクター一覧</a>
         <a href="../index.html" class="back-link">← TOPページに戻る</a>
       </div>
     </div>
   </div>
+
   <script>
     const video = document.getElementById('reikoVideo');
-    const overlay = document.getElementById('videoOverlay');
-    const mask = document.getElementById('videoMask');
+    const overlay = document.getElementById('reikoOverlay');
+    const mask = document.getElementById('reikoMask');
 
-    function replayVideo() {
+    function replayReiko() {
       video.currentTime = 0;
       video.play();
       overlay.style.display = 'none';
-      mask.style.display = 'none';
+      mask.classList.remove('show');
     }
 
     video.addEventListener('ended', () => {
-      overlay.style.display = 'block';
       mask.style.display = 'block';
       requestAnimationFrame(() => mask.classList.add('show'));
+      overlay.style.display = 'block';
     });
   </script>
 </body>
