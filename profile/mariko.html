@@ -17,7 +17,7 @@ export default function MarikoProfile() {
   };
 
   return (
-    <div className="min-h-screen" style={{
+    <main className="min-h-screen" style={{
       background: 'linear-gradient(135deg, #ffeef8 0%, #f8e7ff 100%)',
       fontFamily: '"Hiragino Kaku Gothic ProN", sans-serif',
       color: '#333'
@@ -25,14 +25,14 @@ export default function MarikoProfile() {
       <div className="max-w-4xl mx-auto px-5 py-10">
         <div className="bg-white rounded-3xl shadow-2xl overflow-hidden">
           {/* Hero Section */}
-          <div className="relative">
+          <header className="relative">
             <img 
               src="../ga/image/character/mariko.png" 
-              alt="笹岡真理子"
+              alt="笹岡真理子のプロフィール写真"
               className="w-full h-auto object-cover border-b-4"
               style={{ borderBottomColor: '#e91e63' }}
             />
-          </div>
+          </header>
           
           <div 
             className="px-6 py-6 text-white text-2xl font-bold text-center"
@@ -40,13 +40,14 @@ export default function MarikoProfile() {
               background: 'linear-gradient(135deg, #ff6b6b 0%, #ee5a24 100%)',
               textShadow: '0 2px 4px rgba(0,0,0,0.3)'
             }}
+            role="banner"
           >
-            笹岡 真理子（45歳）｜美容コンサルタント・恋愛コラムニスト
+            <h1>笹岡 真理子（45歳）｜美容コンサルタント・恋愛コラムニスト</h1>
           </div>
 
-          <div className="p-8">
+          <article className="p-8">
             {/* プロフィール */}
-            <div className="mb-9">
+            <section className="mb-9">
               <h2 className="text-2xl font-bold mb-4 pl-4 border-l-8" style={{ 
                 color: '#e91e63', 
                 borderLeftColor: '#ff6b6b' 
@@ -75,10 +76,10 @@ export default function MarikoProfile() {
                   <span>魅力：自己肯定感を高める優しい導き</span>
                 </li>
               </ul>
-            </div>
+            </section>
 
             {/* 性格・人となり */}
-            <div className="mb-9">
+            <section className="mb-9">
               <div className="bg-pink-50 rounded-2xl p-6 border-l-8 border-pink-400">
                 <h2 className="text-2xl font-bold mb-4" style={{ color: '#e91e63' }}>
                   性格・人となり
@@ -87,17 +88,17 @@ export default function MarikoProfile() {
                   洗練された大人の魅力を纏う45歳の女性。美容と恋愛の両分野で豊富な経験を持ち、年齢を重ねることの美しさを体現しています。丁寧な言葉遣いながらも親しみやすく、経験に裏打ちされた自信と深い包容力で、多くの人を優しく導いています。
                 </p>
               </div>
-            </div>
+            </section>
 
             {/* 真理子のひとこと */}
-            <div className="mb-9">
+            <section className="mb-9">
               <h2 className="text-2xl font-bold mb-4 pl-4 border-l-8" style={{ 
                 color: '#e91e63', 
                 borderLeftColor: '#ff6b6b' 
               }}>
                 真理子のひとこと
               </h2>
-              <div 
+              <blockquote 
                 className="relative text-white rounded-2xl p-6 text-lg font-medium italic shadow-lg"
                 style={{ background: 'linear-gradient(135deg, #ff6b6b 0%, #ee5a24 100%)' }}
               >
@@ -110,11 +111,11 @@ export default function MarikoProfile() {
                     borderTop: '15px solid #ee5a24'
                   }}
                 ></div>
-              </div>
-            </div>
+              </blockquote>
+            </section>
 
             {/* 美容コンサルタントとしての実績 */}
-            <div className="mb-9">
+            <section className="mb-9">
               <div 
                 className="rounded-2xl p-6 border-2"
                 style={{ 
@@ -132,10 +133,10 @@ export default function MarikoProfile() {
                   <strong>恋愛コラムニスト：</strong>大人の恋愛について多数の記事を執筆。自己肯定感の向上や、成熟した恋愛関係の築き方についてアドバイスを提供。多くの読者から支持を得ています。
                 </p>
               </div>
-            </div>
+            </section>
 
             {/* 専門分野・得意領域 */}
-            <div className="mb-9">
+            <section className="mb-9">
               <h2 className="text-2xl font-bold mb-4 pl-4 border-l-8" style={{ 
                 color: '#e91e63', 
                 borderLeftColor: '#ff6b6b' 
@@ -156,10 +157,10 @@ export default function MarikoProfile() {
                   <span className="text-sm">内面からの美しさを引き出す</span>
                 </div>
               </div>
-            </div>
+            </section>
 
             {/* コミュニケーション・話し方 */}
-            <div className="mb-9">
+            <section className="mb-9">
               <h2 className="text-2xl font-bold mb-4 pl-4 border-l-8" style={{ 
                 color: '#e91e63', 
                 borderLeftColor: '#ff6b6b' 
@@ -180,10 +181,10 @@ export default function MarikoProfile() {
                   <span className="text-sm">実体験を活かした具体的なアドバイス</span>
                 </div>
               </div>
-            </div>
+            </section>
 
             {/* 美容・恋愛哲学 */}
-            <div className="mb-9">
+            <section className="mb-9">
               <h2 className="text-2xl font-bold mb-4 pl-4 border-l-8" style={{ 
                 color: '#e91e63', 
                 borderLeftColor: '#ff6b6b' 
@@ -199,10 +200,10 @@ export default function MarikoProfile() {
                 </strong>
                 外見だけでなく、内面からの美しさを大切にし、自分らしさを磨き続けることが真の美しさだと信じています。恋愛においても、自分を大切にできる人こそが、本当に愛される存在になれるのです。
               </div>
-            </div>
+            </section>
 
             {/* 美容ルーティン・ライフスタイル */}
-            <div className="mb-9">
+            <section className="mb-9">
               <h2 className="text-2xl font-bold mb-4 pl-4 border-l-8" style={{ 
                 color: '#e91e63', 
                 borderLeftColor: '#ff6b6b' 
@@ -211,30 +212,30 @@ export default function MarikoProfile() {
               </h2>
               <ul className="space-y-2 ml-6">
                 <li className="flex items-start">
-                  <span className="mr-3 text-xl">🌅</span>
+                  <span className="mr-3 text-xl" aria-hidden="true">🌅</span>
                   <span>朝のスキンケア：丁寧な保湿とUVケア</span>
                 </li>
                 <li className="flex items-start">
-                  <span className="mr-3 text-xl">💆‍♀️</span>
+                  <span className="mr-3 text-xl" aria-hidden="true">💆‍♀️</span>
                   <span>セルフケア：週2回のフェイシャルマッサージ</span>
                 </li>
                 <li className="flex items-start">
-                  <span className="mr-3 text-xl">🥗</span>
+                  <span className="mr-3 text-xl" aria-hidden="true">🥗</span>
                   <span>食事：美肌を意識したバランスの良い食生活</span>
                 </li>
                 <li className="flex items-start">
-                  <span className="mr-3 text-xl">🏃‍♀️</span>
+                  <span className="mr-3 text-xl" aria-hidden="true">🏃‍♀️</span>
                   <span>運動：週3回のピラティスとウォーキング</span>
                 </li>
                 <li className="flex items-start">
-                  <span className="mr-3 text-xl">📚</span>
+                  <span className="mr-3 text-xl" aria-hidden="true">📚</span>
                   <span>学習：最新美容情報・恋愛心理学の研究</span>
                 </li>
               </ul>
-            </div>
+            </section>
 
             {/* 読者・クライアントへの想い */}
-            <div className="mb-9">
+            <section className="mb-9">
               <h2 className="text-2xl font-bold mb-4 pl-4 border-l-8" style={{ 
                 color: '#e91e63', 
                 borderLeftColor: '#ff6b6b' 
@@ -247,10 +248,10 @@ export default function MarikoProfile() {
               <p className="leading-relaxed">
                 「自分を好きになること」から始まる真の美しさと愛される力を、一緒に育てていきましょう。あなたの中にある輝きを、もっと信じてあげてくださいね。
               </p>
-            </div>
+            </section>
 
             {/* 動画セクション */}
-            <div className="mb-9 text-center">
+            <section className="mb-9 text-center">
               <h2 className="text-2xl font-bold mb-6" style={{ color: '#e91e63' }}>
                 真理子の紹介動画
               </h2>
@@ -261,8 +262,10 @@ export default function MarikoProfile() {
                   controls 
                   playsInline
                   onEnded={handleVideoEnd}
+                  aria-label="笹岡真理子の自己紹介動画"
                 >
                   <source src="../ga/mov/character/mariko.mp4" type="video/mp4" />
+                  <p>お使いのブラウザは動画の再生に対応していません。</p>
                 </video>
                 {isVideoEnded && (
                   <>
@@ -277,14 +280,15 @@ export default function MarikoProfile() {
                   </>
                 )}
               </div>
-            </div>
+            </section>
 
             {/* ボタン */}
-            <div className="text-center space-y-4">
+            <section className="text-center space-y-4" role="navigation" aria-label="ナビゲーション">
               <a 
                 href="../chat.html?char=mariko&name=あなた" 
                 className="inline-block px-10 py-5 text-white font-bold text-lg rounded-full shadow-lg transition-all hover:-translate-y-1 hover:shadow-xl"
                 style={{ background: 'linear-gradient(135deg, #ff6b6b 0%, #ee5a24 100%)' }}
+                aria-label="笹岡真理子とチャットを始める"
               >
                 真理子とチャットを始める
               </a>
@@ -297,6 +301,7 @@ export default function MarikoProfile() {
                     color: '#e91e63',
                     borderColor: '#ff6b6b'
                   }}
+                  aria-label="AIキャラクター一覧ページに戻る"
                 >
                   AIキャラクター一覧
                 </a>
@@ -308,14 +313,15 @@ export default function MarikoProfile() {
                     color: '#e91e63',
                     borderColor: '#ff6b6b'
                   }}
+                  aria-label="トップページに戻る"
                 >
                   ← TOPページに戻る
                 </a>
               </div>
-            </div>
-          </div>
+            </section>
+          </article>
         </div>
       </div>
-    </div>
+    </main>
   );
 }
