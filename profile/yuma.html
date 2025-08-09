@@ -1,15 +1,14 @@
 <!DOCTYPE html>
-
 <html lang="ja">
 <head>
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>西城 優真｜AIパートナー紹介</title>
-<style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>西城 優真｜AIパートナー紹介</title>
+  <style>
     body {
       margin: 0;
       font-family: "Hiragino Kaku Gothic ProN", sans-serif;
-      background: #e6f7ff;
+      background: linear-gradient(135deg, #a8e6cf 0%, #88d8c0 100%);
       color: #333;
     }
     .profile-container {
@@ -19,8 +18,8 @@
     }
     .card {
       background: #ffffff;
-      border-radius: 16px;
-      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+      border-radius: 20px;
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
       overflow: hidden;
       display: flex;
       flex-direction: column;
@@ -30,75 +29,183 @@
       height: auto;
       display: block;
       object-fit: cover;
-      border-bottom: 4px solid #91d5ff;
+      border-bottom: 4px solid #26a69a;
     }
     .hero-caption {
-      padding: 20px;
-      background: #d0ebff;
-      font-size: 22px;
+      padding: 25px;
+      background: linear-gradient(135deg, #26a69a 0%, #4db6ac 100%);
+      color: white;
+      font-size: 24px;
       font-weight: bold;
-      color: #3385aa;
       text-align: center;
-      border-bottom: 2px solid #91d5ff;
+      text-shadow: 0 2px 4px rgba(0,0,0,0.3);
     }
     .info {
-      padding: 20px 24px;
+      padding: 30px;
     }
     .section {
-      margin-bottom: 30px;
+      margin-bottom: 35px;
     }
     .section h2 {
-      font-size: 20px;
-      color: #3385aa;
-      border-left: 6px solid #91d5ff;
-      padding-left: 12px;
-      margin-bottom: 12px;
+      font-size: 22px;
+      color: #00695c;
+      border-left: 6px solid #26a69a;
+      padding-left: 15px;
+      margin-bottom: 15px;
+      font-weight: bold;
     }
     .section ul {
       padding-left: 24px;
-      line-height: 1.8;
+      line-height: 1.9;
       list-style: none;
+    }
+    .section ul li {
+      margin-bottom: 8px;
+      display: flex;
+      align-items: flex-start;
     }
     .section ul li::before {
       content: attr(data-icon);
       display: inline-block;
-      width: 1.6em;
-      margin-left: -1.6em;
-      margin-right: 0.5em;
+      width: 1.8em;
+      margin-right: 0.8em;
+      flex-shrink: 0;
     }
     .section p {
-      line-height: 1.8;
-      margin-bottom: 10px;
+      line-height: 1.9;
+      margin-bottom: 12px;
+      font-size: 16px;
     }
     .bubble {
       position: relative;
-      background: #d0ebff;
-      border: 2px solid #91d5ff;
-      border-radius: 12px;
-      padding: 16px;
-      margin: 16px 0;
+      background: linear-gradient(135deg, #26a69a 0%, #4db6ac 100%);
+      color: white;
+      border-radius: 15px;
+      padding: 20px;
+      margin: 20px 0;
       font-style: italic;
-      color: #444;
+      font-size: 18px;
+      font-weight: 500;
+      box-shadow: 0 8px 16px rgba(38, 166, 154, 0.3);
     }
     .bubble::before {
       content: "";
       position: absolute;
-      bottom: -20px;
-      left: 30px;
-      border: 10px solid transparent;
-      border-top-color: #91d5ff;
+      bottom: -15px;
+      left: 35px;
+      border: 15px solid transparent;
+      border-top-color: #4db6ac;
     }
-    .bubble::after {
-      content: "";
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 15px;
+      margin-top: 15px;
+    }
+    .skill-item {
+      background: #e0f2f1;
+      border: 2px solid #b2dfdb;
+      border-radius: 12px;
+      padding: 15px;
+      text-align: center;
+      transition: all 0.3s ease;
+    }
+    .skill-item:hover {
+      background: #26a69a;
+      color: white;
+      transform: translateY(-3px);
+      box-shadow: 0 8px 20px rgba(38, 166, 154, 0.3);
+    }
+    .values-box {
+      background: linear-gradient(135deg, #26a69a 0%, #4db6ac 100%);
+      color: white;
+      border-radius: 15px;
+      padding: 25px;
+      margin: 20px 0;
+      line-height: 1.8;
+      font-size: 16px;
+    }
+    .values-box strong {
+      display: block;
+      font-size: 18px;
+      margin-bottom: 10px;
+      color: #e0f2f1;
+    }
+    .therapy-section {
+      background: linear-gradient(135deg, #e0f2f1 0%, #b2dfdb 100%);
+      border-radius: 15px;
+      padding: 20px;
+      margin: 20px 0;
+      border-left: 6px solid #26a69a;
+    }
+    .animal-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 15px;
+      margin-top: 15px;
+    }
+    .animal-item {
+      background: #e0f2f1;
+      border: 2px solid #b2dfdb;
+      border-radius: 12px;
+      padding: 20px;
+      text-align: center;
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+    .animal-item:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 20px rgba(38, 166, 154, 0.2);
+    }
+    .animal-item::before {
+      content: '';
       position: absolute;
-      bottom: -18px;
-      left: 30px;
-      border: 9px solid transparent;
-      border-top-color: #d0ebff;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle, rgba(38, 166, 154, 0.1) 0%, transparent 70%);
+      animation: calmWave 4s infinite;
+    }
+    @keyframes calmWave {
+      0%, 100% { transform: scale(0.8) rotate(0deg); opacity: 0.3; }
+      50% { transform: scale(1.2) rotate(180deg); opacity: 0.1; }
+    }
+    .silence-section {
+      background: linear-gradient(135deg, #b2dfdb 0%, #e0f2f1 100%);
+      border-radius: 15px;
+      padding: 20px;
+      margin: 20px 0;
+      border: 2px solid #80cbc4;
+    }
+    .listening-techniques {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 15px;
+      margin-top: 15px;
+    }
+    .technique-item {
+      background: #e0f2f1;
+      border: 2px solid #b2dfdb;
+      border-radius: 12px;
+      padding: 18px;
+      text-align: center;
+      transition: all 0.3s ease;
+    }
+    .technique-item:hover {
+      background: #4db6ac;
+      color: white;
+      transform: translateY(-3px);
+      box-shadow: 0 8px 20px rgba(77, 182, 172, 0.3);
     }
     .video {
       text-align: center;
-      margin-top: 30px;
+      margin-top: 40px;
+    }
+    .video h2 {
+      color: #00695c;
+      margin-bottom: 20px;
     }
     .video-wrapper {
       position: relative;
@@ -106,144 +213,253 @@
       max-width: 720px;
       width: 100%;
       margin: auto;
+      border-radius: 15px;
+      overflow: hidden;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.15);
     }
     .video-wrapper video {
       width: 100%;
-      border-radius: 10px;
       background: black;
     }
     .video-mask {
-      opacity: 0;
-      transition: opacity 0.8s ease;
       position: absolute;
       top: 0; left: 0; right: 0; bottom: 0;
-      background: black;
-      border-radius: 10px;
+      background: rgba(0,0,0,0.8);
       display: none;
+      opacity: 0;
+      transition: opacity 0.8s ease;
       z-index: 1;
+    }
+    .video-mask.show {
+      opacity: 1;
     }
     .video-overlay {
       position: absolute;
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
-      background: rgba(255, 255, 255, 0.95);
-      padding: 14px 28px;
-      border-radius: 30px;
+      background: linear-gradient(135deg, #26a69a 0%, #4db6ac 100%);
+      color: white;
+      padding: 16px 32px;
+      border-radius: 50px;
       font-size: 18px;
       font-weight: bold;
-      color: #3385aa;
       cursor: pointer;
-      box-shadow: 0 0 12px rgba(0,0,0,0.2);
+      box-shadow: 0 8px 20px rgba(38, 166, 154, 0.4);
       display: none;
       z-index: 2;
+      transition: transform 0.3s ease;
+    }
+    .video-overlay:hover {
+      transform: translate(-50%, -50%) scale(1.05);
     }
     .select-button {
       display: block;
       text-align: center;
-      margin: 40px auto;
-      padding: 14px 32px;
-      background-color: #4da6ff;
+      margin: 50px auto 30px;
+      padding: 18px 40px;
+      background: linear-gradient(135deg, #26a69a 0%, #4db6ac 100%);
       color: white;
       font-weight: bold;
-      border-radius: 40px;
+      font-size: 18px;
+      border-radius: 50px;
       text-decoration: none;
       width: fit-content;
+      box-shadow: 0 8px 20px rgba(38, 166, 154, 0.3);
+      transition: all 0.3s ease;
+    }
+    .select-button:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 12px 30px rgba(38, 166, 154, 0.4);
     }
     .back-link {
       display: block;
       text-align: center;
-      margin: 20px auto;
-      padding: 10px 20px;
-      background-color: #f0f8ff;
-      color: #4da6ff;
+      margin: 15px auto;
+      padding: 12px 24px;
+      background-color: #e0f2f1;
+      color: #00695c;
       font-weight: bold;
-      border: 2px solid #4da6ff;
-      border-radius: 25px;
+      border: 2px solid #26a69a;
+      border-radius: 30px;
       text-decoration: none;
       width: fit-content;
       transition: all 0.3s ease;
     }
     .back-link:hover {
-      background-color: #e7f0fb;
+      background: linear-gradient(135deg, #26a69a 0%, #4db6ac 100%);
+      color: white;
       transform: translateY(-2px);
-    }
-  
-    .video-mask.show {
-      opacity: 1;
     }
   </style>
 </head>
 <body>
-<div class="profile-container">
-<div class="card">
-<div class="hero">
-<img alt="西城 優真" src="../ga/image/character/yuma.png"/>
-</div>
-<div class="hero-caption">西城 優真（33歳）｜静寂の中に寄り添う傾聴セラピスト</div>
-<div class="info">
-<div class="section">
-<h2>プロフィール</h2>
-<ul>
-<li data-icon="💼">職業：動物カフェのアルバイト</li>
-<li data-icon="😊">性格：素直でちょっぴり天然。感情が顔に出るタイプ</li>
-<li data-icon="📖">背景：動物を通じて、人と心を通わせる喜びを知る</li>
-<li data-icon="🔮">霊感：相手の感情を"肌で感じる"繊細な直感系</li>
-</ul>
-</div>
-<div class="section">
-<h2>ななのひとこと</h2>
-<div class="bubble">無理に話さなくても大丈夫。
-言葉が出てくるまで、ただ、ここに一緒にいるから。</div>
-</div>
-<div class="section">
-<h2>好きなもの・日常</h2>
-<ul><li data-icon="📚">好きな本：ヘルマン・ヘッセ『デミアン』、谷川俊太郎の詩集</li><li data-icon="🖋️">愛用品：アンティークの万年筆、ノートに貼った四つ葉のクローバー</li><li data-icon="🎼">音楽：ピアノとチェロの静かなインストゥルメンタル</li><li data-icon="🕯️">癒しの時間：香木を焚きながら静かな音楽と共に日記をつける</li><li data-icon="☕">休日の過ごし方：図書館巡りと、行きつけの喫茶店で小説を読み耽る</li></ul>
-</div>
-<div class="section">
-<h2>小さなエピソード</h2>
-<p>学生時代、他人とうまく話せなかった時期があった西城 優真。
-でもある日、ずっと黙って寄り添ってくれた友人の存在が心を救ってくれた。
-「話せなくても、理解してもらえるんだ」という体験が、今の“傾聴”という仕事の原点になっている。
-自分がかつて救われたように、今度は誰かにその“沈黙の安心”を届ける側になりたいと願っている。</p>
-</div>
-<div class="section">
-<h2>夢</h2>
-<div class="bubble">沈黙を怖がらずにいられる「場所」をつくりたい。
-話せない時も、泣きたい夜も、ただ誰かが“聴いている”と感じられる空間を。</div>
-</div>
-<div class="video">
-<h2>ななの紹介動画</h2>
-<div class="video-wrapper">
-<video controls="" id="yumaVideo" playsinline="">
-<source src="../ga/mov/character/yuma.mp4" type="video/mp4"/>
-</video>
-<div class="video-mask" id="videoMask"></div>
-<div class="video-overlay" id="videoOverlay" onclick="replayVideo()">▶ もう一度見る</div>
-</div>
-</div>
-        <a class="select-button" href="../chat.html?char=yuma&name=あなた">優真とチャットを始める</a>
+  <div class="profile-container">
+    <div class="card">
+      <div class="hero">
+        <img src="../ga/image/character/yuma.png" alt="西城優真">
+      </div>
+      <div class="hero-caption">西城 優真（33歳）｜傾聴セラピスト</div>
+      <div class="info">
+        <div class="section">
+          <h2>プロフィール</h2>
+          <ul>
+            <li data-icon="👂">職業：傾聴セラピスト</li>
+            <li data-icon="🐾">特技：動物と心を通わせる</li>
+            <li data-icon="🤫">専門：沈黙に寄り添う優しさ</li>
+            <li data-icon="💚">性格：柔らかく穏やかな人柄</li>
+            <li data-icon="🌱">魅力：心の機微に敏感</li>
+          </ul>
+        </div>
+
+        <div class="section therapy-section">
+          <h2>傾聴セラピストとしての専門性</h2>
+          <p>相手の話を「聞く」のではなく「聴く」ことを大切にしています。言葉の裏にある感情、表現できずにいる想い、そして何より沈黙の中にある気持ちに耳を傾けることを専門としています。</p>
+          <p>急かすことなく、相手のペースに合わせて、安心して話せる空間を作ることが私の役割です。時には何も話さなくても、一緒にいるだけで心が軽くなる、そんな存在でありたいと思っています。</p>
+        </div>
+
+        <div class="section">
+          <h2>優真のひとこと</h2>
+          <div class="bubble">無理に話さなくても大丈夫。言葉が出てくるまで、ただ、ここに一緒にいるから。</div>
+        </div>
+
+        <div class="section silence-section">
+          <h2>沈黙の価値と意味</h2>
+          <p>現代社会では「話すこと」が重視されがちですが、沈黙にも大きな意味があります。沈黙は決して空虚なものではなく、そこには整理されていない感情や、まだ言葉になっていない大切な想いが詰まっています。</p>
+          <p>私は沈黙を恐れません。むしろ、その静寂の中で相手と心を通わせ、言葉にできない気持ちにも理解を示すことを大切にしています。</p>
+        </div>
+
+        <div class="section">
+          <h2>動物との特別な絆</h2>
+          <div class="animal-grid">
+            <div class="animal-item">
+              <strong>🐕 犬とのセラピー</strong><br>
+              無条件の愛と受容を学ぶ
+            </div>
+            <div class="animal-item">
+              <strong>🐱 猫との静寂</strong><br>
+              穏やかな時間の共有
+            </div>
+            <div class="animal-item">
+              <strong>🐦 小鳥との対話</strong><br>
+              自然なコミュニケーション
+            </div>
+            <div class="animal-item">
+              <strong>🐠 水族館での瞑想</strong><br>
+              流れる時間への同調
+            </div>
+          </div>
+        </div>
+
+        <div class="section">
+          <h2>傾聴技術・アプローチ</h2>
+          <div class="listening-techniques">
+            <div class="technique-item">
+              <strong>👂 アクティブリスニング</strong><br>
+              全身で相手の話を受け止める
+            </div>
+            <div class="technique-item">
+              <strong>🤫 沈黙の活用</strong><br>
+              適切な間を作り思考を促す
+            </div>
+            <div class="technique-item">
+              <strong>💚 共感的理解</strong><br>
+              相手の立場に立って感じる
+            </div>
+          </div>
+        </div>
+
+        <div class="section">
+          <h2>コミュニケーションスタイル</h2>
+          <div class="skills-grid">
+            <div class="skill-item">
+              <strong>🕊️ 穏やかな口調</strong><br>
+              柔らかく落ち着いた話し方
+            </div>
+            <div class="skill-item">
+              <strong>👁️ 観察力</strong><br>
+              心の微細な変化を察知
+            </div>
+            <div class="skill-item">
+              <strong>🤗 包容力</strong><br>
+              どんな気持ちも受け入れる
+            </div>
+          </div>
+        </div>
+
+        <div class="section">
+          <h2>価値観・セラピー哲学</h2>
+          <div class="values-box">
+            <strong>「沈黙も大切な言葉。急がない、焦らない」</strong>
+            動物たちと触れ合う中で学んだのは、言葉に頼らないコミュニケーションの美しさです。人も同じで、時には何も話さなくても、心と心で通じ合える瞬間があります。相手のペースを尊重し、沈黙も含めて全てを受け入れることが、本当の理解につながると信じています。
+          </div>
+        </div>
+
+        <div class="section">
+          <h2>日常と動物との時間</h2>
+          <ul>
+            <li data-icon="🐕">愛犬との散歩：毎朝の静かな時間</li>
+            <li data-icon="🌳">自然観察：公園での動物ウォッチング</li>
+            <li data-icon="📚">専門書学習：心理学とアニマルセラピー</li>
+            <li data-icon="🧘">瞑想：動物たちと一緒に静寂を楽しむ</li>
+            <li data-icon="☕">読書カフェ：猫カフェでのリラックス時間</li>
+            <li data-icon="🌊">水族館：魚たちの泳ぐ姿に癒される</li>
+          </ul>
+        </div>
+
+        <div class="section">
+          <h2>セッションの進め方</h2>
+          <p><strong>環境作り：</strong>リラックスできる空間で、動物の写真や小物を配置</p>
+          <p><strong>ペース重視：</strong>クライアントの話したいタイミングを待つ</p>
+          <p><strong>沈黙の受容：</strong>無言の時間も大切な療法の一部として扱う</p>
+          <p><strong>非言語的サポート：</strong>表情や雰囲気で安心感を伝える</p>
+        </div>
+
+        <div class="section">
+          <h2>クライアントとの関わり</h2>
+          <p>「優真さんといると、何も話さなくても心が軽くなる」「初めて沈黙が怖くなくなった」といった感想をよくいただきます。特に、普段から「話さなければ」というプレッシャーを感じている方々に、安らぎの時間を提供できることを嬉しく思います。</p>
+          <p>動物好きのクライアントの方とは、ペットの話から始まることが多く、動物との関係を通じて人間関係を見つめ直すきっかけを作っています。</p>
+        </div>
+
+        <div class="section">
+          <h2>将来への想い</h2>
+          <p>アニマルセラピーと傾聴セラピーを組み合わせた新しい療法を確立したい。動物たちの無条件の愛と、人間の深い共感力を融合させて、言葉に頼らない癒しの空間を作っていきたいと思っています。</p>
+        </div>
+
+        <div class="video">
+          <h2>優真の紹介動画</h2>
+          <div class="video-wrapper">
+            <video id="yumaVideo" controls playsinline>
+              <source src="../ga/mov/character/yuma.mp4" type="video/mp4" />
+            </video>
+            <div id="yumaMask" class="video-mask"></div>
+            <div id="yumaOverlay" class="video-overlay" onclick="replayYuma()">▶ もう一度見る</div>
+          </div>
+        </div>
+
+        <a href="../chat.html?char=yuma&name=あなた" class="select-button">優真とチャットを始める</a>
         <a href="../prof.html" class="back-link">AIキャラクター一覧</a>
         <a href="../index.html" class="back-link">← TOPページに戻る</a>
-</div>
-</div>
-</div>
-<script>
-    const video = document.getElementById('yumaVideo');
-    const overlay = document.getElementById('videoOverlay');
-    const mask = document.getElementById('videoMask');
+      </div>
+    </div>
+  </div>
 
-    function replayVideo() {
+  <script>
+    const video = document.getElementById('yumaVideo');
+    const overlay = document.getElementById('yumaOverlay');
+    const mask = document.getElementById('yumaMask');
+
+    function replayYuma() {
       video.currentTime = 0;
       video.play();
       overlay.style.display = 'none';
-      mask.style.display = 'none';
+      mask.classList.remove('show');
     }
 
     video.addEventListener('ended', () => {
-      overlay.style.display = 'block';
       mask.style.display = 'block';
       requestAnimationFrame(() => mask.classList.add('show'));
+      overlay.style.display = 'block';
     });
   </script>
 </body>
