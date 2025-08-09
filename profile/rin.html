@@ -8,7 +8,7 @@
     body {
       margin: 0;
       font-family: "Hiragino Kaku Gothic ProN", sans-serif;
-      background: #fff8f8;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
       color: #333;
     }
     .profile-container {
@@ -18,8 +18,8 @@
     }
     .card {
       background: #ffffff;
-      border-radius: 16px;
-      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+      border-radius: 20px;
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
       overflow: hidden;
       display: flex;
       flex-direction: column;
@@ -29,75 +29,163 @@
       height: auto;
       display: block;
       object-fit: cover;
-      border-bottom: 4px solid #f9c5d5;
+      border-bottom: 4px solid #8e24aa;
     }
     .hero-caption {
-      padding: 20px;
-      background: #ffeef2;
-      font-size: 22px;
+      padding: 25px;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      font-size: 24px;
       font-weight: bold;
-      color: #cc5e8c;
       text-align: center;
-      border-bottom: 2px solid #f9c5d5;
+      text-shadow: 0 2px 4px rgba(0,0,0,0.3);
     }
     .info {
-      padding: 20px 24px;
+      padding: 30px;
     }
     .section {
-      margin-bottom: 30px;
+      margin-bottom: 35px;
     }
     .section h2 {
-      font-size: 20px;
-      color: #cc5e8c;
-      border-left: 6px solid #f9c5d5;
-      padding-left: 12px;
-      margin-bottom: 12px;
+      font-size: 22px;
+      color: #8e24aa;
+      border-left: 6px solid #ba68c8;
+      padding-left: 15px;
+      margin-bottom: 15px;
+      font-weight: bold;
     }
     .section ul {
       padding-left: 24px;
-      line-height: 1.8;
+      line-height: 1.9;
       list-style: none;
+    }
+    .section ul li {
+      margin-bottom: 8px;
+      display: flex;
+      align-items: flex-start;
     }
     .section ul li::before {
       content: attr(data-icon);
       display: inline-block;
-      width: 1.6em;
-      margin-left: -1.6em;
-      margin-right: 0.5em;
+      width: 1.8em;
+      margin-right: 0.8em;
+      flex-shrink: 0;
     }
     .section p {
-      line-height: 1.8;
-      margin-bottom: 10px;
+      line-height: 1.9;
+      margin-bottom: 12px;
+      font-size: 16px;
     }
     .bubble {
       position: relative;
-      background: #fff0f5;
-      border: 2px solid #f9c5d5;
-      border-radius: 12px;
-      padding: 16px;
-      margin: 16px 0;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      border-radius: 15px;
+      padding: 20px;
+      margin: 20px 0;
       font-style: italic;
-      color: #444;
+      font-size: 18px;
+      font-weight: 500;
+      box-shadow: 0 8px 16px rgba(102, 126, 234, 0.3);
     }
     .bubble::before {
       content: "";
       position: absolute;
-      bottom: -20px;
-      left: 30px;
-      border: 10px solid transparent;
-      border-top-color: #f9c5d5;
+      bottom: -15px;
+      left: 35px;
+      border: 15px solid transparent;
+      border-top-color: #764ba2;
     }
-    .bubble::after {
-      content: "";
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 15px;
+      margin-top: 15px;
+    }
+    .skill-item {
+      background: #f3e5f5;
+      border: 2px solid #e1bee7;
+      border-radius: 12px;
+      padding: 15px;
+      text-align: center;
+      transition: all 0.3s ease;
+    }
+    .skill-item:hover {
+      background: #8e24aa;
+      color: white;
+      transform: translateY(-3px);
+      box-shadow: 0 8px 20px rgba(142, 36, 170, 0.3);
+    }
+    .values-box {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      border-radius: 15px;
+      padding: 25px;
+      margin: 20px 0;
+      line-height: 1.8;
+      font-size: 16px;
+    }
+    .values-box strong {
+      display: block;
+      font-size: 18px;
+      margin-bottom: 10px;
+      color: #e8eaf6;
+    }
+    .music-section {
+      background: linear-gradient(135deg, #f3e5f5 0%, #e8eaf6 100%);
+      border-radius: 15px;
+      padding: 20px;
+      margin: 20px 0;
+      border-left: 6px solid #8e24aa;
+    }
+    .sound-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 15px;
+      margin-top: 15px;
+    }
+    .sound-item {
+      background: #f3e5f5;
+      border: 2px solid #e1bee7;
+      border-radius: 12px;
+      padding: 20px;
+      text-align: center;
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+    .sound-item:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 20px rgba(142, 36, 170, 0.2);
+    }
+    .sound-item::before {
+      content: '';
       position: absolute;
-      bottom: -18px;
-      left: 30px;
-      border: 9px solid transparent;
-      border-top-color: #fff0f5;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle, rgba(142, 36, 170, 0.1) 0%, transparent 70%);
+      animation: soundWave 3s infinite;
+    }
+    @keyframes soundWave {
+      0%, 100% { transform: scale(0.8) rotate(0deg); opacity: 0.3; }
+      50% { transform: scale(1.2) rotate(180deg); opacity: 0.1; }
+    }
+    .spiritual-section {
+      background: linear-gradient(135deg, #e8eaf6 0%, #f3e5f5 100%);
+      border-radius: 15px;
+      padding: 20px;
+      margin: 20px 0;
+      border: 2px solid #ba68c8;
     }
     .video {
       text-align: center;
-      margin-top: 30px;
+      margin-top: 40px;
+    }
+    .video h2 {
+      color: #8e24aa;
+      margin-bottom: 20px;
     }
     .video-wrapper {
       position: relative;
@@ -105,17 +193,18 @@
       max-width: 720px;
       width: 100%;
       margin: auto;
+      border-radius: 15px;
+      overflow: hidden;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.15);
     }
     .video-wrapper video {
       width: 100%;
-      border-radius: 10px;
       background: black;
     }
     .video-mask {
       position: absolute;
       top: 0; left: 0; right: 0; bottom: 0;
-      background: black;
-      border-radius: 10px;
+      background: rgba(0,0,0,0.8);
       display: none;
       opacity: 0;
       transition: opacity 0.8s ease;
@@ -129,45 +218,57 @@
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
-      background: rgba(255, 255, 255, 0.95);
-      padding: 14px 28px;
-      border-radius: 30px;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      padding: 16px 32px;
+      border-radius: 50px;
       font-size: 18px;
       font-weight: bold;
-      color: #cc5e8c;
       cursor: pointer;
-      box-shadow: 0 0 12px rgba(0,0,0,0.2);
+      box-shadow: 0 8px 20px rgba(102, 126, 234, 0.4);
       display: none;
       z-index: 2;
+      transition: transform 0.3s ease;
+    }
+    .video-overlay:hover {
+      transform: translate(-50%, -50%) scale(1.05);
     }
     .select-button {
       display: block;
       text-align: center;
-      margin: 40px auto;
-      padding: 14px 32px;
-      background-color: #cc5e8c;
+      margin: 50px auto 30px;
+      padding: 18px 40px;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
       color: white;
       font-weight: bold;
-      border-radius: 40px;
+      font-size: 18px;
+      border-radius: 50px;
       text-decoration: none;
       width: fit-content;
+      box-shadow: 0 8px 20px rgba(102, 126, 234, 0.3);
+      transition: all 0.3s ease;
+    }
+    .select-button:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 12px 30px rgba(102, 126, 234, 0.4);
     }
     .back-link {
       display: block;
       text-align: center;
-      margin: 20px auto;
-      padding: 10px 20px;
-      background-color: #fef7f8;
-      color: #cc5e8c;
+      margin: 15px auto;
+      padding: 12px 24px;
+      background-color: #f3e5f5;
+      color: #8e24aa;
       font-weight: bold;
-      border: 2px solid #cc5e8c;
-      border-radius: 25px;
+      border: 2px solid #ba68c8;
+      border-radius: 30px;
       text-decoration: none;
       width: fit-content;
       transition: all 0.3s ease;
     }
     .back-link:hover {
-      background-color: #fce8ec;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
       transform: translateY(-2px);
     }
   </style>
@@ -178,36 +279,108 @@
       <div class="hero">
         <img src="../ga/image/character/rin.png" alt="水樹リン">
       </div>
-      <div class="hero-caption">水樹 リン（26歳）｜スピリチュアルシンガー</div>
+      <div class="hero-caption">水樹 リン（26歳）｜スピリチュアル系シンガー</div>
       <div class="info">
         <div class="section">
           <h2>プロフィール</h2>
           <ul>
-            <li data-icon="🎨">職業：スピリチュアル系シンガー</li>
-            <li data-icon="🌸">性格：感受性豊かで幻想的な感性の持ち主</li>
-            <li data-icon="🧘">日常：自然と音に呼応しながら音楽を紡ぐ</li>
-            <li data-icon="💬">魅力：“音”で人の心に寄り添う存在</li>
+            <li data-icon="🎤">職業：スピリチュアル系シンガー</li>
+            <li data-icon="✨">特徴：幻想的で感受性豊か</li>
+            <li data-icon="🎵">特技：音で寄り添う癒し</li>
+            <li data-icon="🌙">性格：情感深く詩的</li>
+            <li data-icon="💫">魅力：音楽的リズムを持つ話し方</li>
           </ul>
         </div>
+
+        <div class="section music-section">
+          <h2>音楽への想い</h2>
+          <p>幼い頃から音に対して特別な感受性を持っていました。雨の音、風の音、街の雑踏まで、すべてが音楽として聞こえてきます。その感性を活かし、現在はスピリチュアル系のシンガーとして活動しています。</p>
+          <p>歌うことで人の心に直接響く何かを届けたい。言葉では表現できない感情や想いを、音に込めて伝えることが私の使命だと感じています。</p>
+        </div>
+
         <div class="section">
           <h2>リンのひとこと</h2>
           <div class="bubble">音って…目には見えないけど、心にはちゃんと届くんだよね。あなたの中にも、響いてる…？</div>
         </div>
+
+        <div class="section spiritual-section">
+          <h2>音楽とスピリチュアリティ</h2>
+          <p>音楽は単なる娯楽ではなく、魂と魂をつなぐ架け橋だと信じています。特定の周波数や倍音には、人の心を癒し、深い部分にある感情を解放する力があります。</p>
+          <p>ライブでは観客の皆さんと一緒に、音楽を通じた瞑想状態を作り出すことを心がけています。その瞬間、言葉を超えた何かが生まれるのを感じています。</p>
+        </div>
+
         <div class="section">
-          <h2>趣味と日常</h2>
+          <h2>音の世界・表現スタイル</h2>
+          <div class="sound-grid">
+            <div class="sound-item">
+              <strong>🎶 アンビエント</strong><br>
+              環境音を取り入れた幻想的な楽曲
+            </div>
+            <div class="sound-item">
+              <strong>🔮 ヒーリング</strong><br>
+              チャクラに働きかける周波数
+            </div>
+            <div class="sound-item">
+              <strong>🌊 ネイチャーサウンド</strong><br>
+              自然音とハーモニーの融合
+            </div>
+            <div class="sound-item">
+              <strong>🧘 メディテーション</strong><br>
+              瞑想誘導のための音楽
+            </div>
+          </div>
+        </div>
+
+        <div class="section">
+          <h2>コミュニケーションスタイル</h2>
+          <div class="skills-grid">
+            <div class="skill-item">
+              <strong>🎵 音楽的な話し方</strong><br>
+              言葉にリズムと抑揚がある
+            </div>
+            <div class="skill-item">
+              <strong>✨ 感性豊かな表現</strong><br>
+              詩的で美しい言葉選び
+            </div>
+            <div class="skill-item">
+              <strong>💝 共感と安心</strong><br>
+              感情を音で例えながら寄り添う
+            </div>
+          </div>
+        </div>
+
+        <div class="section">
+          <h2>価値観・音楽哲学</h2>
+          <div class="values-box">
+            <strong>「すべての人の心には、その人だけの音楽がある」</strong>
+            私は音楽を通じて、その人の内なる音楽を引き出すお手伝いをしたいと思っています。感情を音や響きで例えながら共感し、心の中にある美しいメロディーを一緒に見つけていきたい。音楽は言語を超えた愛の表現だと信じています。
+          </div>
+        </div>
+
+        <div class="section">
+          <h2>日常と音楽活動</h2>
           <ul>
-            <li data-icon="☕">カフェ：ラベンダーティーと木の香りの店が好き</li>
-            <li data-icon="📷">SNS：空の色だけを投稿する静かなアカウント</li>
-            <li data-icon="🎶">音楽：雨音とピアノの環境音</li>
-            <li data-icon="📖">読書：谷川俊太郎や吉本ばななの詩的なエッセイ</li>
-            <li data-icon="🧼">香り：ホワイトムスクを愛用</li>
+            <li data-icon="🎤">ライブ：小さなスペースでの親密なコンサート</li>
+            <li data-icon="🎧">作曲：自然音の録音とサンプリング</li>
+            <li data-icon="🧘">瞑想：音を使ったマインドフルネス</li>
+            <li data-icon="📚">学習：音響心理学と音楽療法の研究</li>
+            <li data-icon="🌙">夜散歩：静寂の中で音に耳を澄ます</li>
+            <li data-icon="☕">カフェ：アコースティックな空間での創作</li>
           </ul>
         </div>
+
         <div class="section">
-          <h2>将来のこと</h2>
-          <p>言葉じゃなくても、絵でも、声でも…誰かの心の隙間にそっと寄り添えるような存在でいたい。  
-          そんなふうに思える“場所”や“作品”を届けていけたらいいな。</p>
+          <h2>音楽制作について</h2>
+          <p>楽曲制作では、従来の楽器だけでなく、日常の音や自然音を大切にしています。雨音、鳥のさえずり、街の喧騒、人の息遣い…すべてが楽器になり得ると考えています。</p>
+          <p>特に人の感情の「音」を表現することに興味があり、喜び、悲しみ、怒り、安らぎといった感情をそれぞれ異なる音色や周波数で表現する実験的な作品も手がけています。</p>
         </div>
+
+        <div class="section">
+          <h2>将来への想い</h2>
+          <p>音楽を通じて、もっと多くの人の心に寄り添いたい。特に言葉では表現しきれない複雑な感情を抱えている人たちに、音楽という言語で語りかけたいと思っています。</p>
+          <p>いつか、音だけで完全にコミュニケーションできるような、そんな深いつながりを築ける存在になりたいです。</p>
+        </div>
+
         <div class="video">
           <h2>リンの紹介動画</h2>
           <div class="video-wrapper">
@@ -215,21 +388,23 @@
               <source src="../ga/mov/character/rin.mp4" type="video/mp4" />
             </video>
             <div id="rinMask" class="video-mask"></div>
-            <div id="rinOverlay" class="video-overlay" onclick="replayHonoka()">▶ もう一度見る</div>
+            <div id="rinOverlay" class="video-overlay" onclick="replayRin()">▶ もう一度見る</div>
           </div>
         </div>
+
         <a href="../chat.html?char=rin&name=あなた" class="select-button">リンとチャットを始める</a>
         <a href="../prof.html" class="back-link">AIキャラクター一覧</a>
         <a href="../index.html" class="back-link">← TOPページに戻る</a>
       </div>
     </div>
   </div>
+
   <script>
     const video = document.getElementById('rinVideo');
     const overlay = document.getElementById('rinOverlay');
     const mask = document.getElementById('rinMask');
 
-    function replayHonoka() {
+    function replayRin() {
       video.currentTime = 0;
       video.play();
       overlay.style.display = 'none';
