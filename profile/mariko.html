@@ -1,14 +1,15 @@
 <!DOCTYPE html>
+
 <html lang="ja">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>笹岡 真理子｜AIパートナー紹介</title>
-  <style>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>笹岡真理子｜AIパートナー紹介</title>
+<style>
     body {
       margin: 0;
       font-family: "Hiragino Kaku Gothic ProN", sans-serif;
-      background: linear-gradient(135deg, #ffeef8 0%, #f8e7ff 100%);
+      background: #fffafc;
       color: #333;
     }
     .profile-container {
@@ -18,199 +19,221 @@
     }
     .card {
       background: #ffffff;
-      border-radius: 20px;
-      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+      border-radius: 16px;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
       overflow: hidden;
+      display: flex;
+      flex-direction: column;
     }
-    .hero-image {
+    .hero img {
       width: 100%;
       height: auto;
       display: block;
+      object-fit: cover;
+      border-bottom: 4px solid #fbb6ce;
     }
-    .hero-banner {
-      background: linear-gradient(135deg, #ff6b6b 0%, #ee5a24 100%);
-      color: white;
-      padding: 30px;
-      text-align: center;
-      font-size: 24px;
+    .hero-caption {
+      padding: 20px;
+      background: #fff0f5;
+      font-size: 22px;
       font-weight: bold;
-      text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+      color: #d26a8a;
+      text-align: center;
+      border-bottom: 2px solid #fbb6ce;
     }
-    .content {
-      padding: 40px;
+    .info {
+      padding: 20px 24px;
     }
     .section {
-      margin-bottom: 40px;
+      margin-bottom: 30px;
     }
-    .section-title {
+    .section h2 {
       font-size: 20px;
-      font-weight: bold;
-      color: #ff6b6b;
-      margin-bottom: 15px;
-      border-bottom: 2px solid #ff6b6b;
-      padding-bottom: 5px;
+      color: #d26a8a;
+      border-left: 6px solid #fbb6ce;
+      padding-left: 12px;
+      margin-bottom: 12px;
     }
-    .phrase-box {
-      background: linear-gradient(135deg, #fff0f3 0%, #ffe8f0 100%);
-      border: 2px solid #ff6b6b;
-      border-radius: 15px;
-      padding: 20px;
-      font-size: 18px;
-      font-style: italic;
-      text-align: center;
-      margin: 20px 0;
+    .section ul {
+      padding-left: 24px;
+      line-height: 1.8;
+      list-style: none;
+    }
+    .section ul li::before {
+      content: attr(data-icon);
+      display: inline-block;
+      width: 1.6em;
+      margin-left: -1.6em;
+      margin-right: 0.5em;
+    }
+    .section p {
+      line-height: 1.8;
+      margin-bottom: 10px;
+    }
+    .bubble {
       position: relative;
+      background: #fff0f5;
+      border: 2px solid #fbb6ce;
+      border-radius: 12px;
+      padding: 16px;
+      margin: 16px 0;
+      font-style: italic;
+      color: #444;
     }
-    .phrase-box::before {
-      content: """;
-      font-size: 60px;
-      color: #ff6b6b;
-      position: absolute;
-      top: -10px;
-      left: 15px;
-    }
-    .phrase-box::after {
-      content: """;
-      font-size: 60px;
-      color: #ff6b6b;
+    .bubble::before {
+      content: "";
       position: absolute;
       bottom: -20px;
-      right: 15px;
+      left: 30px;
+      border: 10px solid transparent;
+      border-top-color: #fbb6ce;
     }
-    .intro-text {
-      font-size: 16px;
-      line-height: 1.8;
-      background: #fafafa;
-      padding: 20px;
-      border-radius: 10px;
-      border-left: 4px solid #ff6b6b;
+    .bubble::after {
+      content: "";
+      position: absolute;
+      bottom: -18px;
+      left: 30px;
+      border: 9px solid transparent;
+      border-top-color: #fff0f5;
     }
-    .video-container {
+    .video {
+      text-align: center;
+      margin-top: 30px;
+    }
+    .video-wrapper {
       position: relative;
+      display: inline-block;
+      max-width: 720px;
       width: 100%;
-      max-width: 600px;
-      margin: 0 auto;
-      background: #000;
-      border-radius: 15px;
-      overflow: hidden;
+      margin: auto;
+    }
+    .video-wrapper video {
+      width: 100%;
+      border-radius: 10px;
+      background: black;
     }
     .video-mask {
+      opacity: 0;
+      transition: opacity 0.8s ease;
       position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: #000;
-      z-index: 2;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: black;
+      border-radius: 10px;
       display: none;
+      z-index: 1;
     }
     .video-overlay {
       position: absolute;
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
-      background: rgba(0, 0, 0, 0.8);
-      color: white;
-      padding: 15px 30px;
-      border-radius: 25px;
-      cursor: pointer;
-      font-size: 18px;
-      z-index: 3;
-      display: none;
-      transition: background 0.3s;
-    }
-    .video-overlay:hover {
-      background: rgba(0, 0, 0, 0.9);
-    }
-    .select-button {
-      display: inline-block;
-      background: linear-gradient(135deg, #ff6b6b 0%, #ee5a24 100%);
-      color: white;
-      padding: 15px 40px;
+      background: rgba(255, 255, 255, 0.95);
+      padding: 14px 28px;
       border-radius: 30px;
-      text-decoration: none;
       font-size: 18px;
       font-weight: bold;
-      text-align: center;
-      margin: 20px 10px;
-      box-shadow: 0 4px 15px rgba(255, 107, 107, 0.3);
-      transition: transform 0.3s, box-shadow 0.3s;
+      color: #d26a8a;
+      cursor: pointer;
+      box-shadow: 0 0 12px rgba(0,0,0,0.2);
+      display: none;
+      z-index: 2;
     }
-    .select-button:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 8px 25px rgba(255, 107, 107, 0.4);
+    .select-button {
+      display: block;
+      text-align: center;
+      margin: 40px auto;
+      padding: 14px 32px;
+      background-color: #f794a4;
+      color: white;
+      font-weight: bold;
+      border-radius: 40px;
+      text-decoration: none;
+      width: fit-content;
     }
     .back-link {
-      display: inline-block;
-      color: #666;
-      text-decoration: none;
-      margin: 10px;
+      display: block;
+      text-align: center;
+      margin: 20px auto;
       padding: 10px 20px;
-      border: 1px solid #ddd;
-      border-radius: 20px;
-      transition: all 0.3s;
+      background-color: #fef7f8;
+      color: #d26a8a;
+      font-weight: bold;
+      border: 2px solid #f794a4;
+      border-radius: 25px;
+      text-decoration: none;
+      width: fit-content;
+      transition: all 0.3s ease;
     }
     .back-link:hover {
-      background: #f5f5f5;
-      border-color: #ccc;
+      background-color: #fce8ec;
+      transform: translateY(-2px);
     }
-    .action-buttons {
-      text-align: center;
-      margin-top: 40px;
+  
+    .video-mask.show {
+      opacity: 1;
     }
   </style>
 </head>
 <body>
-  <div class="profile-container">
-    <div class="card">
-      <img src="../ga/image/character/mariko.png" alt="笹岡真理子のプロフィール写真" class="hero-image" />
-      
-      <div class="hero-banner">
-        笹岡 真理子（45歳）｜美容コンサルタント・恋愛コラムニスト
-      </div>
-      
-      <div class="content">
-        <div class="section">
-          <div class="section-title">キャッチフレーズ</div>
-          <div class="phrase-box">
-            ねえ、自分のこと後回しにしてない？ちゃんと"あなた"を好きになる時間、つくってあげて？
-          </div>
-        </div>
-        
-        <div class="section">
-          <div class="section-title">プロフィール</div>
-          <div class="intro-text">
-            美容コンサルタント＆恋愛コラムニスト。年齢を重ねる魅力を提案する大人の指南役。洗練された大人の言葉遣いで、自己肯定感を高めるような言葉で励まし、優しく導いてくれます。
-          </div>
-        </div>
-        
-        <div class="section">
-          <div class="section-title">動画メッセージ</div>
-          <div class="video-container">
-            <video id="marikoVideo" controls playsinline>
-              <source src="../ga/mov/character/mariko.mp4" type="video/mp4" />
-              お使いのブラウザは動画をサポートしていません。
-            </video>
-            <div id="marikoMask" class="video-mask"></div>
-            <div id="marikoOverlay" class="video-overlay" onclick="replayMariko()">▶ もう一度見る</div>
-          </div>
-        </div>
-        
-        <div class="action-buttons">
-          <a href="../chat.html?char=mariko&name=あなた" class="select-button">真理子とチャットを始める</a>
-          <a href="../prof.html" class="back-link">AIキャラクター一覧</a>
-          <a href="../index.html" class="back-link">← TOPページに戻る</a>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <script>
+<div class="profile-container">
+<div class="card">
+<div class="hero">
+<img alt="笹岡 真理子" src="../ga/image/character/mariko.png"/>
+</div>
+<div class="hero-caption">笹岡 真理子（45歳）｜大人の気品と美しさを纏う 恋と美の指南役</div>
+<div class="info">
+<div class="section">
+<h2>プロフィール</h2>
+<ul>
+<li data-icon="💼">職業：美容コンサルタント／恋愛コラムニスト</li>
+<li data-icon="😊">性格：自信がない人の魅力を引き出す“包容力”と“会話力”を持つ</li>
+<li data-icon="📖">背景：コンプレックスと向き合った過去を活かし、心と肌を癒す道へ</li>
+<li data-icon="🔮">霊感：その人の“美の可能性”が光って見えると言われている</li>
+</ul>
+</div>
+<div class="section">
+<h2>真理子のひとこと</h2>
+<div class="bubble">ねえ、自分のこと後回しにしてない？<br/>ちゃんと“あなた”を好きになる時間、つくってあげて？</div>
+</div>
+<div class="section">
+<h2>好きなもの・日常</h2>
+<ul>
+<li data-icon="🐰">美容習慣：オーガニックアロマとハーブでの毎日のセルフケア</li>
+<li data-icon="🧥">愛用品：香水はシャネル19番。指輪とピンヒールが自分を整える鍵</li>
+<li data-icon="🎧">音楽：夜のジャズピアノやシャンソン。R&amp;Bで心をほどく</li>
+<li data-icon="🍵">癒し時間：お気に入りの赤ワインとビターチョコで一人乾杯</li>
+<li data-icon="🛍️">休日の過ごし方：連載コラムの執筆や後輩女性とのお茶会</li>
+</ul>
+</div>
+<div class="section">
+<h2>小さなエピソード</h2>
+<p>小学生のころ、人付き合いがちょっと苦手だった真理子。保健室のモルモットと心を通わせた体験が、今の「人と動物をつなぐ」優しさに変わりました。</p>
+</div>
+<div class="section">
+<h2>夢</h2>
+<div class="bubble">年齢を重ねることを“隠す”のではなく“楽しむ”人生へ導くこと。<br/>心と肌を整える“生き方の美容室”を作るのが夢。</div>
+</div>
+<div class="video">
+<h2>真理子の紹介動画</h2>
+<div class="video-wrapper">
+<video controls="" id="marikoVideo" playsinline="" poster="">
+<source src="../ga/mov/character/mariko.mp4" type="video/mp4"/>
+</video>
+<div class="video-mask" id="videoMask"></div>
+<div class="video-overlay" id="videoOverlay" onclick="replayVideo()">▶️ 真理子の動画を見る</div>
+</div>
+</div>
+<a class="select-button" href="../matching_result.html?char=mariko">真理子をパートナーに選ぶ</a>
+<a href="../index.html" class="back-link">← TOPページに戻る</a>
+</div>
+</div>
+</div>
+<script>
     const video = document.getElementById('marikoVideo');
-    const overlay = document.getElementById('marikoOverlay');
-    const mask = document.getElementById('marikoMask');
+    const overlay = document.getElementById('videoOverlay');
+    const mask = document.getElementById('videoMask');
 
-    function replayMariko() {
+    function replayVideo() {
       video.currentTime = 0;
       video.play();
       overlay.style.display = 'none';
@@ -220,6 +243,7 @@
     video.addEventListener('ended', () => {
       overlay.style.display = 'block';
       mask.style.display = 'block';
+      requestAnimationFrame(() => mask.classList.add('show'));
     });
   </script>
 </body>
