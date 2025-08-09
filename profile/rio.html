@@ -8,7 +8,7 @@
     body {
       margin: 0;
       font-family: "Hiragino Kaku Gothic ProN", sans-serif;
-      background: #fff8f8;
+      background: linear-gradient(135deg, #ffeaa7 0%, #fab1a0 100%);
       color: #333;
     }
     .profile-container {
@@ -18,8 +18,8 @@
     }
     .card {
       background: #ffffff;
-      border-radius: 16px;
-      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+      border-radius: 20px;
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
       overflow: hidden;
       display: flex;
       flex-direction: column;
@@ -29,75 +29,182 @@
       height: auto;
       display: block;
       object-fit: cover;
-      border-bottom: 4px solid #f9c5d5;
+      border-bottom: 4px solid #e17055;
     }
     .hero-caption {
-      padding: 20px;
-      background: #ffeef2;
-      font-size: 22px;
+      padding: 25px;
+      background: linear-gradient(135deg, #e17055 0%, #fab1a0 100%);
+      color: white;
+      font-size: 24px;
       font-weight: bold;
-      color: #cc5e8c;
       text-align: center;
-      border-bottom: 2px solid #f9c5d5;
+      text-shadow: 0 2px 4px rgba(0,0,0,0.3);
     }
     .info {
-      padding: 20px 24px;
+      padding: 30px;
     }
     .section {
-      margin-bottom: 30px;
+      margin-bottom: 35px;
     }
     .section h2 {
-      font-size: 20px;
-      color: #cc5e8c;
-      border-left: 6px solid #f9c5d5;
-      padding-left: 12px;
-      margin-bottom: 12px;
+      font-size: 22px;
+      color: #d63031;
+      border-left: 6px solid #e17055;
+      padding-left: 15px;
+      margin-bottom: 15px;
+      font-weight: bold;
     }
     .section ul {
       padding-left: 24px;
-      line-height: 1.8;
+      line-height: 1.9;
       list-style: none;
+    }
+    .section ul li {
+      margin-bottom: 8px;
+      display: flex;
+      align-items: flex-start;
     }
     .section ul li::before {
       content: attr(data-icon);
       display: inline-block;
-      width: 1.6em;
-      margin-left: -1.6em;
-      margin-right: 0.5em;
+      width: 1.8em;
+      margin-right: 0.8em;
+      flex-shrink: 0;
     }
     .section p {
-      line-height: 1.8;
-      margin-bottom: 10px;
+      line-height: 1.9;
+      margin-bottom: 12px;
+      font-size: 16px;
     }
     .bubble {
       position: relative;
-      background: #fff0f5;
-      border: 2px solid #f9c5d5;
-      border-radius: 12px;
-      padding: 16px;
-      margin: 16px 0;
+      background: linear-gradient(135deg, #e17055 0%, #fab1a0 100%);
+      color: white;
+      border-radius: 15px;
+      padding: 20px;
+      margin: 20px 0;
       font-style: italic;
-      color: #444;
+      font-size: 18px;
+      font-weight: 500;
+      box-shadow: 0 8px 16px rgba(225, 112, 85, 0.3);
     }
     .bubble::before {
       content: "";
       position: absolute;
-      bottom: -20px;
-      left: 30px;
-      border: 10px solid transparent;
-      border-top-color: #f9c5d5;
+      bottom: -15px;
+      left: 35px;
+      border: 15px solid transparent;
+      border-top-color: #fab1a0;
     }
-    .bubble::after {
-      content: "";
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 15px;
+      margin-top: 15px;
+    }
+    .skill-item {
+      background: #ffe8db;
+      border: 2px solid #fab1a0;
+      border-radius: 12px;
+      padding: 15px;
+      text-align: center;
+      transition: all 0.3s ease;
+    }
+    .skill-item:hover {
+      background: #e17055;
+      color: white;
+      transform: translateY(-3px);
+      box-shadow: 0 8px 20px rgba(225, 112, 85, 0.3);
+    }
+    .values-box {
+      background: linear-gradient(135deg, #e17055 0%, #fab1a0 100%);
+      color: white;
+      border-radius: 15px;
+      padding: 25px;
+      margin: 20px 0;
+      line-height: 1.8;
+      font-size: 16px;
+    }
+    .values-box strong {
+      display: block;
+      font-size: 18px;
+      margin-bottom: 10px;
+      color: #ffe8db;
+    }
+    .ux-section {
+      background: linear-gradient(135deg, #ffe8db 0%, #ffcab0 100%);
+      border-radius: 15px;
+      padding: 20px;
+      margin: 20px 0;
+      border-left: 6px solid #e17055;
+    }
+    .design-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 15px;
+      margin-top: 15px;
+    }
+    .design-item {
+      background: #ffe8db;
+      border: 2px solid #fab1a0;
+      border-radius: 12px;
+      padding: 20px;
+      text-align: center;
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+    .design-item:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 20px rgba(225, 112, 85, 0.2);
+    }
+    .design-item::before {
+      content: '💡';
       position: absolute;
-      bottom: -18px;
-      left: 30px;
-      border: 9px solid transparent;
-      border-top-color: #fff0f5;
+      top: 10px;
+      right: 10px;
+      font-size: 18px;
+      animation: ideaFlash 3s infinite;
+    }
+    @keyframes ideaFlash {
+      0%, 90% { opacity: 0.6; }
+      95% { opacity: 1; transform: scale(1.2); }
+      100% { opacity: 0.6; transform: scale(1); }
+    }
+    .tarot-section {
+      background: linear-gradient(135deg, #ffcab0 0%, #ffe8db 100%);
+      border-radius: 15px;
+      padding: 20px;
+      margin: 20px 0;
+      border: 2px solid #fab1a0;
+    }
+    .analysis-techniques {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 15px;
+      margin-top: 15px;
+    }
+    .analysis-item {
+      background: #ffe8db;
+      border: 2px solid #fab1a0;
+      border-radius: 12px;
+      padding: 18px;
+      text-align: center;
+      transition: all 0.3s ease;
+    }
+    .analysis-item:hover {
+      background: #fab1a0;
+      color: white;
+      transform: translateY(-3px);
+      box-shadow: 0 8px 20px rgba(250, 177, 160, 0.3);
     }
     .video {
       text-align: center;
-      margin-top: 30px;
+      margin-top: 40px;
+    }
+    .video h2 {
+      color: #d63031;
+      margin-bottom: 20px;
     }
     .video-wrapper {
       position: relative;
@@ -105,17 +212,18 @@
       max-width: 720px;
       width: 100%;
       margin: auto;
+      border-radius: 15px;
+      overflow: hidden;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.15);
     }
     .video-wrapper video {
       width: 100%;
-      border-radius: 10px;
       background: black;
     }
     .video-mask {
       position: absolute;
       top: 0; left: 0; right: 0; bottom: 0;
-      background: black;
-      border-radius: 10px;
+      background: rgba(0,0,0,0.8);
       display: none;
       opacity: 0;
       transition: opacity 0.8s ease;
@@ -129,45 +237,57 @@
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
-      background: rgba(255, 255, 255, 0.95);
-      padding: 14px 28px;
-      border-radius: 30px;
+      background: linear-gradient(135deg, #e17055 0%, #fab1a0 100%);
+      color: white;
+      padding: 16px 32px;
+      border-radius: 50px;
       font-size: 18px;
       font-weight: bold;
-      color: #cc5e8c;
       cursor: pointer;
-      box-shadow: 0 0 12px rgba(0,0,0,0.2);
+      box-shadow: 0 8px 20px rgba(225, 112, 85, 0.4);
       display: none;
       z-index: 2;
+      transition: transform 0.3s ease;
+    }
+    .video-overlay:hover {
+      transform: translate(-50%, -50%) scale(1.05);
     }
     .select-button {
       display: block;
       text-align: center;
-      margin: 40px auto;
-      padding: 14px 32px;
-      background-color: #cc5e8c;
+      margin: 50px auto 30px;
+      padding: 18px 40px;
+      background: linear-gradient(135deg, #e17055 0%, #fab1a0 100%);
       color: white;
       font-weight: bold;
-      border-radius: 40px;
+      font-size: 18px;
+      border-radius: 50px;
       text-decoration: none;
       width: fit-content;
+      box-shadow: 0 8px 20px rgba(225, 112, 85, 0.3);
+      transition: all 0.3s ease;
+    }
+    .select-button:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 12px 30px rgba(225, 112, 85, 0.4);
     }
     .back-link {
       display: block;
       text-align: center;
-      margin: 20px auto;
-      padding: 10px 20px;
-      background-color: #fef7f8;
-      color: #cc5e8c;
+      margin: 15px auto;
+      padding: 12px 24px;
+      background-color: #ffe8db;
+      color: #d63031;
       font-weight: bold;
-      border: 2px solid #cc5e8c;
-      border-radius: 25px;
+      border: 2px solid #e17055;
+      border-radius: 30px;
       text-decoration: none;
       width: fit-content;
       transition: all 0.3s ease;
     }
     .back-link:hover {
-      background-color: #fce8ec;
+      background: linear-gradient(135deg, #e17055 0%, #fab1a0 100%);
+      color: white;
       transform: translateY(-2px);
     }
   </style>
@@ -183,31 +303,135 @@
         <div class="section">
           <h2>プロフィール</h2>
           <ul>
-            <li data-icon="🎨">職業：UXデザイナー兼占い師</li>
-            <li data-icon="🌸">性格：理性的で観察力に優れた論理派</li>
-            <li data-icon="🧘">日常：分析と共感のあいだで、人の迷いに寄り添う</li>
-            <li data-icon="💬">魅力：選択できない人の“背中”をそっと押すのが得意</li>
+            <li data-icon="💻">職業：UXデザイナー兼タロット占い師</li>
+            <li data-icon="🧠">特徴：理性的で観察力に優れた論理派</li>
+            <li data-icon="🎯">専門：人の迷いに寄り添う分析</li>
+            <li data-icon="⚖️">性格：正しさと優しさのバランス重視</li>
+            <li data-icon="🔬">魅力：構造的思考と温かな導き</li>
           </ul>
         </div>
+
+        <div class="section ux-section">
+          <h2>UXデザイナーとしての専門性</h2>
+          <p>ユーザー体験（UX）デザイナーとして、人がデジタル製品やサービスをどのように使うかを研究し、より良い体験を設計しています。論理的な分析と人間心理への深い理解を組み合わせて、使いやすく美しいインターフェースを作ることが得意です。</p>
+          <p>ユーザーの行動パターンやニーズを分析し、問題を構造的に理解して解決策を提示する能力が、占い師としての活動にも活かされています。</p>
+        </div>
+
         <div class="section">
           <h2>理央のひとこと</h2>
-          <div class="bubble">“正しさ”と“優しさ”、どちらかを選ぶのではなくて。両方を同時に届ける方法があると思うの。</div>
+          <div class="bubble">"正しさ"と"優しさ"、どちらかを選ぶのではなくて。両方を同時に届ける方法があると思うの。</div>
         </div>
+
+        <div class="section tarot-section">
+          <h2>タロット占い師としての哲学</h2>
+          <p>タロットカードは未来を予言する道具ではなく、自分の内面と向き合うためのツールだと考えています。カードが示すシンボルや意味を通じて、相談者の潜在的な感情や選択肢を明確にし、自分自身で答えを見つけるお手伝いをします。</p>
+          <p>UXデザインで培った論理的思考と、占い師としての直感的理解を融合させ、相談者にとって最も有益なアドバイスを提供することを心がけています。</p>
+        </div>
+
         <div class="section">
-          <h2>趣味と日常</h2>
+          <h2>UXデザインの専門分野</h2>
+          <div class="design-grid">
+            <div class="design-item">
+              <strong>📱 モバイルアプリUI</strong><br>
+              直感的で使いやすいインターフェース
+            </div>
+            <div class="design-item">
+              <strong>🔍 ユーザーリサーチ</strong><br>
+              行動分析とニーズ調査
+            </div>
+            <div class="design-item">
+              <strong>🗺️ ユーザージャーニー</strong><br>
+              体験の設計と改善
+            </div>
+            <div class="design-item">
+              <strong>📊 データ分析</strong><br>
+              使用データからの洞察抽出
+            </div>
+          </div>
+        </div>
+
+        <div class="section">
+          <h2>分析アプローチ・思考法</h2>
+          <div class="analysis-techniques">
+            <div class="analysis-item">
+              <strong>🧩 構造的理解</strong><br>
+              問題を要素に分解して分析
+            </div>
+            <div class="analysis-item">
+              <strong>❤️ 冷静で温かい導き</strong><br>
+              論理と感情のバランス
+            </div>
+            <div class="analysis-item">
+              <strong>🔮 直感的洞察</strong><br>
+              データと直感の融合
+            </div>
+          </div>
+        </div>
+
+        <div class="section">
+          <h2>コミュニケーションスタイル</h2>
+          <div class="skills-grid">
+            <div class="skill-item">
+              <strong>🗣️ 論理的な語り口</strong><br>
+              わかりやすく整理された話し方
+            </div>
+            <div class="skill-item">
+              <strong>🤝 寄り添う分析</strong><br>
+              理性的でありながら温かい
+            </div>
+            <div class="skill-item">
+              <strong>💡 構造的導き</strong><br>
+              問題を整理して解決策を提示
+            </div>
+          </div>
+        </div>
+
+        <div class="section">
+          <h2>価値観・人生哲学</h2>
+          <div class="values-box">
+            <strong>「正しさと優しさは両立できる。論理と感情のバランスが大切」</strong>
+            UXデザイナーとして培った分析力と、タロット占い師としての共感力を組み合わせることで、相談者にとって本当に役立つアドバイスができると信じています。冷静に問題を分析しながらも、温かく寄り添う姿勢を大切にし、正しい判断と優しい心の両方を届けたいと思っています。
+          </div>
+        </div>
+
+        <div class="section">
+          <h2>日常とクリエイティブワーク</h2>
           <ul>
-            <li data-icon="☕">カフェ：ラベンダーティーと木の香りの店が好き</li>
-            <li data-icon="📷">SNS：空の色だけを投稿する静かなアカウント</li>
-            <li data-icon="🎶">音楽：雨音とピアノの環境音</li>
-            <li data-icon="📖">読書：谷川俊太郎や吉本ばななの詩的なエッセイ</li>
-            <li data-icon="🧼">香り：ホワイトムスクを愛用</li>
+            <li data-icon="💻">デザイン作業：ユーザーインターフェースの設計</li>
+            <li data-icon="🔮">タロット学習：カードの意味とスプレッド研究</li>
+            <li data-icon="📚">専門書読書：心理学とデザイン理論</li>
+            <li data-icon="☕">カフェワーク：静かな環境での集中作業</li>
+            <li data-icon="🎨">ギャラリー巡り：デザインインスピレーション探し</li>
+            <li data-icon="🧘">瞑想：直感力を鍛える内観時間</li>
           </ul>
         </div>
+
         <div class="section">
-          <h2>将来のこと</h2>
-          <p>言葉じゃなくても、絵でも、声でも…誰かの心の隙間にそっと寄り添えるような存在でいたい。  
-          そんなふうに思える“場所”や“作品”を届けていけたらいいな。</p>
+          <h2>UXデザインの実績</h2>
+          <p><strong>モバイルアプリ：</strong>ECサイトのユーザビリティ改善により、コンバージョン率を35%向上</p>
+          <p><strong>Webサービス：</strong>教育プラットフォームの学習体験を再設計し、ユーザー満足度を大幅に改善</p>
+          <p><strong>企業サイト：</strong>B2Bサービスの情報設計を最適化し、問い合わせ数を50%増加</p>
         </div>
+
+        <div class="section">
+          <h2>タロット占いのアプローチ</h2>
+          <p><strong>論理的解釈：</strong>カードの意味を体系的に分析し、相談者の状況と関連付け</p>
+          <p><strong>心理学的洞察：</strong>相談者の深層心理や行動パターンを読み取り</p>
+          <p><strong>選択肢の提示：</strong>運命論ではなく、自分で選択できる道筋を示す</p>
+          <p><strong>行動計画：</strong>具体的なアクションプランまで一緒に考える</p>
+        </div>
+
+        <div class="section">
+          <h2>クライアントからの評価</h2>
+          <p>「理央さんは感情に流されず、でも冷たくもない絶妙なバランスでアドバイスしてくれる」「論理的に説明してもらえるので、納得して行動に移せる」といった評価をいただいています。</p>
+          <p>特に、人生の重要な選択に迷っている方や、感情と理性の板挟みになっている方からの信頼が厚く、リピート率も高いのが特徴です。</p>
+        </div>
+
+        <div class="section">
+          <h2>将来への想い</h2>
+          <p>UXデザインとタロット占いの知識を融合させて、人の心に寄り添うデジタルツールを開発したい。論理的思考と直感的理解を組み合わせた新しいカウンセリング手法を確立し、より多くの人の迷いや悩みに応えていきたいと思っています。</p>
+        </div>
+
         <div class="video">
           <h2>理央の紹介動画</h2>
           <div class="video-wrapper">
@@ -215,21 +439,23 @@
               <source src="../ga/mov/character/rio.mp4" type="video/mp4" />
             </video>
             <div id="rioMask" class="video-mask"></div>
-            <div id="rioOverlay" class="video-overlay" onclick="replayHonoka()">▶ もう一度見る</div>
+            <div id="rioOverlay" class="video-overlay" onclick="replayRio()">▶ もう一度見る</div>
           </div>
         </div>
+
         <a href="../chat.html?char=rio&name=あなた" class="select-button">理央とチャットを始める</a>
         <a href="../prof.html" class="back-link">AIキャラクター一覧</a>
         <a href="../index.html" class="back-link">← TOPページに戻る</a>
       </div>
     </div>
   </div>
+
   <script>
     const video = document.getElementById('rioVideo');
     const overlay = document.getElementById('rioOverlay');
     const mask = document.getElementById('rioMask');
 
-    function replayHonoka() {
+    function replayRio() {
       video.currentTime = 0;
       video.play();
       overlay.style.display = 'none';
