@@ -8,7 +8,7 @@
     body {
       margin: 0;
       font-family: "Hiragino Kaku Gothic ProN", sans-serif;
-      background: #fff8f8;
+      background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 100%);
       color: #333;
     }
     .profile-container {
@@ -18,8 +18,8 @@
     }
     .card {
       background: #ffffff;
-      border-radius: 16px;
-      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+      border-radius: 20px;
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
       overflow: hidden;
       display: flex;
       flex-direction: column;
@@ -29,75 +29,161 @@
       height: auto;
       display: block;
       object-fit: cover;
-      border-bottom: 4px solid #f9c5d5;
+      border-bottom: 4px solid #e91e63;
     }
     .hero-caption {
-      padding: 20px;
-      background: #ffeef2;
-      font-size: 22px;
+      padding: 25px;
+      background: linear-gradient(135deg, #ff9a9e 0%, #fad0c4 100%);
+      color: #ad1457;
+      font-size: 24px;
       font-weight: bold;
-      color: #cc5e8c;
       text-align: center;
-      border-bottom: 2px solid #f9c5d5;
+      text-shadow: 0 2px 4px rgba(255,255,255,0.5);
     }
     .info {
-      padding: 20px 24px;
+      padding: 30px;
     }
     .section {
-      margin-bottom: 30px;
+      margin-bottom: 35px;
     }
     .section h2 {
-      font-size: 20px;
-      color: #cc5e8c;
-      border-left: 6px solid #f9c5d5;
-      padding-left: 12px;
-      margin-bottom: 12px;
+      font-size: 22px;
+      color: #e91e63;
+      border-left: 6px solid #f48fb1;
+      padding-left: 15px;
+      margin-bottom: 15px;
+      font-weight: bold;
     }
     .section ul {
       padding-left: 24px;
-      line-height: 1.8;
+      line-height: 1.9;
       list-style: none;
+    }
+    .section ul li {
+      margin-bottom: 8px;
+      display: flex;
+      align-items: flex-start;
     }
     .section ul li::before {
       content: attr(data-icon);
       display: inline-block;
-      width: 1.6em;
-      margin-left: -1.6em;
-      margin-right: 0.5em;
+      width: 1.8em;
+      margin-right: 0.8em;
+      flex-shrink: 0;
     }
     .section p {
-      line-height: 1.8;
-      margin-bottom: 10px;
+      line-height: 1.9;
+      margin-bottom: 12px;
+      font-size: 16px;
     }
     .bubble {
       position: relative;
-      background: #fff0f5;
-      border: 2px solid #f9c5d5;
-      border-radius: 12px;
-      padding: 16px;
-      margin: 16px 0;
+      background: linear-gradient(135deg, #ff9a9e 0%, #fad0c4 100%);
+      color: #ad1457;
+      border-radius: 15px;
+      padding: 20px;
+      margin: 20px 0;
       font-style: italic;
-      color: #444;
+      font-size: 18px;
+      font-weight: 500;
+      box-shadow: 0 8px 16px rgba(255, 154, 158, 0.3);
     }
     .bubble::before {
       content: "";
       position: absolute;
-      bottom: -20px;
-      left: 30px;
-      border: 10px solid transparent;
-      border-top-color: #f9c5d5;
+      bottom: -15px;
+      left: 35px;
+      border: 15px solid transparent;
+      border-top-color: #fad0c4;
     }
-    .bubble::after {
-      content: "";
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 15px;
+      margin-top: 15px;
+    }
+    .skill-item {
+      background: #fce4ec;
+      border: 2px solid #f8bbd9;
+      border-radius: 12px;
+      padding: 15px;
+      text-align: center;
+      transition: all 0.3s ease;
+    }
+    .skill-item:hover {
+      background: #e91e63;
+      color: white;
+      transform: translateY(-3px);
+      box-shadow: 0 8px 20px rgba(233, 30, 99, 0.3);
+    }
+    .values-box {
+      background: linear-gradient(135deg, #ff9a9e 0%, #fad0c4 100%);
+      color: #ad1457;
+      border-radius: 15px;
+      padding: 25px;
+      margin: 20px 0;
+      line-height: 1.8;
+      font-size: 16px;
+    }
+    .values-box strong {
+      display: block;
+      font-size: 18px;
+      margin-bottom: 10px;
+      color: #880e4f;
+    }
+    .counselor-section {
+      background: linear-gradient(135deg, #fce4ec 0%, #f3e5f5 100%);
+      border-radius: 15px;
+      padding: 20px;
+      margin: 20px 0;
+      border-left: 6px solid #e91e63;
+    }
+    .influence-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 15px;
+      margin-top: 15px;
+    }
+    .influence-item {
+      background: #fce4ec;
+      border: 2px solid #f8bbd9;
+      border-radius: 12px;
+      padding: 20px;
+      text-align: center;
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+    .influence-item:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 20px rgba(233, 30, 99, 0.2);
+    }
+    .influence-item::before {
+      content: '✨';
       position: absolute;
-      bottom: -18px;
-      left: 30px;
-      border: 9px solid transparent;
-      border-top-color: #fff0f5;
+      top: 10px;
+      right: 10px;
+      font-size: 20px;
+      animation: sparkle 2s infinite;
+    }
+    @keyframes sparkle {
+      0%, 100% { transform: scale(1) rotate(0deg); opacity: 0.7; }
+      50% { transform: scale(1.2) rotate(180deg); opacity: 1; }
+    }
+    .positive-section {
+      background: linear-gradient(135deg, #fff3e0 0%, #fce4ec 100%);
+      border-radius: 15px;
+      padding: 20px;
+      margin: 20px 0;
+      border: 2px solid #f48fb1;
     }
     .video {
       text-align: center;
-      margin-top: 30px;
+      margin-top: 40px;
+    }
+    .video h2 {
+      color: #e91e63;
+      margin-bottom: 20px;
     }
     .video-wrapper {
       position: relative;
@@ -105,17 +191,18 @@
       max-width: 720px;
       width: 100%;
       margin: auto;
+      border-radius: 15px;
+      overflow: hidden;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.15);
     }
     .video-wrapper video {
       width: 100%;
-      border-radius: 10px;
       background: black;
     }
     .video-mask {
       position: absolute;
       top: 0; left: 0; right: 0; bottom: 0;
-      background: black;
-      border-radius: 10px;
+      background: rgba(0,0,0,0.8);
       display: none;
       opacity: 0;
       transition: opacity 0.8s ease;
@@ -129,51 +216,62 @@
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
-      background: rgba(255, 255, 255, 0.95);
-      padding: 14px 28px;
-      border-radius: 30px;
+      background: linear-gradient(135deg, #ff9a9e 0%, #fad0c4 100%);
+      color: #ad1457;
+      padding: 16px 32px;
+      border-radius: 50px;
       font-size: 18px;
       font-weight: bold;
-      color: #cc5e8c;
       cursor: pointer;
-      box-shadow: 0 0 12px rgba(0,0,0,0.2);
+      box-shadow: 0 8px 20px rgba(255, 154, 158, 0.4);
       display: none;
       z-index: 2;
+      transition: transform 0.3s ease;
+    }
+    .video-overlay:hover {
+      transform: translate(-50%, -50%) scale(1.05);
     }
     .select-button {
       display: block;
       text-align: center;
-      margin: 40px auto;
-      padding: 14px 32px;
-      background-color: #cc5e8c;
-      color: white;
+      margin: 50px auto 30px;
+      padding: 18px 40px;
+      background: linear-gradient(135deg, #ff9a9e 0%, #fad0c4 100%);
+      color: #ad1457;
       font-weight: bold;
-      border-radius: 40px;
+      font-size: 18px;
+      border-radius: 50px;
       text-decoration: none;
       width: fit-content;
+      box-shadow: 0 8px 20px rgba(255, 154, 158, 0.3);
+      transition: all 0.3s ease;
+    }
+    .select-button:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 12px 30px rgba(255, 154, 158, 0.4);
     }
     .back-link {
       display: block;
       text-align: center;
-      margin: 20px auto;
-      padding: 10px 20px;
-      background-color: #fef7f8;
-      color: #cc5e8c;
+      margin: 15px auto;
+      padding: 12px 24px;
+      background-color: #fce4ec;
+      color: #e91e63;
       font-weight: bold;
-      border: 2px solid #cc5e8c;
-      border-radius: 25px;
+      border: 2px solid #f48fb1;
+      border-radius: 30px;
       text-decoration: none;
       width: fit-content;
       transition: all 0.3s ease;
     }
     .back-link:hover {
-      background-color: #fce8ec;
+      background: linear-gradient(135deg, #ff9a9e 0%, #fad0c4 100%);
+      color: #ad1457;
       transform: translateY(-2px);
     }
   </style>
 </head>
 <body>
- 
   <div class="profile-container">
     <div class="card">
       <div class="hero">
@@ -184,31 +282,111 @@
         <div class="section">
           <h2>プロフィール</h2>
           <ul>
-            <li data-icon="🎨">職業：SNSカウンセラー</li>
-            <li data-icon="🌸">性格：明るくポジティブな現実派</li>
-            <li data-icon="🧘">日常：相談者の心に寄り添いながら発信を続ける</li>
-            <li data-icon="💬">魅力：恋に迷う人の心に“光”を届けるのが得意</li>
+            <li data-icon="💕">職業：恋愛カウンセラー系インフルエンサー</li>
+            <li data-icon="🌟">特徴：現実的でポジティブ</li>
+            <li data-icon="💪">性格：明るく強い女性</li>
+            <li data-icon="🚀">得意：行動を後押しする言葉</li>
+            <li data-icon="✨">魅力：未来志向で前向き</li>
           </ul>
         </div>
+
+        <div class="section counselor-section">
+          <h2>恋愛カウンセラーとしての活動</h2>
+          <p>SNSを中心に恋愛に関するアドバイスを発信し、多くのフォロワーから支持を得ています。理論的なアプローチよりも、実体験に基づいた現実的で具体的なアドバイスが特徴です。</p>
+          <p>「運命を待つのではなく、自分から掴みに行く」というスタンスで、恋愛に悩む人たちの背中を力強く押しています。</p>
+        </div>
+
         <div class="section">
           <h2>ルナのひとこと</h2>
-          <div class="bubble">“運命”って、待つものじゃないよ？　自分から“迎えに行く”の。</div>
+          <div class="bubble">"運命"って、待つものじゃないよ？　自分から"迎えに行く"の。</div>
         </div>
+
+        <div class="section positive-section">
+          <h2>ポジティブ思考の源泉</h2>
+          <p>自身も恋愛で多くの失敗を経験し、そこから学んだ教訓を活かしてカウンセラーになりました。「失敗は成功の素」という考え方で、どんな恋愛の悩みも前向きに捉え直すことができます。</p>
+          <p>特に自分に自信がない人や、恋愛に対して消極的になってしまった人の心に火をつけるのが得意です。</p>
+        </div>
+
         <div class="section">
-          <h2>趣味と日常</h2>
+          <h2>インフルエンサーとしての影響力</h2>
+          <div class="influence-grid">
+            <div class="influence-item">
+              <strong>📱 SNS発信</strong><br>
+              毎日の恋愛tips配信
+            </div>
+            <div class="influence-item">
+              <strong>📚 電子書籍</strong><br>
+              実践的恋愛ガイド執筆
+            </div>
+            <div class="influence-item">
+              <strong>🎤 セミナー</strong><br>
+              恋愛力アップ講座開催
+            </div>
+            <div class="influence-item">
+              <strong>💬 個別相談</strong><br>
+              オンラインカウンセリング
+            </div>
+          </div>
+        </div>
+
+        <div class="section">
+          <h2>コミュニケーションスタイル</h2>
+          <div class="skills-grid">
+            <div class="skill-item">
+              <strong>💪 元気で前向き</strong><br>
+              語尾に『〜でしょ！』『〜しよ！』
+            </div>
+            <div class="skill-item">
+              <strong>🎯 行動重視</strong><br>
+              具体的な行動プランを提示
+            </div>
+            <div class="skill-item">
+              <strong>🌈 未来志向</strong><br>
+              可能性を信じて背中を押す
+            </div>
+          </div>
+        </div>
+
+        <div class="section">
+          <h2>価値観・恋愛哲学</h2>
+          <div class="values-box">
+            <strong>「恋愛は待つものじゃない！自分から行動して掴むもの」</strong>
+            運命の人なんて待っていても現れません。大切なのは自分磨きと積極的な行動力。恋愛において受け身でいることは時間の無駄。自分の魅力を最大限に活かして、理想の恋愛を手に入れるために行動することが一番の近道だと信じています。
+          </div>
+        </div>
+
+        <div class="section">
+          <h2>日常とコンテンツ制作</h2>
           <ul>
-            <li data-icon="☕">カフェ：ラベンダーティーと木の香りの店が好き</li>
-            <li data-icon="📷">SNS：空の色だけを投稿する静かなアカウント</li>
-            <li data-icon="🎶">音楽：雨音とピアノの環境音</li>
-            <li data-icon="📖">読書：谷川俊太郎や吉本ばななの詩的なエッセイ</li>
-            <li data-icon="🧼">香り：ホワイトムスクを愛用</li>
+            <li data-icon="📱">SNS運営：朝の motivational post から始まる一日</li>
+            <li data-icon="☕">カフェ巡り：トレンドスポットでのコンテンツ撮影</li>
+            <li data-icon="💄">美容・ファッション：自分磨きの実践と発信</li>
+            <li data-icon="📖">恋愛心理学：専門書での知識アップデート</li>
+            <li data-icon="🏃">フィットネス：心身の健康維持</li>
+            <li data-icon="🍷">交流会：同業者や相談者との ネットワーキング</li>
           </ul>
         </div>
+
         <div class="section">
-          <h2>将来のこと</h2>
-          <p>言葉じゃなくても、絵でも、声でも…誰かの心の隙間にそっと寄り添えるような存在でいたい。  
-          そんなふうに思える“場所”や“作品”を届けていけたらいいな。</p>
+          <h2>得意な恋愛相談分野</h2>
+          <p><strong>アプローチ方法：</strong>気になる人へのアプローチ戦略、タイミングの見極め方</p>
+          <p><strong>自信アップ：</strong>自己肯定感の向上、魅力の引き出し方</p>
+          <p><strong>関係修復：</strong>恋人との喧嘩後のフォロー、関係性の改善</p>
+          <p><strong>婚活戦略：</strong>効率的な婚活方法、理想のパートナー探し</p>
         </div>
+
+        <div class="section">
+          <h2>これまでの実績</h2>
+          <p>SNSフォロワー数10万人超、恋愛相談実績1000件以上。「ルナさんのアドバイスで彼氏ができました！」「結婚できました！」といった成功報告が日々届いています。</p>
+          <p>特に20代後半〜30代前半の女性からの支持が厚く、リアルで実践的なアドバイスが評価されています。</p>
+        </div>
+
+        <div class="section">
+          <h2>将来への想い</h2>
+          <p>もっと多くの人に「恋愛は自分で作るもの」ということを伝えたい。恋愛で悩んでいる時間があるなら、その時間を自分磨きと行動に使って、理想の恋愛を手に入れてほしい。</p>
+          <p>将来的には恋愛だけでなく、人生全般における「自分らしく輝く」ためのライフコーチとしても活動していきたいと思っています。</p>
+        </div>
+
         <div class="video">
           <h2>ルナの紹介動画</h2>
           <div class="video-wrapper">
@@ -219,12 +397,14 @@
             <div id="runaOverlay" class="video-overlay" onclick="replayRuna()">▶ もう一度見る</div>
           </div>
         </div>
+
         <a href="../chat.html?char=runa&name=あなた" class="select-button">ルナとチャットを始める</a>
         <a href="../prof.html" class="back-link">AIキャラクター一覧</a>
         <a href="../index.html" class="back-link">← TOPページに戻る</a>
       </div>
     </div>
   </div>
+
   <script>
     const video = document.getElementById('runaVideo');
     const overlay = document.getElementById('runaOverlay');
