@@ -90,7 +90,7 @@
       return arr;
     }
 
-    fetch("characters.json")
+    fetch("\./data/characters.json")
       .then(res => res.json())
       .then(characters => {
         const mainChar = characters[Math.floor(Math.random() * characters.length)];
