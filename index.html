@@ -48,14 +48,25 @@
     .logo {
       display: flex;
       align-items: center;
-      gap: 10px;
+      gap: 12px;
       text-decoration: none;
       color: #333;
+      padding: 5px;
+      border-radius: 10px;
+      transition: all 0.3s ease;
+    }
+
+    .logo:hover {
+      background: rgba(255, 255, 255, 0.3);
+      transform: translateY(-1px);
     }
 
     .logo img {
-      height: 40px;
+      height: 45px;
       width: auto;
+      object-fit: contain;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
     }
 
     .logo-text {
@@ -254,6 +265,10 @@
         padding: 10px 20px;
         font-size: 15px;
       }
+
+      .logo img {
+        height: 50px;
+      }
     }
 
     /* Desktop Styles */
@@ -306,6 +321,10 @@
       .nav a {
         padding: 6px 12px;
         font-size: 13px;
+      }
+
+      .logo img {
+        height: 35px;
       }
 
       .character-grid {
@@ -361,7 +380,13 @@
     <header class="header">
       <div class="header-content">
         <a href="./index.html" class="logo">
-          <img src="./ga/image/material/rogo.png" alt="AI PAR ロゴ">
+          <picture>
+            <source srcset="./ga/image/material/rogo-320.webp 320w, ./ga/image/material/rogo-640.webp 640w, ./ga/image/material/rogo-960.webp 960w" type="image/webp">
+            <img src="./ga/image/material/rogo-640.png" 
+                 srcset="./ga/image/material/rogo-320.png 320w, ./ga/image/material/rogo-640.png 640w, ./ga/image/material/rogo-960.png 960w"
+                 sizes="(max-width: 375px) 120px, (max-width: 768px) 160px, 200px"
+                 alt="AI PAR ロゴ">
+          </picture>
           <span class="logo-text">AI PAR</span>
         </a>
         <nav class="nav">
