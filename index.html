@@ -1,474 +1,160 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>AI PAR｜LOVEパートナー - あなたに最適なAIキャラクター</title>
-  <link rel="stylesheet" href="./style.css" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>◆AIで作る最高のLOVEパートナー◆</title>
+  <link href="https://unpkg.com/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet" />
   <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
+    /* 背景：現状の淡いピンクトーンをキープ */
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background: linear-gradient(120deg, #ffe4e6, #fdf2f8);
+      background-size: 400% 400%;
+      animation: gradientFade 15s ease infinite;
+      z-index: -1;
     }
-
-    body {
-      font-family: 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', Meiryo, sans-serif;
-      line-height: 1.6;
-      color: #333;
-      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-      min-height: 100vh;
-      overflow-x: hidden;
-    }
-
-    .container {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 15px;
-    }
-
-    /* Header */
-    .header {
-      background: rgba(255, 255, 255, 0.95);
-      backdrop-filter: blur(10px);
-      border-radius: 15px;
-      padding: 15px;
-      margin-bottom: 20px;
-      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-    }
-
-    .header-content {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      flex-wrap: wrap;
-      gap: 15px;
-    }
-
-    .logo {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      text-decoration: none;
-      color: #333;
-      padding: 5px;
-      border-radius: 10px;
-      transition: all 0.3s ease;
-    }
-
-    .logo:hover {
-      background: rgba(255, 255, 255, 0.3);
-      transform: translateY(-1px);
-    }
-
-    .logo img {
-      height: 45px;
-      width: auto;
-      object-fit: contain;
-      border-radius: 8px;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-    }
-
-    .logo-text {
-      font-size: 20px;
-      font-weight: bold;
-      background: linear-gradient(45deg, #667eea, #764ba2);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-    }
-
-    .nav {
-      display: flex;
-      gap: 8px;
-      flex-wrap: wrap;
-    }
-
-    .nav a {
-      text-decoration: none;
-      color: #333;
-      padding: 8px 15px;
-      border-radius: 20px;
-      background: rgba(255, 255, 255, 0.8);
-      transition: all 0.3s ease;
-      font-weight: 500;
-      font-size: 14px;
-      white-space: nowrap;
-    }
-
-    .nav a:hover {
-      background: linear-gradient(45deg, #667eea, #764ba2);
-      color: white;
-      transform: translateY(-1px);
-      box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
-    }
-
-    /* Hero Section */
-    .hero {
-      text-align: center;
-      color: white;
-      margin-bottom: 30px;
-      padding: 20px 0;
-    }
-
-    .hero h1 {
-      font-size: 2.2rem;
-      margin-bottom: 15px;
-      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
-      line-height: 1.2;
-    }
-
-    .hero p {
-      font-size: 1rem;
-      margin-bottom: 25px;
-      opacity: 0.9;
-      line-height: 1.5;
-    }
-
-    .cta-button {
-      display: inline-block;
-      background: linear-gradient(45deg, #ff6b6b, #ee5a24);
-      color: white;
-      padding: 12px 30px;
-      border-radius: 25px;
-      text-decoration: none;
-      font-size: 1rem;
-      font-weight: bold;
-      transition: all 0.3s ease;
-      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-      min-width: 200px;
-    }
-
-    .cta-button:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
-    }
-
-
-
-    /* Character Preview */
-    .character-preview {
-      background: rgba(255, 255, 255, 0.95);
-      backdrop-filter: blur(10px);
-      border-radius: 15px;
-      padding: 25px 20px;
-      margin-bottom: 30px;
-      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-    }
-
-    .character-preview h2 {
-      text-align: center;
-      font-size: 2rem;
-      margin-bottom: 20px;
-      color: #333;
-    }
-
-    .character-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 15px;
-      margin-bottom: 20px;
-    }
-
-    .character-item {
-      text-align: center;
-      padding: 15px 10px;
-      border-radius: 12px;
-      background: rgba(255, 255, 255, 0.8);
-      transition: all 0.3s ease;
-    }
-
-    .character-item:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
-    }
-
-    .character-item img {
-      width: 60px;
-      height: 60px;
-      border-radius: 50%;
-      object-fit: cover;
-      margin-bottom: 8px;
-      border: 2px solid #fff;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-    }
-
-    .character-item h4 {
-      font-size: 0.9rem;
-      margin-bottom: 4px;
-      color: #333;
-    }
-
-    .character-item p {
-      font-size: 0.8rem;
-      color: #666;
-      line-height: 1.3;
-    }
-
-    .view-all-button {
-      display: block;
-      text-align: center;
-      background: linear-gradient(45deg, #667eea, #764ba2);
-      color: white;
-      padding: 12px 30px;
-      border-radius: 25px;
-      text-decoration: none;
-      font-weight: bold;
-      transition: all 0.3s ease;
-      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-      max-width: 180px;
-      margin: 0 auto;
-      font-size: 0.95rem;
-    }
-
-    .view-all-button:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
-    }
-
-    /* Footer */
-    .footer {
-      text-align: center;
-      color: white;
-      padding: 20px 0;
-      opacity: 0.8;
-      font-size: 0.9rem;
-    }
-
-    /* Tablet Styles */
-    @media (min-width: 768px) {
-      .container {
-        padding: 20px;
-      }
-
-      .hero h1 {
-        font-size: 2.8rem;
-      }
-
-      .hero p {
-        font-size: 1.1rem;
-      }
-
-
-
-      .character-grid {
-        grid-template-columns: repeat(3, 1fr);
-        gap: 20px;
-      }
-
-      .character-item img {
-        width: 70px;
-        height: 70px;
-      }
-
-      .nav a {
-        padding: 10px 20px;
-        font-size: 15px;
-      }
-
-      .logo img {
-        height: 50px;
-      }
-    }
-
-    /* Desktop Styles */
-    @media (min-width: 1024px) {
-      .hero h1 {
-        font-size: 3rem;
-      }
-
-      .hero p {
-        font-size: 1.2rem;
-      }
-
-      .character-grid {
-        grid-template-columns: repeat(6, 1fr);
-        gap: 20px;
-      }
-
-      .character-item img {
-        width: 80px;
-        height: 80px;
-      }
-
-      .feature-card {
-        padding: 30px;
-      }
-
-      .character-preview {
-        padding: 40px;
-      }
-    }
-
-    /* Small Mobile Optimization */
-    @media (max-width: 375px) {
-      .container {
-        padding: 10px;
-      }
-
-      .hero h1 {
-        font-size: 1.8rem;
-      }
-
-      .hero p {
-        font-size: 0.9rem;
-      }
-
-      .nav {
-        gap: 5px;
-      }
-
-      .nav a {
-        padding: 6px 12px;
-        font-size: 13px;
-      }
-
-      .logo img {
-        height: 35px;
-      }
-
-      .character-grid {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 10px;
-      }
-
-      .character-item {
-        padding: 12px 8px;
-      }
-
-      .character-item img {
-        width: 50px;
-        height: 50px;
-      }
-
-      .character-item h4 {
-        font-size: 0.8rem;
-      }
-
-      .character-item p {
-        font-size: 0.75rem;
-      }
-    }
-
-    /* Landscape Mobile */
-    @media (max-height: 500px) and (orientation: landscape) {
-      .hero {
-        margin-bottom: 20px;
-        padding: 15px 0;
-      }
-
-      .hero h1 {
-        font-size: 1.8rem;
-        margin-bottom: 10px;
-      }
-
-      .hero p {
-        margin-bottom: 15px;
-      }
-
-
-
-      .character-preview {
-        margin-bottom: 20px;
-      }
+    @keyframes gradientFade {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
     }
   </style>
 </head>
-<body>
-  <div class="container">
-    <!-- Header -->
-    <header class="header">
-      <div class="header-content">
-        <a href="./index.html" class="logo">
-          <img src="./ga/image/material/rogo-1280.png" alt="AI PAR ロゴ">
-          <span class="logo-text">AI PAR</span>
-        </a>
-        <nav class="nav">
-          <a href="./index.html">トップ</a>
-          <a href="./prof.html">一覧</a>
-          <a href="./matching.html">診断</a>
-          <a href="./questionnaire.html">アンケート</a>
-        </nav>
-      </div>
-    </header>
+<body class="font-sans">
+  <!-- ヘッダー：ロゴは今のままでも可。差し替えるなら src を ga/image/material/rogo-640.png などへ -->
+  <header class="bg-white bg-opacity-80 shadow py-6">
+    <div class="text-center">
+      <!-- 例）制作ロゴに差し替える場合：
+      <img src="ga/image/material/rogo-640.png" alt="AI LOVEパートナーロゴ" class="mx-auto h-24 object-contain" />
+      -->
+      <img src="http://ryu02262.moo.jp/aip/ga/t/rogo.png" alt="AI LOVEパートナーロゴ" class="mx-auto h-28 object-contain" />
+    </div>
+  </header>
 
-    <!-- Hero Section -->
-    <section class="hero">
-      <h1>あなたに最適なAIパートナー</h1>
-      <p>20人の魅力的なキャラクターから、あなたの理想のパートナーを見つけましょう</p>
-      <a href="./matching.html" class="cta-button">診断を始める</a>
+  <!-- ヒーロー -->
+  <section class="bg-white bg-opacity-90 rounded-3xl shadow-lg p-6 sm:p-10 mt-8 max-w-4xl mx-auto text-center">
+    <h2 class="text-2xl sm:text-3xl font-bold text-pink-600 mb-4">── 運命のパートナーが、あなたを待っている ──</h2>
+    <p class="text-gray-700 mb-6 text-base sm:text-lg">
+      まるで本当に存在するかのようなAIキャラクターたち。<br>
+      あなたの心の奥まで寄り添い、言葉にならない想いを受け止めます。
+    </p>
+
+    <div id="heroCharacter" class="flex flex-col sm:flex-row items-center justify-center gap-6 mt-6">
+      <img id="heroImage" src="" alt="キャラ画像" class="w-40 h-40 sm:w-48 sm:h-48 rounded-full object-cover shadow-lg border-4 border-white">
+      <div class="text-left max-w-md">
+        <h3 id="heroName" class="text-xl sm:text-2xl font-semibold text-gray-800 mb-2"></h3>
+        <p id="heroCatch" class="italic text-gray-600 text-sm sm:text-base mb-3"></p>
+        <p id="heroIntro" class="text-sm text-gray-700 mb-2"></p>
+        <a id="heroProfile" href="#" class="text-pink-600 text-sm font-semibold hover:underline">▶ プロフィール詳細を見る</a>
+      </div>
+    </div>
+
+    <div class="mt-8">
+      <a href="questionnaire.html" class="inline-block bg-pink-600 hover:bg-pink-700 text-white text-lg font-semibold py-3 px-8 rounded-full shadow transition duration-300">
+        パートナー診断を始める
+      </a>
+    </div>
+  </section>
+
+  <main class="max-w-6xl mx-auto px-6 py-12">
+    <!-- セクション見出し＆キャッチは指定のまま -->
+    <section class="text-center mb-6">
+      <h2 class="text-2xl font-semibold text-gray-800 mb-4">他にも、あなたを待っているAIたちがいます</h2>
+      <p class="text-gray-700 text-lg leading-relaxed">
+        実在するかのような魅力的なキャラクターが、<br>
+        あなたの孤独や不安にそっと寄り添います。
+      </p>
     </section>
 
-
-
-    <!-- Character Preview -->
-    <section class="character-preview">
-      <h2>キャラクター紹介</h2>
-      <div class="character-grid">
-        <div class="character-item">
-          <img src="./ga/image/character/asakura.png" alt="朝倉">
-          <h4>朝倉</h4>
-          <p>明るく元気</p>
-        </div>
-        <div class="character-item">
-          <img src="./ga/image/character/honoka.png" alt="ほのか">
-          <h4>ほのか</h4>
-          <p>優しく思いやり深い</p>
-        </div>
-        <div class="character-item">
-          <img src="./ga/image/character/runa.png" alt="ルナ">
-          <h4>ルナ</h4>
-          <p>クールで知的</p>
-        </div>
-        <div class="character-item">
-          <img src="./ga/image/character/ryo.png" alt="リョウ">
-          <h4>リョウ</h4>
-          <p>頼りになる兄貴分</p>
-        </div>
-        <div class="character-item">
-          <img src="./ga/image/character/mariko.png" alt="マリコ">
-          <h4>マリコ</h4>
-          <p>大人な魅力</p>
-        </div>
-        <div class="character-item">
-          <img src="./ga/image/character/nana.png" alt="ナナ">
-          <h4>ナナ</h4>
-          <p>可愛らしい妹系</p>
-        </div>
-      </div>
-      <a href="./prof.html" class="view-all-button">全キャラクターを見る</a>
+    <!-- 男女2名ずつ＝4カード -->
+    <section class="mb-8">
+      <div id="character-cards" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6"></div>
     </section>
 
-    <!-- Footer -->
-    <footer class="footer">
-      <p>&copy; <span id="current-year"></span> AI PAR - LOVEパートナー. All rights reserved.</p>
-    </footer>
-  </div>
+    <!-- プロフィール一覧へのリンク -->
+    <section class="text-center">
+      <a href="prof.html" class="inline-block text-pink-700 font-semibold underline hover:text-pink-800">
+        ▶ プロフィール一覧を見る
+      </a>
+    </section>
+  </main>
+
+  <footer class="text-center text-sm text-gray-500 py-6">
+    &copy; 2025 AI LOVE Partner Project
+  </footer>
 
   <script>
-    // 現在の年を表示
-    document.getElementById('current-year').textContent = new Date().getFullYear();
-    
-    // スムーズスクロール
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-      anchor.addEventListener('click', function (e) {
-        e.preventDefault();
-        document.querySelector(this.getAttribute('href')).scrollIntoView({
-          behavior: 'smooth'
-        });
-      });
-    });
-
-    // モバイルでのタッチ操作を改善
-    document.addEventListener('DOMContentLoaded', function() {
-      // タッチデバイスでのホバー効果を無効化
-      if ('ontouchstart' in window) {
-        const touchElements = document.querySelectorAll('.feature-card, .character-item, .nav a, .cta-button, .view-all-button');
-        touchElements.forEach(element => {
-          element.style.transition = 'none';
-        });
+    // 配列シャッフル（複製してから）
+    function shuffle(arr) {
+      const a = arr.slice();
+      for (let i = a.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [a[i], a[j]] = [a[j], a[i]];
       }
-    });
+      return a;
+    }
+
+    // 指定数ランダム取得（足りない場合は可能なだけ）
+    function pickRandom(list, n) {
+      return shuffle(list).slice(0, Math.min(n, list.length));
+    }
+
+    fetch("characters.json")
+      .then(res => res.json())
+      .then(characters => {
+        // ヒーロー：全体からランダム1人
+        const hero = characters[Math.floor(Math.random() * characters.length)];
+        document.getElementById("heroImage").src = hero.img;
+        document.getElementById("heroName").textContent = `${hero.name}（${hero.age}歳）`;
+        document.getElementById("heroCatch").textContent = `"${hero.phrase}"`;
+        document.getElementById("heroIntro").textContent = hero.intro;
+        document.getElementById("heroProfile").href = hero.profile;
+
+        // ヒーロー以外から男女2名ずつを目標に選ぶ
+        const rest = characters.filter(c => c.id !== hero.id);
+        const males = rest.filter(c => c.gender === "male");
+        const females = rest.filter(c => c.gender === "female");
+
+        let pickM = pickRandom(males, 2);
+        let pickF = pickRandom(females, 2);
+
+        // もし男女どちらかが不足していたら、残りは rest から補完（重複なし）
+        const selectedIds = new Set([...pickM, ...pickF].map(c => c.id));
+        while (pickM.length + pickF.length < 4 && selectedIds.size < rest.length) {
+          const candidate = rest[Math.floor(Math.random() * rest.length)];
+          if (!selectedIds.has(candidate.id)) {
+            selectedIds.add(candidate.id);
+            if (candidate.gender === "male" && pickM.length < 2) pickM.push(candidate);
+            else if (candidate.gender === "female" && pickF.length < 2) pickF.push(candidate);
+            else {
+              // 目標性別が埋まっている場合でも、全体4名に達するまで補完
+              if (pickM.length + pickF.length < 4) {
+                (pickM.length <= pickF.length ? pickM : pickF).push(candidate);
+              }
+            }
+          }
+        }
+
+        const four = [...pickM, ...pickF].slice(0, 4);
+        const container = document.getElementById("character-cards");
+        four.forEach(char => {
+          const card = document.createElement("div");
+          card.className = "bg-white rounded-2xl shadow p-4 text-center";
+          card.innerHTML = `
+            <img src="${char.img}" alt="${char.name}" class="w-full h-44 object-cover rounded-lg mb-2" />
+            <h3 class="text-lg font-bold text-gray-800">${char.name}（${char.age}歳）</h3>
+            <p class="text-sm text-gray-600 italic mb-1">"${char.phrase}"</p>
+            <a href="${char.profile}" class="text-pink-600 text-xs hover:underline">▶ プロフィール詳細を見る</a>
+          `;
+          container.appendChild(card);
+        });
+      })
+      .catch(err => {
+        console.error("characters.json の読み込みでエラー:", err);
+      });
   </script>
 </body>
 </html>
