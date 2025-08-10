@@ -95,7 +95,7 @@
         <p class="mini" style="margin-top:8px">現在地：TOPページ / 最終更新: 2025-08-10</p>
       </div>
       <div class="card" aria-hidden="true">
-        <img src="itiran-rogo.png" alt="キャラクター集合イメージ"/>
+        <img src="./ga/image/itiran-rogo.png" alt="キャラクター集合イメージ"/>
       </div>
     </section>
 
@@ -184,7 +184,7 @@
           const typeLabel = ({lover:'恋人タイプ', advisor:'相談タイプ', friend:'友人タイプ'})[c.type] || 'タイプ';
           const profile = c.profile || 'prof.html';
           el.innerHTML = `
-            <img src="${c.img}" alt="${c.name}の画像" loading="lazy"/>
+            <img src=\"./${c.img}\" alt="${c.name}の画像" loading="lazy"/>
             <div class=card-body>
               <div style="display:flex; justify-content:space-between; align-items:center; gap:8px; margin-bottom:6px">
                 <span class=name>${c.name}</span>
@@ -199,6 +199,12 @@
       .catch(() => {
         grid.innerHTML = '<p class="sub">キャラクターの読み込みに失敗しました。<a href="matching.html">一覧ページ</a>からご確認ください。</p>';
       });
+  
+    // 画像のフェイルセーフ（プレースホルダーに切替）
+    const FALLBACK_IMG = 'data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22250%22><rect width=%22100%25%22 height=%22100%25%22 fill=%22%23141821%22/><text x=%2250%25%22 y=%2250%25%22 fill=%22%239aa3af%22 font-size=%2220%22 text-anchor=%22middle%22 dominant-baseline=%22middle%22>NO IMAGE</text></svg>';
+    window.addEventListener('error', (e)=>{
+      const t = e.target; if(t && t.tagName === 'IMG'){ t.src = FALLBACK_IMG; }
+    }, true);
   </script>
 </body>
 </html>
