@@ -1,283 +1,860 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, viewport-fit=cover" />
-  <meta name="format-detection" content="telephone=no" />
-  <title>運命のAIパートナー診断</title>
-  <link href="https://unpkg.com/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet" />
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>AI PAR｜詳細診断アンケート - あなたに最適なAIパートナーを見つけよう</title>
+  <link rel="stylesheet" href="./style.css" />
   <style>
     * {
-      -webkit-tap-highlight-color: transparent;
-      -webkit-touch-callout: none;
-      -webkit-user-select: none;
-      -moz-user-select: none;
-      -ms-user-select: none;
-      user-select: none;
-    }
-    
-    body {
       margin: 0;
       padding: 0;
-      font-family: -apple-system, BlinkMacSystemFont, "Hiragino Kaku Gothic ProN", "Hiragino Sans", Meiryo, sans-serif;
-      background: radial-gradient(circle at top center, #fde6f3 0%, #dcd3f7 100%);
-      background-attachment: fixed;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', Meiryo, sans-serif;
+      line-height: 1.6;
+      color: #333;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      min-height: 100vh;
       overflow-x: hidden;
-      color: #4b0082;
-      perspective: 1200px;
-      -webkit-font-smoothing: antialiased;
-      -moz-osx-font-smoothing: grayscale;
     }
-    
-    .btn {
-      background: #fcd1e5;
-      color: #222;
-      padding: 0.75rem 1rem;
-      border-radius: 9999px;
-      font-weight: bold;
-      margin: 0.25rem;
-      transition: all 0.3s ease;
-      min-width: 100px;
-      font-size: 0.875rem;
-      border: none;
-      outline: none;
-      cursor: pointer;
-      -webkit-appearance: none;
-      -moz-appearance: none;
-      appearance: none;
-      display: inline-block;
-      text-align: center;
-      text-decoration: none;
-      line-height: 1.2;
+
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 15px;
     }
-    
-    .btn:active {
-      background: #fbb6ce;
-      transform: scale(0.98);
+
+    /* Header */
+    .header {
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(10px);
+      border-radius: 15px;
+      padding: 15px;
+      margin-bottom: 20px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
     }
-    
-    .btn:hover {
-      background: #fbb6ce;
-      transform: scale(1.02);
+
+    .header-content {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 15px;
     }
-    
-    .question {
-      display: none;
-      opacity: 0;
-      transform: rotateX(-90deg);
-      transform-origin: top;
-      transition: all 1.2s ease;
-      -webkit-transform: rotateX(-90deg);
-      -webkit-transform-origin: top;
-      -webkit-transition: all 1.2s ease;
-    }
-    
-    .question.active {
-      display: block;
-      opacity: 1;
-      transform: rotateX(0deg);
-      -webkit-transform: rotateX(0deg);
-    }
-    
-    .question.fade-out {
-      opacity: 0;
-      transform: rotateX(90deg);
-      -webkit-transform: rotateX(90deg);
-    }
-    
-    #intro-screen {
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background: #000;
-      color: #fff;
+
+    .logo {
       display: flex;
       align-items: center;
-      justify-content: center;
-      z-index: 100;
-      opacity: 1;
-      transition: opacity 2s ease;
-      -webkit-transition: opacity 2s ease;
+      gap: 10px;
+      text-decoration: none;
+      color: #333;
     }
-    
-    #intro-screen.hide {
-      opacity: 0;
-      pointer-events: none;
+
+    .logo img {
+      height: 40px;
+      width: auto;
     }
-    
-    .grid-container {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 0.75rem;
+
+    .logo-text {
+      font-size: 20px;
+      font-weight: bold;
+      background: linear-gradient(45deg, #667eea, #764ba2);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .nav {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .nav a {
+      text-decoration: none;
+      color: #333;
+      padding: 8px 15px;
+      border-radius: 20px;
+      background: rgba(255, 255, 255, 0.8);
+      transition: all 0.3s ease;
+      font-weight: 500;
+      font-size: 14px;
+      white-space: nowrap;
+    }
+
+    .nav a:hover {
+      background: linear-gradient(45deg, #667eea, #764ba2);
+      color: white;
+      transform: translateY(-1px);
+      box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+    }
+
+    /* Main Content */
+    .main-content {
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(10px);
+      border-radius: 15px;
+      padding: 25px 20px;
+      margin-bottom: 20px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    }
+
+    .hero-section {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
+    .hero-section h1 {
+      font-size: 2.2rem;
+      margin-bottom: 15px;
+      color: #333;
+      background: linear-gradient(45deg, #667eea, #764ba2);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .hero-section p {
+      font-size: 1rem;
+      color: #666;
+      margin-bottom: 20px;
+      line-height: 1.5;
+    }
+
+    .questionnaire-icon {
+      font-size: 3rem;
+      margin-bottom: 15px;
+    }
+
+    /* Progress Bar */
+    .progress-container {
+      margin-bottom: 30px;
+    }
+
+    .progress-bar {
       width: 100%;
+      height: 8px;
+      background: #e1e5e9;
+      border-radius: 4px;
+      overflow: hidden;
+      margin-bottom: 10px;
     }
-    
-    @media (min-width: 640px) {
-      .grid-container {
+
+    .progress-fill {
+      height: 100%;
+      background: linear-gradient(45deg, #667eea, #764ba2);
+      border-radius: 4px;
+      transition: width 0.5s ease;
+      width: 0%;
+    }
+
+    .progress-text {
+      text-align: center;
+      font-size: 0.9rem;
+      color: #666;
+    }
+
+    /* Question Styles */
+    .question-container {
+      display: none;
+      animation: fadeInUp 0.5s ease;
+    }
+
+    .question-container.active {
+      display: block;
+    }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .question {
+      margin-bottom: 25px;
+    }
+
+    .question h3 {
+      font-size: 1.3rem;
+      margin-bottom: 15px;
+      color: #333;
+      text-align: center;
+    }
+
+    .question p {
+      font-size: 0.95rem;
+      color: #666;
+      margin-bottom: 20px;
+      text-align: center;
+    }
+
+    /* Answer Options */
+    .answer-options {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 12px;
+      margin-bottom: 25px;
+    }
+
+    .answer-option {
+      position: relative;
+      cursor: pointer;
+    }
+
+    .answer-option input[type="radio"] {
+      position: absolute;
+      opacity: 0;
+      cursor: pointer;
+    }
+
+    .answer-option label {
+      display: block;
+      padding: 15px 20px;
+      background: #f8f9fa;
+      border: 2px solid #e1e5e9;
+      border-radius: 12px;
+      text-align: center;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      font-weight: 500;
+      margin: 0;
+      font-size: 1rem;
+    }
+
+    .answer-option input[type="radio"]:checked + label {
+      background: linear-gradient(45deg, #667eea, #764ba2);
+      color: white;
+      border-color: #667eea;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    }
+
+    .answer-option:hover label {
+      border-color: #667eea;
+      transform: translateY(-1px);
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    /* Grid Layout for Multiple Options */
+    .answer-options.grid-2 {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    .answer-options.grid-3 {
+      grid-template-columns: repeat(3, 1fr);
+    }
+
+    .answer-options.grid-4 {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    /* Input Styles */
+    .input-group {
+      margin-bottom: 25px;
+    }
+
+    .input-group label {
+      display: block;
+      font-weight: bold;
+      margin-bottom: 8px;
+      color: #333;
+      font-size: 1rem;
+      text-align: center;
+    }
+
+    .input-group input[type="text"] {
+      width: 100%;
+      padding: 15px 20px;
+      border: 2px solid #e1e5e9;
+      border-radius: 12px;
+      font-size: 1rem;
+      transition: all 0.3s ease;
+      background: white;
+      text-align: center;
+    }
+
+    .input-group input[type="text"]:focus {
+      outline: none;
+      border-color: #667eea;
+      box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+    }
+
+    .input-group input[type="text"]::placeholder {
+      color: #999;
+    }
+
+    /* Button Styles */
+    .button-group {
+      text-align: center;
+      margin-top: 30px;
+    }
+
+    .btn {
+      background: linear-gradient(45deg, #ff6b6b, #ee5a24);
+      color: white;
+      padding: 15px 40px;
+      border: none;
+      border-radius: 25px;
+      font-size: 1.1rem;
+      font-weight: bold;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+      min-width: 200px;
+      margin: 0 10px;
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+    }
+
+    .btn:disabled {
+      background: #ccc;
+      cursor: not-allowed;
+      transform: none;
+      box-shadow: none;
+    }
+
+    .btn-secondary {
+      background: linear-gradient(45deg, #6c757d, #495057);
+    }
+
+    /* Loading Animation */
+    .loading {
+      display: none;
+      text-align: center;
+      margin: 20px 0;
+    }
+
+    .loading-spinner {
+      border: 3px solid #f3f3f3;
+      border-top: 3px solid #667eea;
+      border-radius: 50%;
+      width: 30px;
+      height: 30px;
+      animation: spin 1s linear infinite;
+      margin: 0 auto 10px;
+    }
+
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    /* Footer */
+    .footer {
+      text-align: center;
+      color: white;
+      padding: 20px 0;
+      opacity: 0.8;
+      font-size: 0.9rem;
+    }
+
+    /* Responsive Design */
+    @media (min-width: 768px) {
+      .container {
+        padding: 20px;
+      }
+
+      .hero-section h1 {
+        font-size: 2.8rem;
+      }
+
+      .hero-section p {
+        font-size: 1.1rem;
+      }
+
+      .answer-options.grid-2 {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .answer-options.grid-3 {
         grid-template-columns: repeat(3, 1fr);
       }
-    }
-    
-    .flex-container {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 0.75rem;
-      width: 100%;
-    }
-    
-    @media (min-width: 640px) {
-      .flex-container {
-        flex-direction: row;
-        justify-content: center;
+
+      .answer-options.grid-4 {
+        grid-template-columns: repeat(4, 1fr);
+      }
+
+      .nav a {
+        padding: 10px 20px;
+        font-size: 15px;
       }
     }
-    
-    .flex-horizontal {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      gap: 1rem;
-      width: 100%;
+
+    @media (min-width: 1024px) {
+      .hero-section h1 {
+        font-size: 3rem;
+      }
+
+      .hero-section p {
+        font-size: 1.2rem;
+      }
+
+      .main-content {
+        padding: 40px;
+      }
     }
-    
-    input[type="text"] {
-      -webkit-appearance: none;
-      -moz-appearance: none;
-      appearance: none;
-      border-radius: 0.5rem;
-      border: 1px solid #fbb6ce;
-      padding: 0.5rem 1rem;
-      font-size: 1rem;
-      width: 100%;
-      box-sizing: border-box;
-      -webkit-box-sizing: border-box;
-      -moz-box-sizing: border-box;
-    }
-    
-    input[type="text"]:focus {
-      outline: none;
-      border-color: #f06;
-      box-shadow: 0 0 0 3px rgba(240, 102, 102, 0.1);
+
+    @media (max-width: 375px) {
+      .container {
+        padding: 10px;
+      }
+
+      .hero-section h1 {
+        font-size: 1.8rem;
+      }
+
+      .hero-section p {
+        font-size: 0.9rem;
+      }
+
+      .answer-options {
+        gap: 8px;
+      }
+
+      .answer-option label {
+        padding: 12px 15px;
+        font-size: 0.9rem;
+      }
+
+      .nav {
+        gap: 5px;
+      }
+
+      .nav a {
+        padding: 6px 12px;
+        font-size: 13px;
+      }
     }
   </style>
 </head>
-<body class="text-center py-10 px-4">
-  <div id="intro-screen"><div>── 運命の扉が今、開かれます ──</div></div>
-  <h1 class="text-2xl font-bold text-pink-800 mb-6">あなたの運命のAIパートナーを導きます…</h1>
-  <div id="question-container" class="max-w-md mx-auto space-y-10">
-    <!-- ステップ1 -->
-    <div class="question active" data-step="1">
-      <p class="mb-4 font-semibold">あなたの性別を教えてください</p>
-      <div class="flex-horizontal">
-        <button class="btn" onclick="next('gender','male')">男性</button>
-        <button class="btn" onclick="next('gender','female')">女性</button>
+<body>
+  <div class="container">
+    <!-- Header -->
+    <header class="header">
+      <div class="header-content">
+        <a href="./index.html" class="logo">
+          <img src="./ga/image/material/rogo.png" alt="AI PAR ロゴ">
+          <span class="logo-text">AI PAR</span>
+        </a>
+        <nav class="nav">
+          <a href="./index.html">トップ</a>
+          <a href="./prof.html">一覧</a>
+          <a href="./matching.html">診断</a>
+          <a href="./questionnaire.html">アンケート</a>
+        </nav>
       </div>
-    </div>
-    <!-- ステップ2 -->
-    <div class="question" data-step="2">
-      <p class="mb-4 font-semibold">どんなパートナーに惹かれますか？</p>
-      <div class="flex-horizontal">
-        <button class="btn" onclick="next('partner','male')">男性</button>
-        <button class="btn" onclick="next('partner','female')">女性</button>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content">
+      <!-- Hero Section -->
+      <section class="hero-section">
+        <div class="questionnaire-icon">📋</div>
+        <h1>詳細診断アンケート</h1>
+        <p>より詳細な質問に答えることで、あなたに最適なAIパートナーをより正確に提案します</p>
+      </section>
+
+      <!-- Progress Bar -->
+      <div class="progress-container">
+        <div class="progress-bar">
+          <div class="progress-fill" id="progressFill"></div>
+        </div>
+        <div class="progress-text" id="progressText">質問 1 / 8</div>
       </div>
-    </div>
-    <!-- ステップ3 -->
-    <div class="question" data-step="3">
-      <p class="mb-4 font-semibold">その方の年齢層は？</p>
-      <div class="grid-container">
-        <button class="btn" onclick="next('age','10代前半')">10代前半</button>
-        <button class="btn" onclick="next('age','10代後半')">10代後半</button>
-        <button class="btn" onclick="next('age','20代前半')">20代前半</button>
-        <button class="btn" onclick="next('age','20代後半')">20代後半</button>
-        <button class="btn" onclick="next('age','30代前半')">30代前半</button>
-        <button class="btn" onclick="next('age','30代後半')">30代後半</button>
-        <button class="btn" onclick="next('age','40代前半')">40代前半</button>
-        <button class="btn" onclick="next('age','40代後半')">40代後半</button>
-        <button class="btn" onclick="next('age','50代後半')">50代後半</button>
-        <button class="btn" onclick="next('age','60代以上')">60代以上</button>
+
+      <!-- Question 1: Gender -->
+      <div class="question-container active" id="question1">
+        <div class="question">
+          <h3>あなたの性別を教えてください</h3>
+          <p>より適切なマッチングのために、あなたの性別をお聞かせください</p>
+        </div>
+        <div class="answer-options grid-2">
+          <div class="answer-option">
+            <input type="radio" id="gender-male" name="gender" value="male">
+            <label for="gender-male">男性</label>
+          </div>
+          <div class="answer-option">
+            <input type="radio" id="gender-female" name="gender" value="female">
+            <label for="gender-female">女性</label>
+          </div>
+          <div class="answer-option">
+            <input type="radio" id="gender-other" name="gender" value="other">
+            <label for="gender-other">その他</label>
+          </div>
+          <div class="answer-option">
+            <input type="radio" id="gender-prefer-not" name="gender" value="prefer-not">
+            <label for="gender-prefer-not">答えたくない</label>
+          </div>
+        </div>
+        <div class="button-group">
+          <button class="btn" onclick="nextQuestion()">次へ</button>
+        </div>
       </div>
-    </div>
-    <!-- ステップ4 -->
-    <div class="question" data-step="4">
-      <p class="mb-4 font-semibold">どんな関係性を求めますか？</p>
-      <div class="flex-container">
-        <button class="btn" onclick="next('type','friend')">友人タイプ</button>
-        <button class="btn" onclick="next('type','advisor')">アドバイザータイプ</button>
-        <button class="btn" onclick="next('type','lover')">恋人タイプ</button>
+
+      <!-- Question 2: Age -->
+      <div class="question-container" id="question2">
+        <div class="question">
+          <h3>あなたの年齢を教えてください</h3>
+          <p>年齢に応じた最適なパートナーを提案いたします</p>
+        </div>
+        <div class="answer-options grid-3">
+          <div class="answer-option">
+            <input type="radio" id="age-18-25" name="age" value="18-25">
+            <label for="age-18-25">18-25歳</label>
+          </div>
+          <div class="answer-option">
+            <input type="radio" id="age-26-35" name="age" value="26-35">
+            <label for="age-26-35">26-35歳</label>
+          </div>
+          <div class="answer-option">
+            <input type="radio" id="age-36-45" name="age" value="36-45">
+            <label for="age-36-45">36-45歳</label>
+          </div>
+          <div class="answer-option">
+            <input type="radio" id="age-46-55" name="age" value="46-55">
+            <label for="age-46-55">46-55歳</label>
+          </div>
+          <div class="answer-option">
+            <input type="radio" id="age-56-65" name="age" value="56-65">
+            <label for="age-56-65">56-65歳</label>
+          </div>
+          <div class="answer-option">
+            <input type="radio" id="age-65+" name="age" value="65+">
+            <label for="age-65+">65歳以上</label>
+          </div>
+        </div>
+        <div class="button-group">
+          <button class="btn btn-secondary" onclick="prevQuestion()">戻る</button>
+          <button class="btn" onclick="nextQuestion()">次へ</button>
+        </div>
       </div>
-    </div>
-    <!-- ステップ5 -->
-    <div class="question" data-step="5">
-      <p class="mb-4 font-semibold">あなたのお名前を教えてください<br><span class="text-sm">(ニックネーム可)</span></p>
-      <input id="username" type="text" class="w-full border border-pink-300 rounded px-4 py-2 mb-4" placeholder="例：ゆかり" />
-      <button class="btn w-full" onclick="submitForm()">診断結果を見る</button>
-    </div>
+
+      <!-- Question 3: Partner Preference -->
+      <div class="question-container" id="question3">
+        <div class="question">
+          <h3>希望するパートナーの性別</h3>
+          <p>どの性別のAIパートナーをお探しですか？</p>
+        </div>
+        <div class="answer-options grid-3">
+          <div class="answer-option">
+            <input type="radio" id="partner-female" name="partner" value="female">
+            <label for="partner-female">女性</label>
+          </div>
+          <div class="answer-option">
+            <input type="radio" id="partner-male" name="partner" value="male">
+            <label for="partner-male">男性</label>
+          </div>
+          <div class="answer-option">
+            <input type="radio" id="partner-any" name="partner" value="any">
+            <label for="partner-any">どちらでも</label>
+          </div>
+        </div>
+        <div class="button-group">
+          <button class="btn btn-secondary" onclick="prevQuestion()">戻る</button>
+          <button class="btn" onclick="nextQuestion()">次へ</button>
+        </div>
+      </div>
+
+      <!-- Question 4: Personality Type -->
+      <div class="question-container" id="question4">
+        <div class="question">
+          <h3>あなたの性格タイプ</h3>
+          <p>あなたの性格に最も近いものを選んでください</p>
+        </div>
+        <div class="answer-options grid-2">
+          <div class="answer-option">
+            <input type="radio" id="personality-extrovert" name="personality" value="extrovert">
+            <label for="personality-extrovert">外向的・社交的</label>
+          </div>
+          <div class="answer-option">
+            <input type="radio" id="personality-introvert" name="personality" value="introvert">
+            <label for="personality-introvert">内向的・静か</label>
+          </div>
+          <div class="answer-option">
+            <input type="radio" id="personality-ambivert" name="personality" value="ambivert">
+            <label for="personality-ambivert">中間的・バランス</label>
+          </div>
+          <div class="answer-option">
+            <input type="radio" id="personality-unsure" name="personality" value="unsure">
+            <label for="personality-unsure">わからない</label>
+          </div>
+        </div>
+        <div class="button-group">
+          <button class="btn btn-secondary" onclick="prevQuestion()">戻る</button>
+          <button class="btn" onclick="nextQuestion()">次へ</button>
+        </div>
+      </div>
+
+      <!-- Question 5: Communication Style -->
+      <div class="question-container" id="question5">
+        <div class="question">
+          <h3>コミュニケーションスタイル</h3>
+          <p>どのような会話スタイルを好みますか？</p>
+        </div>
+        <div class="answer-options">
+          <div class="answer-option">
+            <input type="radio" id="communication-casual" name="communication" value="casual">
+            <label for="communication-casual">カジュアルで親しみやすい</label>
+          </div>
+          <div class="answer-option">
+            <input type="radio" id="communication-formal" name="communication" value="formal">
+            <label for="communication-formal">丁寧で礼儀正しい</label>
+          </div>
+          <div class="answer-option">
+            <input type="radio" id="communication-intellectual" name="communication" value="intellectual">
+            <label for="communication-intellectual">知的で深い話ができる</label>
+          </div>
+          <div class="answer-option">
+            <input type="radio" id="communication-playful" name="communication" value="playful">
+            <label for="communication-playful">遊び心があって楽しい</label>
+          </div>
+        </div>
+        <div class="button-group">
+          <button class="btn btn-secondary" onclick="prevQuestion()">戻る</button>
+          <button class="btn" onclick="nextQuestion()">次へ</button>
+        </div>
+      </div>
+
+      <!-- Question 6: Relationship Type -->
+      <div class="question-container" id="question6">
+        <div class="question">
+          <h3>求める関係性</h3>
+          <p>どのような関係性を求めていますか？</p>
+        </div>
+        <div class="answer-options">
+          <div class="answer-option">
+            <input type="radio" id="relationship-friend" name="relationship" value="friend">
+            <label for="relationship-friend">友達・相談相手</label>
+          </div>
+          <div class="answer-option">
+            <input type="radio" id="relationship-advisor" name="relationship" value="advisor">
+            <label for="relationship-advisor">アドバイザー・メンター</label>
+          </div>
+          <div class="answer-option">
+            <input type="radio" id="relationship-lover" name="relationship" value="lover">
+            <label for="relationship-lover">恋人・パートナー</label>
+          </div>
+          <div class="answer-option">
+            <input type="radio" id="relationship-family" name="relationship" value="family">
+            <label for="relationship-family">家族・兄弟姉妹</label>
+          </div>
+        </div>
+        <div class="button-group">
+          <button class="btn btn-secondary" onclick="prevQuestion()">戻る</button>
+          <button class="btn" onclick="nextQuestion()">次へ</button>
+        </div>
+      </div>
+
+      <!-- Question 7: Interests -->
+      <div class="question-container" id="question7">
+        <div class="question">
+          <h3>興味・関心事</h3>
+          <p>どのような話題に興味がありますか？（複数選択可）</p>
+        </div>
+        <div class="answer-options grid-2">
+          <div class="answer-option">
+            <input type="checkbox" id="interest-music" name="interests" value="music">
+            <label for="interest-music">音楽</label>
+          </div>
+          <div class="answer-option">
+            <input type="checkbox" id="interest-movies" name="interests" value="movies">
+            <label for="interest-movies">映画・ドラマ</label>
+          </div>
+          <div class="answer-option">
+            <input type="checkbox" id="interest-books" name="interests" value="books">
+            <label for="interest-books">読書</label>
+          </div>
+          <div class="answer-option">
+            <input type="checkbox" id="interest-games" name="interests" value="games">
+            <label for="interest-games">ゲーム</label>
+          </div>
+          <div class="answer-option">
+            <input type="checkbox" id="interest-sports" name="interests" value="sports">
+            <label for="interest-sports">スポーツ</label>
+          </div>
+          <div class="answer-option">
+            <input type="checkbox" id="interest-cooking" name="interests" value="cooking">
+            <label for="interest-cooking">料理</label>
+          </div>
+          <div class="answer-option">
+            <input type="checkbox" id="interest-travel" name="interests" value="travel">
+            <label for="interest-travel">旅行</label>
+          </div>
+          <div class="answer-option">
+            <input type="checkbox" id="interest-technology" name="interests" value="technology">
+            <label for="interest-technology">テクノロジー</label>
+          </div>
+        </div>
+        <div class="button-group">
+          <button class="btn btn-secondary" onclick="prevQuestion()">戻る</button>
+          <button class="btn" onclick="nextQuestion()">次へ</button>
+        </div>
+      </div>
+
+      <!-- Question 8: Nickname -->
+      <div class="question-container" id="question8">
+        <div class="question">
+          <h3>あなたのニックネーム</h3>
+          <p>AIパートナーがあなたを呼ぶ名前を教えてください</p>
+        </div>
+        <div class="input-group">
+          <label for="nickname">ニックネーム</label>
+          <input type="text" id="nickname" name="nickname" placeholder="例: 太郎、花子、あなた" maxlength="20">
+        </div>
+        <div class="button-group">
+          <button class="btn btn-secondary" onclick="prevQuestion()">戻る</button>
+          <button class="btn" onclick="submitQuestionnaire()">診断結果を見る</button>
+        </div>
+      </div>
+
+      <!-- Loading -->
+      <div class="loading" id="loading">
+        <div class="loading-spinner"></div>
+        <p>診断結果を分析中...</p>
+      </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <p>&copy; <span id="current-year"></span> AI PAR - LOVEパートナー. All rights reserved.</p>
+    </footer>
   </div>
 
   <script>
-    let step=1; const answers={};
-    
-    // DOMContentLoadedイベントの統一
-    function init() {
-      setTimeout(() => {
-        const introScreen = document.getElementById('intro-screen');
-        if (introScreen) {
-          introScreen.classList.add('hide');
+    // 現在の年を表示
+    document.getElementById('current-year').textContent = new Date().getFullYear();
+
+    // 質問管理
+    let currentQuestion = 1;
+    const totalQuestions = 8;
+    const answers = {};
+
+    // 進捗バー更新
+    function updateProgress() {
+      const progress = (currentQuestion / totalQuestions) * 100;
+      document.getElementById('progressFill').style.width = progress + '%';
+      document.getElementById('progressText').textContent = `質問 ${currentQuestion} / ${totalQuestions}`;
+    }
+
+    // 質問表示
+    function showQuestion(questionNumber) {
+      // 全質問を非表示
+      document.querySelectorAll('.question-container').forEach(container => {
+        container.classList.remove('active');
+      });
+      
+      // 指定された質問を表示
+      document.getElementById(`question${questionNumber}`).classList.add('active');
+      
+      // 進捗バー更新
+      updateProgress();
+    }
+
+    // 次の質問へ
+    function nextQuestion() {
+      // 現在の質問の回答を保存
+      saveCurrentAnswers();
+      
+      if (currentQuestion < totalQuestions) {
+        currentQuestion++;
+        showQuestion(currentQuestion);
+      }
+    }
+
+    // 前の質問へ
+    function prevQuestion() {
+      if (currentQuestion > 1) {
+        currentQuestion--;
+        showQuestion(currentQuestion);
+      }
+    }
+
+    // 現在の質問の回答を保存
+    function saveCurrentAnswers() {
+      const currentContainer = document.getElementById(`question${currentQuestion}`);
+      
+      // ラジオボタンの回答を保存
+      const radioInputs = currentContainer.querySelectorAll('input[type="radio"]:checked');
+      radioInputs.forEach(input => {
+        answers[input.name] = input.value;
+      });
+      
+      // チェックボックスの回答を保存
+      const checkboxInputs = currentContainer.querySelectorAll('input[type="checkbox"]:checked');
+      if (checkboxInputs.length > 0) {
+        const checkboxValues = Array.from(checkboxInputs).map(input => input.value);
+        answers['interests'] = checkboxValues;
+      }
+      
+      // テキスト入力の回答を保存
+      const textInputs = currentContainer.querySelectorAll('input[type="text"]');
+      textInputs.forEach(input => {
+        if (input.value.trim()) {
+          answers[input.name] = input.value.trim();
         }
+      });
+    }
+
+    // アンケート送信
+    function submitQuestionnaire() {
+      // 最後の質問の回答を保存
+      saveCurrentAnswers();
+      
+      // ニックネームの処理
+      let nickname = answers['nickname'] || '';
+      nickname = nickname.trim();
+      if (!nickname) {
+        nickname = 'あなた';
+      }
+      
+      // パラメータ作成
+      const params = new URLSearchParams();
+      params.set('nickname', nickname);
+      params.set('gender', answers['gender'] || '');
+      params.set('age', answers['age'] || '');
+      params.set('partner', answers['partner'] || '');
+      params.set('personality', answers['personality'] || '');
+      params.set('communication', answers['communication'] || '');
+      params.set('relationship', answers['relationship'] || '');
+      if (answers['interests']) {
+        params.set('interests', answers['interests'].join(','));
+      }
+      
+      // ローディング表示
+      document.querySelectorAll('.question-container').forEach(container => {
+        container.style.display = 'none';
+      });
+      document.getElementById('loading').style.display = 'block';
+      
+      // 少し遅延してからリダイレクト
+      setTimeout(() => {
+        window.location.href = `./prof.html?${params.toString()}`;
       }, 2000);
     }
-    
-    // 複数のイベントリスナーで確実に実行
-    if (document.readyState === 'loading') {
-      document.addEventListener('DOMContentLoaded', init);
-    } else {
-      init();
-    }
-    
-    window.addEventListener('load', init);
 
-    function showNext(nextQ,current){
-      if(current){
-        current.classList.add('fade-out');
+    // 初期化
+    document.addEventListener('DOMContentLoaded', function() {
+      updateProgress();
+      
+      // モバイルでのタッチ操作を改善
+      if ('ontouchstart' in window) {
+        const touchElements = document.querySelectorAll('.answer-option, .nav a, .btn');
+        touchElements.forEach(element => {
+          element.style.transition = 'none';
+        });
       }
-      setTimeout(() => {
-        if(current) {
-          current.classList.remove('active','fade-out');
-        }
-        if(nextQ) {
-          nextQ.classList.add('active');
-        }
-      }, 1200);
-    }
-
-    function next(key,val){
-      if(!val){
-        alert('選択してください');
-        return;
-      }
-      answers[key]=val;
-      const cur=document.querySelector(`[data-step='${step}']`);
-      const nxt=document.querySelector(`[data-step='${step+1}']`);
-      if(nxt){
-        showNext(nxt,cur);
-        step++;
-      }
-    }
-
-    function submitForm(){
-      const name=document.getElementById('username').value.trim();
-      if(!name){
-        alert('名前を入力してください');
-        return;
-      }
-      answers.name=name;
-      const qs=new URLSearchParams(answers).toString();
-      const dest=new URL('matching.html',location.href).href.split('#')[0];
-      window.location.href=`${dest}?${qs}`;
-    }
+    });
   </script>
 </body>
 </html>
