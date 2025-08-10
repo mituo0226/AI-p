@@ -101,9 +101,9 @@
       return arr;
     }
 
-    async function init(){
-      try{
-        const res = await fetch('characters.json', {cache: 'no-store'});
+         async function init(){
+       try{
+         const res = await fetch('data/characters.json', {cache: 'no-store'});
         if(!res.ok) throw new Error('characters.json 読み込み失敗');
         let chars = await res.json();
 
