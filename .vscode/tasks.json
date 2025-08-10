@@ -1,0 +1,32 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+      {
+        "label": "git: auto commit & push",
+        "type": "shell",
+        "command": "powershell",
+        "args": [
+          "-NoProfile",
+          "-ExecutionPolicy",
+          "Bypass",
+          "-Command",
+          "$ErrorActionPreference='SilentlyContinue'; $branch = (git rev-parse --abbrev-ref HEAD 2>$null); if ([string]::IsNullOrEmpty($branch)) { $branch = 'main' }; git add -A; if (git diff --cached --quiet) { Write-Output 'No changes to commit'; exit 0 }; $msg = 'auto: ' + (Get-Date -Format 'yyyy-MM-dd HH:mm'); git commit -m $msg; try { git pull --rebase origin $branch } catch {}; git push origin HEAD:$branch"
+        ],
+        "problemMatcher": []
+      },
+      {
+        "label": "git: pull --rebase (manual)",
+        "type": "shell",
+        "command": "powershell",
+        "args": [
+          "-NoProfile",
+          "-ExecutionPolicy",
+          "Bypass",
+          "-Command",
+          "$branch = (git rev-parse --abbrev-ref HEAD 2>$null); if ([string]::IsNullOrEmpty($branch)) { $branch = 'main' }; git pull --rebase origin $branch"
+        ],
+        "problemMatcher": []
+      }
+    ]
+  }
+  
