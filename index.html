@@ -55,7 +55,7 @@
 
             <div class="mt-4 flex flex-wrap items-center gap-4">
               <a id="heroVideoLink" href="#" class="text-pink-600 hover:text-pink-700 text-sm inline-flex items-center gap-2">
-                <span class="inline-block w-2 h-2 rounded-full bg-pink-500"></span> プロフィール動画を見る
+                <span class="inline-block w-2 h-2 rounded-full bg-pink-500"></span> プロフィールを見る
               </a>
             </div>
 
@@ -125,7 +125,7 @@
         heroName.textContent = `${hero.name}（${hero.age ?? '—'}歳）`;
         heroPhrase.textContent = `“${hero.phrase ?? ''}”`.replace(/\s+/g,' ');
         heroIntro.textContent = hero.intro ?? '';
-        heroVideoLink.href = hero.video || '#';
+        heroVideoLink.href = hero.profile || '#';
 
         // 下段カード：ランダム4人
         const picks = shuffle(rest).slice(0, 4);
