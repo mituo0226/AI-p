@@ -1,0 +1,14 @@
+{
+    "files.autoSave": "afterDelay",
+    "files.autoSaveDelay": 1500,
+  
+    "auto-run-command.rules": [
+      {
+        "event": "onDidSaveTextDocument",
+        "match": ".*",
+        "isAsync": true,
+        "command": "powershell -NoProfile -ExecutionPolicy Bypass -File \"${workspaceFolder}\\.vscode\\auto-git.ps1\""
+      }
+    ]
+  }
+  
