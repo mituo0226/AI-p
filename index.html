@@ -44,22 +44,22 @@
         <div class="mt-10 grid grid-cols-1 sm:grid-cols-[auto,1fr] gap-6 sm:gap-10 items-center">
           <!-- 円形サムネ -->
           <div class="flex justify-center sm:justify-start">
-            <img id="heroImg" src="" alt="" class="h-44 w-44 object-cover rounded-full ring-soft" />
+            <img id="heroImg" src="" alt="" class="h-44 w-44 object-cover rounded-full ring-soft transition-all duration-1000 ease-in-out" />
           </div>
 
           <!-- テキスト -->
-          <div>
-            <h2 id="heroName" class="text-xl sm:text-2xl font-bold">—</h2>
-            <p id="heroPhrase" class="mt-2 text-gray-600 italic">—</p>
-            <p id="heroIntro" class="mt-3 text-gray-700">—</p>
+          <div class="transition-all duration-1000 ease-in-out">
+            <h2 id="heroName" class="text-xl sm:text-2xl font-bold transition-all duration-1000 ease-in-out">—</h2>
+            <p id="heroPhrase" class="mt-2 text-gray-600 italic transition-all duration-1000 ease-in-out">—</p>
+            <p id="heroIntro" class="mt-3 text-gray-700 transition-all duration-1000 ease-in-out">—</p>
 
-            <div class="mt-4 flex flex-wrap items-center gap-4">
+            <div class="mt-4 flex flex-wrap items-center gap-4 transition-all duration-1000 ease-in-out">
               <a id="heroVideoLink" href="#" class="text-pink-600 hover:text-pink-700 text-sm inline-flex items-center gap-2">
                 <span class="inline-block w-2 h-2 rounded-full bg-pink-500"></span> プロフィールを見る
               </a>
             </div>
 
-            <div class="mt-6">
+            <div class="mt-6 transition-all duration-1000 ease-in-out">
               <a href="questionnaire.html"
                  class="inline-flex items-center justify-center px-6 py-3 rounded-full bg-pink-500 text-white font-semibold hover:bg-pink-600 transition">
                 パートナー診断を始める
@@ -103,31 +103,74 @@
       return arr;
     }
 
-         async function init(){
-       try{
-         const res = await fetch('data/characters.json', {cache: 'no-store'});
+    async function init(){
+      try{
+        const res = await fetch('data/characters.json', {cache: 'no-store'});
         if(!res.ok) throw new Error('characters.json 読み込み失敗');
         let chars = await res.json();
 
         // 画像/動画がない項目は除外（保険）
         chars = chars.filter(c => c.img && c.name);
 
-        // ランダムに1人をヒーローへ
-        const [hero, ...rest] = shuffle([...chars]);
+        // 女性キャラクターのみをフィルタリング
+        const femaleChars = chars.filter(c => c.gender === 'female');
+        
+        // ランダムに並べ替え
+        const shuffledFemales = shuffle([...femaleChars]);
+        
+        // 最初の3人を選択（または全員）
+        const displayChars = shuffledFemales.slice(0, Math.min(3, shuffledFemales.length));
+        
+        // 下段カード用の残りのキャラクター
+        const rest = shuffle([...chars]).slice(0, 4);
 
-        // ヒーロー描画
+        // アニメーション用の変数
+        let currentIndex = 0;
         const heroImg = document.getElementById('heroImg');
         const heroName = document.getElementById('heroName');
         const heroPhrase = document.getElementById('heroPhrase');
         const heroIntro = document.getElementById('heroIntro');
         const heroVideoLink = document.getElementById('heroVideoLink');
 
-        heroImg.src = hero.img;
-        heroImg.alt = hero.name;
-        heroName.textContent = `${hero.name}（${hero.age ?? '—'}歳）`;
-        heroPhrase.textContent = `“${hero.phrase ?? ''}”`.replace(/\s+/g,' ');
-        heroIntro.textContent = hero.intro ?? '';
-        heroVideoLink.href = hero.profile || '#';
+        // キャラクターを表示する関数
+        function showCharacter(char) {
+          // フェードアウト
+          heroImg.style.opacity = '0';
+          heroName.style.opacity = '0';
+          heroPhrase.style.opacity = '0';
+          heroIntro.style.opacity = '0';
+          heroVideoLink.style.opacity = '0';
+          
+          setTimeout(() => {
+            // 内容を更新
+            heroImg.src = char.img;
+            heroImg.alt = char.name;
+            heroName.textContent = `${char.name}（${char.age ?? '—'}歳）`;
+            heroPhrase.textContent = `"${char.phrase ?? ''}"`.replace(/\s+/g,' ');
+            heroIntro.textContent = char.intro ?? '';
+            heroVideoLink.href = char.profile || '#';
+            
+            // フェードイン
+            heroImg.style.opacity = '1';
+            heroName.style.opacity = '1';
+            heroPhrase.style.opacity = '1';
+            heroIntro.style.opacity = '1';
+            heroVideoLink.style.opacity = '1';
+          }, 500);
+        }
+
+        // 最初のキャラクターを表示
+        if (displayChars.length > 0) {
+          showCharacter(displayChars[0]);
+        }
+
+        // 定期的にキャラクターを切り替え
+        if (displayChars.length > 1) {
+          setInterval(() => {
+            currentIndex = (currentIndex + 1) % displayChars.length;
+            showCharacter(displayChars[currentIndex]);
+          }, 4000); // 4秒ごとに切り替え
+        }
 
         // 下段カード：ランダム4人
         const picks = shuffle(rest).slice(0, 4);
