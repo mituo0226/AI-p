@@ -1,160 +1,164 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="ja">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>◆AIで作る最高のLOVEパートナー◆</title>
-  <link href="https://unpkg.com/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet" />
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>◆AIで作る最高のLOVEパートナー◆ | ai-par.com</title>
+  <meta name="description" content="AIがあなたに最適な“心のパートナー”を提案。10問の診断で出会える、魅力的な男女キャラクターたち。">
+  <link rel="preload" href="./rogo.png" as="image">
+  <link rel="stylesheet" href="./style.css" />
   <style>
-    /* 背景：現状の淡いピンクトーンをキープ */
-    body::before {
-      content: "";
-      position: fixed;
-      inset: 0;
-      background: linear-gradient(120deg, #ffe4e6, #fdf2f8);
-      background-size: 400% 400%;
-      animation: gradientFade 15s ease infinite;
-      z-index: -1;
+    :root {
+      --bg: #0b0b10; --card:#14141d; --text:#f5f7ff; --muted:#b8bdce; --accent:#7c6cff; --accent2:#ff5fa2;
     }
-    @keyframes gradientFade {
-      0% { background-position: 0% 50%; }
-      50% { background-position: 100% 50%; }
-      100% { background-position: 0% 50%; }
-    }
+    html,body{margin:0;padding:0;background:linear-gradient(180deg,#0b0b10,#121220 60%,#0b0b10);color:var(--text);font-family:system-ui,-apple-system,Segoe UI,Roboto,"Helvetica Neue",Arial,"Noto Sans JP","Hiragino Kaku Gothic ProN","Yu Gothic UI",sans-serif;}
+    a{color:inherit;text-decoration:none}
+    .container{max-width:1120px;margin:0 auto;padding:20px}
+    header{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:12px 0}
+    .logo{display:flex;align-items:center;gap:12px}
+    .logo img{height:42px;width:auto}
+    .nav a{opacity:.9;margin-left:14px}
+    .hero{display:grid;grid-template-columns:1.2fr .8fr;gap:24px;align-items:center;padding:30px 0}
+    .hero h1{font-size:clamp(24px,4vw,40px);line-height:1.2;margin:0 0 8px}
+    .hero p{color:var(--muted);margin:0 0 20px}
+    .cta{display:flex;gap:12px;flex-wrap:wrap}
+    .btn{background:linear-gradient(135deg,var(--accent),var(--accent2));border:none;color:#fff;padding:12px 18px;border-radius:999px;font-weight:700;letter-spacing:.02em;box-shadow:0 8px 20px rgba(124,108,255,.35);cursor:pointer}
+    .btn.sub{background:#22243a;color:#fff;border:1px solid #2d3050}
+    .hero-card{background:radial-gradient(1000px 400px at 80% -10%,rgba(255,95,162,.25),transparent 60%),var(--card);border:1px solid #2a2e44;border-radius:20px;padding:18px}
+    .ticker{display:flex;gap:10px;overflow:auto;padding:6px 2px}
+    .ticker .chip{white-space:nowrap;background:#1c1f33;border:1px solid #2a2e44;border-radius:999px;padding:8px 12px;color:#cbd0e8;font-size:13px}
+    .grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;margin-top:12px}
+    @media(min-width:720px){.grid{grid-template-columns:repeat(4,1fr)} }
+    .card{position:relative;background:#181a29;border:1px solid #2a2e44;border-radius:16px;overflow:hidden}
+    .card img{width:100%;height:220px;object-fit:cover;display:block;background:#0f1020}
+    .badge{position:absolute;top:10px;left:10px;background:rgba(0,0,0,.5);backdrop-filter:blur(6px);border:1px solid rgba(255,255,255,.2);padding:6px 10px;border-radius:999px;font-size:12px}
+    .card .cap{padding:10px 12px}
+    .cap .name{font-weight:700}
+    .cap .phrase{color:#c7cbed;font-size:12px;line-height:1.5;margin-top:4px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+    .how{margin:40px 0 20px}
+    .how h2{font-size:22px;margin:0 0 12px}
+    .steps{display:grid;grid-template-columns:repeat(1,1fr);gap:12px}
+    @media(min-width:760px){.steps{grid-template-columns:repeat(3,1fr)}}
+    .step{background:#14162a;border:1px solid #2a2e44;border-radius:16px;padding:16px}
+    .step h3{margin:0 0 6px;font-size:16px}
+    footer{color:#a8acc6;opacity:.9;padding:28px 0;text-align:center;border-top:1px solid #232645;margin-top:36px}
+    .small{font-size:12px;color:#98a0c6}
   </style>
 </head>
-<body class="font-sans">
-  <!-- ヘッダー：ロゴは今のままでも可。差し替えるなら src を ga/image/material/rogo-640.png などへ -->
-  <header class="bg-white bg-opacity-80 shadow py-6">
-    <div class="text-center">
-      <!-- 例）制作ロゴに差し替える場合：
-      <img src="ga/image/material/rogo-640.png" alt="AI LOVEパートナーロゴ" class="mx-auto h-24 object-contain" />
-      -->
-      <img src="http://ryu02262.moo.jp/aip/ga/t/rogo.png" alt="AI LOVEパートナーロゴ" class="mx-auto h-28 object-contain" />
-    </div>
-  </header>
-
-  <!-- ヒーロー -->
-  <section class="bg-white bg-opacity-90 rounded-3xl shadow-lg p-6 sm:p-10 mt-8 max-w-4xl mx-auto text-center">
-    <h2 class="text-2xl sm:text-3xl font-bold text-pink-600 mb-4">── 運命のパートナーが、あなたを待っている ──</h2>
-    <p class="text-gray-700 mb-6 text-base sm:text-lg">
-      まるで本当に存在するかのようなAIキャラクターたち。<br>
-      あなたの心の奥まで寄り添い、言葉にならない想いを受け止めます。
-    </p>
-
-    <div id="heroCharacter" class="flex flex-col sm:flex-row items-center justify-center gap-6 mt-6">
-      <img id="heroImage" src="" alt="キャラ画像" class="w-40 h-40 sm:w-48 sm:h-48 rounded-full object-cover shadow-lg border-4 border-white">
-      <div class="text-left max-w-md">
-        <h3 id="heroName" class="text-xl sm:text-2xl font-semibold text-gray-800 mb-2"></h3>
-        <p id="heroCatch" class="italic text-gray-600 text-sm sm:text-base mb-3"></p>
-        <p id="heroIntro" class="text-sm text-gray-700 mb-2"></p>
-        <a id="heroProfile" href="#" class="text-pink-600 text-sm font-semibold hover:underline">▶ プロフィール詳細を見る</a>
+<body>
+  <div class="container">
+    <header>
+      <div class="logo">
+        <img src="./rogo.png" alt="サイトロゴ" width="160" height="42" />
+        <strong>最高のLOVEパートナー</strong>
       </div>
-    </div>
+      <nav class="nav" aria-label="主要ナビゲーション">
+        <a href="./questionnaire.html">診断</a>
+        <a href="./matching.html">キャラクター一覧</a>
+        <a href="./prof.html">サンプル</a>
+      </nav>
+    </header>
 
-    <div class="mt-8">
-      <a href="questionnaire.html" class="inline-block bg-pink-600 hover:bg-pink-700 text-white text-lg font-semibold py-3 px-8 rounded-full shadow transition duration-300">
-        パートナー診断を始める
-      </a>
-    </div>
-  </section>
-
-  <main class="max-w-6xl mx-auto px-6 py-12">
-    <!-- セクション見出し＆キャッチは指定のまま -->
-    <section class="text-center mb-6">
-      <h2 class="text-2xl font-semibold text-gray-800 mb-4">他にも、あなたを待っているAIたちがいます</h2>
-      <p class="text-gray-700 text-lg leading-relaxed">
-        実在するかのような魅力的なキャラクターが、<br>
-        あなたの孤独や不安にそっと寄り添います。
-      </p>
+    <section class="hero" aria-label="ヒーロー">
+      <div>
+        <h1>AIが“今のあなた”に合う、<br/>心のパートナーを提案します</h1>
+        <p>10問の簡単な質問に答えるだけ。最適なキャラクターが、<br class="hide-sm"/>あなたの気持ちに寄り添い、毎日にそっと灯りをともします。</p>
+        <div class="cta">
+          <a class="btn" href="./questionnaire.html" aria-label="診断を始める">診断を始める</a>
+          <a class="btn sub" href="./matching.html" aria-label="キャラクター一覧を見る">キャラクター一覧を見る</a>
+        </div>
+        <div class="ticker" aria-label="特徴">
+          <span class="chip">男女 3〜5人ずつの多彩な個性</span>
+          <span class="chip">最初は無料で体験</span>
+          <span class="chip">1会話=10pt（¥100）</span>
+          <span class="chip">スピリチュアル × カウンセリング</span>
+        </div>
+      </div>
+      <aside class="hero-card" aria-label="注目キャラクター">
+        <div class="grid" id="heroGrid" aria-live="polite"></div>
+        <p class="small" style="margin:10px 4px 0">画像はイメージ／キャラクターを一部表示しています</p>
+      </aside>
     </section>
 
-    <!-- 男女2名ずつ＝4カード -->
-    <section class="mb-8">
-      <div id="character-cards" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6"></div>
+    <section class="how" aria-label="使い方">
+      <h2>はじめかた</h2>
+      <div class="steps">
+        <div class="step">
+          <h3>1. 10問の診断に回答</h3>
+          <p class="small">あなたの希望や今の気持ちを教えてください。</p>
+        </div>
+        <div class="step">
+          <h3>2. 相性の合う相手とマッチ</h3>
+          <p class="small">結果にもとづき、最適な“心のパートナー”をご提案。</p>
+        </div>
+        <div class="step">
+          <h3>3. 話して、頼って、深める</h3>
+          <p class="small">最初は数往復無料。以降はポイント制で続けられます。</p>
+        </div>
+      </div>
     </section>
 
-    <!-- プロフィール一覧へのリンク -->
-    <section class="text-center">
-      <a href="prof.html" class="inline-block text-pink-700 font-semibold underline hover:text-pink-800">
-        ▶ プロフィール一覧を見る
-      </a>
-    </section>
-  </main>
-
-  <footer class="text-center text-sm text-gray-500 py-6">
-    &copy; 2025 AI LOVE Partner Project
-  </footer>
+    <footer>
+      <div>© <span id="y"></span> ai-par.com / ◆AIで作る最高のLOVEパートナー◆</div>
+      <div class="small">このサービスはフィクションのキャラクターを用いた対話体験を提供します。医療・法律等の専門アドバイスは行いません。</div>
+    </footer>
+  </div>
 
   <script>
-    // 配列シャッフル（複製してから）
-    function shuffle(arr) {
-      const a = arr.slice();
-      for (let i = a.length - 1; i > 0; i--) {
-        const j = Math.floor(Math.random() * (i + 1));
-        [a[i], a[j]] = [a[j], a[i]];
-      }
+    // 年表示
+    document.getElementById('y').textContent = new Date().getFullYear();
+
+    // キャラクターを読み込み、ヒーローに表示
+    const grid = document.getElementById('heroGrid');
+    const PICK = 8; // 表示数
+
+    function cardTemplate(ch){
+      const a = document.createElement('a');
+      a.href = ch.profile || './prof.html';
+      a.className = 'card';
+      a.setAttribute('aria-label', ch.name + 'のプロフィールへ');
+      a.innerHTML = `
+        <span class="badge">${ch.age_label || (ch.age + '歳') }・${labelType(ch.type)}</span>
+        <img loading="lazy" src="${sanitizePath(ch.img)}" alt="${ch.name}" onerror="this.src='ga/image/character/placeholder.jpg'" />
+        <div class="cap">
+          <div class="name">${ch.name}</div>
+          <div class="phrase">${ch.phrase || ''}</div>
+        </div>`;
       return a;
     }
 
-    // 指定数ランダム取得（足りない場合は可能なだけ）
-    function pickRandom(list, n) {
-      return shuffle(list).slice(0, Math.min(n, list.length));
+    function labelType(t){
+      if(t==='lover') return '恋人タイプ';
+      if(t==='advisor') return 'アドバイザー';
+      if(t==='friend') return '友人タイプ';
+      return 'タイプ';
     }
 
-    fetch("characters.json")
-      .then(res => res.json())
-      .then(characters => {
-        // ヒーロー：全体からランダム1人
-        const hero = characters[Math.floor(Math.random() * characters.length)];
-        document.getElementById("heroImage").src = hero.img;
-        document.getElementById("heroName").textContent = `${hero.name}（${hero.age}歳）`;
-        document.getElementById("heroCatch").textContent = `"${hero.phrase}"`;
-        document.getElementById("heroIntro").textContent = hero.intro;
-        document.getElementById("heroProfile").href = hero.profile;
+    function sanitizePath(p){
+      // 相対パス前提で安全に整形
+      try{ const u = new URL(p, location.href); return u.pathname.replace(location.origin,''); }catch(e){ return p; }
+    }
 
-        // ヒーロー以外から男女2名ずつを目標に選ぶ
-        const rest = characters.filter(c => c.id !== hero.id);
-        const males = rest.filter(c => c.gender === "male");
-        const females = rest.filter(c => c.gender === "female");
-
-        let pickM = pickRandom(males, 2);
-        let pickF = pickRandom(females, 2);
-
-        // もし男女どちらかが不足していたら、残りは rest から補完（重複なし）
-        const selectedIds = new Set([...pickM, ...pickF].map(c => c.id));
-        while (pickM.length + pickF.length < 4 && selectedIds.size < rest.length) {
-          const candidate = rest[Math.floor(Math.random() * rest.length)];
-          if (!selectedIds.has(candidate.id)) {
-            selectedIds.add(candidate.id);
-            if (candidate.gender === "male" && pickM.length < 2) pickM.push(candidate);
-            else if (candidate.gender === "female" && pickF.length < 2) pickF.push(candidate);
-            else {
-              // 目標性別が埋まっている場合でも、全体4名に達するまで補完
-              if (pickM.length + pickF.length < 4) {
-                (pickM.length <= pickF.length ? pickM : pickF).push(candidate);
-              }
-            }
-          }
+    async function load(){
+      try{
+        const res = await fetch('./characters.json', {cache:'no-store'});
+        if(!res.ok) throw new Error('characters.jsonの取得に失敗しました');
+        const list = await res.json();
+        // 重複・不足に耐える: 正しいimgがあるものを優先
+        const clean = list.filter(ch=>ch && ch.name && ch.img);
+        // 並びをランダムにして先頭PICK件
+        for(let i = clean.length - 1; i > 0; i--){
+          const j = Math.floor(Math.random() * (i + 1));
+          [clean[i], clean[j]] = [clean[j], clean[i]];
         }
-
-        const four = [...pickM, ...pickF].slice(0, 4);
-        const container = document.getElementById("character-cards");
-        four.forEach(char => {
-          const card = document.createElement("div");
-          card.className = "bg-white rounded-2xl shadow p-4 text-center";
-          card.innerHTML = `
-            <img src="${char.img}" alt="${char.name}" class="w-full h-44 object-cover rounded-lg mb-2" />
-            <h3 class="text-lg font-bold text-gray-800">${char.name}（${char.age}歳）</h3>
-            <p class="text-sm text-gray-600 italic mb-1">"${char.phrase}"</p>
-            <a href="${char.profile}" class="text-pink-600 text-xs hover:underline">▶ プロフィール詳細を見る</a>
-          `;
-          container.appendChild(card);
-        });
-      })
-      .catch(err => {
-        console.error("characters.json の読み込みでエラー:", err);
-      });
+        const pick = clean.slice(0, PICK);
+        pick.forEach(ch=> grid.appendChild(cardTemplate(ch)));
+      }catch(err){
+        console.error(err);
+        grid.innerHTML = '<div class="small">キャラクターの読み込みに失敗しました。<a href="./matching.html">一覧ページ</a>をご覧ください。</div>';
+      }
+    }
+    load();
   </script>
 </body>
 </html>
