@@ -521,148 +521,23 @@
       const relationship = params.get('relationship') || '';
       const communication = params.get('communication') || '';
 
-      // 診断パラメータがある場合は診断結果を表示
-      if (nickname && (gender || age || partner || relationship || communication)) {
-        showDiagnosticResults(nickname, gender, age, partner, relationship, communication);
-      } else {
-        // 通常の一覧表示
-        showAllCharacters();
-      }
+              // 診断パラメータがある場合は診断結果ページにリダイレクト
+        if (nickname && (gender || age || partner || relationship || communication)) {
+          window.location.href = `./diagnostic-result-new.html?${params.toString()}`;
+          return;
+        }
+      
+      // 通常の一覧表示
+      showAllCharacters();
     }
 
-    // 診断結果を表示
-    function showDiagnosticResults(nickname, gender, age, partner, relationship, communication) {
-      // ヘッダーを診断結果用に変更
-      const heroTitle = document.querySelector('.hero-section h1');
-      const heroDescription = document.querySelector('.hero-section p');
-      
-      heroTitle.textContent = `${nickname}さんに最適なAIパートナー`;
-      heroDescription.textContent = '診断結果に基づいて、あなたに最適なキャラクターを選出しました';
 
-      // 診断ロジックでキャラクターを選出
-      const matchedCharacters = matchCharacters(gender, age, partner, relationship, communication);
-      
-      // 男女2人まで表示
-      const displayCharacters = matchedCharacters.slice(0, 2);
-      
-      // 診断結果を表示
-      displayCharacters(displayCharacters);
-      
-      // 検索機能を無効化
-      document.querySelector('.search-section').style.display = 'none';
-      
-      // 「全キャラクターを見る」ボタンを追加
-      const grid = document.getElementById('charactersGrid');
-      const viewAllButton = document.createElement('div');
-      viewAllButton.className = 'view-all-section';
-      viewAllButton.innerHTML = `
-        <div class="view-all-container">
-          <p>他のキャラクターも見てみませんか？</p>
-          <button class="btn btn-secondary" onclick="showAllCharacters()">全キャラクター一覧を見る</button>
-        </div>
-      `;
-      grid.appendChild(viewAllButton);
-    }
-
-    // キャラクターマッチングロジック
-    function matchCharacters(gender, age, partner, relationship, communication) {
-      let matched = [];
-      let scores = [];
-
-      allCharacters.forEach(character => {
-        let score = 0;
-        
-        // パートナー性別のマッチング
-        if (partner && partner !== 'any') {
-          if (character.gender === partner) {
-            score += 30;
-          }
-        } else {
-          score += 15; // どちらでもの場合は基本点
-        }
-
-        // 関係性のマッチング
-        if (relationship && character.type) {
-          if (relationship === character.type) {
-            score += 40;
-          } else if (relationship === 'friend' && character.type === 'lover') {
-            score += 20; // 部分的マッチ
-          } else if (relationship === 'lover' && character.type === 'friend') {
-            score += 20; // 部分的マッチ
-          }
-        }
-
-        // 年齢のマッチング
-        if (age && character.age) {
-          const userAge = parseInt(age.split('-')[0]);
-          const charAge = character.age;
-          const ageDiff = Math.abs(userAge - charAge);
-          
-          if (ageDiff <= 5) {
-            score += 20;
-          } else if (ageDiff <= 10) {
-            score += 10;
-          }
-        }
-
-        // コミュニケーションスタイルのマッチング
-        if (communication) {
-          switch (communication) {
-            case 'casual':
-              if (character.chatStyle && character.chatStyle.tone.includes('親しみ')) {
-                score += 15;
-              }
-              break;
-            case 'formal':
-              if (character.chatStyle && character.chatStyle.tone.includes('丁寧')) {
-                score += 15;
-              }
-              break;
-            case 'intellectual':
-              if (character.chatStyle && character.chatStyle.personality.includes('知的')) {
-                score += 15;
-              }
-              break;
-            case 'playful':
-              if (character.chatStyle && character.chatStyle.tone.includes('楽しい')) {
-                score += 15;
-              }
-              break;
-          }
-        }
-
-        scores.push({ character, score });
-      });
-
-      // スコアでソート
-      scores.sort((a, b) => b.score - a.score);
-      
-      // 上位のキャラクターを返す
-      return scores.map(item => item.character);
-    }
 
     // 全キャラクターを表示
     function showAllCharacters() {
-      // ヘッダーを通常表示に戻す
-      const heroTitle = document.querySelector('.hero-section h1');
-      const heroDescription = document.querySelector('.hero-section p');
-      
-      heroTitle.textContent = 'キャラクター一覧';
-      heroDescription.textContent = '20人の魅力的なAIキャラクターから、あなたに最適なパートナーを見つけましょう';
-      
-      // 検索機能を有効化
-      document.querySelector('.search-section').style.display = 'block';
-      
       // 全キャラクターを表示
       displayCharacters(allCharacters);
-      
-      // 「全キャラクターを見る」ボタンを削除
-      const viewAllButton = document.querySelector('.view-all-section');
-      if (viewAllButton) {
-        viewAllButton.remove();
-      }
     }
-    ];
 
     // キャラクターカードを生成
     function createCharacterCard(character) {
@@ -728,8 +603,10 @@
     function filterCharacters(searchTerm) {
       const filtered = characters.filter(character => 
         character.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        character.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        character.tags.some(tag => tag.toLowerCase().includes(searchTerm.toLowerCase()))
+        (character.intro && character.intro.toLowerCase().includes(searchTerm.toLowerCase())) ||
+        (character.type && character.type.toLowerCase().includes(searchTerm.toLowerCase())) ||
+        (character.gender && character.gender.toLowerCase().includes(searchTerm.toLowerCase())) ||
+        (character.age_group && character.age_group.toLowerCase().includes(searchTerm.toLowerCase()))
       );
       displayCharacters(filtered);
     }
