@@ -3,67 +3,620 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>AI PAR｜キャラクター一覧</title>
+  <title>AI PAR｜パーソナリティ診断 - あなたに最適なAIパートナーを見つけよう</title>
   <link rel="stylesheet" href="./style.css" />
   <style>
-    body{-webkit-font-smoothing:antialiased}
-    .wrap{max-width:960px;margin:0 auto;padding:20px}
-    .brand{display:flex;align-items:center;gap:12px}
-    .brand img{display:block;height:40px;width:auto}
-    @media (max-width:640px){.brand img{height:32px}}
-    header.header{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px}
-    .nav{display:flex;gap:12px}
-    .card{border:1px solid #e5e7eb;border-radius:12px;padding:16px;margin:12px 0}
-    .grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
-    @media (max-width:820px){.grid{grid-template-columns:1fr}}
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', Meiryo, sans-serif;
+      line-height: 1.6;
+      color: #333;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 15px;
+    }
+
+    /* Header */
+    .header {
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(10px);
+      border-radius: 15px;
+      padding: 15px;
+      margin-bottom: 20px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    }
+
+    .header-content {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 15px;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+      color: #333;
+    }
+
+    .logo img {
+      height: 40px;
+      width: auto;
+    }
+
+    .logo-text {
+      font-size: 20px;
+      font-weight: bold;
+      background: linear-gradient(45deg, #667eea, #764ba2);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .nav {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .nav a {
+      text-decoration: none;
+      color: #333;
+      padding: 8px 15px;
+      border-radius: 20px;
+      background: rgba(255, 255, 255, 0.8);
+      transition: all 0.3s ease;
+      font-weight: 500;
+      font-size: 14px;
+      white-space: nowrap;
+    }
+
+    .nav a:hover {
+      background: linear-gradient(45deg, #667eea, #764ba2);
+      color: white;
+      transform: translateY(-1px);
+      box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+    }
+
+    /* Main Content */
+    .main-content {
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(10px);
+      border-radius: 15px;
+      padding: 25px 20px;
+      margin-bottom: 20px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    }
+
+    .hero-section {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
+    .hero-section h1 {
+      font-size: 2.2rem;
+      margin-bottom: 15px;
+      color: #333;
+      background: linear-gradient(45deg, #667eea, #764ba2);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .hero-section p {
+      font-size: 1rem;
+      color: #666;
+      margin-bottom: 20px;
+      line-height: 1.5;
+    }
+
+    .diagnostic-icon {
+      font-size: 3rem;
+      margin-bottom: 15px;
+    }
+
+    /* Form Styles */
+    .form-section {
+      margin-bottom: 30px;
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    .form-group label {
+      display: block;
+      font-weight: bold;
+      margin-bottom: 8px;
+      color: #333;
+      font-size: 1rem;
+    }
+
+    .form-group input,
+    .form-group select {
+      width: 100%;
+      padding: 12px 15px;
+      border: 2px solid #e1e5e9;
+      border-radius: 10px;
+      font-size: 1rem;
+      transition: all 0.3s ease;
+      background: white;
+    }
+
+    .form-group input:focus,
+    .form-group select:focus {
+      outline: none;
+      border-color: #667eea;
+      box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+    }
+
+    .radio-group {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 10px;
+      margin-top: 10px;
+    }
+
+    .radio-option {
+      position: relative;
+      cursor: pointer;
+    }
+
+    .radio-option input[type="radio"] {
+      position: absolute;
+      opacity: 0;
+      cursor: pointer;
+    }
+
+    .radio-option label {
+      display: block;
+      padding: 12px 15px;
+      background: #f8f9fa;
+      border: 2px solid #e1e5e9;
+      border-radius: 10px;
+      text-align: center;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      font-weight: normal;
+      margin: 0;
+    }
+
+    .radio-option input[type="radio"]:checked + label {
+      background: linear-gradient(45deg, #667eea, #764ba2);
+      color: white;
+      border-color: #667eea;
+      transform: translateY(-1px);
+      box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .radio-option:hover label {
+      border-color: #667eea;
+      transform: translateY(-1px);
+    }
+
+    /* Button Styles */
+    .button-group {
+      text-align: center;
+      margin-top: 30px;
+    }
+
+    .submit-button {
+      background: linear-gradient(45deg, #ff6b6b, #ee5a24);
+      color: white;
+      padding: 15px 40px;
+      border: none;
+      border-radius: 25px;
+      font-size: 1.1rem;
+      font-weight: bold;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+      min-width: 200px;
+    }
+
+    .submit-button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+    }
+
+    .submit-button:disabled {
+      background: #ccc;
+      cursor: not-allowed;
+      transform: none;
+      box-shadow: none;
+    }
+
+    /* Alternative Options */
+    .alternative-options {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 15px;
+      margin-top: 30px;
+    }
+
+    .option-card {
+      background: rgba(255, 255, 255, 0.8);
+      border-radius: 12px;
+      padding: 20px;
+      text-align: center;
+      transition: all 0.3s ease;
+      border: 2px solid transparent;
+    }
+
+    .option-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+      border-color: #667eea;
+    }
+
+    .option-card h3 {
+      font-size: 1.2rem;
+      margin-bottom: 10px;
+      color: #333;
+    }
+
+    .option-card p {
+      color: #666;
+      margin-bottom: 15px;
+      font-size: 0.95rem;
+    }
+
+    .option-card a {
+      display: inline-block;
+      background: linear-gradient(45deg, #667eea, #764ba2);
+      color: white;
+      padding: 10px 25px;
+      border-radius: 20px;
+      text-decoration: none;
+      font-weight: bold;
+      transition: all 0.3s ease;
+      font-size: 0.9rem;
+    }
+
+    .option-card a:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+    }
+
+    /* Footer */
+    .footer {
+      text-align: center;
+      color: white;
+      padding: 20px 0;
+      opacity: 0.8;
+      font-size: 0.9rem;
+    }
+
+    /* Responsive Design */
+    @media (min-width: 768px) {
+      .container {
+        padding: 20px;
+      }
+
+      .hero-section h1 {
+        font-size: 2.8rem;
+      }
+
+      .hero-section p {
+        font-size: 1.1rem;
+      }
+
+      .radio-group {
+        grid-template-columns: repeat(4, 1fr);
+        gap: 15px;
+      }
+
+      .alternative-options {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+      }
+
+      .nav a {
+        padding: 10px 20px;
+        font-size: 15px;
+      }
+    }
+
+    @media (min-width: 1024px) {
+      .hero-section h1 {
+        font-size: 3rem;
+      }
+
+      .hero-section p {
+        font-size: 1.2rem;
+      }
+
+      .main-content {
+        padding: 40px;
+      }
+    }
+
+    @media (max-width: 375px) {
+      .container {
+        padding: 10px;
+      }
+
+      .hero-section h1 {
+        font-size: 1.8rem;
+      }
+
+      .hero-section p {
+        font-size: 0.9rem;
+      }
+
+      .radio-group {
+        grid-template-columns: 1fr;
+        gap: 8px;
+      }
+
+      .nav {
+        gap: 5px;
+      }
+
+      .nav a {
+        padding: 6px 12px;
+        font-size: 13px;
+      }
+    }
+
+    /* Loading Animation */
+    .loading {
+      display: none;
+      text-align: center;
+      margin: 20px 0;
+    }
+
+    .loading-spinner {
+      border: 3px solid #f3f3f3;
+      border-top: 3px solid #667eea;
+      border-radius: 50%;
+      width: 30px;
+      height: 30px;
+      animation: spin 1s linear infinite;
+      margin: 0 auto 10px;
+    }
+
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
   </style>
 </head>
 <body>
-  <div class="wrap">
+  <div class="container">
+    <!-- Header -->
+    <header class="header">
+      <div class="header-content">
+        <a href="./index.html" class="logo">
+          <img src="./ga/image/material/rogo.png" alt="AI PAR ロゴ">
+          <span class="logo-text">AI PAR</span>
+        </a>
+        <nav class="nav">
+          <a href="./index.html">トップ</a>
+          <a href="./prof.html">一覧</a>
+          <a href="./matching.html">診断</a>
+          <a href="./questionnaire.html">アンケート</a>
+        </nav>
+      </div>
+    </header>
 
-<header aria-label="サイトヘッダー" class="header">
-  <a class="brand" href="./index.html" aria-label="AI PAR トップへ">
-    <picture>
-      <source srcset="./image/material/rogo-320.webp 320w, ./image/material/rogo-640.webp 640w, ./image/material/rogo-960.webp 960w, ./image/material/rogo-1280.webp 1280w" type="image/webp">
-      <img
-        src="./image/material/rogo.png"
-        srcset="./image/material/rogo-320.png 320w, ./image/material/rogo-640.png 640w, ./image/material/rogo-960.png 960w, ./image/material/rogo-1280.png 1280w"
-        sizes="(max-width: 640px) 160px, 220px"
-        alt="AI PAR｜LOVEパートナー ロゴ"
-        width="220" height="auto" decoding="async" loading="eager">
-    </picture>
-  </a>
-  <nav aria-label="ナビゲーション" class="nav">
-    <a href="./index.html">トップ</a>
-    <a href="./matching.html">キャラクター一覧</a>
-    <a href="./questionnaire.html">診断</a>
-  </nav>
-</header>
+    <!-- Main Content -->
+    <main class="main-content">
+      <!-- Hero Section -->
+      <section class="hero-section">
+        <div class="diagnostic-icon">🔮</div>
+        <h1>パーソナリティ診断</h1>
+        <p>あなたの好みや性格に基づいて、最適なAIパートナーを提案します</p>
+      </section>
 
-<main aria-label="キャラクター一覧">
-  <section class="card">
-    <h1>キャラクター一覧</h1>
-    <p>診断結果に関係なく、気になる相手のプロフィールをチェックできます。</p>
-    <img src="./itiran-rogo.png" alt="一覧ページ用バナー" style="max-width:100%;height:auto;margin-top:8px">
-  </section>
+      <!-- Diagnostic Form -->
+      <form id="diagnosticForm" class="form-section">
+        <!-- Nickname -->
+        <div class="form-group">
+          <label for="nickname">あなたのニックネーム</label>
+          <input type="text" id="nickname" name="nickname" placeholder="例: 太郎" maxlength="20">
+        </div>
 
-  <section class="grid">
-    <div class="card">
-      <h2>プロフィールへ</h2>
-      <p>一人ずつ詳しいページをご用意しています。</p>
-      <p><a href="./prof.html">サンプルプロフィールを見る</a></p>
-    </div>
-    <div class="card">
-      <h2>診断をやり直す</h2>
-      <p><a href="./questionnaire.html">診断ページへ</a></p>
-    </div>
-  </section>
-</main>
+        <!-- Gender -->
+        <div class="form-group">
+          <label>あなたの性別</label>
+          <div class="radio-group">
+            <div class="radio-option">
+              <input type="radio" id="male" name="gender" value="male">
+              <label for="male">男性</label>
+            </div>
+            <div class="radio-option">
+              <input type="radio" id="female" name="gender" value="female">
+              <label for="female">女性</label>
+            </div>
+            <div class="radio-option">
+              <input type="radio" id="other" name="gender" value="other">
+              <label for="other">その他</label>
+            </div>
+            <div class="radio-option">
+              <input type="radio" id="prefer-not" name="gender" value="prefer-not">
+              <label for="prefer-not">答えたくない</label>
+            </div>
+          </div>
+        </div>
 
-<footer style="margin-top:24px;padding-top:12px;border-top:1px solid #e5e7eb;font-size:.9rem;color:#6b7280">
-      © <span id="y"></span> AI PAR
+        <!-- Age -->
+        <div class="form-group">
+          <label for="age">年齢</label>
+          <select id="age" name="age" required>
+            <option value="">選択してください</option>
+            <option value="18-25">18-25歳</option>
+            <option value="26-35">26-35歳</option>
+            <option value="36-45">36-45歳</option>
+            <option value="46-55">46-55歳</option>
+            <option value="56-65">56-65歳</option>
+            <option value="65+">65歳以上</option>
+          </select>
+        </div>
+
+        <!-- Partner Preference -->
+        <div class="form-group">
+          <label>希望するパートナーの性別</label>
+          <div class="radio-group">
+            <div class="radio-option">
+              <input type="radio" id="partner-female" name="partner" value="female">
+              <label for="partner-female">女性</label>
+            </div>
+            <div class="radio-option">
+              <input type="radio" id="partner-male" name="partner" value="male">
+              <label for="partner-male">男性</label>
+            </div>
+            <div class="radio-option">
+              <input type="radio" id="partner-any" name="partner" value="any">
+              <label for="partner-any">どちらでも</label>
+            </div>
+          </div>
+        </div>
+
+        <!-- Personality Type -->
+        <div class="form-group">
+          <label>あなたの性格タイプ</label>
+          <div class="radio-group">
+            <div class="radio-option">
+              <input type="radio" id="extrovert" name="type" value="extrovert">
+              <label for="extrovert">外向的</label>
+            </div>
+            <div class="radio-option">
+              <input type="radio" id="introvert" name="type" value="introvert">
+              <label for="introvert">内向的</label>
+            </div>
+            <div class="radio-option">
+              <input type="radio" id="ambivert" name="type" value="ambivert">
+              <label for="ambivert">中間的</label>
+            </div>
+            <div class="radio-option">
+              <input type="radio" id="unsure" name="type" value="unsure">
+              <label for="unsure">わからない</label>
+            </div>
+          </div>
+        </div>
+
+        <!-- Submit Button -->
+        <div class="button-group">
+          <button type="submit" class="submit-button" id="submitBtn">
+            診断を開始する
+          </button>
+        </div>
+
+        <!-- Loading -->
+        <div class="loading" id="loading">
+          <div class="loading-spinner"></div>
+          <p>診断中...</p>
+        </div>
+      </form>
+
+      <!-- Alternative Options -->
+      <section class="alternative-options">
+        <div class="option-card">
+          <h3>🎭 キャラクター一覧</h3>
+          <p>診断をスキップして、全キャラクターを直接見ることができます</p>
+          <a href="./prof.html">一覧を見る</a>
+        </div>
+        <div class="option-card">
+          <h3>📝 アンケート</h3>
+          <p>より詳細なアンケートに答えて、より正確なマッチングを</p>
+          <a href="./questionnaire.html">アンケートへ</a>
+        </div>
+      </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <p>&copy; <span id="current-year"></span> AI PAR - LOVEパートナー. All rights reserved.</p>
     </footer>
   </div>
-  <script>document.getElementById('y').textContent=new Date().getFullYear();</script>
+
+  <script>
+    // 現在の年を表示
+    document.getElementById('current-year').textContent = new Date().getFullYear();
+
+    // フォーム処理
+    document.getElementById('diagnosticForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      
+      // フォームデータを取得
+      const formData = new FormData(this);
+      const params = new URLSearchParams();
+      
+      // ニックネーム取得（未入力や空白の場合は「あなた」に固定）
+      let nickname = (formData.get('nickname') || '').trim();
+      if (!nickname) {
+        nickname = 'あなた';
+      }
+      
+      // パラメータを設定
+      params.set('nickname', nickname);
+      params.set('gender', formData.get('gender') || '');
+      params.set('partner', formData.get('partner') || '');
+      params.set('age', formData.get('age') || '');
+      params.set('type', formData.get('type') || '');
+      
+      // ローディング表示
+      document.getElementById('submitBtn').style.display = 'none';
+      document.getElementById('loading').style.display = 'block';
+      
+      // 少し遅延してからリダイレクト（ローディング効果のため）
+      setTimeout(() => {
+        // 診断結果ページへリダイレクト
+        window.location.href = `./prof.html?${params.toString()}`;
+      }, 1500);
+    });
+
+    // フォームバリデーション
+    const form = document.getElementById('diagnosticForm');
+    const submitBtn = document.getElementById('submitBtn');
+    
+    function validateForm() {
+      const age = document.getElementById('age').value;
+      const gender = document.querySelector('input[name="gender"]:checked');
+      const partner = document.querySelector('input[name="partner"]:checked');
+      const type = document.querySelector('input[name="type"]:checked');
+      
+      const isValid = age && gender && partner && type;
+      submitBtn.disabled = !isValid;
+      
+      if (isValid) {
+        submitBtn.style.opacity = '1';
+      } else {
+        submitBtn.style.opacity = '0.6';
+      }
+    }
+    
+    // フォーム要素の変更を監視
+    form.addEventListener('change', validateForm);
+    form.addEventListener('input', validateForm);
+    
+    // 初期状態でバリデーション実行
+    validateForm();
+
+    // モバイルでのタッチ操作を改善
+    document.addEventListener('DOMContentLoaded', function() {
+      if ('ontouchstart' in window) {
+        const touchElements = document.querySelectorAll('.radio-option, .option-card, .nav a, .submit-button');
+        touchElements.forEach(element => {
+          element.style.transition = 'none';
+        });
+      }
+    });
+  </script>
 </body>
 </html>
