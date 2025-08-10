@@ -568,7 +568,7 @@
         <div class="progress-bar">
           <div class="progress-fill" id="progressFill"></div>
         </div>
-        <div class="progress-text" id="progressText">質問 1 / 8</div>
+        <div class="progress-text" id="progressText">質問 1 / 6</div>
       </div>
 
       <!-- Question 1: Gender -->
@@ -664,28 +664,28 @@
         </div>
       </div>
 
-      <!-- Question 4: Personality Type -->
+      <!-- Question 4: Relationship Type -->
       <div class="question-container" id="question4">
         <div class="question">
-          <h3>あなたの性格タイプ</h3>
-          <p>あなたの性格に最も近いものを選んでください</p>
+          <h3>どのような関係性を求めていますか？</h3>
+          <p>AIパートナーにどのような役割を期待しますか？</p>
         </div>
-        <div class="answer-options grid-2">
+        <div class="answer-options">
           <div class="answer-option">
-            <input type="radio" id="personality-extrovert" name="personality" value="extrovert">
-            <label for="personality-extrovert">外向的・社交的</label>
+            <input type="radio" id="relationship-friend" name="relationship" value="friend">
+            <label for="relationship-friend">友達・相談相手 - 気軽に話せる存在</label>
           </div>
           <div class="answer-option">
-            <input type="radio" id="personality-introvert" name="personality" value="introvert">
-            <label for="personality-introvert">内向的・静か</label>
+            <input type="radio" id="relationship-advisor" name="relationship" value="advisor">
+            <label for="relationship-advisor">アドバイザー・メンター - 人生の指針となる存在</label>
           </div>
           <div class="answer-option">
-            <input type="radio" id="personality-ambivert" name="personality" value="ambivert">
-            <label for="personality-ambivert">中間的・バランス</label>
+            <input type="radio" id="relationship-lover" name="relationship" value="lover">
+            <label for="relationship-lover">恋人・パートナー - 愛情深い関係</label>
           </div>
           <div class="answer-option">
-            <input type="radio" id="personality-unsure" name="personality" value="unsure">
-            <label for="personality-unsure">わからない</label>
+            <input type="radio" id="relationship-family" name="relationship" value="family">
+            <label for="relationship-family">家族・兄弟姉妹 - 家族のような温かさ</label>
           </div>
         </div>
         <div class="button-group">
@@ -697,25 +697,25 @@
       <!-- Question 5: Communication Style -->
       <div class="question-container" id="question5">
         <div class="question">
-          <h3>コミュニケーションスタイル</h3>
-          <p>どのような会話スタイルを好みますか？</p>
+          <h3>どのような会話スタイルを好みますか？</h3>
+          <p>パートナーとの会話で最も大切にしたいことを選んでください</p>
         </div>
         <div class="answer-options">
           <div class="answer-option">
             <input type="radio" id="communication-casual" name="communication" value="casual">
-            <label for="communication-casual">カジュアルで親しみやすい</label>
+            <label for="communication-casual">カジュアルで親しみやすい - 気軽に話せる関係</label>
           </div>
           <div class="answer-option">
             <input type="radio" id="communication-formal" name="communication" value="formal">
-            <label for="communication-formal">丁寧で礼儀正しい</label>
+            <label for="communication-formal">丁寧で礼儀正しい - 互いを尊重する関係</label>
           </div>
           <div class="answer-option">
             <input type="radio" id="communication-intellectual" name="communication" value="intellectual">
-            <label for="communication-intellectual">知的で深い話ができる</label>
+            <label for="communication-intellectual">知的で深い話ができる - 心の奥まで理解し合える関係</label>
           </div>
           <div class="answer-option">
             <input type="radio" id="communication-playful" name="communication" value="playful">
-            <label for="communication-playful">遊び心があって楽しい</label>
+            <label for="communication-playful">遊び心があって楽しい - いつも笑顔でいられる関係</label>
           </div>
         </div>
         <div class="button-group">
@@ -724,84 +724,8 @@
         </div>
       </div>
 
-      <!-- Question 6: Relationship Type -->
+      <!-- Question 6: Nickname -->
       <div class="question-container" id="question6">
-        <div class="question">
-          <h3>求める関係性</h3>
-          <p>どのような関係性を求めていますか？</p>
-        </div>
-        <div class="answer-options">
-          <div class="answer-option">
-            <input type="radio" id="relationship-friend" name="relationship" value="friend">
-            <label for="relationship-friend">友達・相談相手</label>
-          </div>
-          <div class="answer-option">
-            <input type="radio" id="relationship-advisor" name="relationship" value="advisor">
-            <label for="relationship-advisor">アドバイザー・メンター</label>
-          </div>
-          <div class="answer-option">
-            <input type="radio" id="relationship-lover" name="relationship" value="lover">
-            <label for="relationship-lover">恋人・パートナー</label>
-          </div>
-          <div class="answer-option">
-            <input type="radio" id="relationship-family" name="relationship" value="family">
-            <label for="relationship-family">家族・兄弟姉妹</label>
-          </div>
-        </div>
-        <div class="button-group">
-          <button class="btn btn-secondary" onclick="prevQuestion()">戻る</button>
-          <button class="btn" onclick="nextQuestion()">次へ</button>
-        </div>
-      </div>
-
-      <!-- Question 7: Interests -->
-      <div class="question-container" id="question7">
-        <div class="question">
-          <h3>興味・関心事</h3>
-          <p>どのような話題に興味がありますか？（複数選択可）</p>
-        </div>
-        <div class="answer-options grid-2">
-          <div class="answer-option">
-            <input type="checkbox" id="interest-music" name="interests" value="music">
-            <label for="interest-music">音楽</label>
-          </div>
-          <div class="answer-option">
-            <input type="checkbox" id="interest-movies" name="interests" value="movies">
-            <label for="interest-movies">映画・ドラマ</label>
-          </div>
-          <div class="answer-option">
-            <input type="checkbox" id="interest-books" name="interests" value="books">
-            <label for="interest-books">読書</label>
-          </div>
-          <div class="answer-option">
-            <input type="checkbox" id="interest-games" name="interests" value="games">
-            <label for="interest-games">ゲーム</label>
-          </div>
-          <div class="answer-option">
-            <input type="checkbox" id="interest-sports" name="interests" value="sports">
-            <label for="interest-sports">スポーツ</label>
-          </div>
-          <div class="answer-option">
-            <input type="checkbox" id="interest-cooking" name="interests" value="cooking">
-            <label for="interest-cooking">料理</label>
-          </div>
-          <div class="answer-option">
-            <input type="checkbox" id="interest-travel" name="interests" value="travel">
-            <label for="interest-travel">旅行</label>
-          </div>
-          <div class="answer-option">
-            <input type="checkbox" id="interest-technology" name="interests" value="technology">
-            <label for="interest-technology">テクノロジー</label>
-          </div>
-        </div>
-        <div class="button-group">
-          <button class="btn btn-secondary" onclick="prevQuestion()">戻る</button>
-          <button class="btn" onclick="nextQuestion()">次へ</button>
-        </div>
-      </div>
-
-      <!-- Question 8: Nickname -->
-      <div class="question-container" id="question8">
         <div class="question">
           <h3>あなたのニックネーム</h3>
           <p>AIパートナーがあなたを呼ぶ名前を教えてください</p>
@@ -835,7 +759,7 @@
 
     // 質問管理
     let currentQuestion = 1;
-    const totalQuestions = 8;
+    const totalQuestions = 6;
     const answers = {};
 
     // 進捗バー更新
@@ -948,12 +872,8 @@
       params.set('gender', answers['gender'] || '');
       params.set('age', answers['age'] || '');
       params.set('partner', answers['partner'] || '');
-      params.set('personality', answers['personality'] || '');
-      params.set('communication', answers['communication'] || '');
       params.set('relationship', answers['relationship'] || '');
-      if (answers['interests']) {
-        params.set('interests', answers['interests'].join(','));
-      }
+      params.set('communication', answers['communication'] || '');
       
       // ローディング表示
       document.querySelectorAll('.question-container').forEach(container => {
