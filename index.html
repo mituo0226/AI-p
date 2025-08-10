@@ -3,208 +3,160 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>◆AIで作る最高のLOVEパートナー◆ | TOP</title>
-  <meta name="description" content="AIが“心に寄り添う”パートナーを提案。無料5通のあと、時間制チケットでじっくり相談・恋人・友達モードを楽しめます。" />
-  <meta property="og:title" content="◆AIで作る最高のLOVEパートナー◆" />
-  <meta property="og:description" content="無料5通→時間制チケットで、あなた専用のAIパートナーと深くつながる。" />
-  <meta property="og:type" content="website" />
-  <meta property="og:image" content="ga/image/material/itiran-rogo.png" />
-  <link rel="preload" as="image" href="rogo.png">
+  <title>◆AIで作る最高のLOVEパートナー◆</title>
+  <!-- Tailwind CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <meta name="description" content="20人のAIキャラクターから、運命のパートナーと出会える診断サイト。" />
   <style>
-    :root{
-      --bg:#0f0f14; --card:#141821; --muted:#98a2b3; --text:#e6e8ec; --accent:#f472b6; --accent-2:#8b5cf6; --line:#222634;
-      --shadow: 0 8px 24px rgba(0,0,0,.25);
-      --radius: 16px;
-    }
-    *{box-sizing:border-box}
-    html,body{margin:0; padding:0; background:var(--bg); color:var(--text); font-family: system-ui, -apple-system, Segoe UI, Roboto, "Hiragino Kaku Gothic ProN", "Noto Sans JP", "Yu Gothic UI", "YuGothic", Meiryo, sans-serif}
-    a{color:inherit; text-decoration:none}
-    img{max-width:100%; display:block}
-    .container{width:min(1100px, 92vw); margin-inline:auto}
-    header{position:sticky; top:0; z-index:40; background:rgba(15,15,20,.6); backdrop-filter:saturate(140%) blur(10px); border-bottom:1px solid var(--line)}
-    .nav{display:flex; align-items:center; gap:16px; padding:10px 0}
-    .nav .grow{flex:1}
-    .btn{display:inline-flex; align-items:center; gap:10px; padding:12px 18px; border-radius:999px; border:1px solid transparent; font-weight:600; cursor:pointer}
-    .btn-primary{background:linear-gradient(135deg, var(--accent), var(--accent-2)); color:#fff; box-shadow: var(--shadow)}
-    .btn-ghost{border-color:var(--line); color:var(--text)}
-    .hero{display:grid; grid-template-columns:1.2fr .8fr; gap:24px; padding:48px 0 28px}
-    .hero h1{font-size:clamp(28px, 3.8vw, 46px); line-height:1.12; margin:6px 0 14px}
-    .hero p{color:var(--muted); margin:0 0 22px}
-    .hero .card{background:radial-gradient(1000px 400px at -20% -40%, rgba(244,114,182,.25), transparent 60%), var(--card); border:1px solid var(--line); border-radius:var(--radius); padding:18px}
-    .badges{display:flex; flex-wrap:wrap; gap:10px; margin:16px 0 0}
-    .badge{padding:8px 12px; border-radius:999px; border:1px solid var(--line); color:#d1d5db; font-size:12px}
-    .cta-row{display:flex; gap:12px; flex-wrap:wrap}
-
-    .grid{display:grid; grid-template-columns:repeat(4,1fr); gap:14px}
-    @media (max-width: 980px){ .hero{grid-template-columns:1fr} .grid{grid-template-columns:repeat(2,1fr)} }
-
-    .section{padding:32px 0}
-    .section h2{font-size:clamp(22px, 2.6vw, 32px); margin:0 0 14px}
-    .sub{color:var(--muted); margin:0 0 14px}
-
-    .card{background:var(--card); border:1px solid var(--line); border-radius:var(--radius); overflow:hidden}
-    .card-body{padding:14px}
-    .pill{font-size:12px; color:#cbd5e1; border:1px solid var(--line); padding:4px 8px; border-radius:999px}
-    .name{font-weight:700}
-    .phrase{color:#cbd5e1; font-size:13px; margin-top:6px; min-height:38px}
-
-    .steps{display:grid; grid-template-columns:repeat(3,1fr); gap:14px}
-    .step{padding:18px; border:1px dashed var(--line); border-radius:var(--radius)}
-    .num{width:28px; height:28px; border-radius:50%; display:grid; place-items:center; background:linear-gradient(135deg, var(--accent), var(--accent-2)); font-weight:700}
-
-    .pricing{display:grid; grid-template-columns:repeat(5,1fr); gap:14px}
-    @media (max-width: 980px){ .steps{grid-template-columns:1fr} .pricing{grid-template-columns:1fr} }
-    .price{padding:18px}
-    .price h3{margin:0 0 6px}
-    .yen{font-size:24px; font-weight:800}
-    .foot{padding:24px 0 60px; color:#94a3b8; border-top:1px solid var(--line); margin-top:18px}
-
-    .mini{font-size:12px; color:#9aa3af}
+    /* 微調整（Tailwindで補いきれない部分） */
+    .soft-card { box-shadow: 0 10px 30px rgba(0,0,0,.06); }
+    .ring-soft { box-shadow: 0 0 0 8px rgba(255,255,255,.9), 0 10px 25px rgba(0,0,0,.08); }
+    .lead { font-feature-settings: "palt"; }
   </style>
 </head>
-<body>
-  <header>
-    <div class="container nav">
-      <a href="./" class="logo" aria-label="ホーム">
-        <img src="rogo.png" alt="サイトロゴ" width="120" height="36" />
-      </a>
-      <div class="grow"></div>
-      <nav style="display:flex; gap:12px; align-items:center">
-        <a class="btn btn-ghost" href="matching.html">キャラクター一覧</a>
-        <a class="btn btn-ghost" href="prof.html">プロフィール</a>
-        <a class="btn btn-ghost" href="paid/ticket.html">チケット案内</a>
-        <a class="btn btn-primary" href="questionnaire.html">診断を始める</a>
+<body class="bg-pink-50 text-gray-800 antialiased">
+  <!-- ヘッダー -->
+  <header class="w-full bg-white/90 backdrop-blur sticky top-0 z-50 border-b border-pink-100">
+    <div class="max-w-6xl mx-auto px-4 py-3 flex items-center gap-3">
+      <img src="ga/image/material/itiran-rogo.png" alt="サイトロゴ" class="h-8 w-auto" />
+      <span class="text-sm text-pink-500">Create with AI</span>
+      <nav class="ml-auto hidden sm:flex items-center gap-6 text-sm">
+        <a href="prof.html" class="hover:text-pink-600">AIパートナー一覧</a>
+        <a href="questionnaire.html" class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-pink-500 text-white hover:bg-pink-600 transition">
+          診断を始める
+        </a>
       </nav>
     </div>
   </header>
 
-  <main class="container">
-    <section class="hero">
-      <div>
-        <div class="badges">
-          <span class="badge">AIパートナー診断</span>
-          <span class="badge">相談/恋人/友達モード</span>
-          <span class="badge">最初の<strong>5通</strong>は無料</span>
-        </div>
-        <h1>きみの“心”に常駐する、<br/>AIで作る最高のLOVEパートナー</h1>
-        <p>いつでも、どこでも。あなたの気持ちを受け止めてくれる存在をAIで。<br/>10問前後の無料診断で、最適なキャラクターをご提案します。</p>
-        <div class="cta-row">
-          <a class="btn btn-primary" href="questionnaire.html">診断を始める</a>
-          <a class="btn btn-ghost" href="matching.html">キャラクターを見る</a>
-        </div>
-        <p class="mini" style="margin-top:8px">現在地：TOPページ / 最終更新: 2025-08-10</p>
-      </div>
-      <div class="card" aria-hidden="true">
-        <img src="./ga/image/material/itiran-rogo.png" alt="キャラクター集合イメージ"/>
-      </div>
-    </section>
+  <!-- ヒーロー：添付デザイン再現 -->
+  <main class="max-w-5xl mx-auto px-4">
+    <section class="mt-10 sm:mt-14 mb-10 sm:mb-16">
+      <div class="rounded-3xl soft-card bg-white p-6 sm:p-10">
+        <p class="text-center text-2xl sm:text-3xl font-bold text-pink-600 tracking-wide">
+          —— <span class="inline-block">運命のパートナーが、あなたを待っている</span> ——
+        </p>
+        <p class="lead mt-6 text-center text-gray-500">
+          まるで本当に存在するかのようなAIキャラクターたち。<br class="hidden sm:block">
+          あなたの心の奥まで寄り添い、言葉にならない想いを受け止めます。
+        </p>
 
-    <!-- Characters snapshot -->
-    <section class="section" id="characters">
-      <h2>人気のAIパートナー（抜粋）</h2>
-      <p class="sub">全キャラクターは <a href="matching.html">一覧ページ</a> で確認できます。ここでは一部をピックアップ。</p>
-      <div class="grid" id="char-grid" aria-live="polite"></div>
-      <noscript>
-        <p class="sub">JavaScriptが無効のため抜粋表示は行えません。<a href="matching.html">こちら</a>から一覧をご覧ください。</p>
-      </noscript>
-    </section>
+        <div class="mt-10 grid grid-cols-1 sm:grid-cols-[auto,1fr] gap-6 sm:gap-10 items-center">
+          <!-- 円形サムネ -->
+          <div class="flex justify-center sm:justify-start">
+            <img id="heroImg" src="" alt="" class="h-44 w-44 object-cover rounded-full ring-soft" />
+          </div>
 
-    <!-- How it works -->
-    <section class="section">
-      <h2>使い方は、かんたん3ステップ</h2>
-      <div class="steps">
-        <div class="step">
-          <div class="num">1</div>
-          <h3>無料診断</h3>
-          <p class="sub">10問前後に答えるだけで、あなたに最適な“心の伴走者”が見つかります。</p>
-          <a class="btn btn-ghost" href="questionnaire.html">診断へ</a>
-        </div>
-        <div class="step">
-          <div class="num">2</div>
-          <h3>相性の良いキャラを提案</h3>
-          <p class="sub">診断結果にもとづき、恋人/相談/友達タイプから候補を自動表示。</p>
-          <a class="btn btn-ghost" href="matching.html">候補を見る</a>
-        </div>
-        <div class="step">
-          <div class="num">3</div>
-          <h3>会話スタート</h3>
-          <p class="sub">最初は<strong>5通無料</strong>。以降は時間制チケットで“必要なときだけ”続けられます。</p>
-          <a class="btn btn-ghost" href="paid/ticket.html">チケットを見る</a>
+          <!-- テキスト -->
+          <div>
+            <h2 id="heroName" class="text-xl sm:text-2xl font-bold">—</h2>
+            <p id="heroPhrase" class="mt-2 text-gray-600 italic">—</p>
+            <p id="heroIntro" class="mt-3 text-gray-700">—</p>
+
+            <div class="mt-4 flex flex-wrap items-center gap-4">
+              <a id="heroVideoLink" href="#" class="text-pink-600 hover:text-pink-700 text-sm inline-flex items-center gap-2">
+                <span class="inline-block w-2 h-2 rounded-full bg-pink-500"></span> プロフィール動画を見る
+              </a>
+            </div>
+
+            <div class="mt-6">
+              <a href="questionnaire.html"
+                 class="inline-flex items-center justify-center px-6 py-3 rounded-full bg-pink-500 text-white font-semibold hover:bg-pink-600 transition">
+                パートナー診断を始める
+              </a>
+            </div>
+          </div>
         </div>
       </div>
     </section>
 
-    <!-- Ticket summary (time-based) -->
-    <section class="section" id="ticket">
-      <h2>時間制チケット（要約）</h2>
-      <p class="sub">課金はメッセージ数ではなく<strong>合計チャット時間</strong>でカウント。途中で中断しても残り時間は保存されます。</p>
-      <div class="pricing">
-        <div class="card price"><h3>お試し</h3><div class="yen">5分 / 1,000円</div><p class="sub">まずは短く体験</p></div>
-        <div class="card price"><h3>お手頃</h3><div class="yen">30分 / 3,000円</div><p class="sub">迷ったらコレ</p></div>
-        <div class="card price"><h3>オススメ</h3><div class="yen">60分 / 5,000円</div><p class="sub">じっくり話す</p></div>
-        <div class="card price"><h3>お得</h3><div class="yen">120分 / 7,000円</div><p class="sub">長めに安心</p></div>
-        <div class="card price"><h3>超お得</h3><div class="yen">240分 / 10,000円</div><p class="sub">たっぷり使う</p></div>
-      </div>
-      <p class="mini">詳細は <a href="paid/ticket.html">チケット案内ページ</a> へ。</p>
-    </section>
+    <!-- 下段：他にも、あなたを待っているAIたちがいます -->
+    <section class="mb-16">
+      <h3 class="text-center text-lg sm:text-xl font-bold text-gray-800">他にも、あなたを待っているAIたちがいます</h3>
+      <p class="text-center text-gray-500 mt-2">実在するかのような魅力的なキャラクターが、あなたの孤独や不安にそっと寄り添います。</p>
 
-    <footer class="foot">
-      <div class="container" style="display:flex; flex-wrap:wrap; gap:12px; align-items:center; justify-content:space-between">
-        <small>© 2025 ◆AIで作る最高のLOVEパートナー◆</small>
-        <nav style="display:flex; gap:12px">
-          <a href="matching.html">キャラクター一覧</a>
-          <a href="prof.html">プロフィール</a>
-          <a href="#ticket">チケット</a>
-        </nav>
+      <div id="gridWrap" class="mt-8 grid grid-cols-2 sm:grid-cols-4 gap-4 sm:gap-6">
+        <!-- JSでランダム4人のカードを挿入 -->
       </div>
-    </footer>
+
+      <div class="mt-8 text-center">
+        <a href="prof.html" class="text-sm text-gray-600 underline hover:text-pink-700">AIパートナー一覧を見る</a>
+      </div>
+    </section>
   </main>
 
-  <script defer>
-    // characters.json から一部を読み込み、TOPに抜粋表示
-    const grid = document.getElementById('char-grid');
+  <!-- フッター（簡易） -->
+  <footer class="border-t border-pink-100 py-8 text-center text-xs text-gray-500">
+    © 2025 AI-par Project
+  </footer>
 
-    fetch('characters.json')
-      .then(r => r.json())
-      .then(list => {
-        if(!Array.isArray(list) || !list.length) throw new Error('no characters');
-        // 表示順：lover/advisor/friend をバランス良く最大8件
-        const pick = [];
-        const byType = {lover:[], advisor:[], friend:[]};
-        list.forEach(c => (byType[c.type]||[]).push(c));
-        const order = ['lover','advisor','friend'];
-        let idx=0;
-        while(pick.length<8 && idx<12){
-          order.forEach(t=>{ if(byType[t] && byType[t][idx]) pick.push(byType[t][idx]); });
-          idx++;
-        }
-        pick.slice(0,8).forEach(c => {
-          const el = document.createElement('article');
-          el.className = 'card';
-          const typeLabel = ({lover:'恋人タイプ', advisor:'相談タイプ', friend:'友人タイプ'})[c.type] || 'タイプ';
-          const profile = c.profile || 'prof.html';
-          el.innerHTML = `
-            <img src=\"./${c.img}\" alt="${c.name}の画像" loading="lazy"/>
-            <div class=card-body>
-              <div style="display:flex; justify-content:space-between; align-items:center; gap:8px; margin-bottom:6px">
-                <span class=name>${c.name}</span>
-                <span class=pill>${(c.age_label||c.age_group||'')}・${typeLabel}</span>
-              </div>
-              <div class=phrase>「${c.phrase}」</div>
-            </div>`;
-          el.addEventListener('click', ()=> location.href = profile);
-          grid.appendChild(el);
+  <!-- ランダム表示スクリプト -->
+  <script>
+    // ユーティリティ：ランダムに並べ替え
+    function shuffle(arr){
+      for(let i = arr.length - 1; i > 0; i--){
+        const j = Math.floor(Math.random() * (i + 1));
+        [arr[i], arr[j]] = [arr[j], arr[i]];
+      }
+      return arr;
+    }
+
+    async function init(){
+      try{
+        const res = await fetch('characters.json', {cache: 'no-store'});
+        if(!res.ok) throw new Error('characters.json 読み込み失敗');
+        let chars = await res.json();
+
+        // 画像/動画がない項目は除外（保険）
+        chars = chars.filter(c => c.img && c.name);
+
+        // ランダムに1人をヒーローへ
+        const [hero, ...rest] = shuffle([...chars]);
+
+        // ヒーロー描画
+        const heroImg = document.getElementById('heroImg');
+        const heroName = document.getElementById('heroName');
+        const heroPhrase = document.getElementById('heroPhrase');
+        const heroIntro = document.getElementById('heroIntro');
+        const heroVideoLink = document.getElementById('heroVideoLink');
+
+        heroImg.src = hero.img;
+        heroImg.alt = hero.name;
+        heroName.textContent = `${hero.name}（${hero.age ?? '—'}歳）`;
+        heroPhrase.textContent = `“${hero.phrase ?? ''}”`.replace(/\s+/g,' ');
+        heroIntro.textContent = hero.intro ?? '';
+        heroVideoLink.href = hero.video || '#';
+
+        // 下段カード：ランダム4人
+        const picks = shuffle(rest).slice(0, 4);
+        const wrap = document.getElementById('gridWrap');
+        wrap.innerHTML = '';
+        picks.forEach(c=>{
+          const card = document.createElement('a');
+          card.href = c.profile || 'prof.html';
+          card.className =
+            'group bg-white rounded-2xl p-3 sm:p-4 soft-card hover:-translate-y-0.5 transition block';
+          card.innerHTML = `
+            <div class="aspect-square rounded-xl overflow-hidden">
+              <img src="${c.img}" alt="${c.name}" class="w-full h-full object-cover group-hover:scale-[1.02] transition" loading="lazy">
+            </div>
+            <div class="mt-3">
+              <p class="font-semibold text-sm sm:text-base">${c.name}（${c.age ?? '—'}歳）</p>
+              <p class="text-xs sm:text-sm text-gray-500 line-clamp-2">${c.intro ?? ''}</p>
+            </div>
+          `;
+          wrap.appendChild(card);
         });
-      })
-      .catch(() => {
-        grid.innerHTML = '<p class="sub">キャラクターの読み込みに失敗しました。<a href="matching.html">一覧ページ</a>からご確認ください。</p>';
-      });
-  
-    // 画像のフェイルセーフ（プレースホルダーに切替）
-    const FALLBACK_IMG = 'data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22250%22><rect width=%22100%25%22 height=%22100%25%22 fill=%22%23141821%22/><text x=%2250%25%22 y=%2250%25%22 fill=%22%239aa3af%22 font-size=%2220%22 text-anchor=%22middle%22 dominant-baseline=%22middle%22>NO IMAGE</text></svg>';
-    window.addEventListener('error', (e)=>{
-      const t = e.target; if(t && t.tagName === 'IMG'){ t.src = FALLBACK_IMG; }
-    }, true);
+      }catch(e){
+        console.error(e);
+        // フォールバック：最低限の表示
+        document.getElementById('heroName').textContent = '読み込みエラー';
+        document.getElementById('heroIntro').textContent = 'characters.json を確認してください。';
+      }
+    }
+
+    // 初期化
+    document.addEventListener('DOMContentLoaded', init);
   </script>
 </body>
 </html>
