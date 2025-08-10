@@ -3,162 +3,202 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>◆AIで作る最高のLOVEパートナー◆ | ai-par.com</title>
-  <meta name="description" content="AIがあなたに最適な“心のパートナー”を提案。10問の診断で出会える、魅力的な男女キャラクターたち。">
-  <link rel="preload" href=".../rogo.png" as="image">
-  <link rel="stylesheet" href="./style.css" />
+  <title>◆AIで作る最高のLOVEパートナー◆ | TOP</title>
+  <meta name="description" content="AIが“心に寄り添う”パートナーを提案。無料5通のあと、時間制チケットでじっくり相談・恋人・友達モードを楽しめます。" />
+  <meta property="og:title" content="◆AIで作る最高のLOVEパートナー◆" />
+  <meta property="og:description" content="無料5通→時間制チケットで、あなた専用のAIパートナーと深くつながる。" />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="itiran-rogo.png" />
+  <link rel="preload" as="image" href="rogo.png">
   <style>
-    :root {
-      --bg: #0b0b10; --card:#14141d; --text:#f5f7ff; --muted:#b8bdce; --accent:#7c6cff; --accent2:#ff5fa2;
+    :root{
+      --bg:#0f0f14; --card:#141821; --muted:#98a2b3; --text:#e6e8ec; --accent:#f472b6; --accent-2:#8b5cf6; --line:#222634;
+      --shadow: 0 8px 24px rgba(0,0,0,.25);
+      --radius: 16px;
     }
-    html,body{margin:0;padding:0;background:linear-gradient(180deg,#0b0b10,#121220 60%,#0b0b10);color:var(--text);font-family:system-ui,-apple-system,Segoe UI,Roboto,"Helvetica Neue",Arial,"Noto Sans JP","Hiragino Kaku Gothic ProN","Yu Gothic UI",sans-serif;}
-    a{color:inherit;text-decoration:none}
-    .container{max-width:1120px;margin:0 auto;padding:20px}
-    header{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:12px 0}
-    .logo{display:flex;align-items:center;gap:12px}
-    .logo img{height:42px;width:auto}
-    .nav a{opacity:.9;margin-left:14px}
-    .hero{display:grid;grid-template-columns:1.2fr .8fr;gap:24px;align-items:center;padding:30px 0}
-    .hero h1{font-size:clamp(24px,4vw,40px);line-height:1.2;margin:0 0 8px}
-    .hero p{color:var(--muted);margin:0 0 20px}
-    .cta{display:flex;gap:12px;flex-wrap:wrap}
-    .btn{background:linear-gradient(135deg,var(--accent),var(--accent2));border:none;color:#fff;padding:12px 18px;border-radius:999px;font-weight:700;letter-spacing:.02em;box-shadow:0 8px 20px rgba(124,108,255,.35);cursor:pointer}
-    .btn.sub{background:#22243a;color:#fff;border:1px solid #2d3050}
-    .hero-card{background:radial-gradient(1000px 400px at 80% -10%,rgba(255,95,162,.25),transparent 60%),var(--card);border:1px solid #2a2e44;border-radius:20px;padding:18px}
-    .ticker{display:flex;gap:10px;overflow:auto;padding:6px 2px}
-    .ticker .chip{white-space:nowrap;background:#1c1f33;border:1px solid #2a2e44;border-radius:999px;padding:8px 12px;color:#cbd0e8;font-size:13px}
-    .grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;margin-top:12px}
-    @media(min-width:720px){.grid{grid-template-columns:repeat(4,1fr)} }
-    .card{position:relative;background:#181a29;border:1px solid #2a2e44;border-radius:16px;overflow:hidden}
-    .card img{width:100%;height:220px;object-fit:cover;display:block;background:#0f1020}
-    .badge{position:absolute;top:10px;left:10px;background:rgba(0,0,0,.5);backdrop-filter:blur(6px);border:1px solid rgba(255,255,255,.2);padding:6px 10px;border-radius:999px;font-size:12px}
-    .card .cap{padding:10px 12px}
-    .cap .name{font-weight:700}
-    .cap .phrase{color:#c7cbed;font-size:12px;line-height:1.5;margin-top:4px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
-    .how{margin:40px 0 20px}
-    .how h2{font-size:22px;margin:0 0 12px}
-    .steps{display:grid;grid-template-columns:repeat(1,1fr);gap:12px}
-    @media(min-width:760px){.steps{grid-template-columns:repeat(3,1fr)}}
-    .step{background:#14162a;border:1px solid #2a2e44;border-radius:16px;padding:16px}
-    .step h3{margin:0 0 6px;font-size:16px}
-    footer{color:#a8acc6;opacity:.9;padding:28px 0;text-align:center;border-top:1px solid #232645;margin-top:36px}
-    .small{font-size:12px;color:#98a0c6}
+    *{box-sizing:border-box}
+    html,body{margin:0; padding:0; background:var(--bg); color:var(--text); font-family: system-ui, -apple-system, Segoe UI, Roboto, "Hiragino Kaku Gothic ProN", "Noto Sans JP", "Yu Gothic UI", "YuGothic", Meiryo, sans-serif}
+    a{color:inherit; text-decoration:none}
+    img{max-width:100%; display:block}
+    .container{width:min(1100px, 92vw); margin-inline:auto}
+    header{position:sticky; top:0; z-index:40; background:rgba(15,15,20,.6); backdrop-filter:saturate(140%) blur(10px); border-bottom:1px solid var(--line)}
+    .nav{display:flex; align-items:center; gap:16px; padding:10px 0}
+    .nav .grow{flex:1}
+    .btn{display:inline-flex; align-items:center; gap:10px; padding:12px 18px; border-radius:999px; border:1px solid transparent; font-weight:600; cursor:pointer}
+    .btn-primary{background:linear-gradient(135deg, var(--accent), var(--accent-2)); color:#fff; box-shadow: var(--shadow)}
+    .btn-ghost{border-color:var(--line); color:var(--text)}
+    .hero{display:grid; grid-template-columns:1.2fr .8fr; gap:24px; padding:48px 0 28px}
+    .hero h1{font-size:clamp(28px, 3.8vw, 46px); line-height:1.12; margin:6px 0 14px}
+    .hero p{color:var(--muted); margin:0 0 22px}
+    .hero .card{background:radial-gradient(1000px 400px at -20% -40%, rgba(244,114,182,.25), transparent 60%), var(--card); border:1px solid var(--line); border-radius:var(--radius); padding:18px}
+    .badges{display:flex; flex-wrap:wrap; gap:10px; margin:16px 0 0}
+    .badge{padding:8px 12px; border-radius:999px; border:1px solid var(--line); color:#d1d5db; font-size:12px}
+    .cta-row{display:flex; gap:12px; flex-wrap:wrap}
+
+    .grid{display:grid; grid-template-columns:repeat(4,1fr); gap:14px}
+    @media (max-width: 980px){ .hero{grid-template-columns:1fr} .grid{grid-template-columns:repeat(2,1fr)} }
+
+    .section{padding:32px 0}
+    .section h2{font-size:clamp(22px, 2.6vw, 32px); margin:0 0 14px}
+    .sub{color:var(--muted); margin:0 0 14px}
+
+    .card{background:var(--card); border:1px solid var(--line); border-radius:var(--radius); overflow:hidden}
+    .card-body{padding:14px}
+    .pill{font-size:12px; color:#cbd5e1; border:1px solid var(--line); padding:4px 8px; border-radius:999px}
+    .name{font-weight:700}
+    .phrase{color:#cbd5e1; font-size:13px; margin-top:6px; min-height:38px}
+
+    .steps{display:grid; grid-template-columns:repeat(3,1fr); gap:14px}
+    .step{padding:18px; border:1px dashed var(--line); border-radius:var(--radius)}
+    .num{width:28px; height:28px; border-radius:50%; display:grid; place-items:center; background:linear-gradient(135deg, var(--accent), var(--accent-2)); font-weight:700}
+
+    .pricing{display:grid; grid-template-columns:repeat(5,1fr); gap:14px}
+    @media (max-width: 980px){ .steps{grid-template-columns:1fr} .pricing{grid-template-columns:1fr} }
+    .price{padding:18px}
+    .price h3{margin:0 0 6px}
+    .yen{font-size:24px; font-weight:800}
+    .foot{padding:24px 0 60px; color:#94a3b8; border-top:1px solid var(--line); margin-top:18px}
+
+    .mini{font-size:12px; color:#9aa3af}
   </style>
 </head>
 <body>
-  <div class="container">
-    <header>
-      <div class="logo">
-        <img src="./rogo.png" alt="サイトロゴ" width="160" height="42" />
-        <strong>最高のLOVEパートナー</strong>
-      </div>
-      <nav class="nav" aria-label="主要ナビゲーション">
-        <a href="./questionnaire.html">診断</a>
-        <a href="./matching.html">キャラクター一覧</a>
-        <a href="./prof.html">サンプル</a>
+  <header>
+    <div class="container nav">
+      <a href="./" class="logo" aria-label="ホーム">
+        <img src="rogo.png" alt="サイトロゴ" width="120" height="36" />
+      </a>
+      <div class="grow"></div>
+      <nav style="display:flex; gap:12px; align-items:center">
+        <a class="btn btn-ghost" href="matching.html">キャラクター一覧</a>
+        <a class="btn btn-ghost" href="prof.html">プロフィール</a>
+        <a class="btn btn-ghost" href="paid/ticket.html">チケット案内</a>
+        <a class="btn btn-primary" href="questionnaire.html">診断を始める</a>
       </nav>
-    </header>
+    </div>
+  </header>
 
-    <section class="hero" aria-label="ヒーロー">
+  <main class="container">
+    <section class="hero">
       <div>
-        <h1>AIが“今のあなた”に合う、<br/>心のパートナーを提案します</h1>
-        <p>10問の簡単な質問に答えるだけ。最適なキャラクターが、<br class="hide-sm"/>あなたの気持ちに寄り添い、毎日にそっと灯りをともします。</p>
-        <div class="cta">
-          <a class="btn" href="./questionnaire.html" aria-label="診断を始める">診断を始める</a>
-          <a class="btn sub" href="./matching.html" aria-label="キャラクター一覧を見る">キャラクター一覧を見る</a>
+        <div class="badges">
+          <span class="badge">AIパートナー診断</span>
+          <span class="badge">相談/恋人/友達モード</span>
+          <span class="badge">最初の<strong>5通</strong>は無料</span>
         </div>
-        <div class="ticker" aria-label="特徴">
-          <span class="chip">男女 3〜5人ずつの多彩な個性</span>
-          <span class="chip">最初は無料で体験</span>
-          <span class="chip">1会話=10pt（¥100）</span>
-          <span class="chip">スピリチュアル × カウンセリング</span>
+        <h1>きみの“心”に常駐する、<br/>AIで作る最高のLOVEパートナー</h1>
+        <p>いつでも、どこでも。あなたの気持ちを受け止めてくれる存在をAIで。<br/>10問前後の無料診断で、最適なキャラクターをご提案します。</p>
+        <div class="cta-row">
+          <a class="btn btn-primary" href="questionnaire.html">診断を始める</a>
+          <a class="btn btn-ghost" href="matching.html">キャラクターを見る</a>
         </div>
+        <p class="mini" style="margin-top:8px">現在地：TOPページ / 最終更新: 2025-08-10</p>
       </div>
-      <aside class="hero-card" aria-label="注目キャラクター">
-        <div class="grid" id="heroGrid" aria-live="polite"></div>
-        <p class="small" style="margin:10px 4px 0">画像はイメージ／キャラクターを一部表示しています</p>
-      </aside>
+      <div class="card" aria-hidden="true">
+        <img src="itiran-rogo.png" alt="キャラクター集合イメージ"/>
+      </div>
     </section>
 
-    <section class="how" aria-label="使い方">
-      <h2>はじめかた</h2>
+    <!-- Characters snapshot -->
+    <section class="section" id="characters">
+      <h2>人気のAIパートナー（抜粋）</h2>
+      <p class="sub">全キャラクターは <a href="matching.html">一覧ページ</a> で確認できます。ここでは一部をピックアップ。</p>
+      <div class="grid" id="char-grid" aria-live="polite"></div>
+      <noscript>
+        <p class="sub">JavaScriptが無効のため抜粋表示は行えません。<a href="matching.html">こちら</a>から一覧をご覧ください。</p>
+      </noscript>
+    </section>
+
+    <!-- How it works -->
+    <section class="section">
+      <h2>使い方は、かんたん3ステップ</h2>
       <div class="steps">
         <div class="step">
-          <h3>1. 10問の診断に回答</h3>
-          <p class="small">あなたの希望や今の気持ちを教えてください。</p>
+          <div class="num">1</div>
+          <h3>無料診断</h3>
+          <p class="sub">10問前後に答えるだけで、あなたに最適な“心の伴走者”が見つかります。</p>
+          <a class="btn btn-ghost" href="questionnaire.html">診断へ</a>
         </div>
         <div class="step">
-          <h3>2. 相性の合う相手とマッチ</h3>
-          <p class="small">結果にもとづき、最適な“心のパートナー”をご提案。</p>
+          <div class="num">2</div>
+          <h3>相性の良いキャラを提案</h3>
+          <p class="sub">診断結果にもとづき、恋人/相談/友達タイプから候補を自動表示。</p>
+          <a class="btn btn-ghost" href="matching.html">候補を見る</a>
         </div>
         <div class="step">
-          <h3>3. 話して、頼って、深める</h3>
-          <p class="small">最初は数往復無料。以降はポイント制で続けられます。</p>
+          <div class="num">3</div>
+          <h3>会話スタート</h3>
+          <p class="sub">最初は<strong>5通無料</strong>。以降は時間制チケットで“必要なときだけ”続けられます。</p>
+          <a class="btn btn-ghost" href="paid/ticket.html">チケットを見る</a>
         </div>
       </div>
     </section>
 
-    <footer>
-      <div>© <span id="y"></span> ai-par.com / ◆AIで作る最高のLOVEパートナー◆</div>
-      <div class="small">このサービスはフィクションのキャラクターを用いた対話体験を提供します。医療・法律等の専門アドバイスは行いません。</div>
+    <!-- Ticket summary (time-based) -->
+    <section class="section" id="ticket">
+      <h2>時間制チケット（要約）</h2>
+      <p class="sub">課金はメッセージ数ではなく<strong>合計チャット時間</strong>でカウント。途中で中断しても残り時間は保存されます。</p>
+      <div class="pricing">
+        <div class="card price"><h3>お試し</h3><div class="yen">5分 / 1,000円</div><p class="sub">まずは短く体験</p></div>
+        <div class="card price"><h3>お手頃</h3><div class="yen">30分 / 3,000円</div><p class="sub">迷ったらコレ</p></div>
+        <div class="card price"><h3>オススメ</h3><div class="yen">60分 / 5,000円</div><p class="sub">じっくり話す</p></div>
+        <div class="card price"><h3>お得</h3><div class="yen">120分 / 7,000円</div><p class="sub">長めに安心</p></div>
+        <div class="card price"><h3>超お得</h3><div class="yen">240分 / 10,000円</div><p class="sub">たっぷり使う</p></div>
+      </div>
+      <p class="mini">詳細は <a href="paid/ticket.html">チケット案内ページ</a> へ。</p>
+    </section>
+
+    <footer class="foot">
+      <div class="container" style="display:flex; flex-wrap:wrap; gap:12px; align-items:center; justify-content:space-between">
+        <small>© 2025 ◆AIで作る最高のLOVEパートナー◆</small>
+        <nav style="display:flex; gap:12px">
+          <a href="matching.html">キャラクター一覧</a>
+          <a href="prof.html">プロフィール</a>
+          <a href="#ticket">チケット</a>
+        </nav>
+      </div>
     </footer>
-  </div>
+  </main>
 
-  <script>
-    // 年表示
-    document.getElementById('y').textContent = new Date().getFullYear();
+  <script defer>
+    // characters.json から一部を読み込み、TOPに抜粋表示
+    const grid = document.getElementById('char-grid');
 
-    // キャラクターを読み込み、ヒーローに表示
-    const grid = document.getElementById('heroGrid');
-    const PICK = 8; // 表示数
-
-    function cardTemplate(ch){
-      const a = document.createElement('a');
-      a.href = ch.profile || './prof.html';
-      a.className = 'card';
-      a.setAttribute('aria-label', ch.name + 'のプロフィールへ');
-      a.innerHTML = `
-        <span class="badge">${ch.age_label || (ch.age + '歳') }・${labelType(ch.type)}</span>
-        <img loading="lazy" src="${sanitizePath(ch.img)}" alt="${ch.name}" onerror="this.src='ga/image/character/placeholder.jpg'" />
-        <div class="cap">
-          <div class="name">${ch.name}</div>
-          <div class="phrase">${ch.phrase || ''}</div>
-        </div>`;
-      return a;
-    }
-
-    function labelType(t){
-      if(t==='lover') return '恋人タイプ';
-      if(t==='advisor') return 'アドバイザー';
-      if(t==='friend') return '友人タイプ';
-      return 'タイプ';
-    }
-
-    function sanitizePath(p){
-      // 相対パス前提で安全に整形
-      try{ const u = new URL(p, location.href); return u.pathname.replace(location.origin,''); }catch(e){ return p; }
-    }
-
-    async function load(){
-      try{
-        const res = await fetch('./characters.json', {cache:'no-store'});
-        if(!res.ok) throw new Error('characters.jsonの取得に失敗しました');
-        const list = await res.json();
-        // 重複・不足に耐える: 正しいimgがあるものを優先
-        const clean = list.filter(ch=>ch && ch.name && ch.img);
-        // 並びをランダムにして先頭PICK件
-        for(let i = clean.length - 1; i > 0; i--){
-          const j = Math.floor(Math.random() * (i + 1));
-          [clean[i], clean[j]] = [clean[j], clean[i]];
+    fetch('characters.json')
+      .then(r => r.json())
+      .then(list => {
+        if(!Array.isArray(list) || !list.length) throw new Error('no characters');
+        // 表示順：lover/advisor/friend をバランス良く最大8件
+        const pick = [];
+        const byType = {lover:[], advisor:[], friend:[]};
+        list.forEach(c => (byType[c.type]||[]).push(c));
+        const order = ['lover','advisor','friend'];
+        let idx=0;
+        while(pick.length<8 && idx<12){
+          order.forEach(t=>{ if(byType[t] && byType[t][idx]) pick.push(byType[t][idx]); });
+          idx++;
         }
-        const pick = clean.slice(0, PICK);
-        pick.forEach(ch=> grid.appendChild(cardTemplate(ch)));
-      }catch(err){
-        console.error(err);
-        grid.innerHTML = '<div class="small">キャラクターの読み込みに失敗しました。<a href="./matching.html">一覧ページ</a>をご覧ください。</div>';
-      }
-    }
-    load();
+        pick.slice(0,8).forEach(c => {
+          const el = document.createElement('article');
+          el.className = 'card';
+          const typeLabel = ({lover:'恋人タイプ', advisor:'相談タイプ', friend:'友人タイプ'})[c.type] || 'タイプ';
+          const profile = c.profile || 'prof.html';
+          el.innerHTML = `
+            <img src="${c.img}" alt="${c.name}の画像" loading="lazy"/>
+            <div class=card-body>
+              <div style="display:flex; justify-content:space-between; align-items:center; gap:8px; margin-bottom:6px">
+                <span class=name>${c.name}</span>
+                <span class=pill>${(c.age_label||c.age_group||'')}・${typeLabel}</span>
+              </div>
+              <div class=phrase>「${c.phrase}」</div>
+            </div>`;
+          el.addEventListener('click', ()=> location.href = profile);
+          grid.appendChild(el);
+        });
+      })
+      .catch(() => {
+        grid.innerHTML = '<p class="sub">キャラクターの読み込みに失敗しました。<a href="matching.html">一覧ページ</a>からご確認ください。</p>';
+      });
   </script>
 </body>
 </html>
