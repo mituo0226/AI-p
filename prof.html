@@ -289,6 +289,38 @@
       box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
     }
 
+    /* 全キャラクターを見るボタンのスタイル */
+    .view-all-section {
+      grid-column: 1 / -1;
+      text-align: center;
+      margin-top: 30px;
+      padding: 20px;
+      background: rgba(102, 126, 234, 0.1);
+      border-radius: 15px;
+      border: 2px dashed rgba(102, 126, 234, 0.3);
+    }
+
+    .view-all-container p {
+      margin-bottom: 15px;
+      color: #666;
+      font-size: 1rem;
+    }
+
+    .view-all-container .btn {
+      display: inline-block;
+      padding: 12px 25px;
+      background: linear-gradient(45deg, #667eea, #764ba2);
+      color: white;
+      border-radius: 25px;
+      font-weight: 600;
+      transition: all 0.3s ease;
+    }
+
+    .view-all-container .btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(102, 126, 234, 0.3);
+    }
+
     /* No Results */
     .no-results {
       text-align: center;
@@ -475,214 +507,199 @@
     // 現在の年を表示
     document.getElementById('current-year').textContent = new Date().getFullYear();
 
-    // キャラクターデータ
-    const characters = [
-      {
-        id: 'asakura',
-        name: '朝倉',
-        title: '明るく元気な性格',
-        age: '20歳',
-        description: 'いつも明るく前向きな性格で、周りを元気にするのが得意です。友達思いで、困っている人がいればすぐに手を差し伸べる優しい心の持ち主です。',
-        tags: ['明るい', '元気', '友達思い'],
-        image: './ga/image/character/asakura.png'
-      },
-      {
-        id: 'honoka',
-        name: 'ほのか',
-        title: '優しくて思いやり深い',
-        age: '19歳',
-        description: 'とても優しくて思いやりがあり、相手の気持ちを大切にする性格です。静かで落ち着いた雰囲気で、深い話もできる知的な一面も持っています。',
-        tags: ['優しい', '思いやり', '知的'],
-        image: './ga/image/character/honoka.png'
-      },
-      {
-        id: 'runa',
-        name: 'ルナ',
-        title: 'クールで知的',
-        age: '22歳',
-        description: 'クールで知的な雰囲気の持ち主。論理的で冷静な判断ができ、深い知識を持っています。少し距離感がありますが、心を開くととても親密になれます。',
-        tags: ['クール', '知的', '論理的'],
-        image: './ga/image/character/runa.png'
-      },
-      {
-        id: 'ryo',
-        name: 'リョウ',
-        title: '頼りになる兄貴分',
-        age: '25歳',
-        description: '頼りになる兄貴分タイプ。面倒見が良く、困っている人を見かけるとすぐに助けの手を差し伸べます。正義感が強く、弱い者いじめは許しません。',
-        tags: ['頼りになる', '面倒見が良い', '正義感'],
-        image: './ga/image/character/ryo.png'
-      },
-      {
-        id: 'mariko',
-        name: 'マリコ',
-        title: '大人な魅力',
-        age: '28歳',
-        description: '大人の女性らしい魅力と知性を兼ね備えています。落ち着いた雰囲気で、人生経験豊富なアドバイスができる頼もしい存在です。',
-        tags: ['大人', '知的', '経験豊富'],
-        image: './ga/image/character/mariko.png'
-      },
-      {
-        id: 'nana',
-        name: 'ナナ',
-        title: '可愛らしい妹系',
-        age: '17歳',
-        description: '可愛らしい妹系キャラクター。甘くて愛らしい性格で、お兄さん・お姉さんを慕う気持ちが強いです。純真で無邪気な魅力があります。',
-        tags: ['可愛い', '妹系', '純真'],
-        image: './ga/image/character/nana.png'
-      },
-      {
-        id: 'reiko',
-        name: 'レイコ',
-        title: 'クールビューティー',
-        age: '24歳',
-        description: 'クールで美しい外見と内面を持つ女性。高嶺の花のような存在ですが、実は優しい心の持ち主です。',
-        tags: ['クール', '美しい', '高嶺の花'],
-        image: './ga/image/character/reiko.png'
-      },
-      {
-        id: 'rin',
-        name: 'リン',
-        title: '活発でスポーツ好き',
-        age: '21歳',
-        description: '活発でスポーツが大好きな元気な性格。負けず嫌いで、目標に向かって一直線に突き進む情熱的な一面があります。',
-        tags: ['活発', 'スポーツ好き', '情熱的'],
-        image: './ga/image/character/rin.png'
-      },
-      {
-        id: 'rio',
-        name: 'リオ',
-        title: '知的でクール',
-        age: '23歳',
-        description: '知的でクールな性格の男性。論理的思考が得意で、複雑な問題も冷静に分析できます。少し無口ですが、信頼できる友達です。',
-        tags: ['知的', 'クール', '論理的'],
-        image: './ga/image/character/rio.png'
-      },
-      {
-        id: 'runa',
-        name: 'ルナ',
-        title: 'クールで知的',
-        age: '22歳',
-        description: 'クールで知的な雰囲気の持ち主。論理的で冷静な判断ができ、深い知識を持っています。少し距離感がありますが、心を開くととても親密になれます。',
-        tags: ['クール', '知的', '論理的'],
-        image: './ga/image/character/runa.png'
-      },
-      {
-        id: 'ryo',
-        name: 'リョウ',
-        title: '頼りになる兄貴分',
-        age: '25歳',
-        description: '頼りになる兄貴分タイプ。面倒見が良く、困っている人を見かけるとすぐに助けの手を差し伸べます。正義感が強く、弱い者いじめは許しません。',
-        tags: ['頼りになる', '面倒見が良い', '正義感'],
-        image: './ga/image/character/ryo.png'
-      },
-      {
-        id: 'sara',
-        name: 'サラ',
-        title: '優雅で上品',
-        age: '26歳',
-        description: '優雅で上品な雰囲気を持つ女性。礼儀正しく、美しい立ち振る舞いが特徴です。芸術や文化に造詣が深い知的な一面もあります。',
-        tags: ['優雅', '上品', '芸術的'],
-        image: './ga/image/character/sara.png'
-      },
-      {
-        id: 'siori',
-        name: 'シオリ',
-        title: '静かで控えめ',
-        age: '18歳',
-        description: '静かで控えめな性格の女性。内気ですが、心優しくて思いやりがあります。本が好きで、深い話もできる知的な一面を持っています。',
-        tags: ['静か', '控えめ', '知的'],
-        image: './ga/image/character/siori.png'
-      },
-      {
-        id: 'syun',
-        name: 'シュン',
-        title: '爽やかでスポーツマン',
-        age: '20歳',
-        description: '爽やかでスポーツマンタイプの男性。明るく前向きで、チームワークを大切にします。リーダーシップがあり、みんなをまとめるのが得意です。',
-        tags: ['爽やか', 'スポーツマン', 'リーダー'],
-        image: './ga/image/character/syun.png'
-      },
-      {
-        id: 'takumi',
-        name: 'タクミ',
-        title: '真面目で努力家',
-        age: '22歳',
-        description: '真面目で努力家の性格。何事にも誠実に取り組み、目標に向かってコツコツと努力を重ねます。責任感が強く、信頼できる存在です。',
-        tags: ['真面目', '努力家', '誠実'],
-        image: './ga/image/character/takumi.png'
-      },
-      {
-        id: 'yuma',
-        name: 'ユウマ',
-        title: '自由奔放で楽観的',
-        age: '19歳',
-        description: '自由奔放で楽観的な性格。常に前向きで、新しいことに挑戦するのが大好きです。明るい性格で、周りを笑顔にするのが得意です。',
-        tags: ['自由奔放', '楽観的', '明るい'],
-        image: './ga/image/character/yuma.png'
-      },
-      {
-        id: 'gaku',
-        name: 'ガク',
-        title: '知的で研究者タイプ',
-        age: '27歳',
-        description: '知的で研究者タイプの男性。好奇心旺盛で、新しい発見や知識を求めて常に学び続けています。少し変わった視点で物事を見ることができます。',
-        tags: ['知的', '研究者', '好奇心'],
-        image: './ga/image/character/gaku.png'
-      },
-      {
-        id: 'kai',
-        name: 'カイ',
-        title: 'クールでミステリアス',
-        age: '24歳',
-        description: 'クールでミステリアスな雰囲気の男性。少し謎めいた存在ですが、実は優しい心の持ち主です。深い洞察力があり、人の心を理解するのが得意です。',
-        tags: ['クール', 'ミステリアス', '洞察力'],
-        image: './ga/image/character/kai.png'
-      },
-      {
-        id: 'maho',
-        name: 'マホ',
-        title: '魔法使いのような魅力',
-        age: '21歳',
-        description: '魔法使いのような魅力を持つ女性。少し不思議な雰囲気で、独特な世界観を持っています。創造的で、夢や希望を大切にする性格です。',
-        tags: ['魔法使い', '不思議', '創造的'],
-        image: './ga/image/character/maho.png'
-      },
-      {
-        id: 'mido',
-        name: 'ミド',
-        title: 'バランスの取れた性格',
-        age: '23歳',
-        description: 'バランスの取れた性格の持ち主。明るさと落ち着きを兼ね備え、どんな場面でも適切に対応できます。調整役としても活躍できる頼もしい存在です。',
-        tags: ['バランス', '調整役', '頼もしい'],
-        image: './ga/image/character/mido.png'
-      },
-      {
-        id: 'miura',
-        name: 'ミウラ',
-        title: 'クールで知的',
-        age: '26歳',
-        description: 'クールで知的な雰囲気の女性。論理的思考が得意で、複雑な問題も冷静に分析できます。少し距離感がありますが、信頼できるパートナーです。',
-        tags: ['クール', '知的', '論理的'],
-        image: './ga/image/character/miura.png'
+    // キャラクターデータ（初期値）
+    let characters = [];
+    let allCharacters = [];
+
+    // 診断結果を処理する関数
+    function processDiagnosticResults() {
+      const params = new URLSearchParams(window.location.search);
+      const nickname = params.get('nickname') || 'あなた';
+      const gender = params.get('gender') || '';
+      const age = params.get('age') || '';
+      const partner = params.get('partner') || '';
+      const relationship = params.get('relationship') || '';
+      const communication = params.get('communication') || '';
+
+      // 診断パラメータがある場合は診断結果を表示
+      if (nickname && (gender || age || partner || relationship || communication)) {
+        showDiagnosticResults(nickname, gender, age, partner, relationship, communication);
+      } else {
+        // 通常の一覧表示
+        showAllCharacters();
       }
+    }
+
+    // 診断結果を表示
+    function showDiagnosticResults(nickname, gender, age, partner, relationship, communication) {
+      // ヘッダーを診断結果用に変更
+      const heroTitle = document.querySelector('.hero-section h1');
+      const heroDescription = document.querySelector('.hero-section p');
+      
+      heroTitle.textContent = `${nickname}さんに最適なAIパートナー`;
+      heroDescription.textContent = '診断結果に基づいて、あなたに最適なキャラクターを選出しました';
+
+      // 診断ロジックでキャラクターを選出
+      const matchedCharacters = matchCharacters(gender, age, partner, relationship, communication);
+      
+      // 男女2人まで表示
+      const displayCharacters = matchedCharacters.slice(0, 2);
+      
+      // 診断結果を表示
+      displayCharacters(displayCharacters);
+      
+      // 検索機能を無効化
+      document.querySelector('.search-section').style.display = 'none';
+      
+      // 「全キャラクターを見る」ボタンを追加
+      const grid = document.getElementById('charactersGrid');
+      const viewAllButton = document.createElement('div');
+      viewAllButton.className = 'view-all-section';
+      viewAllButton.innerHTML = `
+        <div class="view-all-container">
+          <p>他のキャラクターも見てみませんか？</p>
+          <button class="btn btn-secondary" onclick="showAllCharacters()">全キャラクター一覧を見る</button>
+        </div>
+      `;
+      grid.appendChild(viewAllButton);
+    }
+
+    // キャラクターマッチングロジック
+    function matchCharacters(gender, age, partner, relationship, communication) {
+      let matched = [];
+      let scores = [];
+
+      allCharacters.forEach(character => {
+        let score = 0;
+        
+        // パートナー性別のマッチング
+        if (partner && partner !== 'any') {
+          if (character.gender === partner) {
+            score += 30;
+          }
+        } else {
+          score += 15; // どちらでもの場合は基本点
+        }
+
+        // 関係性のマッチング
+        if (relationship && character.type) {
+          if (relationship === character.type) {
+            score += 40;
+          } else if (relationship === 'friend' && character.type === 'lover') {
+            score += 20; // 部分的マッチ
+          } else if (relationship === 'lover' && character.type === 'friend') {
+            score += 20; // 部分的マッチ
+          }
+        }
+
+        // 年齢のマッチング
+        if (age && character.age) {
+          const userAge = parseInt(age.split('-')[0]);
+          const charAge = character.age;
+          const ageDiff = Math.abs(userAge - charAge);
+          
+          if (ageDiff <= 5) {
+            score += 20;
+          } else if (ageDiff <= 10) {
+            score += 10;
+          }
+        }
+
+        // コミュニケーションスタイルのマッチング
+        if (communication) {
+          switch (communication) {
+            case 'casual':
+              if (character.chatStyle && character.chatStyle.tone.includes('親しみ')) {
+                score += 15;
+              }
+              break;
+            case 'formal':
+              if (character.chatStyle && character.chatStyle.tone.includes('丁寧')) {
+                score += 15;
+              }
+              break;
+            case 'intellectual':
+              if (character.chatStyle && character.chatStyle.personality.includes('知的')) {
+                score += 15;
+              }
+              break;
+            case 'playful':
+              if (character.chatStyle && character.chatStyle.tone.includes('楽しい')) {
+                score += 15;
+              }
+              break;
+          }
+        }
+
+        scores.push({ character, score });
+      });
+
+      // スコアでソート
+      scores.sort((a, b) => b.score - a.score);
+      
+      // 上位のキャラクターを返す
+      return scores.map(item => item.character);
+    }
+
+    // 全キャラクターを表示
+    function showAllCharacters() {
+      // ヘッダーを通常表示に戻す
+      const heroTitle = document.querySelector('.hero-section h1');
+      const heroDescription = document.querySelector('.hero-section p');
+      
+      heroTitle.textContent = 'キャラクター一覧';
+      heroDescription.textContent = '20人の魅力的なAIキャラクターから、あなたに最適なパートナーを見つけましょう';
+      
+      // 検索機能を有効化
+      document.querySelector('.search-section').style.display = 'block';
+      
+      // 全キャラクターを表示
+      displayCharacters(allCharacters);
+      
+      // 「全キャラクターを見る」ボタンを削除
+      const viewAllButton = document.querySelector('.view-all-section');
+      if (viewAllButton) {
+        viewAllButton.remove();
+      }
+    }
     ];
 
     // キャラクターカードを生成
     function createCharacterCard(character) {
+      // characters.jsonのデータ構造に合わせて調整
+      const name = character.name || character.id;
+      const age = character.age ? `${character.age}歳` : '';
+      const intro = character.intro || character.description || '';
+      const img = character.img || character.image || '';
+      
+      // タグの生成（characters.jsonにはtagsがないので、typeやchatStyleから生成）
+      const tags = [];
+      if (character.type) {
+        switch (character.type) {
+          case 'friend': tags.push('友達'); break;
+          case 'advisor': tags.push('アドバイザー'); break;
+          case 'lover': tags.push('恋人'); break;
+        }
+      }
+      if (character.gender) {
+        tags.push(character.gender === 'female' ? '女性' : '男性');
+      }
+      if (character.age_group) {
+        tags.push(character.age_group);
+      }
+
       return `
         <div class="character-card" data-character="${character.id}">
           <div class="character-header">
-            <img src="${character.image}" alt="${character.name}" class="character-avatar">
+            <img src="${img}" alt="${name}" class="character-avatar">
             <div class="character-info">
-              <div class="character-name">${character.name}</div>
-              <div class="character-title">${character.title}</div>
-              <div class="character-age">${character.age}</div>
+              <div class="character-name">${name}</div>
+              <div class="character-age">${age}</div>
             </div>
           </div>
-          <div class="character-description">${character.description}</div>
+          <div class="character-description">${intro}</div>
           <div class="character-tags">
-            ${character.tags.map(tag => `<span class="character-tag">${tag}</span>`).join('')}
+            ${tags.map(tag => `<span class="character-tag">${tag}</span>`).join('')}
           </div>
           <div class="character-actions">
             <a href="./profile/${character.id}.html" class="btn btn-secondary">プロフィール</a>
@@ -717,25 +734,45 @@
       displayCharacters(filtered);
     }
 
-    // 初期化
-    document.addEventListener('DOMContentLoaded', function() {
-      // 初期表示
-      displayCharacters(characters);
-      
-      // 検索機能
-      const searchInput = document.getElementById('searchInput');
-      searchInput.addEventListener('input', function() {
-        filterCharacters(this.value);
-      });
-      
-      // モバイルでのタッチ操作を改善
-      if ('ontouchstart' in window) {
-        const touchElements = document.querySelectorAll('.character-card, .nav a, .btn');
-        touchElements.forEach(element => {
-          element.style.transition = 'none';
-        });
+    // characters.jsonからデータを読み込む
+    async function loadCharacters() {
+      try {
+        const response = await fetch('./data/characters.json');
+        if (!response.ok) {
+          throw new Error('characters.json の読み込みに失敗しました');
+        }
+        
+        allCharacters = await response.json();
+        characters = allCharacters; // 初期値として設定
+        
+        // 診断結果を処理
+        processDiagnosticResults();
+        
+        // 検索機能を設定
+        const searchInput = document.getElementById('searchInput');
+        if (searchInput) {
+          searchInput.addEventListener('input', function() {
+            filterCharacters(this.value);
+          });
+        }
+        
+        // モバイルでのタッチ操作を改善
+        if ('ontouchstart' in window) {
+          const touchElements = document.querySelectorAll('.character-card, .nav a, .btn');
+          touchElements.forEach(element => {
+            element.style.transition = 'none';
+          });
+        }
+      } catch (error) {
+        console.error('キャラクターデータの読み込みエラー:', error);
+        // エラー時のフォールバック表示
+        document.getElementById('charactersGrid').innerHTML = 
+          '<div class="error-message">キャラクターデータの読み込みに失敗しました。ページを再読み込みしてください。</div>';
       }
-    });
+    }
+
+    // 初期化
+    document.addEventListener('DOMContentLoaded', loadCharacters);
   </script>
 </body>
 </html>
