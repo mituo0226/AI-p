@@ -54,17 +54,17 @@
         <div id="heroContainer" class="hero-container mt-10 grid grid-cols-1 sm:grid-cols-[auto,1fr] gap-6 sm:gap-10 items-center">
           <!-- 円形サムネ -->
           <div class="flex justify-center sm:justify-start">
-            <img id="heroImg" src="" alt="" class="h-44 w-44 object-cover rounded-full ring-soft" />
+            <img id="heroImg" src="ga/image/character/honoka.png" alt="キャラクター" class="h-44 w-44 object-cover rounded-full ring-soft" />
           </div>
 
           <!-- テキスト -->
           <div>
-            <h2 id="heroName" class="text-xl sm:text-2xl font-bold">—</h2>
-            <p id="heroPhrase" class="mt-2 text-gray-600 italic">—</p>
-            <p id="heroIntro" class="mt-3 text-gray-700">—</p>
+            <h2 id="heroName" class="text-xl sm:text-2xl font-bold">桜庭 ほのか（23歳）</h2>
+            <p id="heroPhrase" class="mt-2 text-gray-600 italic">"無理しすぎてない？…がんばってるあなたのこと、ちゃんと見えてるよ。"</p>
+            <p id="heroIntro" class="mt-3 text-gray-700">フリーのイラストレーター。静かで寄り添うような優しさと、詩的な感性を持つ。</p>
 
             <div class="mt-4 flex flex-wrap items-center gap-4">
-              <a id="heroVideoLink" href="#" class="text-pink-600 hover:text-pink-700 text-sm inline-flex items-center gap-2">
+              <a id="heroVideoLink" href="profile/honoka.html" class="text-pink-600 hover:text-pink-700 text-sm inline-flex items-center gap-2">
                 <span class="inline-block w-2 h-2 rounded-full bg-pink-500"></span> プロフィールを見る
               </a>
             </div>
@@ -171,9 +171,13 @@
         // アニメーション用の変数
         let currentIndex = 0;
 
-        // 最初のキャラクターを表示
-        if (displayChars.length > 0) {
-          showCharacter(displayChars[0]);
+        // 最初のキャラクターを表示（初期表示は既に設定済みのため、最初の切り替えのみ実行）
+        if (displayChars.length > 1) {
+          // 最初のキャラクターが初期表示と異なる場合のみ切り替え
+          const firstChar = displayChars[0];
+          if (firstChar.name !== '桜庭 ほのか') {
+            showCharacter(firstChar);
+          }
         }
 
         // 定期的にキャラクターを切り替え
