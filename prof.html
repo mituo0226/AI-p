@@ -210,6 +210,18 @@
       margin-bottom: 15px;
     }
 
+    .character-phrase {
+      color: #667eea;
+      font-style: italic;
+      font-weight: 500;
+      line-height: 1.5;
+      margin-bottom: 15px;
+      padding: 10px;
+      background: rgba(102, 126, 234, 0.1);
+      border-radius: 8px;
+      border-left: 3px solid #667eea;
+    }
+
     .character-tags {
       display: flex;
       flex-wrap: wrap;
@@ -508,7 +520,8 @@
                 <p class="character-age">${char.age_label}・${typeLabel}</p>
               </div>
             </div>
-            <p class="character-description">${char.description || '魅力的なAIキャラクターです。'}</p>
+            <p class="character-description">${char.intro || '魅力的なAIキャラクターです。'}</p>
+            ${char.phrase ? `<p class="character-phrase">"${char.phrase}"</p>` : ''}
             <div class="character-tags">
               <span class="character-tag">${char.type === 'lover' ? '💕' : char.type === 'friend' ? '🤝' : '💡'} ${typeLabel}</span>
             </div>
