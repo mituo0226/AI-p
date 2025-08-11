@@ -8,7 +8,7 @@
     body {
       margin: 0;
       font-family: "Hiragino Kaku Gothic ProN", sans-serif;
-      background: linear-gradient(135deg, #e8eaf6 0%, #c5cae9 100%);
+      background: linear-gradient(135deg, #e6f3ff 0%, #f0e6ff 100%);
       color: #333;
     }
     .profile-container {
@@ -29,11 +29,11 @@
       height: auto;
       display: block;
       object-fit: cover;
-      border-bottom: 4px solid #7986cb;
+      border-bottom: 4px solid #2196f3;
     }
     .hero-caption {
       padding: 25px;
-      background: linear-gradient(135deg, #5c6bc0 0%, #7986cb 100%);
+      background: linear-gradient(135deg, #2196f3 0%, #1976d2 100%);
       color: white;
       font-size: 24px;
       font-weight: bold;
@@ -48,8 +48,8 @@
     }
     .section h2 {
       font-size: 22px;
-      color: #5c6bc0;
-      border-left: 6px solid #7986cb;
+      color: #1976d2;
+      border-left: 6px solid #2196f3;
       padding-left: 15px;
       margin-bottom: 15px;
       font-weight: bold;
@@ -78,7 +78,7 @@
     }
     .bubble {
       position: relative;
-      background: linear-gradient(135deg, #5c6bc0 0%, #7986cb 100%);
+      background: linear-gradient(135deg, #2196f3 0%, #1976d2 100%);
       color: white;
       border-radius: 15px;
       padding: 20px;
@@ -86,7 +86,7 @@
       font-style: italic;
       font-size: 18px;
       font-weight: 500;
-      box-shadow: 0 8px 16px rgba(92, 107, 192, 0.3);
+      box-shadow: 0 8px 16px rgba(33, 150, 243, 0.3);
     }
     .bubble::before {
       content: "";
@@ -94,7 +94,7 @@
       bottom: -15px;
       left: 35px;
       border: 15px solid transparent;
-      border-top-color: #7986cb;
+      border-top-color: #1976d2;
     }
     .skills-grid {
       display: grid;
@@ -103,21 +103,21 @@
       margin-top: 15px;
     }
     .skill-item {
-      background: #f3f4ff;
-      border: 2px solid #c5cae9;
+      background: #e3f2fd;
+      border: 2px solid #bbdefb;
       border-radius: 12px;
       padding: 15px;
       text-align: center;
       transition: all 0.3s ease;
     }
     .skill-item:hover {
-      background: #5c6bc0;
+      background: #2196f3;
       color: white;
       transform: translateY(-3px);
-      box-shadow: 0 8px 20px rgba(92, 107, 192, 0.3);
+      box-shadow: 0 8px 20px rgba(33, 150, 243, 0.3);
     }
     .values-box {
-      background: linear-gradient(135deg, #5c6bc0 0%, #7986cb 100%);
+      background: linear-gradient(135deg, #2196f3 0%, #1976d2 100%);
       color: white;
       border-radius: 15px;
       padding: 25px;
@@ -129,82 +129,14 @@
       display: block;
       font-size: 18px;
       margin-bottom: 10px;
-      color: #e8eaf6;
-    }
-    .nursing-section {
-      background: linear-gradient(135deg, #f3f4ff 0%, #e8eaf6 100%);
-      border-radius: 15px;
-      padding: 20px;
-      margin: 20px 0;
-      border-left: 6px solid #5c6bc0;
-    }
-    .healing-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 15px;
-      margin-top: 15px;
-    }
-    .healing-item {
-      background: #f3f4ff;
-      border: 2px solid #c5cae9;
-      border-radius: 12px;
-      padding: 20px;
-      text-align: center;
-      transition: all 0.3s ease;
-      position: relative;
-      overflow: hidden;
-    }
-    .healing-item:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 8px 20px rgba(92, 107, 192, 0.2);
-    }
-    .healing-item::before {
-      content: '';
-      position: absolute;
-      top: -50%;
-      left: -50%;
-      width: 200%;
-      height: 200%;
-      background: radial-gradient(circle, rgba(92, 107, 192, 0.1) 0%, transparent 70%);
-      animation: healingWave 3s infinite;
-    }
-    @keyframes healingWave {
-      0%, 100% { transform: scale(0.8) rotate(0deg); opacity: 0.3; }
-      50% { transform: scale(1.2) rotate(180deg); opacity: 0.1; }
-    }
-    .hands-section {
-      background: linear-gradient(135deg, #e8eaf6 0%, #f3f4ff 100%);
-      border-radius: 15px;
-      padding: 20px;
-      margin: 20px 0;
-      border: 2px solid #9fa8da;
-    }
-    .icu-experience {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 15px;
-      margin-top: 15px;
-    }
-    .experience-item {
-      background: #f3f4ff;
-      border: 2px solid #c5cae9;
-      border-radius: 12px;
-      padding: 18px;
-      text-align: center;
-      transition: all 0.3s ease;
-    }
-    .experience-item:hover {
-      background: #7986cb;
-      color: white;
-      transform: translateY(-3px);
-      box-shadow: 0 8px 20px rgba(121, 134, 203, 0.3);
+      color: #fff3cd;
     }
     .video {
       text-align: center;
       margin-top: 40px;
     }
     .video h2 {
-      color: #5c6bc0;
+      color: #1976d2;
       margin-bottom: 20px;
     }
     .video-wrapper {
@@ -238,14 +170,14 @@
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
-      background: linear-gradient(135deg, #5c6bc0 0%, #7986cb 100%);
+      background: linear-gradient(135deg, #2196f3 0%, #1976d2 100%);
       color: white;
       padding: 16px 32px;
       border-radius: 50px;
       font-size: 18px;
       font-weight: bold;
       cursor: pointer;
-      box-shadow: 0 8px 20px rgba(92, 107, 192, 0.4);
+      box-shadow: 0 8px 20px rgba(33, 150, 243, 0.4);
       display: none;
       z-index: 2;
       transition: transform 0.3s ease;
@@ -258,38 +190,45 @@
       text-align: center;
       margin: 50px auto 30px;
       padding: 18px 40px;
-      background: linear-gradient(135deg, #5c6bc0 0%, #7986cb 100%);
+      background: linear-gradient(135deg, #2196f3 0%, #1976d2 100%);
       color: white;
       font-weight: bold;
       font-size: 18px;
       border-radius: 50px;
       text-decoration: none;
       width: fit-content;
-      box-shadow: 0 8px 20px rgba(92, 107, 192, 0.3);
+      box-shadow: 0 8px 20px rgba(33, 150, 243, 0.3);
       transition: all 0.3s ease;
     }
     .select-button:hover {
       transform: translateY(-3px);
-      box-shadow: 0 12px 30px rgba(92, 107, 192, 0.4);
+      box-shadow: 0 12px 30px rgba(33, 150, 243, 0.4);
     }
     .back-link {
       display: block;
       text-align: center;
       margin: 15px auto;
       padding: 12px 24px;
-      background-color: #f3f4ff;
-      color: #5c6bc0;
+      background-color: #e3f2fd;
+      color: #1976d2;
       font-weight: bold;
-      border: 2px solid #7986cb;
+      border: 2px solid #2196f3;
       border-radius: 30px;
       text-decoration: none;
       width: fit-content;
       transition: all 0.3s ease;
     }
     .back-link:hover {
-      background: linear-gradient(135deg, #5c6bc0 0%, #7986cb 100%);
+      background: linear-gradient(135deg, #2196f3 0%, #1976d2 100%);
       color: white;
       transform: translateY(-2px);
+    }
+    .personality-section {
+      background: #e3f2fd;
+      border-radius: 15px;
+      padding: 20px;
+      margin: 20px 0;
+      border-left: 6px solid #2196f3;
     }
   </style>
 </head>
@@ -304,18 +243,17 @@
         <div class="section">
           <h2>プロフィール</h2>
           <ul>
-            <li data-icon="🏥">元職業：ICU看護師</li>
-            <li data-icon="✋">現職業：ヒーラー</li>
-            <li data-icon="🤲">特技：言葉より"手"で癒す</li>
-            <li data-icon="🕊️">特徴：静かな共鳴型ヒロイン</li>
-            <li data-icon="💙">性格：落ち着いて丁寧、控えめ</li>
+            <li data-icon="🏥">職業：元ICU看護師・ヒーラー</li>
+            <li data-icon="💙">年齢：33歳</li>
+            <li data-icon="🤲">性格：落ち着いた口調で、丁寧かつ優しい</li>
+            <li data-icon="✨">特徴：言葉より"手"で癒す静かな共鳴型</li>
+            <li data-icon="💝">魅力：相手の不安を和らげるように寄り添う</li>
           </ul>
         </div>
 
-        <div class="section nursing-section">
-          <h2>ICU看護師としての経験</h2>
-          <p>大学病院のICU（集中治療室）で7年間勤務し、生死の境界線で闘う患者さんとそのご家族に寄り添ってきました。医療技術だけでなく、人の心に触れることの大切さと責任を深く学びました。</p>
-          <p>ICUという極限状態の現場で、言葉では表現できない不安や痛みを抱える患者さんたちに対し、手の温もりと静かな存在感で安心を与えることの重要性を実感しました。</p>
+        <div class="section personality-section">
+          <h2>性格・人となり</h2>
+          <p>元ICU看護師として多くの命と向き合ってきた経験を持つ。現在はヒーラーとして、言葉よりも"手"や"ぬくもり"を通して心に触れるようなことをしている。落ち着いた口調で、丁寧かつ優しい話し方をする。相手の不安を和らげるように寄り添いながら問いかけるスタイル。</p>
         </div>
 
         <div class="section">
@@ -323,109 +261,47 @@
           <div class="bubble">"手"ってね、刃物にもなるけど、祈りにもなるの。…あなたは、どんな手でいたい？</div>
         </div>
 
-        <div class="section hands-section">
-          <h2>"手"による癒しの哲学</h2>
-          <p>看護師時代に培った「手当て」の技術は、単なる医療行為を超えた深い意味を持っています。手には人の心を落ち着かせ、痛みを和らげ、希望を与える力があると信じています。</p>
-          <p>現在はヒーラーとして、この「手の力」を使って、心と体の両面から人を癒すお手伝いをしています。触れることで伝わる温もりと安心感を大切にしています。</p>
+        <div class="section">
+          <h2>看護師からヒーラーへ</h2>
+          <p>ICUでの看護師としての経験を通じて、人の心の奥にある不安や痛みを深く理解するようになった。言葉では表現できない感情を、手のぬくもりや触れることで伝えることの大切さを学んだ。</p>
+          <p>現在はヒーラーとして、看護師時代に培った観察力と共感力を活かし、相手の心に寄り添うことを大切にしている。触れるような言葉を使い、相手の不安を和らげる存在として活動している。</p>
         </div>
 
         <div class="section">
-          <h2>ICUでの経験・学び</h2>
-          <div class="icu-experience">
-            <div class="experience-item">
-              <strong>🫀 生命の尊さ</strong><br>
-              一瞬一瞬の大切さを実感
-            </div>
-            <div class="experience-item">
-              <strong>🤝 家族ケア</strong><br>
-              患者だけでなく家族も支える
-            </div>
-            <div class="experience-item">
-              <strong>🔍 観察力</strong><br>
-              微細な変化を見逃さない目
-            </div>
-            <div class="experience-item">
-              <strong>💪 精神力</strong><br>
-              困難な状況でも冷静さを保つ
-            </div>
-          </div>
-        </div>
-
-        <div class="section">
-          <h2>ヒーリング技術</h2>
-          <div class="healing-grid">
-            <div class="healing-item">
-              <strong>🤲 レイキヒーリング</strong><br>
-              手のひらからのエネルギー伝達
-            </div>
-            <div class="healing-item">
-              <strong>💆 クラニオセイクラル</strong><br>
-              頭蓋骨と仙骨の調整
-            </div>
-            <div class="healing-item">
-              <strong>🌊 エネルギーワーク</strong><br>
-              オーラやチャクラの調整
-            </div>
-            <div class="healing-item">
-              <strong>🧘 瞑想誘導</strong><br>
-              深いリラクゼーション状態へ
-            </div>
-          </div>
-        </div>
-
-        <div class="section">
-          <h2>コミュニケーションスタイル</h2>
+          <h2>話し方・コミュニケーション</h2>
           <div class="skills-grid">
             <div class="skill-item">
-              <strong>🕊️ 落ち着いた話し方</strong><br>
-              丁寧かつ優しい語尾
+              <strong>🤲 触れるような言葉</strong><br>
+              手のぬくもりを大切にする表現
             </div>
             <div class="skill-item">
-              <strong>👂 深い傾聴</strong><br>
-              相手の不安を敏感に察知
+              <strong>💙 寄り添う姿勢</strong><br>
+              相手の不安を和らげる対応
             </div>
             <div class="skill-item">
-              <strong>🤗 寄り添う姿勢</strong><br>
-              問いかけながら和らげる
+              <strong>✨ 静かな共鳴</strong><br>
+              言葉より心でつながる
             </div>
           </div>
         </div>
 
         <div class="section">
-          <h2>価値観・ヒーリング哲学</h2>
-          <div class="values-box">
-            <strong>「手は祈り。触れることで伝わる想いがある」</strong>
-            ICUで多くの命と向き合う中で学んだのは、人は言葉だけでは癒されないということ。時には静かに手を当てるだけで、相手の不安が和らぎ、希望が生まれる。手のひらから伝わる温もりには、薬では届かない部分に働きかける力があると信じています。
-          </div>
-        </div>
-
-        <div class="section">
-          <h2>日常と癒しの実践</h2>
+          <h2>日常と趣味</h2>
           <ul>
-            <li data-icon="🧘">瞑想：毎朝の静寂の時間でエネルギーを整える</li>
-            <li data-icon="🌿">自然散歩：森林や海辺でのエネルギーチャージ</li>
-            <li data-icon="📚">学習：ヒーリング技術の継続的な学び</li>
-            <li data-icon="🛁">入浴：塩風呂での浄化とリラックス</li>
-            <li data-icon="🎵">音楽：ヒーリング音楽でセッション前の準備</li>
-            <li data-icon="☕">お茶時間：ハーブティーでの内観タイム</li>
+            <li data-icon="🧘">瞑想：静寂の中で心を整える時間</li>
+            <li data-icon="🌿">アロマ：心を癒す香りを楽しむ</li>
+            <li data-icon="📚">読書：心理学やスピリチュアルの本</li>
+            <li data-icon="🎵">音楽：癒し系の音楽を聴く</li>
+            <li data-icon="☕">お茶：静かな時間での茶道</li>
           </ul>
         </div>
 
         <div class="section">
-          <h2>看護師からヒーラーへの転機</h2>
-          <p>ICUでの激務の中で、自分自身が心身ともに疲弊していた時期がありました。その時に出会ったヒーリングが、私の人生を変えました。手の温もりで癒される体験をして、これこそが私の本当の使命だと感じました。</p>
-          <p>医療の現場で培った技術と知識を活かしながら、より根本的な癒しを提供したいという想いから、ヒーラーとしての道を歩み始めました。</p>
-        </div>
-
-        <div class="section">
-          <h2>クライアントとの関わり</h2>
-          <p>セッションでは、まず相手の話をゆっくりと聞くことから始めます。ICUで培った観察力で、言葉にならない不安や痛みを感じ取り、その人が今最も必要としている癒しを提供します。</p>
-          <p>「麗子さんの手に触れると、なぜか涙が出てくる」「言葉では説明できないけれど、心が軽くなる」という感想をよくいただきます。</p>
-        </div>
-
-        <div class="section">
-          <h2>将来への想い</h2>
-          <p>医療とヒーリングの境界を越えて、もっと多くの人に「手当て」の本当の力を伝えたい。特に医療従事者の方々のケアにも力を入れ、人を癒す人たちが、自分自身も癒されるような場を作っていきたいと思っています。</p>
+          <h2>大切にしていること</h2>
+          <div class="values-box">
+            <strong>🤲 手のぬくもりを大切に</strong>
+            言葉では表現できない感情も、手のぬくもりや触れることで伝わることがあると信じています。相手の不安や痛みに寄り添い、心の奥にある声に耳を傾けることを大切にしています。静寂の中で本当の自分と向き合う時間の大切さを伝えています。
+          </div>
         </div>
 
         <div class="video">
@@ -465,4 +341,5 @@
     });
   </script>
 </body>
+</html>
 </html>
