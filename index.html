@@ -30,15 +30,15 @@
       left: 0;
       width: 100%;
       height: 100%;
-      opacity: 0;
-      transition: opacity 0.3s ease-in-out;
+      opacity: 1;
+      transition: opacity 0.5s ease-in-out;
       z-index: 10;
       border-radius: 50%;
       object-fit: cover;
     }
     
-    .ai-overlay.show {
-      opacity: 1;
+    .ai-overlay.hide {
+      opacity: 0;
     }
   </style>
 </head>
@@ -72,18 +72,18 @@
         <div id="heroContainer" class="hero-container mt-10 grid grid-cols-1 sm:grid-cols-[auto,1fr] gap-6 sm:gap-10 items-center">
           <!-- 円形サムネ -->
           <div class="flex justify-center sm:justify-start relative">
-            <img id="heroImg" src="ga/image/character/honoka.png" alt="キャラクター" class="h-44 w-44 object-cover rounded-full ring-soft" />
+            <img id="heroImg" src="" alt="キャラクター" class="h-44 w-44 object-cover rounded-full ring-soft" />
             <img id="aiOverlay" src="ga/image/material/AI.png" alt="AI" class="ai-overlay" />
           </div>
 
           <!-- テキスト -->
           <div>
-            <h2 id="heroName" class="text-xl sm:text-2xl font-bold">桜庭 ほのか（23歳）</h2>
-            <p id="heroPhrase" class="mt-2 text-gray-600 italic">"無理しすぎてない？…がんばってるあなたのこと、ちゃんと見えてるよ。"</p>
-            <p id="heroIntro" class="mt-3 text-gray-700">フリーのイラストレーター。静かで寄り添うような優しさと、詩的な感性を持つ。</p>
+            <h2 id="heroName" class="text-xl sm:text-2xl font-bold">—</h2>
+            <p id="heroPhrase" class="mt-2 text-gray-600 italic">—</p>
+            <p id="heroIntro" class="mt-3 text-gray-700">—</p>
 
             <div class="mt-4 flex flex-wrap items-center gap-4">
-              <a id="heroVideoLink" href="profile/honoka.html" class="text-pink-600 hover:text-pink-700 text-sm inline-flex items-center gap-2">
+              <a id="heroVideoLink" href="#" class="text-pink-600 hover:text-pink-700 text-sm inline-flex items-center gap-2">
                 <span class="inline-block w-2 h-2 rounded-full bg-pink-500"></span> プロフィールを見る
               </a>
             </div>
@@ -157,7 +157,7 @@
 
       // フェードアウト完了後にAIロゴを表示
       setTimeout(() => {
-        aiOverlay.classList.add('show');
+        aiOverlay.classList.remove('hide');
         
         // AIロゴ表示後に内容を更新
         setTimeout(() => {
@@ -170,9 +170,9 @@
           heroVideoLink.href = char.profile || '#';
 
           // AIロゴを非表示にしてフェードイン
-          aiOverlay.classList.remove('show');
+          aiOverlay.classList.add('hide');
           heroContainer.classList.remove('fade-out');
-        }, 300); // AIロゴ表示時間
+        }, 800); // AIロゴ表示時間を延長
       }, 750); // フェードアウトの半分の時間でAIロゴ表示
     }
 
@@ -197,13 +197,9 @@
         // アニメーション用の変数
         let currentIndex = 0;
 
-        // 最初のキャラクターを表示（初期表示は既に設定済みのため、最初の切り替えのみ実行）
-        if (displayChars.length > 1) {
-          // 最初のキャラクターが初期表示と異なる場合のみ切り替え
-          const firstChar = displayChars[0];
-          if (firstChar.name !== '桜庭 ほのか') {
-            showCharacter(firstChar);
-          }
+        // 最初のキャラクターを表示
+        if (displayChars.length > 0) {
+          showCharacter(displayChars[0]);
         }
 
         // 定期的にキャラクターを切り替え
