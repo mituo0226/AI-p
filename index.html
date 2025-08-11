@@ -195,14 +195,16 @@
           // ローディングスケルトンを表示
           loadingSkeleton.style.display = 'block';
           
-          setTimeout(async () => {
-            try {
-              // 画像をプリロード
-              await preloadImage(char.img);
-              
-              // 内容を更新
-              heroImg.src = char.img;
-              heroImg.alt = char.name;
+          try {
+            // 画像をプリロード
+            await preloadImage(char.img);
+            
+            // 画像の読み込みが完了してから内容を更新
+            heroImg.src = char.img;
+            heroImg.alt = char.name;
+            
+            // 画像の読み込み完了を待ってからテキストを更新
+            heroImg.onload = () => {
               heroName.textContent = `${char.name}（${char.age ?? '—'}歳）`;
               heroPhrase.textContent = `"${char.phrase ?? ''}"`.replace(/\s+/g,' ');
               heroIntro.textContent = char.intro ?? '';
@@ -214,12 +216,18 @@
               // フェードイン
               heroImg.classList.add('loaded');
               heroContent.classList.add('loaded');
-            } catch (e) {
-              console.error('画像の読み込みに失敗:', e);
-              // エラー時はローディングスケルトンを非表示
-              loadingSkeleton.style.display = 'none';
+            };
+            
+            // 画像が既にキャッシュされている場合の対応
+            if (heroImg.complete) {
+              heroImg.onload();
             }
-          }, 300);
+            
+          } catch (e) {
+            console.error('画像の読み込みに失敗:', e);
+            // エラー時はローディングスケルトンを非表示
+            loadingSkeleton.style.display = 'none';
+          }
         }
 
         // 最初のキャラクターを表示
