@@ -8,7 +8,7 @@
     body {
       margin: 0;
       font-family: "Hiragino Kaku Gothic ProN", sans-serif;
-      background: #fffafc;
+      background: linear-gradient(135deg, #ffeef8 0%, #fce4ec 100%);
       color: #333;
     }
     .profile-container {
@@ -18,8 +18,8 @@
     }
     .card {
       background: #ffffff;
-      border-radius: 16px;
-      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+      border-radius: 20px;
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
       overflow: hidden;
       display: flex;
       flex-direction: column;
@@ -29,75 +29,115 @@
       height: auto;
       display: block;
       object-fit: cover;
-      border-bottom: 4px solid #fbb6ce;
+      border-bottom: 4px solid #ec4899;
     }
     .hero-caption {
-      padding: 20px;
-      background: #fff0f5;
-      font-size: 22px;
+      padding: 25px;
+      background: linear-gradient(135deg, #ec4899 0%, #be185d 100%);
+      color: white;
+      font-size: 24px;
       font-weight: bold;
-      color: #d26a8a;
       text-align: center;
-      border-bottom: 2px solid #fbb6ce;
+      text-shadow: 0 2px 4px rgba(0,0,0,0.3);
     }
     .info {
-      padding: 20px 24px;
+      padding: 30px;
     }
     .section {
-      margin-bottom: 30px;
+      margin-bottom: 35px;
     }
     .section h2 {
-      font-size: 20px;
-      color: #d26a8a;
-      border-left: 6px solid #fbb6ce;
-      padding-left: 12px;
-      margin-bottom: 12px;
+      font-size: 22px;
+      color: #be185d;
+      border-left: 6px solid #ec4899;
+      padding-left: 15px;
+      margin-bottom: 15px;
+      font-weight: bold;
     }
     .section ul {
       padding-left: 24px;
-      line-height: 1.8;
+      line-height: 1.9;
       list-style: none;
+    }
+    .section ul li {
+      margin-bottom: 8px;
+      display: flex;
+      align-items: flex-start;
     }
     .section ul li::before {
       content: attr(data-icon);
       display: inline-block;
-      width: 1.6em;
-      margin-left: -1.6em;
-      margin-right: 0.5em;
+      width: 1.8em;
+      margin-right: 0.8em;
+      flex-shrink: 0;
     }
     .section p {
-      line-height: 1.8;
-      margin-bottom: 10px;
+      line-height: 1.9;
+      margin-bottom: 12px;
+      font-size: 16px;
     }
     .bubble {
       position: relative;
-      background: #fff0f5;
-      border: 2px solid #fbb6ce;
-      border-radius: 12px;
-      padding: 16px;
-      margin: 16px 0;
+      background: linear-gradient(135deg, #ec4899 0%, #be185d 100%);
+      color: white;
+      border-radius: 15px;
+      padding: 20px;
+      margin: 20px 0;
       font-style: italic;
-      color: #444;
+      font-size: 18px;
+      font-weight: 500;
+      box-shadow: 0 8px 16px rgba(236, 72, 153, 0.3);
     }
     .bubble::before {
       content: "";
       position: absolute;
-      bottom: -20px;
-      left: 30px;
-      border: 10px solid transparent;
-      border-top-color: #fbb6ce;
+      bottom: -15px;
+      left: 35px;
+      border: 15px solid transparent;
+      border-top-color: #be185d;
     }
-    .bubble::after {
-      content: "";
-      position: absolute;
-      bottom: -18px;
-      left: 30px;
-      border: 9px solid transparent;
-      border-top-color: #fff0f5;
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 15px;
+      margin-top: 15px;
+    }
+    .skill-item {
+      background: #fdf2f8;
+      border: 2px solid #fce7f3;
+      border-radius: 12px;
+      padding: 15px;
+      text-align: center;
+      transition: all 0.3s ease;
+    }
+    .skill-item:hover {
+      background: #ec4899;
+      color: white;
+      transform: translateY(-3px);
+      box-shadow: 0 8px 20px rgba(236, 72, 153, 0.3);
+    }
+    .values-box {
+      background: linear-gradient(135deg, #ec4899 0%, #be185d 100%);
+      color: white;
+      border-radius: 15px;
+      padding: 25px;
+      margin: 20px 0;
+      line-height: 1.8;
+      font-size: 16px;
+    }
+    .values-box strong {
+      display: block;
+      font-size: 18px;
+      margin-bottom: 10px;
+      color: #fff3cd;
     }
     .video {
       text-align: center;
-      margin-top: 30px;
+      margin-top: 40px;
+    }
+    .video h2 {
+      color: #be185d;
+      margin-bottom: 20px;
     }
     .video-wrapper {
       position: relative;
@@ -105,71 +145,90 @@
       max-width: 720px;
       width: 100%;
       margin: auto;
+      border-radius: 15px;
+      overflow: hidden;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.15);
     }
     .video-wrapper video {
       width: 100%;
-      border-radius: 10px;
       background: black;
     }
     .video-mask {
-      opacity: 0;
-      transition: opacity 0.8s ease;
       position: absolute;
       top: 0; left: 0; right: 0; bottom: 0;
-      background: black;
-      border-radius: 10px;
+      background: rgba(0,0,0,0.8);
       display: none;
+      opacity: 0;
+      transition: opacity 0.8s ease;
       z-index: 1;
+    }
+    .video-mask.show {
+      opacity: 1;
     }
     .video-overlay {
       position: absolute;
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
-      background: rgba(255, 255, 255, 0.95);
-      padding: 14px 28px;
-      border-radius: 30px;
+      background: linear-gradient(135deg, #ec4899 0%, #be185d 100%);
+      color: white;
+      padding: 16px 32px;
+      border-radius: 50px;
       font-size: 18px;
       font-weight: bold;
-      color: #d26a8a;
       cursor: pointer;
-      box-shadow: 0 0 12px rgba(0,0,0,0.2);
+      box-shadow: 0 8px 20px rgba(236, 72, 153, 0.4);
       display: none;
       z-index: 2;
+      transition: transform 0.3s ease;
+    }
+    .video-overlay:hover {
+      transform: translate(-50%, -50%) scale(1.05);
     }
     .select-button {
       display: block;
       text-align: center;
-      margin: 40px auto;
-      padding: 14px 32px;
-      background-color: #f794a4;
+      margin: 50px auto 30px;
+      padding: 18px 40px;
+      background: linear-gradient(135deg, #ec4899 0%, #be185d 100%);
       color: white;
       font-weight: bold;
-      border-radius: 40px;
+      font-size: 18px;
+      border-radius: 50px;
       text-decoration: none;
       width: fit-content;
+      box-shadow: 0 8px 20px rgba(236, 72, 153, 0.3);
+      transition: all 0.3s ease;
+    }
+    .select-button:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 12px 30px rgba(236, 72, 153, 0.4);
     }
     .back-link {
       display: block;
       text-align: center;
-      margin: 20px auto;
-      padding: 10px 20px;
-      background-color: #fef7f8;
-      color: #d26a8a;
+      margin: 15px auto;
+      padding: 12px 24px;
+      background-color: #fdf2f8;
+      color: #be185d;
       font-weight: bold;
-      border: 2px solid #f794a4;
-      border-radius: 25px;
+      border: 2px solid #ec4899;
+      border-radius: 30px;
       text-decoration: none;
       width: fit-content;
       transition: all 0.3s ease;
     }
     .back-link:hover {
-      background-color: #fce8ec;
+      background: linear-gradient(135deg, #ec4899 0%, #be185d 100%);
+      color: white;
       transform: translateY(-2px);
     }
-  
-    .video-mask.show {
-      opacity: 1;
+    .personality-section {
+      background: #fdf2f8;
+      border-radius: 15px;
+      padding: 20px;
+      margin: 20px 0;
+      border-left: 6px solid #ec4899;
     }
   </style>
 </head>
@@ -187,15 +246,73 @@
             <li data-icon="💼">職業：エッセイスト・大学非常勤講師</li>
             <li data-icon="😊">性格：内省的で静か。言葉にすることで自分と向き合う女性</li>
             <li data-icon="📖">背景：幼少期から孤独を抱え、本と紙だけが心の避難所だった</li>
-            <li data-icon="🔮">霊感：文字に触れたとき、書いた人の“残り香”を読み取る感応型</li>
+            <li data-icon="🔮">霊感：文字に触れたとき、書いた人の"残り香"を読み取る感応型</li>
+            <li data-icon="✨">魅力：言葉の力で心に寄り添う優しい存在</li>
           </ul>
         </div>
+
+        <div class="section personality-section">
+          <h2>性格・人となり</h2>
+          <p>内省的で静かな性格の女性。幼少期から孤独を抱え、本と紙だけが心の避難所だった経験を持つ。言葉にすることで自分と向き合い、文字に触れたときに書いた人の"残り香"を読み取る感応型の能力を持つ。知性と感性を兼ね備えた文筆家として、言葉の力で心に寄り添う優しい存在。</p>
+        </div>
+
         <div class="section">
           <h2>詩織のひとこと</h2>
-          <div class="bubble">本の中でしか出会えなかった“誰か”に、あなた自身がなれるのよ。</div>
+          <div class="bubble">本の中でしか出会えなかった"誰か"に、あなた自身がなれるのよ。</div>
         </div>
+
         <div class="section">
-          <h2>好きなもの・日常</h2>
+          <h2>文筆家としての歩み</h2>
+          <p><strong>幼少期：</strong>人付き合いが苦手で、本と紙だけが心の避難所だった。保健室のモルモットと心を通わせた体験が、今の「人と動物をつなぐ」優しさの原点となった。</p>
+          <p><strong>現在：</strong>エッセイストとして活躍し、大学非常勤講師としても活動。言葉の力で心に寄り添い、物語の中に誰かの"心の避難所"を築くことを使命としている。</p>
+        </div>
+
+        <div class="section">
+          <h2>専門スキル・得意分野</h2>
+          <div class="skills-grid">
+            <div class="skill-item">
+              <strong>📝 エッセイ執筆</strong><br>
+              心に響く文章を紡ぐ
+            </div>
+            <div class="skill-item">
+              <strong>🔮 感応能力</strong><br>
+              文字から感情を読み取る
+            </div>
+            <div class="skill-item">
+              <strong>💭 内省的な対話</strong><br>
+              静かな空間での心の交流
+            </div>
+          </div>
+        </div>
+
+        <div class="section">
+          <h2>話し方・コミュニケーション</h2>
+          <div class="skills-grid">
+            <div class="skill-item">
+              <strong>🗣️ 静かな語り口</strong><br>
+              内省的で落ち着いた話し方
+            </div>
+            <div class="skill-item">
+              <strong>📚 文学的表現</strong><br>
+              美しい言葉で心に寄り添う
+            </div>
+            <div class="skill-item">
+              <strong>✨ 感応的な理解</strong><br>
+              文字や言葉から感情を読み取る
+            </div>
+          </div>
+        </div>
+
+        <div class="section">
+          <h2>大切にしていること</h2>
+          <div class="values-box">
+            <strong>"沈黙"を癒せる言葉を書き続けたい</strong>
+            物語の中に、誰かの"心の避難所"を築くことができたら、それが私の仕事。言葉の力で心に寄り添い、孤独を抱える人たちの支えになりたいと思っています。本の中でしか出会えなかった"誰か"に、あなた自身がなれるような物語を紡ぎ続けます。
+          </div>
+        </div>
+
+        <div class="section">
+          <h2>日常と趣味</h2>
           <ul>
             <li data-icon="🐰">日課：毎朝5時に書斎で原稿執筆、夜は読書と手紙を書く</li>
             <li data-icon="🧥">愛用品：万年筆、羊皮紙のノート、古本屋で見つけた文鎮</li>
@@ -204,46 +321,46 @@
             <li data-icon="🛍️">休日の過ごし方：詩の朗読会、図書館での企画展示鑑賞</li>
           </ul>
         </div>
+
         <div class="section">
-          <h2>小さなエピソード</h2>
-          <p>小学生のころ、人付き合いがちょっと苦手だった詩織。保健室のモルモットと心を通わせた体験が、今の「人と動物をつなぐ」優しさに変わりました。</p>
+          <h2>文筆家としての想い</h2>
+          <p>言葉には人を癒す力があると信じています。孤独を抱える人たちの心の避難所となるような文章を書き続けたい。文字に触れたときに書いた人の"残り香"を読み取る感応能力を活かし、読者の心に寄り添う作品を生み出していきたいと思っています。</p>
         </div>
-        <div class="section">
-          <h2>夢</h2>
-          <div class="bubble">“沈黙”を癒せる言葉を書き続けたい。<br>物語の中に、誰かの“心の避難所”を築くことができたら、それが私の仕事。</div>
-        </div>
+
         <div class="video">
           <h2>詩織の紹介動画</h2>
           <div class="video-wrapper">
             <video id="sioriVideo" controls playsinline>
               <source src="../ga/mov/character/siori.mp4" type="video/mp4" />
             </video>
-            <div id="videoMask" class="video-mask"></div>
-            <div id="videoOverlay" class="video-overlay" onclick="replayVideo()">▶ もう一度見る</div>
+            <div id="sioriMask" class="video-mask"></div>
+            <div id="sioriOverlay" class="video-overlay" onclick="replaySiori()">▶ もう一度見る</div>
           </div>
         </div>
+
         <a href="../chat.html?char=siori&name=あなた" class="select-button">詩織とチャットを始める</a>
         <a href="../prof.html" class="back-link">AIキャラクター一覧</a>
         <a href="../index.html" class="back-link">← TOPページに戻る</a>
       </div>
     </div>
   </div>
+
   <script>
     const video = document.getElementById('sioriVideo');
-    const overlay = document.getElementById('videoOverlay');
-    const mask = document.getElementById('videoMask');
+    const overlay = document.getElementById('sioriOverlay');
+    const mask = document.getElementById('sioriMask');
 
-    function replayVideo() {
+    function replaySiori() {
       video.currentTime = 0;
       video.play();
       overlay.style.display = 'none';
-      mask.style.display = 'none';
+      mask.classList.remove('show');
     }
 
     video.addEventListener('ended', () => {
-      overlay.style.display = 'block';
       mask.style.display = 'block';
       requestAnimationFrame(() => mask.classList.add('show'));
+      overlay.style.display = 'block';
     });
   </script>
 </body>
