@@ -8,7 +8,7 @@
     body {
       margin: 0;
       font-family: "Hiragino Kaku Gothic ProN", sans-serif;
-      background: #f0f8ff;
+      background: linear-gradient(135deg, #e8f5e8 0%, #f0f8ff 100%);
       color: #333;
     }
     .profile-container {
@@ -18,8 +18,8 @@
     }
     .card {
       background: #ffffff;
-      border-radius: 16px;
-      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+      border-radius: 20px;
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
       overflow: hidden;
       display: flex;
       flex-direction: column;
@@ -29,75 +29,115 @@
       height: auto;
       display: block;
       object-fit: cover;
-      border-bottom: 4px solid #a3c9f5;
+      border-bottom: 4px solid #4caf50;
     }
     .hero-caption {
-      padding: 20px;
-      background: #e7f0fb;
-      font-size: 22px;
+      padding: 25px;
+      background: linear-gradient(135deg, #4caf50 0%, #2e7d32 100%);
+      color: white;
+      font-size: 24px;
       font-weight: bold;
-      color: #3b6ea5;
       text-align: center;
-      border-bottom: 2px solid #a3c9f5;
+      text-shadow: 0 2px 4px rgba(0,0,0,0.3);
     }
     .info {
-      padding: 20px 24px;
+      padding: 30px;
     }
     .section {
-      margin-bottom: 30px;
+      margin-bottom: 35px;
     }
     .section h2 {
-      font-size: 20px;
-      color: #3b6ea5;
-      border-left: 6px solid #a3c9f5;
-      padding-left: 12px;
-      margin-bottom: 12px;
+      font-size: 22px;
+      color: #2e7d32;
+      border-left: 6px solid #4caf50;
+      padding-left: 15px;
+      margin-bottom: 15px;
+      font-weight: bold;
     }
     .section ul {
       padding-left: 24px;
-      line-height: 1.8;
+      line-height: 1.9;
       list-style: none;
+    }
+    .section ul li {
+      margin-bottom: 8px;
+      display: flex;
+      align-items: flex-start;
     }
     .section ul li::before {
       content: attr(data-icon);
       display: inline-block;
-      width: 1.6em;
-      margin-left: -1.6em;
-      margin-right: 0.5em;
+      width: 1.8em;
+      margin-right: 0.8em;
+      flex-shrink: 0;
     }
     .section p {
-      line-height: 1.8;
-      margin-bottom: 10px;
+      line-height: 1.9;
+      margin-bottom: 12px;
+      font-size: 16px;
     }
     .bubble {
       position: relative;
-      background: #f0f8ff;
-      border: 2px solid #a3c9f5;
-      border-radius: 12px;
-      padding: 16px;
-      margin: 16px 0;
+      background: linear-gradient(135deg, #4caf50 0%, #2e7d32 100%);
+      color: white;
+      border-radius: 15px;
+      padding: 20px;
+      margin: 20px 0;
       font-style: italic;
-      color: #444;
+      font-size: 18px;
+      font-weight: 500;
+      box-shadow: 0 8px 16px rgba(76, 175, 80, 0.3);
     }
     .bubble::before {
       content: "";
       position: absolute;
-      bottom: -20px;
-      left: 30px;
-      border: 10px solid transparent;
-      border-top-color: #a3c9f5;
+      bottom: -15px;
+      left: 35px;
+      border: 15px solid transparent;
+      border-top-color: #2e7d32;
     }
-    .bubble::after {
-      content: "";
-      position: absolute;
-      bottom: -18px;
-      left: 30px;
-      border: 9px solid transparent;
-      border-top-color: #f0f8ff;
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 15px;
+      margin-top: 15px;
+    }
+    .skill-item {
+      background: #f1f8e9;
+      border: 2px solid #c8e6c9;
+      border-radius: 12px;
+      padding: 15px;
+      text-align: center;
+      transition: all 0.3s ease;
+    }
+    .skill-item:hover {
+      background: #4caf50;
+      color: white;
+      transform: translateY(-3px);
+      box-shadow: 0 8px 20px rgba(76, 175, 80, 0.3);
+    }
+    .values-box {
+      background: linear-gradient(135deg, #4caf50 0%, #2e7d32 100%);
+      color: white;
+      border-radius: 15px;
+      padding: 25px;
+      margin: 20px 0;
+      line-height: 1.8;
+      font-size: 16px;
+    }
+    .values-box strong {
+      display: block;
+      font-size: 18px;
+      margin-bottom: 10px;
+      color: #fff3cd;
     }
     .video {
       text-align: center;
-      margin-top: 30px;
+      margin-top: 40px;
+    }
+    .video h2 {
+      color: #2e7d32;
+      margin-bottom: 20px;
     }
     .video-wrapper {
       position: relative;
@@ -105,17 +145,18 @@
       max-width: 720px;
       width: 100%;
       margin: auto;
+      border-radius: 15px;
+      overflow: hidden;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.15);
     }
     .video-wrapper video {
       width: 100%;
-      border-radius: 10px;
       background: black;
     }
     .video-mask {
       position: absolute;
       top: 0; left: 0; right: 0; bottom: 0;
-      background: black;
-      border-radius: 10px;
+      background: rgba(0,0,0,0.8);
       display: none;
       opacity: 0;
       transition: opacity 0.8s ease;
@@ -129,46 +170,65 @@
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
-      background: rgba(255, 255, 255, 0.95);
-      padding: 14px 28px;
-      border-radius: 30px;
+      background: linear-gradient(135deg, #4caf50 0%, #2e7d32 100%);
+      color: white;
+      padding: 16px 32px;
+      border-radius: 50px;
       font-size: 18px;
       font-weight: bold;
-      color: #3b6ea5;
       cursor: pointer;
-      box-shadow: 0 0 12px rgba(0,0,0,0.2);
+      box-shadow: 0 8px 20px rgba(76, 175, 80, 0.4);
       display: none;
       z-index: 2;
+      transition: transform 0.3s ease;
+    }
+    .video-overlay:hover {
+      transform: translate(-50%, -50%) scale(1.05);
     }
     .select-button {
       display: block;
       text-align: center;
-      margin: 40px auto;
-      padding: 14px 32px;
-      background-color: #3b6ea5;
+      margin: 50px auto 30px;
+      padding: 18px 40px;
+      background: linear-gradient(135deg, #4caf50 0%, #2e7d32 100%);
       color: white;
       font-weight: bold;
-      border-radius: 40px;
+      font-size: 18px;
+      border-radius: 50px;
       text-decoration: none;
       width: fit-content;
+      box-shadow: 0 8px 20px rgba(76, 175, 80, 0.3);
+      transition: all 0.3s ease;
+    }
+    .select-button:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 12px 30px rgba(76, 175, 80, 0.4);
     }
     .back-link {
       display: block;
       text-align: center;
-      margin: 20px auto;
-      padding: 10px 20px;
-      background-color: #f0f8ff;
-      color: #3b6ea5;
+      margin: 15px auto;
+      padding: 12px 24px;
+      background-color: #f1f8e9;
+      color: #2e7d32;
       font-weight: bold;
-      border: 2px solid #a3c9f5;
-      border-radius: 25px;
+      border: 2px solid #4caf50;
+      border-radius: 30px;
       text-decoration: none;
       width: fit-content;
       transition: all 0.3s ease;
     }
     .back-link:hover {
-      background-color: #e7f0fb;
+      background: linear-gradient(135deg, #4caf50 0%, #2e7d32 100%);
+      color: white;
       transform: translateY(-2px);
+    }
+    .personality-section {
+      background: #f1f8e9;
+      border-radius: 15px;
+      padding: 20px;
+      margin: 20px 0;
+      border-left: 6px solid #4caf50;
     }
   </style>
 </head>
@@ -176,48 +236,74 @@
   <div class="profile-container">
     <div class="card">
       <div class="hero">
-        <img src="../ga/image/character/mido.png" alt="朝倉晴臣">
+        <img src="../ga/image/character/mido.png" alt="御堂晴臣">
       </div>
-      <div class="hero-caption">御堂 晴臣（18歳）｜科学と神秘をつなぐ沈黙の導師</div>
+      <div class="hero-caption">御堂 晴臣（48歳）｜元科学者・占導師</div>
       <div class="info">
         <div class="section">
           <h2>プロフィール</h2>
           <ul>
-            <li data-icon="🎭">職業：元科学者／現在は自然と共に生きる“占導師”</li>
-            <li data-icon="🔥">性格：理屈屋だが心はロマンチスト。哲学者タイプ</li>
-            <li data-icon="🌱">背景：科学の限界を知り、神秘を追求する求道者</li>
-            <li data-icon="👀">魅力：沈黙に宿る言葉、論理と直感の融合で心に届く</li>
+            <li data-icon="🔬">職業：元科学者・占導師</li>
+            <li data-icon="📊">年齢：48歳</li>
+            <li data-icon="🧘">性格：静かで哲学的な思考を持つ</li>
+            <li data-icon="🔮">特徴：真理を追究する元科学者でスピリチュアルな導師</li>
+            <li data-icon="💭">魅力：深く考えることを促し、感情の奥にある本質に導く</li>
           </ul>
         </div>
+
+        <div class="section personality-section">
+          <h2>性格・人となり</h2>
+          <p>以前は科学の世界で真理を追いかけていたが、今は"人の内側"にこそ本当の答えがあると感じている。静かで哲学的な語り口で、間を大事にし、慎重に言葉を選ぶ。理屈では語れないものの存在を理解し、相手の感情の奥にある本質を見抜く力を持つ。</p>
+        </div>
+
         <div class="section">
           <h2>晴臣のひとこと</h2>
           <div class="bubble">理屈では語れないものが、この世にはある。君の悩みも、そこにあるはずだ。</div>
         </div>
+
         <div class="section">
-          <h2>日常と精神性</h2>
+          <h2>科学からスピリチュアルへ</h2>
+          <p>科学の世界で真理を追い求めてきた経験を持つ。論理的思考と分析力を身につけながらも、人の心の奥にある理屈では説明できない部分に気づくようになった。現在は占導師として、科学では解明できない心の領域に寄り添い、相手の内面にある答えを見つける手助けをしている。</p>
+          <p>静けさの中に真理を求める若き導師として、相手の深い部分に触れることを大切にしている。</p>
+        </div>
+
+        <div class="section">
+          <h2>話し方・コミュニケーション</h2>
+          <div class="skills-grid">
+            <div class="skill-item">
+              <strong>🤔 哲学的な語り口</strong><br>
+              静かで間を大事にした話し方
+            </div>
+            <div class="skill-item">
+              <strong>🔍 本質を見抜く力</strong><br>
+              感情の奥にある真実を導く
+            </div>
+            <div class="skill-item">
+              <strong>💭 深い思考を促す</strong><br>
+              慎重に言葉を選んで問いかける
+            </div>
+          </div>
+        </div>
+
+        <div class="section">
+          <h2>日常と趣味</h2>
           <ul>
-            <li data-icon="📚">読書：禅、古文書、神秘学、量子論の書を静かに読む</li>
-            <li data-icon="🎵">音：焚き火、雨音、虫の声など自然音に癒される</li>
-            <li data-icon="☕">時間：夜明け前の瞑想、星空を眺める静寂</li>
-            <li data-icon="📝">道具：真鍮の星座儀、和紙に綴った夢日記</li>
-            <li data-icon="💬">信条：「この世界に偶然は存在しない。すべてが意味ある導き」</li>
+            <li data-icon="📚">読書：哲学書や心理学の本</li>
+            <li data-icon="🧘">瞑想：静寂の中で内省する時間</li>
+            <li data-icon="🌙">夜の散歩：月明かりの下での思索</li>
+            <li data-icon="☕">お茶：静かな時間での茶道</li>
+            <li data-icon="🎵">音楽：クラシックや自然音</li>
           </ul>
         </div>
+
         <div class="section">
-          <h2>過去と転機</h2>
-          <p>
-            物理学研究者としての人生に限界を感じ、夢で“見知らぬ老人”から啓示を受けたことで転機が訪れた。<br>
-            静かに暮らす中で、訪れる人々の心の奥にそっと語りかけるようになった。
-          </p>
+          <h2>大切にしていること</h2>
+          <div class="values-box">
+            <strong>🌱 内面の真理を大切に</strong>
+            科学では解明できない心の領域があることを理解しています。理屈や論理だけでは語れない感情や直感の大切さを認め、相手の内面にある答えを見つけるお手伝いをしています。静寂の中で本当の自分と向き合う時間の大切さを伝えています。
+          </div>
         </div>
-        <div class="section">
-          <h2>これから出会うあなたへ</h2>
-          <p>
-            「僕がここにいるのは、答えを与えるためじゃない。<br>
-            一緒に“問い”を見つけるためなんだ。<br>
-            静けさの中で、その答えは自然と浮かび上がってくるから。」<br>
-          </p>
-        </div>
+
         <div class="video">
           <h2>晴臣の紹介動画</h2>
           <div class="video-wrapper">
@@ -228,12 +314,14 @@
             <div id="midoOverlay" class="video-overlay" onclick="replayMido()">▶ もう一度見る</div>
           </div>
         </div>
+
         <a href="../chat.html?char=mido&name=あなた" class="select-button">晴臣とチャットを始める</a>
         <a href="../prof.html" class="back-link">AIキャラクター一覧</a>
         <a href="../index.html" class="back-link">← TOPページに戻る</a>
       </div>
     </div>
   </div>
+
   <script>
     const video = document.getElementById('midoVideo');
     const overlay = document.getElementById('midoOverlay');
