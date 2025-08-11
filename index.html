@@ -22,6 +22,23 @@
     .hero-container.fade-out {
       opacity: 0;
     }
+    
+    /* AIロゴのオーバーレイ */
+    .ai-overlay {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 80px;
+      height: 80px;
+      opacity: 0;
+      transition: opacity 0.3s ease-in-out;
+      z-index: 10;
+    }
+    
+    .ai-overlay.show {
+      opacity: 1;
+    }
   </style>
 </head>
 <body class="bg-pink-50 text-gray-800 antialiased">
@@ -53,8 +70,9 @@
 
         <div id="heroContainer" class="hero-container mt-10 grid grid-cols-1 sm:grid-cols-[auto,1fr] gap-6 sm:gap-10 items-center">
           <!-- 円形サムネ -->
-          <div class="flex justify-center sm:justify-start">
+          <div class="flex justify-center sm:justify-start relative">
             <img id="heroImg" src="ga/image/character/honoka.png" alt="キャラクター" class="h-44 w-44 object-cover rounded-full ring-soft" />
+            <img id="aiOverlay" src="ga/image/material/AI.png" alt="AI" class="ai-overlay" />
           </div>
 
           <!-- テキスト -->
@@ -127,6 +145,7 @@
     function showCharacter(char) {
       const heroContainer = document.getElementById('heroContainer');
       const heroImg = document.getElementById('heroImg');
+      const aiOverlay = document.getElementById('aiOverlay');
       const heroName = document.getElementById('heroName');
       const heroPhrase = document.getElementById('heroPhrase');
       const heroIntro = document.getElementById('heroIntro');
@@ -135,19 +154,25 @@
       // フェードアウト
       heroContainer.classList.add('fade-out');
 
-      // フェードアウト完了後に内容を更新
+      // フェードアウト完了後にAIロゴを表示
       setTimeout(() => {
-        // 内容を更新
-        heroImg.src = char.img;
-        heroImg.alt = char.name;
-        heroName.textContent = `${char.name}（${char.age ?? '—'}歳）`;
-        heroPhrase.textContent = `"${char.phrase ?? ''}"`.replace(/\s+/g,' ');
-        heroIntro.textContent = char.intro ?? '';
-        heroVideoLink.href = char.profile || '#';
+        aiOverlay.classList.add('show');
+        
+        // AIロゴ表示後に内容を更新
+        setTimeout(() => {
+          // 内容を更新
+          heroImg.src = char.img;
+          heroImg.alt = char.name;
+          heroName.textContent = `${char.name}（${char.age ?? '—'}歳）`;
+          heroPhrase.textContent = `"${char.phrase ?? ''}"`.replace(/\s+/g,' ');
+          heroIntro.textContent = char.intro ?? '';
+          heroVideoLink.href = char.profile || '#';
 
-        // フェードイン
-        heroContainer.classList.remove('fade-out');
-      }, 750); // フェードアウトの半分の時間で内容更新
+          // AIロゴを非表示にしてフェードイン
+          aiOverlay.classList.remove('show');
+          heroContainer.classList.remove('fade-out');
+        }, 300); // AIロゴ表示時間
+      }, 750); // フェードアウトの半分の時間でAIロゴ表示
     }
 
     async function init(){
