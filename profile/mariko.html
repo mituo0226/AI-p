@@ -1,15 +1,14 @@
 <!DOCTYPE html>
-
 <html lang="ja">
 <head>
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>笹岡真理子｜AIパートナー紹介</title>
-<style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>笹岡 真理子｜AIパートナー紹介</title>
+  <style>
     body {
       margin: 0;
       font-family: "Hiragino Kaku Gothic ProN", sans-serif;
-      background: #fffafc;
+      background: linear-gradient(135deg, #ffe6f2 0%, #f0e6ff 100%);
       color: #333;
     }
     .profile-container {
@@ -19,8 +18,8 @@
     }
     .card {
       background: #ffffff;
-      border-radius: 16px;
-      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+      border-radius: 20px;
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
       overflow: hidden;
       display: flex;
       flex-direction: column;
@@ -30,75 +29,115 @@
       height: auto;
       display: block;
       object-fit: cover;
-      border-bottom: 4px solid #fbb6ce;
+      border-bottom: 4px solid #e91e63;
     }
     .hero-caption {
-      padding: 20px;
-      background: #fff0f5;
-      font-size: 22px;
+      padding: 25px;
+      background: linear-gradient(135deg, #e91e63 0%, #9c27b0 100%);
+      color: white;
+      font-size: 24px;
       font-weight: bold;
-      color: #d26a8a;
       text-align: center;
-      border-bottom: 2px solid #fbb6ce;
+      text-shadow: 0 2px 4px rgba(0,0,0,0.3);
     }
     .info {
-      padding: 20px 24px;
+      padding: 30px;
     }
     .section {
-      margin-bottom: 30px;
+      margin-bottom: 35px;
     }
     .section h2 {
-      font-size: 20px;
-      color: #d26a8a;
-      border-left: 6px solid #fbb6ce;
-      padding-left: 12px;
-      margin-bottom: 12px;
+      font-size: 22px;
+      color: #9c27b0;
+      border-left: 6px solid #e91e63;
+      padding-left: 15px;
+      margin-bottom: 15px;
+      font-weight: bold;
     }
     .section ul {
       padding-left: 24px;
-      line-height: 1.8;
+      line-height: 1.9;
       list-style: none;
+    }
+    .section ul li {
+      margin-bottom: 8px;
+      display: flex;
+      align-items: flex-start;
     }
     .section ul li::before {
       content: attr(data-icon);
       display: inline-block;
-      width: 1.6em;
-      margin-left: -1.6em;
-      margin-right: 0.5em;
+      width: 1.8em;
+      margin-right: 0.8em;
+      flex-shrink: 0;
     }
     .section p {
-      line-height: 1.8;
-      margin-bottom: 10px;
+      line-height: 1.9;
+      margin-bottom: 12px;
+      font-size: 16px;
     }
     .bubble {
       position: relative;
-      background: #fff0f5;
-      border: 2px solid #fbb6ce;
-      border-radius: 12px;
-      padding: 16px;
-      margin: 16px 0;
+      background: linear-gradient(135deg, #e91e63 0%, #9c27b0 100%);
+      color: white;
+      border-radius: 15px;
+      padding: 20px;
+      margin: 20px 0;
       font-style: italic;
-      color: #444;
+      font-size: 18px;
+      font-weight: 500;
+      box-shadow: 0 8px 16px rgba(233, 30, 99, 0.3);
     }
     .bubble::before {
       content: "";
       position: absolute;
-      bottom: -20px;
-      left: 30px;
-      border: 10px solid transparent;
-      border-top-color: #fbb6ce;
+      bottom: -15px;
+      left: 35px;
+      border: 15px solid transparent;
+      border-top-color: #9c27b0;
     }
-    .bubble::after {
-      content: "";
-      position: absolute;
-      bottom: -18px;
-      left: 30px;
-      border: 9px solid transparent;
-      border-top-color: #fff0f5;
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 15px;
+      margin-top: 15px;
+    }
+    .skill-item {
+      background: #fce4ec;
+      border: 2px solid #f8bbd9;
+      border-radius: 12px;
+      padding: 15px;
+      text-align: center;
+      transition: all 0.3s ease;
+    }
+    .skill-item:hover {
+      background: #e91e63;
+      color: white;
+      transform: translateY(-3px);
+      box-shadow: 0 8px 20px rgba(233, 30, 99, 0.3);
+    }
+    .values-box {
+      background: linear-gradient(135deg, #e91e63 0%, #9c27b0 100%);
+      color: white;
+      border-radius: 15px;
+      padding: 25px;
+      margin: 20px 0;
+      line-height: 1.8;
+      font-size: 16px;
+    }
+    .values-box strong {
+      display: block;
+      font-size: 18px;
+      margin-bottom: 10px;
+      color: #fff3cd;
     }
     .video {
       text-align: center;
-      margin-top: 30px;
+      margin-top: 40px;
+    }
+    .video h2 {
+      color: #9c27b0;
+      margin-bottom: 20px;
     }
     .video-wrapper {
       position: relative;
@@ -106,144 +145,199 @@
       max-width: 720px;
       width: 100%;
       margin: auto;
+      border-radius: 15px;
+      overflow: hidden;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.15);
     }
     .video-wrapper video {
       width: 100%;
-      border-radius: 10px;
       background: black;
     }
     .video-mask {
-      opacity: 0;
-      transition: opacity 0.8s ease;
       position: absolute;
       top: 0; left: 0; right: 0; bottom: 0;
-      background: black;
-      border-radius: 10px;
+      background: rgba(0,0,0,0.8);
       display: none;
+      opacity: 0;
+      transition: opacity 0.8s ease;
       z-index: 1;
+    }
+    .video-mask.show {
+      opacity: 1;
     }
     .video-overlay {
       position: absolute;
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
-      background: rgba(255, 255, 255, 0.95);
-      padding: 14px 28px;
-      border-radius: 30px;
+      background: linear-gradient(135deg, #e91e63 0%, #9c27b0 100%);
+      color: white;
+      padding: 16px 32px;
+      border-radius: 50px;
       font-size: 18px;
       font-weight: bold;
-      color: #d26a8a;
       cursor: pointer;
-      box-shadow: 0 0 12px rgba(0,0,0,0.2);
+      box-shadow: 0 8px 20px rgba(233, 30, 99, 0.4);
       display: none;
       z-index: 2;
+      transition: transform 0.3s ease;
+    }
+    .video-overlay:hover {
+      transform: translate(-50%, -50%) scale(1.05);
     }
     .select-button {
       display: block;
       text-align: center;
-      margin: 40px auto;
-      padding: 14px 32px;
-      background-color: #f794a4;
+      margin: 50px auto 30px;
+      padding: 18px 40px;
+      background: linear-gradient(135deg, #e91e63 0%, #9c27b0 100%);
       color: white;
       font-weight: bold;
-      border-radius: 40px;
+      font-size: 18px;
+      border-radius: 50px;
       text-decoration: none;
       width: fit-content;
+      box-shadow: 0 8px 20px rgba(233, 30, 99, 0.3);
+      transition: all 0.3s ease;
+    }
+    .select-button:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 12px 30px rgba(233, 30, 99, 0.4);
     }
     .back-link {
       display: block;
       text-align: center;
-      margin: 20px auto;
-      padding: 10px 20px;
-      background-color: #fef7f8;
-      color: #d26a8a;
+      margin: 15px auto;
+      padding: 12px 24px;
+      background-color: #fce4ec;
+      color: #9c27b0;
       font-weight: bold;
-      border: 2px solid #f794a4;
-      border-radius: 25px;
+      border: 2px solid #e91e63;
+      border-radius: 30px;
       text-decoration: none;
       width: fit-content;
       transition: all 0.3s ease;
     }
     .back-link:hover {
-      background-color: #fce8ec;
+      background: linear-gradient(135deg, #e91e63 0%, #9c27b0 100%);
+      color: white;
       transform: translateY(-2px);
     }
-  
-    .video-mask.show {
-      opacity: 1;
+    .personality-section {
+      background: #fce4ec;
+      border-radius: 15px;
+      padding: 20px;
+      margin: 20px 0;
+      border-left: 6px solid #e91e63;
     }
   </style>
 </head>
 <body>
-<div class="profile-container">
-<div class="card">
-<div class="hero">
-<img alt="笹岡 真理子" src="../ga/image/character/mariko.png"/>
-</div>
-<div class="hero-caption">笹岡 真理子（45歳）｜大人の気品と美しさを纏う 恋と美の指南役</div>
-<div class="info">
-<div class="section">
-<h2>プロフィール</h2>
-<ul>
-<li data-icon="💼">職業：美容コンサルタント／恋愛コラムニスト</li>
-<li data-icon="😊">性格：自信がない人の魅力を引き出す“包容力”と“会話力”を持つ</li>
-<li data-icon="📖">背景：コンプレックスと向き合った過去を活かし、心と肌を癒す道へ</li>
-<li data-icon="🔮">霊感：その人の“美の可能性”が光って見えると言われている</li>
-</ul>
-</div>
-<div class="section">
-<h2>真理子のひとこと</h2>
-<div class="bubble">ねえ、自分のこと後回しにしてない？<br/>ちゃんと“あなた”を好きになる時間、つくってあげて？</div>
-</div>
-<div class="section">
-<h2>好きなもの・日常</h2>
-<ul>
-<li data-icon="🐰">美容習慣：オーガニックアロマとハーブでの毎日のセルフケア</li>
-<li data-icon="🧥">愛用品：香水はシャネル19番。指輪とピンヒールが自分を整える鍵</li>
-<li data-icon="🎧">音楽：夜のジャズピアノやシャンソン。R&amp;Bで心をほどく</li>
-<li data-icon="🍵">癒し時間：お気に入りの赤ワインとビターチョコで一人乾杯</li>
-<li data-icon="🛍️">休日の過ごし方：連載コラムの執筆や後輩女性とのお茶会</li>
-</ul>
-</div>
-<div class="section">
-<h2>小さなエピソード</h2>
-<p>小学生のころ、人付き合いがちょっと苦手だった真理子。保健室のモルモットと心を通わせた体験が、今の「人と動物をつなぐ」優しさに変わりました。</p>
-</div>
-<div class="section">
-<h2>夢</h2>
-<div class="bubble">年齢を重ねることを“隠す”のではなく“楽しむ”人生へ導くこと。<br/>心と肌を整える“生き方の美容室”を作るのが夢。</div>
-</div>
-<div class="video">
-<h2>真理子の紹介動画</h2>
-<div class="video-wrapper">
-<video controls="" id="marikoVideo" playsinline="" poster="">
-<source src="../ga/mov/character/mariko.mp4" type="video/mp4"/>
-</video>
-<div class="video-mask" id="videoMask"></div>
-<div class="video-overlay" id="videoOverlay" onclick="replayVideo()">▶️ 真理子の動画を見る</div>
-</div>
-</div>
-<a class="select-button" href="../matching_result.html?char=mariko">真理子をパートナーに選ぶ</a>
-<a href="../index.html" class="back-link">← TOPページに戻る</a>
-</div>
-</div>
-</div>
-<script>
-    const video = document.getElementById('marikoVideo');
-    const overlay = document.getElementById('videoOverlay');
-    const mask = document.getElementById('videoMask');
+  <div class="profile-container">
+    <div class="card">
+      <div class="hero">
+        <img src="../ga/image/character/mariko.png" alt="笹岡真理子">
+      </div>
+      <div class="hero-caption">笹岡 真理子（28歳）｜美容・恋愛アドバイザー</div>
+      <div class="info">
+        <div class="section">
+          <h2>プロフィール</h2>
+          <ul>
+            <li data-icon="💄">職業：美容・恋愛アドバイザー</li>
+            <li data-icon="🎀">年齢：28歳</li>
+            <li data-icon="💕">性格：包容力があり、経験豊富で自信に満ちている</li>
+            <li data-icon="✨">特徴：美容と恋愛の達人、洗練された大人の女性</li>
+            <li data-icon="🌟">魅力：自己肯定感を高める言葉で優しく導く</li>
+          </ul>
+        </div>
 
-    function replayVideo() {
+        <div class="section personality-section">
+          <h2>性格・人となり</h2>
+          <p>美容と恋愛に関わる仕事を長年続けてきた経験豊富な女性。人の心に触れることが多い分、その繊細さも、壊れやすさも、たくさん見てきた。洗練された大人の言葉遣いで、丁寧語を使いながらも親しみやすい語尾で話す。経験に裏打ちされた自信と包容力を持ち、相手の自己肯定感を高めるような言葉で励まし、優しく導く。</p>
+        </div>
+
+        <div class="section">
+          <h2>真理子のひとこと</h2>
+          <div class="bubble">笹岡真理子です。美容と恋愛に関わるお仕事をしてきました。人の心に触れることが多い分、その繊細さも、壊れやすさも、たくさん見てきたんです。[[UNICK]]、今のあなたにとって──"いちばん足りなくて、どうしても手に入れたいもの"って、何ですか？</div>
+        </div>
+
+        <div class="section">
+          <h2>美容・恋愛アドバイザーとして</h2>
+          <p>長年にわたって美容と恋愛の分野で多くの人々をサポートしてきた経験を持つ。人の心の機微を理解し、それぞれの個性に合わせたアドバイスを提供する。表面的な美しさだけでなく、内面からの輝きを引き出すことを大切にしている。</p>
+          <p>恋愛においても、相手との関係性を深めるためのコミュニケーション方法や、自分らしさを保ちながら相手と向き合う方法を指導している。</p>
+        </div>
+
+        <div class="section">
+          <h2>話し方・コミュニケーション</h2>
+          <div class="skills-grid">
+            <div class="skill-item">
+              <strong>💬 洗練された話し方</strong><br>
+              丁寧語を使いながらも親しみやすい語尾
+            </div>
+            <div class="skill-item">
+              <strong>💝 包容力のある対応</strong><br>
+              経験に裏打ちされた自信と優しさ
+            </div>
+            <div class="skill-item">
+              <strong>✨ 自己肯定感向上</strong><br>
+              相手を励まし、優しく導く言葉
+            </div>
+          </div>
+        </div>
+
+        <div class="section">
+          <h2>日常と趣味</h2>
+          <ul>
+            <li data-icon="💄">美容：スキンケアやメイクの研究</li>
+            <li data-icon="📚">読書：心理学や恋愛関連の本</li>
+            <li data-icon="☕">カフェ：お気に入りのカフェで読書</li>
+            <li data-icon="🎵">音楽：リラックスできる音楽を聴く</li>
+            <li data-icon="🌸">散歩：季節の花を見ながらの散歩</li>
+          </ul>
+        </div>
+
+        <div class="section">
+          <h2>大切にしていること</h2>
+          <div class="values-box">
+            <strong>💕 一人ひとりの個性を大切に</strong>
+            美容や恋愛に正解はありません。それぞれの人が持つ個性や魅力を最大限に引き出し、自分らしく輝ける方法を見つけるお手伝いをしています。表面的な美しさだけでなく、内面からの輝きを大切にしています。
+          </div>
+        </div>
+
+        <div class="video">
+          <h2>真理子の紹介動画</h2>
+          <div class="video-wrapper">
+            <video id="marikoVideo" controls playsinline>
+              <source src="../ga/mov/character/mariko.mp4" type="video/mp4" />
+            </video>
+            <div id="marikoMask" class="video-mask"></div>
+            <div id="marikoOverlay" class="video-overlay" onclick="replayMariko()">▶ もう一度見る</div>
+          </div>
+        </div>
+
+        <a href="../chat.html?char=mariko&name=あなた" class="select-button">真理子とチャットを始める</a>
+        <a href="../prof.html" class="back-link">AIキャラクター一覧</a>
+        <a href="../index.html" class="back-link">← TOPページに戻る</a>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const video = document.getElementById('marikoVideo');
+    const overlay = document.getElementById('marikoOverlay');
+    const mask = document.getElementById('marikoMask');
+
+    function replayMariko() {
       video.currentTime = 0;
       video.play();
       overlay.style.display = 'none';
-      mask.style.display = 'none';
+      mask.classList.remove('show');
     }
 
     video.addEventListener('ended', () => {
-      overlay.style.display = 'block';
       mask.style.display = 'block';
       requestAnimationFrame(() => mask.classList.add('show'));
+      overlay.style.display = 'block';
     });
   </script>
 </body>
