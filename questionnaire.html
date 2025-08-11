@@ -51,15 +51,14 @@
       text-decoration: none;
       color: #333;
       flex-shrink: 0;
+      height: 100%;
     }
 
-    .logo-text {
-      font-size: 18px;
-      font-weight: bold;
-      background: linear-gradient(45deg, #667eea, #764ba2);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
+    .logo img {
+      height: 100%;
+      width: auto;
+      max-width: 200px;
+      object-fit: contain;
     }
 
     .nav {
@@ -93,6 +92,11 @@
       .logo {
         justify-content: center;
         margin-bottom: 8px;
+        height: 40px;
+      }
+      
+      .logo img {
+        max-width: 150px;
       }
       
       .nav {
@@ -566,7 +570,7 @@
     <header class="header">
       <div class="header-content">
         <a href="./index.html" class="logo">
-          <span class="logo-text">AI PAR</span>
+          <img src="./ga/image/material/rogo.png" alt="AI PAR ロゴ">
         </a>
         <nav class="nav">
           <a href="./index.html">トップ</a>
