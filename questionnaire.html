@@ -42,24 +42,25 @@
       justify-content: space-between;
       align-items: center;
       flex-wrap: wrap;
-      gap: 15px;
+      gap: 10px;
     }
 
     .logo {
       display: flex;
       align-items: center;
-      gap: 10px;
+      gap: 8px;
       text-decoration: none;
       color: #333;
+      flex-shrink: 0;
     }
 
     .logo img {
-      height: 40px;
+      height: 35px;
       width: auto;
     }
 
     .logo-text {
-      font-size: 20px;
+      font-size: 18px;
       font-weight: bold;
       background: linear-gradient(45deg, #667eea, #764ba2);
       -webkit-background-clip: text;
@@ -69,20 +70,48 @@
 
     .nav {
       display: flex;
-      gap: 8px;
+      gap: 4px;
       flex-wrap: wrap;
+      justify-content: flex-end;
     }
 
     .nav a {
       text-decoration: none;
       color: #333;
-      padding: 8px 15px;
-      border-radius: 20px;
+      padding: 6px 10px;
+      border-radius: 15px;
       background: rgba(255, 255, 255, 0.8);
       transition: all 0.3s ease;
       font-weight: 500;
-      font-size: 14px;
+      font-size: 12px;
       white-space: nowrap;
+      min-width: 0;
+    }
+
+    /* モバイル対応 */
+    @media (max-width: 480px) {
+      .header-content {
+        flex-direction: column;
+        gap: 12px;
+        align-items: stretch;
+      }
+      
+      .logo {
+        justify-content: center;
+      }
+      
+      .nav {
+        justify-content: center;
+        gap: 6px;
+      }
+      
+      .nav a {
+        padding: 8px 12px;
+        font-size: 13px;
+        flex: 1;
+        text-align: center;
+        min-width: 0;
+      }
     }
 
     .nav a:hover {
