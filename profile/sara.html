@@ -3,12 +3,12 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>結城沙羅｜AIパートナー紹介</title>
+  <title>結城 沙羅｜AIパートナー紹介</title>
   <style>
     body {
       margin: 0;
       font-family: "Hiragino Kaku Gothic ProN", sans-serif;
-      background: #fffafc;
+      background: linear-gradient(135deg, #f3e5f5 0%, #e1bee7 100%);
       color: #333;
     }
     .profile-container {
@@ -18,8 +18,8 @@
     }
     .card {
       background: #ffffff;
-      border-radius: 16px;
-      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+      border-radius: 20px;
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
       overflow: hidden;
       display: flex;
       flex-direction: column;
@@ -29,75 +29,115 @@
       height: auto;
       display: block;
       object-fit: cover;
-      border-bottom: 4px solid #fbb6ce;
+      border-bottom: 4px solid #9c27b0;
     }
     .hero-caption {
-      padding: 20px;
-      background: #fff0f5;
-      font-size: 22px;
+      padding: 25px;
+      background: linear-gradient(135deg, #9c27b0 0%, #7b1fa2 100%);
+      color: white;
+      font-size: 24px;
       font-weight: bold;
-      color: #d26a8a;
       text-align: center;
-      border-bottom: 2px solid #fbb6ce;
+      text-shadow: 0 2px 4px rgba(0,0,0,0.3);
     }
     .info {
-      padding: 20px 24px;
+      padding: 30px;
     }
     .section {
-      margin-bottom: 30px;
+      margin-bottom: 35px;
     }
     .section h2 {
-      font-size: 20px;
-      color: #d26a8a;
-      border-left: 6px solid #fbb6ce;
-      padding-left: 12px;
-      margin-bottom: 12px;
+      font-size: 22px;
+      color: #7b1fa2;
+      border-left: 6px solid #9c27b0;
+      padding-left: 15px;
+      margin-bottom: 15px;
+      font-weight: bold;
     }
     .section ul {
       padding-left: 24px;
-      line-height: 1.8;
+      line-height: 1.9;
       list-style: none;
+    }
+    .section ul li {
+      margin-bottom: 8px;
+      display: flex;
+      align-items: flex-start;
     }
     .section ul li::before {
       content: attr(data-icon);
       display: inline-block;
-      width: 1.6em;
-      margin-left: -1.6em;
-      margin-right: 0.5em;
+      width: 1.8em;
+      margin-right: 0.8em;
+      flex-shrink: 0;
     }
     .section p {
-      line-height: 1.8;
-      margin-bottom: 10px;
+      line-height: 1.9;
+      margin-bottom: 12px;
+      font-size: 16px;
     }
     .bubble {
       position: relative;
-      background: #fff0f5;
-      border: 2px solid #fbb6ce;
-      border-radius: 12px;
-      padding: 16px;
-      margin: 16px 0;
+      background: linear-gradient(135deg, #9c27b0 0%, #7b1fa2 100%);
+      color: white;
+      border-radius: 15px;
+      padding: 20px;
+      margin: 20px 0;
       font-style: italic;
-      color: #444;
+      font-size: 18px;
+      font-weight: 500;
+      box-shadow: 0 8px 16px rgba(156, 39, 176, 0.3);
     }
     .bubble::before {
       content: "";
       position: absolute;
-      bottom: -20px;
-      left: 30px;
-      border: 10px solid transparent;
-      border-top-color: #fbb6ce;
+      bottom: -15px;
+      left: 35px;
+      border: 15px solid transparent;
+      border-top-color: #7b1fa2;
     }
-    .bubble::after {
-      content: "";
-      position: absolute;
-      bottom: -18px;
-      left: 30px;
-      border: 9px solid transparent;
-      border-top-color: #fff0f5;
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 15px;
+      margin-top: 15px;
+    }
+    .skill-item {
+      background: #f3e5f5;
+      border: 2px solid #e1bee7;
+      border-radius: 12px;
+      padding: 15px;
+      text-align: center;
+      transition: all 0.3s ease;
+    }
+    .skill-item:hover {
+      background: #9c27b0;
+      color: white;
+      transform: translateY(-3px);
+      box-shadow: 0 8px 20px rgba(156, 39, 176, 0.3);
+    }
+    .values-box {
+      background: linear-gradient(135deg, #9c27b0 0%, #7b1fa2 100%);
+      color: white;
+      border-radius: 15px;
+      padding: 25px;
+      margin: 20px 0;
+      line-height: 1.8;
+      font-size: 16px;
+    }
+    .values-box strong {
+      display: block;
+      font-size: 18px;
+      margin-bottom: 10px;
+      color: #fff3cd;
     }
     .video {
       text-align: center;
-      margin-top: 30px;
+      margin-top: 40px;
+    }
+    .video h2 {
+      color: #7b1fa2;
+      margin-bottom: 20px;
     }
     .video-wrapper {
       position: relative;
@@ -105,71 +145,90 @@
       max-width: 720px;
       width: 100%;
       margin: auto;
+      border-radius: 15px;
+      overflow: hidden;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.15);
     }
     .video-wrapper video {
       width: 100%;
-      border-radius: 10px;
       background: black;
     }
     .video-mask {
-      opacity: 0;
-      transition: opacity 0.8s ease;
       position: absolute;
       top: 0; left: 0; right: 0; bottom: 0;
-      background: black;
-      border-radius: 10px;
+      background: rgba(0,0,0,0.8);
       display: none;
+      opacity: 0;
+      transition: opacity 0.8s ease;
       z-index: 1;
+    }
+    .video-mask.show {
+      opacity: 1;
     }
     .video-overlay {
       position: absolute;
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
-      background: rgba(255, 255, 255, 0.95);
-      padding: 14px 28px;
-      border-radius: 30px;
+      background: linear-gradient(135deg, #9c27b0 0%, #7b1fa2 100%);
+      color: white;
+      padding: 16px 32px;
+      border-radius: 50px;
       font-size: 18px;
       font-weight: bold;
-      color: #d26a8a;
       cursor: pointer;
-      box-shadow: 0 0 12px rgba(0,0,0,0.2);
+      box-shadow: 0 8px 20px rgba(156, 39, 176, 0.4);
       display: none;
       z-index: 2;
+      transition: transform 0.3s ease;
+    }
+    .video-overlay:hover {
+      transform: translate(-50%, -50%) scale(1.05);
     }
     .select-button {
       display: block;
       text-align: center;
-      margin: 40px auto;
-      padding: 14px 32px;
-      background-color: #f794a4;
+      margin: 50px auto 30px;
+      padding: 18px 40px;
+      background: linear-gradient(135deg, #9c27b0 0%, #7b1fa2 100%);
       color: white;
       font-weight: bold;
-      border-radius: 40px;
+      font-size: 18px;
+      border-radius: 50px;
       text-decoration: none;
       width: fit-content;
+      box-shadow: 0 8px 20px rgba(156, 39, 176, 0.3);
+      transition: all 0.3s ease;
+    }
+    .select-button:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 12px 30px rgba(156, 39, 176, 0.4);
     }
     .back-link {
       display: block;
       text-align: center;
-      margin: 20px auto;
-      padding: 10px 20px;
-      background-color: #fef7f8;
-      color: #d26a8a;
+      margin: 15px auto;
+      padding: 12px 24px;
+      background-color: #f3e5f5;
+      color: #7b1fa2;
       font-weight: bold;
-      border: 2px solid #f794a4;
-      border-radius: 25px;
+      border: 2px solid #9c27b0;
+      border-radius: 30px;
       text-decoration: none;
       width: fit-content;
       transition: all 0.3s ease;
     }
     .back-link:hover {
-      background-color: #fce8ec;
+      background: linear-gradient(135deg, #9c27b0 0%, #7b1fa2 100%);
+      color: white;
       transform: translateY(-2px);
     }
-  
-    .video-mask.show {
-      opacity: 1;
+    .personality-section {
+      background: #f3e5f5;
+      border-radius: 15px;
+      padding: 20px;
+      margin: 20px 0;
+      border-left: 6px solid #9c27b0;
     }
   </style>
 </head>
@@ -179,71 +238,106 @@
       <div class="hero">
         <img src="../ga/image/character/sara.png" alt="結城沙羅">
       </div>
-      <div class="hero-caption">結城 沙羅（52歳）｜静寂を纏う書道家</div>
+      <div class="hero-caption">結城 沙羅（52歳）｜書道家・瞑想講師</div>
       <div class="info">
         <div class="section">
           <h2>プロフィール</h2>
           <ul>
-            <li data-icon="💼">職業：書道家・瞑想講師</li>
-            <li data-icon="😊">性格：落ち着きと厳しさを併せ持つ和の精神。余白に言葉を見いだす人</li>
-            <li data-icon="📖">背景：過去の激務で心を壊しかけ、“墨の香り”が救ってくれた</li>
-            <li data-icon="🔮">霊感：筆を通して相手の内面と“共鳴”する波動感受型</li>
+            <li data-icon="✍️">職業：書道家・瞑想講師</li>
+            <li data-icon="🌸">年齢：52歳</li>
+            <li data-icon="🧘">性格：静かで余白を大事にした話し方</li>
+            <li data-icon="✨">特徴：詩的で間のある言葉選び</li>
+            <li data-icon="💭">魅力：言葉に頼らず、沈黙や行間を含めて伝える</li>
           </ul>
         </div>
+
+        <div class="section personality-section">
+          <h2>性格・人となり</h2>
+          <p>書道家として長年墨と向き合い、瞑想講師として多くの人々を導いてきた経験を持つ。静かで余白を大事にした話し方で、詩的で間のある言葉選びをする。言葉に頼らず、沈黙や行間を含めて伝えるスタイルを大切にしている。精神的に深い思索を持ち、静寂と墨の香りで"心の余白"に寄り添う感受型ヒーラーとして活動している。</p>
+        </div>
+
         <div class="section">
           <h2>沙羅のひとこと</h2>
-          <div class="bubble">何も書かれていない“間”にも、言葉はあるのよ。…あなたの心が、それを読めるなら。</div>
+          <div class="bubble">何も書かれていない"間"にも、言葉はあるのよ。…あなたの心が、それを読めるなら。</div>
         </div>
+
         <div class="section">
-          <h2>好きなもの・日常</h2>
+          <h2>書道と瞑想の世界</h2>
+          <p>書道家として墨と向き合うことで、一筆一筆に込められる心の動きを深く理解するようになった。瞑想講師としても活動し、静寂の中で心を整えることの大切さを多くの人に伝えている。</p>
+          <p>書道と瞑想の両方を通じて、言葉では表現できない深い感情や想いを伝える方法を学んだ。静寂と墨の香りで"心の余白"に寄り添い、相手の心の奥にある声を聞くことを大切にしている。</p>
+        </div>
+
+        <div class="section">
+          <h2>話し方・コミュニケーション</h2>
+          <div class="skills-grid">
+            <div class="skill-item">
+              <strong>🤫 静かな話し方</strong><br>
+              余白を大事にした表現
+            </div>
+            <div class="skill-item">
+              <strong>📝 詩的な言葉</strong><br>
+              間のある言葉選び
+            </div>
+            <div class="skill-item">
+              <strong>💭 沈黙の力</strong><br>
+              言葉に頼らない伝達
+            </div>
+          </div>
+        </div>
+
+        <div class="section">
+          <h2>日常と趣味</h2>
           <ul>
-            <li data-icon="🐰">道具：墨・筆・和紙にこだわりを持つ。お気に入りは祖母の硯</li>
-            <li data-icon="🧥">愛用品：白磁の急須と漆塗りの茶托</li>
-            <li data-icon="🎧">音楽：琴の音、尺八、または自然の音だけの環境音</li>
-            <li data-icon="🍵">癒し時間：朝の玉露と墨を摺る静けさ</li>
-            <li data-icon="🛍️">休日の過ごし方：書のリトリートや山寺での座禅修行</li>
+            <li data-icon="✍️">書道：毎日の練習と作品制作</li>
+            <li data-icon="🧘">瞑想：静寂の中で心を整える</li>
+            <li data-icon="🌿">茶道：和の心を学ぶ時間</li>
+            <li data-icon="📚">読書：古典文学や哲学書</li>
+            <li data-icon="🎵">音楽：雅楽や自然音</li>
           </ul>
         </div>
+
         <div class="section">
-          <h2>小さなエピソード</h2>
-          <p>小学生のころ、人付き合いがちょっと苦手だった沙羅。保健室のモルモットと心を通わせた体験が、今の「人と動物をつなぐ」優しさに変わりました。</p>
+          <h2>大切にしていること</h2>
+          <div class="values-box">
+            <strong>🌸 心の余白を大切に</strong>
+            書道や瞑想を通じて、心の余白の大切さを学びました。言葉では表現できない感情も、静寂や行間を通じて伝わることがあると信じています。相手の心の奥にある声に耳を傾け、静寂の中で本当の自分と向き合う時間の大切さを伝えています。
+          </div>
         </div>
-        <div class="section">
-          <h2>夢</h2>
-          <div class="bubble">静けさと“内なる言葉”に出会える空間を、書と瞑想で届けたいの。<br>心のざわめきが落ち着く場所をつくること、それが私の夢です。</div>
-        </div>
+
         <div class="video">
           <h2>沙羅の紹介動画</h2>
           <div class="video-wrapper">
             <video id="saraVideo" controls playsinline>
               <source src="../ga/mov/character/sara.mp4" type="video/mp4" />
             </video>
-            <div id="videoMask" class="video-mask"></div>
-            <div id="videoOverlay" class="video-overlay" onclick="replayVideo()">▶ もう一度見る</div>
+            <div id="saraMask" class="video-mask"></div>
+            <div id="saraOverlay" class="video-overlay" onclick="replaySara()">▶ もう一度見る</div>
           </div>
         </div>
+
         <a href="../chat.html?char=sara&name=あなた" class="select-button">沙羅とチャットを始める</a>
         <a href="../prof.html" class="back-link">AIキャラクター一覧</a>
         <a href="../index.html" class="back-link">← TOPページに戻る</a>
       </div>
     </div>
   </div>
+
   <script>
     const video = document.getElementById('saraVideo');
-    const overlay = document.getElementById('videoOverlay');
-    const mask = document.getElementById('videoMask');
+    const overlay = document.getElementById('saraOverlay');
+    const mask = document.getElementById('saraMask');
 
-    function replayVideo() {
+    function replaySara() {
       video.currentTime = 0;
       video.play();
       overlay.style.display = 'none';
-      mask.style.display = 'none';
+      mask.classList.remove('show');
     }
 
     video.addEventListener('ended', () => {
-      overlay.style.display = 'block';
       mask.style.display = 'block';
       requestAnimationFrame(() => mask.classList.add('show'));
+      overlay.style.display = 'block';
     });
   </script>
 </body>
