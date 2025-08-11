@@ -26,14 +26,15 @@
     /* AIロゴのオーバーレイ */
     .ai-overlay {
       position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      width: 80px;
-      height: 80px;
+      top: 0;
+      left: 0;
+      width: 176px;
+      height: 176px;
       opacity: 0;
       transition: opacity 0.3s ease-in-out;
       z-index: 10;
+      border-radius: 50%;
+      object-fit: cover;
     }
     
     .ai-overlay.show {
