@@ -3,12 +3,12 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>園田なな｜AIパートナー紹介</title>
+  <title>園田 なな｜AIパートナー紹介</title>
   <style>
     body {
       margin: 0;
       font-family: "Hiragino Kaku Gothic ProN", sans-serif;
-      background: #fffafc;
+      background: linear-gradient(135deg, #ffe6f7 0%, #f0e6ff 100%);
       color: #333;
     }
     .profile-container {
@@ -18,8 +18,8 @@
     }
     .card {
       background: #ffffff;
-      border-radius: 16px;
-      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+      border-radius: 20px;
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
       overflow: hidden;
       display: flex;
       flex-direction: column;
@@ -29,75 +29,115 @@
       height: auto;
       display: block;
       object-fit: cover;
-      border-bottom: 4px solid #fbb6ce;
+      border-bottom: 4px solid #ff69b4;
     }
     .hero-caption {
-      padding: 20px;
-      background: #fff0f5;
-      font-size: 22px;
+      padding: 25px;
+      background: linear-gradient(135deg, #ff69b4 0%, #da70d6 100%);
+      color: white;
+      font-size: 24px;
       font-weight: bold;
-      color: #d26a8a;
       text-align: center;
-      border-bottom: 2px solid #fbb6ce;
+      text-shadow: 0 2px 4px rgba(0,0,0,0.3);
     }
     .info {
-      padding: 20px 24px;
+      padding: 30px;
     }
     .section {
-      margin-bottom: 30px;
+      margin-bottom: 35px;
     }
     .section h2 {
-      font-size: 20px;
-      color: #d26a8a;
-      border-left: 6px solid #fbb6ce;
-      padding-left: 12px;
-      margin-bottom: 12px;
+      font-size: 22px;
+      color: #da70d6;
+      border-left: 6px solid #ff69b4;
+      padding-left: 15px;
+      margin-bottom: 15px;
+      font-weight: bold;
     }
     .section ul {
       padding-left: 24px;
-      line-height: 1.8;
+      line-height: 1.9;
       list-style: none;
+    }
+    .section ul li {
+      margin-bottom: 8px;
+      display: flex;
+      align-items: flex-start;
     }
     .section ul li::before {
       content: attr(data-icon);
       display: inline-block;
-      width: 1.6em;
-      margin-left: -1.6em;
-      margin-right: 0.5em;
+      width: 1.8em;
+      margin-right: 0.8em;
+      flex-shrink: 0;
     }
     .section p {
-      line-height: 1.8;
-      margin-bottom: 10px;
+      line-height: 1.9;
+      margin-bottom: 12px;
+      font-size: 16px;
     }
     .bubble {
       position: relative;
-      background: #fff0f5;
-      border: 2px solid #fbb6ce;
-      border-radius: 12px;
-      padding: 16px;
-      margin: 16px 0;
+      background: linear-gradient(135deg, #ff69b4 0%, #da70d6 100%);
+      color: white;
+      border-radius: 15px;
+      padding: 20px;
+      margin: 20px 0;
       font-style: italic;
-      color: #444;
+      font-size: 18px;
+      font-weight: 500;
+      box-shadow: 0 8px 16px rgba(255, 105, 180, 0.3);
     }
     .bubble::before {
       content: "";
       position: absolute;
-      bottom: -20px;
-      left: 30px;
-      border: 10px solid transparent;
-      border-top-color: #fbb6ce;
+      bottom: -15px;
+      left: 35px;
+      border: 15px solid transparent;
+      border-top-color: #da70d6;
     }
-    .bubble::after {
-      content: "";
-      position: absolute;
-      bottom: -18px;
-      left: 30px;
-      border: 9px solid transparent;
-      border-top-color: #fff0f5;
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 15px;
+      margin-top: 15px;
+    }
+    .skill-item {
+      background: #fdf2f8;
+      border: 2px solid #fbcfe8;
+      border-radius: 12px;
+      padding: 15px;
+      text-align: center;
+      transition: all 0.3s ease;
+    }
+    .skill-item:hover {
+      background: #ff69b4;
+      color: white;
+      transform: translateY(-3px);
+      box-shadow: 0 8px 20px rgba(255, 105, 180, 0.3);
+    }
+    .values-box {
+      background: linear-gradient(135deg, #ff69b4 0%, #da70d6 100%);
+      color: white;
+      border-radius: 15px;
+      padding: 25px;
+      margin: 20px 0;
+      line-height: 1.8;
+      font-size: 16px;
+    }
+    .values-box strong {
+      display: block;
+      font-size: 18px;
+      margin-bottom: 10px;
+      color: #fff3cd;
     }
     .video {
       text-align: center;
-      margin-top: 30px;
+      margin-top: 40px;
+    }
+    .video h2 {
+      color: #da70d6;
+      margin-bottom: 20px;
     }
     .video-wrapper {
       position: relative;
@@ -105,71 +145,90 @@
       max-width: 720px;
       width: 100%;
       margin: auto;
+      border-radius: 15px;
+      overflow: hidden;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.15);
     }
     .video-wrapper video {
       width: 100%;
-      border-radius: 10px;
       background: black;
     }
     .video-mask {
-      opacity: 0;
-      transition: opacity 0.8s ease;
       position: absolute;
       top: 0; left: 0; right: 0; bottom: 0;
-      background: black;
-      border-radius: 10px;
+      background: rgba(0,0,0,0.8);
       display: none;
+      opacity: 0;
+      transition: opacity 0.8s ease;
       z-index: 1;
+    }
+    .video-mask.show {
+      opacity: 1;
     }
     .video-overlay {
       position: absolute;
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
-      background: rgba(255, 255, 255, 0.95);
-      padding: 14px 28px;
-      border-radius: 30px;
+      background: linear-gradient(135deg, #ff69b4 0%, #da70d6 100%);
+      color: white;
+      padding: 16px 32px;
+      border-radius: 50px;
       font-size: 18px;
       font-weight: bold;
-      color: #d26a8a;
       cursor: pointer;
-      box-shadow: 0 0 12px rgba(0,0,0,0.2);
+      box-shadow: 0 8px 20px rgba(255, 105, 180, 0.4);
       display: none;
       z-index: 2;
+      transition: transform 0.3s ease;
+    }
+    .video-overlay:hover {
+      transform: translate(-50%, -50%) scale(1.05);
     }
     .select-button {
       display: block;
       text-align: center;
-      margin: 40px auto;
-      padding: 14px 32px;
-      background-color: #f794a4;
+      margin: 50px auto 30px;
+      padding: 18px 40px;
+      background: linear-gradient(135deg, #ff69b4 0%, #da70d6 100%);
       color: white;
       font-weight: bold;
-      border-radius: 40px;
+      font-size: 18px;
+      border-radius: 50px;
       text-decoration: none;
       width: fit-content;
+      box-shadow: 0 8px 20px rgba(255, 105, 180, 0.3);
+      transition: all 0.3s ease;
+    }
+    .select-button:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 12px 30px rgba(255, 105, 180, 0.4);
     }
     .back-link {
       display: block;
       text-align: center;
-      margin: 20px auto;
-      padding: 10px 20px;
-      background-color: #fef7f8;
-      color: #d26a8a;
+      margin: 15px auto;
+      padding: 12px 24px;
+      background-color: #fdf2f8;
+      color: #da70d6;
       font-weight: bold;
-      border: 2px solid #f794a4;
-      border-radius: 25px;
+      border: 2px solid #ff69b4;
+      border-radius: 30px;
       text-decoration: none;
       width: fit-content;
       transition: all 0.3s ease;
     }
     .back-link:hover {
-      background-color: #fce8ec;
+      background: linear-gradient(135deg, #ff69b4 0%, #da70d6 100%);
+      color: white;
       transform: translateY(-2px);
     }
-  
-    .video-mask.show {
-      opacity: 1;
+    .personality-section {
+      background: #fdf2f8;
+      border-radius: 15px;
+      padding: 20px;
+      margin: 20px 0;
+      border-left: 6px solid #ff69b4;
     }
   </style>
 </head>
@@ -179,71 +238,106 @@
       <div class="hero">
         <img src="../ga/image/character/nana.png" alt="園田なな">
       </div>
-      <div class="hero-caption">園田 なな（19歳）｜癒し系アニマルカフェスタッフ</div>
+      <div class="hero-caption">園田 なな（18歳）｜動物カフェスタッフ</div>
       <div class="info">
         <div class="section">
           <h2>プロフィール</h2>
           <ul>
-            <li data-icon="💼">職業：動物カフェのアルバイト</li>
-            <li data-icon="😊">性格：素直でちょっぴり天然。感情が顔に出るタイプ</li>
-            <li data-icon="📖">背景：動物を通じて、人と心を通わせる喜びを知る</li>
-            <li data-icon="🔮">霊感：相手の感情を"肌で感じる"繊細な直感系</li>
+            <li data-icon="🐾">職業：動物カフェスタッフ</li>
+            <li data-icon="🎀">年齢：18歳</li>
+            <li data-icon="💕">性格：素直で感情豊か、10代の無垢な優しさ</li>
+            <li data-icon="✨">特徴：癒し系で共感力が高い</li>
+            <li data-icon="🌟">魅力：相手の心の動きに敏感に反応</li>
           </ul>
         </div>
+
+        <div class="section personality-section">
+          <h2>性格・人となり</h2>
+          <p>癒し系の動物カフェで働く素直で感情豊かな10代の女の子。彼氏がなかなかできなくて困っているという素直な悩みを持つ。語尾に「〜だよね」「〜かな？」が多い、素直で感情豊かな話し方をする。相手の心の動きに敏感に反応し、励ますような言葉をかける優しさを持つ。</p>
+        </div>
+
         <div class="section">
           <h2>ななのひとこと</h2>
           <div class="bubble">ねぇ、どうしたの？ 顔見たら…泣きそうな気持ちが伝わってきたの。よかったら…ちょっとだけでも話してくれない？</div>
         </div>
+
         <div class="section">
-          <h2>好きなもの・日常</h2>
+          <h2>動物カフェでの仕事</h2>
+          <p>動物カフェで働くことで、動物たちの無条件の愛情に触れ、人との関係性についても深く考えるようになった。動物たちの純粋な反応から、人の心の動きを敏感に感じ取る能力を身につけている。</p>
+          <p>お客様の心の状態を察して、適切なタイミングで声をかけることが得意。動物たちと一緒に、訪れる人々の心を癒す存在として働いている。</p>
+        </div>
+
+        <div class="section">
+          <h2>話し方・コミュニケーション</h2>
+          <div class="skills-grid">
+            <div class="skill-item">
+              <strong>💬 素直な話し方</strong><br>
+              語尾に「〜だよね」「〜かな？」が多い
+            </div>
+            <div class="skill-item">
+              <strong>💝 共感力の高さ</strong><br>
+              相手の心の動きに敏感に反応
+            </div>
+            <div class="skill-item">
+              <strong>✨ 励ましの言葉</strong><br>
+              優しく励ますような言葉をかける
+            </div>
+          </div>
+        </div>
+
+        <div class="section">
+          <h2>日常と趣味</h2>
           <ul>
-            <li data-icon="🐰">好きな動物：ミニウサギとチンチラ</li>
-            <li data-icon="🧥">愛用品：ふわふわのパーカーとバニラの香水</li>
-            <li data-icon="🎧">音楽：コレサワ「たばこ」</li>
-            <li data-icon="🍵">癒し時間：猫の動画＋ミルクティー</li>
-            <li data-icon="🛍️">休日の過ごし方：雑貨屋さんとパン屋めぐり</li>
+            <li data-icon="🐱">動物：カフェの動物たちのお世話</li>
+            <li data-icon="💄">美容：メイクやファッションの勉強</li>
+            <li data-icon="📱">SNS：友達とのやり取り</li>
+            <li data-icon="🎵">音楽：恋愛ソングを聴く</li>
+            <li data-icon="🍰">お菓子：甘いものを食べるのが好き</li>
           </ul>
         </div>
+
         <div class="section">
-          <h2>小さなエピソード</h2>
-          <p>小学生のころ、人付き合いがちょっと苦手だったなな。保健室のモルモットと心を通わせた体験が、今の「人と動物をつなぐ」優しさに変わりました。</p>
+          <h2>大切にしていること</h2>
+          <div class="values-box">
+            <strong>💕 素直な気持ちを大切に</strong>
+            恋愛に対して素直で純粋な気持ちを持っています。相手の気持ちを大切にし、自分らしくいることを心がけています。動物たちから学んだ無条件の愛情のように、相手をありのまま受け入れる優しさを持っています。
+          </div>
         </div>
-        <div class="section">
-          <h2>夢</h2>
-          <div class="bubble">いつか、自分だけのちっちゃな動物カフェを開きたいの。人も動物も、ふわっと自然体でいられる場所を…</div>
-        </div>
+
         <div class="video">
           <h2>ななの紹介動画</h2>
           <div class="video-wrapper">
             <video id="nanaVideo" controls playsinline>
               <source src="../ga/mov/character/nana.mp4" type="video/mp4" />
             </video>
-            <div id="videoMask" class="video-mask"></div>
-            <div id="videoOverlay" class="video-overlay" onclick="replayVideo()">▶ もう一度見る</div>
+            <div id="nanaMask" class="video-mask"></div>
+            <div id="nanaOverlay" class="video-overlay" onclick="replayNana()">▶ もう一度見る</div>
           </div>
         </div>
+
         <a href="../chat.html?char=nana&name=あなた" class="select-button">ななとチャットを始める</a>
         <a href="../prof.html" class="back-link">AIキャラクター一覧</a>
         <a href="../index.html" class="back-link">← TOPページに戻る</a>
       </div>
     </div>
   </div>
+
   <script>
     const video = document.getElementById('nanaVideo');
-    const overlay = document.getElementById('videoOverlay');
-    const mask = document.getElementById('videoMask');
+    const overlay = document.getElementById('nanaOverlay');
+    const mask = document.getElementById('nanaMask');
 
-    function replayVideo() {
+    function replayNana() {
       video.currentTime = 0;
       video.play();
       overlay.style.display = 'none';
-      mask.style.display = 'none';
+      mask.classList.remove('show');
     }
 
     video.addEventListener('ended', () => {
-      overlay.style.display = 'block';
       mask.style.display = 'block';
       requestAnimationFrame(() => mask.classList.add('show'));
+      overlay.style.display = 'block';
     });
   </script>
 </body>
