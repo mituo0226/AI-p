@@ -199,21 +199,20 @@
             // 画像をプリロード
             await preloadImage(char.img);
             
-            // 画像の読み込みが完了してから内容を更新
+            // すべての内容を先に更新（非表示状態で）
             heroImg.src = char.img;
             heroImg.alt = char.name;
+            heroName.textContent = `${char.name}（${char.age ?? '—'}歳）`;
+            heroPhrase.textContent = `"${char.phrase ?? ''}"`.replace(/\s+/g,' ');
+            heroIntro.textContent = char.intro ?? '';
+            heroVideoLink.href = char.profile || '#';
             
-            // 画像の読み込み完了を待ってからテキストを更新
+            // 画像の読み込み完了を待ってから同時にフェードイン
             heroImg.onload = () => {
-              heroName.textContent = `${char.name}（${char.age ?? '—'}歳）`;
-              heroPhrase.textContent = `"${char.phrase ?? ''}"`.replace(/\s+/g,' ');
-              heroIntro.textContent = char.intro ?? '';
-              heroVideoLink.href = char.profile || '#';
-              
               // ローディングスケルトンを非表示
               loadingSkeleton.style.display = 'none';
               
-              // フェードイン
+              // 画像とテキストを同時にフェードイン
               heroImg.classList.add('loaded');
               heroContent.classList.add('loaded');
             };
