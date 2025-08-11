@@ -54,11 +54,13 @@
       height: 100%;
     }
 
-    .logo img {
-      height: 100%;
-      width: auto;
-      max-width: 100%;
-      object-fit: contain;
+    .logo-text {
+      font-size: 20px;
+      font-weight: bold;
+      background: linear-gradient(45deg, #667eea, #764ba2);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
     }
 
     .nav {
@@ -95,8 +97,8 @@
         height: 40px;
       }
       
-      .logo img {
-        max-width: 100%;
+      .logo-text {
+        font-size: 18px;
       }
       
       .nav {
@@ -570,7 +572,7 @@
     <header class="header">
       <div class="header-content">
         <a href="./index.html" class="logo">
-          <img src="./ga/image/material/LOVE PARTNER.png" alt="LOVE PARTNER ロゴ">
+          <span class="logo-text">AI PARTNER</span>
         </a>
         <nav class="nav">
           <a href="./index.html">トップ</a>
