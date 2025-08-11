@@ -130,8 +130,40 @@
     }
 
     .characters-icon {
-      font-size: 3rem;
-      margin-bottom: 15px;
+      font-size: 3.5rem;
+      margin-bottom: 20px;
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      animation: float 3s ease-in-out infinite;
+    }
+
+    .characters-icon span {
+      display: inline-block;
+      animation: bounce 2s ease-in-out infinite;
+    }
+
+    .characters-icon span:nth-child(1) {
+      animation-delay: 0s;
+    }
+
+    .characters-icon span:nth-child(2) {
+      animation-delay: 0.3s;
+    }
+
+    .characters-icon span:nth-child(3) {
+      animation-delay: 0.6s;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-10px); }
+    }
+
+    @keyframes bounce {
+      0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+      40% { transform: translateY(-15px); }
+      60% { transform: translateY(-7px); }
     }
 
     /* キャラクターグリッド */
@@ -370,6 +402,11 @@
         font-size: 1.1rem;
       }
 
+      .characters-icon {
+        font-size: 4rem;
+        gap: 15px;
+      }
+
       .characters-grid {
         grid-template-columns: repeat(2, 1fr);
         gap: 25px;
@@ -388,6 +425,11 @@
 
       .hero-section p {
         font-size: 1.2rem;
+      }
+
+      .characters-icon {
+        font-size: 4.5rem;
+        gap: 20px;
       }
 
       .main-content {
@@ -418,6 +460,11 @@
       .hero-section p {
         font-size: 0.9rem;
         word-wrap: break-word;
+      }
+
+      .characters-icon {
+        font-size: 3rem;
+        gap: 8px;
       }
 
       .characters-grid {
@@ -557,7 +604,11 @@
     <main class="main-content">
       <!-- Hero Section -->
       <section class="hero-section">
-        <div class="characters-icon">🎭</div>
+        <div class="characters-icon">
+          <span>💕</span>
+          <span>✨</span>
+          <span>🎀</span>
+        </div>
         <h1>キャラクター一覧</h1>
         <p>20人の魅力的なAIキャラクターから、あなたに最適なパートナーを見つけましょう</p>
       </section>
