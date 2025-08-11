@@ -22,9 +22,10 @@
     }
 
     .container {
-      max-width: 1200px;
+      max-width: 100%;
       margin: 0 auto;
       padding: 15px;
+      overflow-x: hidden;
     }
 
     /* Header */
@@ -42,24 +43,19 @@
       justify-content: space-between;
       align-items: center;
       flex-wrap: wrap;
-      gap: 15px;
+      gap: 10px;
     }
 
     .logo {
       display: flex;
       align-items: center;
-      gap: 10px;
       text-decoration: none;
       color: #333;
-    }
-
-    .logo img {
-      height: 40px;
-      width: auto;
+      flex-shrink: 0;
     }
 
     .logo-text {
-      font-size: 20px;
+      font-size: 18px;
       font-weight: bold;
       background: linear-gradient(45deg, #667eea, #764ba2);
       -webkit-background-clip: text;
@@ -69,20 +65,22 @@
 
     .nav {
       display: flex;
-      gap: 8px;
+      gap: 4px;
       flex-wrap: wrap;
+      justify-content: flex-end;
     }
 
     .nav a {
       text-decoration: none;
       color: #333;
-      padding: 8px 15px;
-      border-radius: 20px;
+      padding: 6px 10px;
+      border-radius: 15px;
       background: rgba(255, 255, 255, 0.8);
       transition: all 0.3s ease;
       font-weight: 500;
-      font-size: 14px;
+      font-size: 12px;
       white-space: nowrap;
+      min-width: 0;
     }
 
     .nav a:hover {
@@ -97,9 +95,10 @@
       background: rgba(255, 255, 255, 0.95);
       backdrop-filter: blur(10px);
       border-radius: 15px;
-      padding: 25px 20px;
+      padding: 25px 15px;
       margin-bottom: 20px;
       box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+      overflow-x: hidden;
     }
 
     .hero-section {
@@ -129,64 +128,39 @@
       margin-bottom: 15px;
     }
 
-    /* Search Section */
-    .search-section {
-      margin-bottom: 30px;
-    }
-
-    .search-container {
-      position: relative;
-      max-width: 400px;
-      margin: 0 auto;
-    }
-
-    .search-input {
-      width: 100%;
-      padding: 12px 45px 12px 15px;
-      border: 2px solid #e1e5e9;
-      border-radius: 25px;
-      font-size: 1rem;
-      transition: all 0.3s ease;
-      background: white;
-    }
-
-    .search-input:focus {
-      outline: none;
-      border-color: #667eea;
-      box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
-    }
-
-    .search-icon {
-      position: absolute;
-      right: 15px;
-      top: 50%;
-      transform: translateY(-50%);
-      color: #666;
-      font-size: 1.2rem;
-    }
-
-    /* Characters Grid */
+    /* キャラクターグリッド */
     .characters-grid {
       display: grid;
-      grid-template-columns: 1fr;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
       gap: 20px;
       margin-bottom: 30px;
     }
 
     .character-card {
-      background: rgba(255, 255, 255, 0.9);
+      background: white;
       border-radius: 15px;
       padding: 20px;
-      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
       transition: all 0.3s ease;
-      border: 2px solid transparent;
-      cursor: pointer;
+      position: relative;
+      overflow: hidden;
+      word-wrap: break-word;
+      overflow-wrap: break-word;
+    }
+
+    .character-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: linear-gradient(45deg, #667eea, #764ba2);
     }
 
     .character-card:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
-      border-color: #667eea;
+      transform: translateY(-5px);
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
     }
 
     .character-header {
@@ -197,13 +171,11 @@
     }
 
     .character-avatar {
-      width: 60px;
-      height: 60px;
+      width: 80px;
+      height: 80px;
       border-radius: 50%;
       object-fit: cover;
-      border: 3px solid #fff;
-      box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
-      flex-shrink: 0;
+      border: 3px solid #f0f0f0;
     }
 
     .character-info {
@@ -217,29 +189,22 @@
       margin-bottom: 5px;
     }
 
-    .character-title {
+    .character-age {
       font-size: 0.9rem;
       color: #666;
-      margin-bottom: 5px;
-    }
-
-    .character-age {
-      font-size: 0.8rem;
-      color: #888;
     }
 
     .character-description {
       color: #555;
-      line-height: 1.5;
+      line-height: 1.6;
       margin-bottom: 15px;
-      font-size: 0.95rem;
     }
 
     .character-tags {
       display: flex;
       flex-wrap: wrap;
       gap: 8px;
-      margin-bottom: 15px;
+      margin-bottom: 20px;
     }
 
     .character-tag {
@@ -257,16 +222,16 @@
     }
 
     .btn {
-      padding: 8px 20px;
+      flex: 1;
+      padding: 12px 20px;
       border: none;
-      border-radius: 20px;
-      font-size: 0.9rem;
-      font-weight: bold;
-      cursor: pointer;
-      transition: all 0.3s ease;
+      border-radius: 25px;
       text-decoration: none;
-      display: inline-block;
       text-align: center;
+      font-weight: 600;
+      transition: all 0.3s ease;
+      cursor: pointer;
+      font-size: 0.9rem;
     }
 
     .btn-primary {
@@ -275,8 +240,8 @@
     }
 
     .btn-primary:hover {
-      transform: translateY(-1px);
-      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(255, 107, 107, 0.3);
     }
 
     .btn-secondary {
@@ -285,53 +250,8 @@
     }
 
     .btn-secondary:hover {
-      transform: translateY(-1px);
-      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-    }
-
-    /* 全キャラクターを見るボタンのスタイル */
-    .view-all-section {
-      grid-column: 1 / -1;
-      text-align: center;
-      margin-top: 30px;
-      padding: 20px;
-      background: rgba(102, 126, 234, 0.1);
-      border-radius: 15px;
-      border: 2px dashed rgba(102, 126, 234, 0.3);
-    }
-
-    .view-all-container p {
-      margin-bottom: 15px;
-      color: #666;
-      font-size: 1rem;
-    }
-
-    .view-all-container .btn {
-      display: inline-block;
-      padding: 12px 25px;
-      background: linear-gradient(45deg, #667eea, #764ba2);
-      color: white;
-      border-radius: 25px;
-      font-weight: 600;
-      transition: all 0.3s ease;
-    }
-
-    .view-all-container .btn:hover {
       transform: translateY(-2px);
       box-shadow: 0 5px 15px rgba(102, 126, 234, 0.3);
-    }
-
-    /* No Results */
-    .no-results {
-      text-align: center;
-      padding: 40px 20px;
-      color: #666;
-    }
-
-    .no-results-icon {
-      font-size: 3rem;
-      margin-bottom: 15px;
-      opacity: 0.5;
     }
 
     /* Footer */
@@ -377,19 +297,22 @@
         font-size: 1.2rem;
       }
 
-      .characters-grid {
-        grid-template-columns: repeat(3, 1fr);
-        gap: 30px;
-      }
-
       .main-content {
         padding: 40px;
       }
+
+      .characters-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
     }
 
-    @media (max-width: 375px) {
+    @media (max-width: 480px) {
       .container {
         padding: 10px;
+      }
+
+      .main-content {
+        padding: 20px 10px;
       }
 
       .hero-section h1 {
@@ -400,17 +323,23 @@
         font-size: 0.9rem;
       }
 
+      .characters-grid {
+        grid-template-columns: 1fr;
+        gap: 15px;
+      }
+
       .character-header {
-        gap: 12px;
+        flex-direction: column;
+        text-align: center;
       }
 
       .character-avatar {
-        width: 50px;
-        height: 50px;
+        width: 60px;
+        height: 60px;
       }
 
-      .character-name {
-        font-size: 1.1rem;
+      .character-card {
+        padding: 15px 10px;
       }
 
       .nav {
@@ -421,27 +350,37 @@
         padding: 6px 12px;
         font-size: 13px;
       }
+
+      .logo {
+        justify-content: center;
+        margin-bottom: 8px;
+      }
+      
+      .logo-text {
+        font-size: 16px;
+      }
     }
 
-    /* Loading Animation */
-    .loading {
-      text-align: center;
-      padding: 40px 20px;
-    }
+    @media (max-width: 375px) {
+      .container {
+        padding: 8px;
+      }
 
-    .loading-spinner {
-      border: 3px solid #f3f3f3;
-      border-top: 3px solid #667eea;
-      border-radius: 50%;
-      width: 30px;
-      height: 30px;
-      animation: spin 1s linear infinite;
-      margin: 0 auto 15px;
-    }
+      .main-content {
+        padding: 15px 8px;
+      }
 
-    @keyframes spin {
-      0% { transform: rotate(0deg); }
-      100% { transform: rotate(360deg); }
+      .hero-section h1 {
+        font-size: 1.6rem;
+      }
+
+      .hero-section p {
+        font-size: 0.85rem;
+      }
+
+      .character-card {
+        padding: 12px 8px;
+      }
     }
   </style>
 </head>
@@ -451,8 +390,7 @@
     <header class="header">
       <div class="header-content">
         <a href="./index.html" class="logo">
-          <img src="./ga/image/material/toprogo.png" alt="AI PAR ロゴ">
-          <span class="logo-text">AI PAR</span>
+          <span class="logo-text">AI PARTNER</span>
         </a>
         <nav class="nav">
           <a href="./index.html">トップ</a>
@@ -472,14 +410,6 @@
         <p>20人の魅力的なAIキャラクターから、あなたに最適なパートナーを見つけましょう</p>
       </section>
 
-      <!-- Search Section -->
-      <section class="search-section">
-        <div class="search-container">
-          <input type="text" class="search-input" id="searchInput" placeholder="キャラクター名で検索...">
-          <div class="search-icon">🔍</div>
-        </div>
-      </section>
-
       <!-- Characters Grid -->
       <section class="characters-grid" id="charactersGrid">
         <!-- キャラクターカードはJavaScriptで動的に生成 -->
@@ -488,13 +418,6 @@
           <p>キャラクター情報を読み込み中...</p>
         </div>
       </section>
-
-      <!-- No Results -->
-      <div class="no-results" id="noResults" style="display: none;">
-        <div class="no-results-icon">🔍</div>
-        <h3>検索結果が見つかりません</h3>
-        <p>別のキーワードで検索してみてください</p>
-      </div>
     </main>
 
     <!-- Footer -->
@@ -504,152 +427,37 @@
   </div>
 
   <script>
-    // 現在の年を表示
-    document.getElementById('current-year').textContent = new Date().getFullYear();
-
-    // キャラクターデータ（初期値）
-    let characters = [];
-    let allCharacters = [];
-
-    // 診断結果を処理する関数
-    function processDiagnosticResults() {
-      const params = new URLSearchParams(window.location.search);
-      const nickname = params.get('nickname') || 'あなた';
-      const gender = params.get('gender') || '';
-      const age = params.get('age') || '';
-      const partner = params.get('partner') || '';
-      const relationship = params.get('relationship') || '';
-      const communication = params.get('communication') || '';
-
-              // 診断パラメータがある場合は診断結果ページにリダイレクト
-        if (nickname && (gender || age || partner || relationship || communication)) {
-          window.location.href = `./diagnostic-result.html?${params.toString()}`;
-          return;
-        }
-      
-      // 通常の一覧表示
-      showAllCharacters();
-    }
-
-
-
-    // 全キャラクターを表示
-    function showAllCharacters() {
-      // 全キャラクターを表示
-      displayCharacters(allCharacters);
-    }
-
-    // キャラクターカードを生成
-    function createCharacterCard(character) {
-      // characters.jsonのデータ構造に合わせて調整
-      const name = character.name || character.id;
-      const age = character.age ? `${character.age}歳` : '';
-      const intro = character.intro || character.description || '';
-      const img = character.img || character.image || '';
-      
-      // タグの生成（characters.jsonにはtagsがないので、typeやchatStyleから生成）
-      const tags = [];
-      if (character.type) {
-        switch (character.type) {
-          case 'friend': tags.push('友達'); break;
-          case 'advisor': tags.push('アドバイザー'); break;
-          case 'lover': tags.push('恋人'); break;
-        }
-      }
-      if (character.gender) {
-        tags.push(character.gender === 'female' ? '女性' : '男性');
-      }
-      if (character.age_group) {
-        tags.push(character.age_group);
-      }
-
-      return `
-        <div class="character-card" data-character="${character.id}">
-          <div class="character-header">
-            <img src="${img}" alt="${name}" class="character-avatar">
-            <div class="character-info">
-              <div class="character-name">${name}</div>
-              <div class="character-age">${age}</div>
-            </div>
-          </div>
-          <div class="character-description">${intro}</div>
-          <div class="character-tags">
-            ${tags.map(tag => `<span class="character-tag">${tag}</span>`).join('')}
-          </div>
-          <div class="character-actions">
-            <a href="./profile/${character.id}.html" class="btn btn-secondary">プロフィール</a>
-            <a href="./chat.html?char=${character.id}&name=あなた" class="btn btn-primary">チャット開始</a>
-          </div>
-        </div>
-      `;
-    }
-
-    // キャラクター一覧を表示
-    function displayCharacters(charactersToShow) {
-      const grid = document.getElementById('charactersGrid');
-      const noResults = document.getElementById('noResults');
-      
-      if (charactersToShow.length === 0) {
-        grid.style.display = 'none';
-        noResults.style.display = 'block';
-      } else {
-        grid.style.display = 'grid';
-        noResults.style.display = 'none';
-        grid.innerHTML = charactersToShow.map(createCharacterCard).join('');
-      }
-    }
-
-    // 検索機能
-    function filterCharacters(searchTerm) {
-      const filtered = characters.filter(character => 
-        character.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        (character.intro && character.intro.toLowerCase().includes(searchTerm.toLowerCase())) ||
-        (character.type && character.type.toLowerCase().includes(searchTerm.toLowerCase())) ||
-        (character.gender && character.gender.toLowerCase().includes(searchTerm.toLowerCase())) ||
-        (character.age_group && character.age_group.toLowerCase().includes(searchTerm.toLowerCase()))
-      );
-      displayCharacters(filtered);
-    }
-
-    // characters.jsonからデータを読み込む
     async function loadCharacters() {
       try {
-        const response = await fetch('./data/characters.json');
-        if (!response.ok) {
-          throw new Error('characters.json の読み込みに失敗しました');
-        }
-        
-        allCharacters = await response.json();
-        characters = allCharacters; // 初期値として設定
-        
-        // 診断結果を処理
-        processDiagnosticResults();
-        
-        // 検索機能を設定
-        const searchInput = document.getElementById('searchInput');
-        if (searchInput) {
-          searchInput.addEventListener('input', function() {
-            filterCharacters(this.value);
-          });
-        }
-        
-        // モバイルでのタッチ操作を改善
-        if ('ontouchstart' in window) {
-          const touchElements = document.querySelectorAll('.character-card, .nav a, .btn');
-          touchElements.forEach(element => {
-            element.style.transition = 'none';
-          });
-        }
-      } catch (error) {
-        console.error('キャラクターデータの読み込みエラー:', error);
-        // エラー時のフォールバック表示
-        document.getElementById('charactersGrid').innerHTML = 
-          '<div class="error-message">キャラクターデータの読み込みに失敗しました。ページを再読み込みしてください。</div>';
+        const res = await fetch("characters.json?v=" + Date.now());
+        const characters = await res.json();
+        const container = document.getElementById("characterGrid");
+
+        characters.forEach(char => {
+          const card = document.createElement("div");
+          card.className = "card";
+
+          const typeLabel = char.type === 'lover' ? '恋人タイプ' :
+                            char.type === 'friend' ? '親友タイプ' :
+                            char.type === 'advisor' ? '相談相手タイプ' : 'キャラクター';
+
+          card.innerHTML = `
+            <img src="${char.img}" alt="${char.name}">
+            <div class="card-content">
+              <h2>${char.name}</h2>
+              <p>${char.age_label}・${typeLabel}</p>
+              <a href="${char.profile}" target="_blank">▶ プロフィールを見る</a>
+            </div>
+          `;
+
+          container.appendChild(card);
+        });
+      } catch (err) {
+        console.error("キャラクター一覧の読み込みに失敗しました", err);
       }
     }
 
-    // 初期化
-    document.addEventListener('DOMContentLoaded', loadCharacters);
+    window.onload = loadCharacters;
   </script>
 </body>
 </html>
