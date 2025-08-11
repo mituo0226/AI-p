@@ -158,14 +158,11 @@
         // 画像/動画がない項目は除外（保険）
         chars = chars.filter(c => c.img && c.name);
 
-        // 女性キャラクターのみをフィルタリング
-        const femaleChars = chars.filter(c => c.gender === 'female');
+        // 全キャラクター（男女含む）をランダムに並べ替え
+        const shuffledChars = shuffle([...chars]);
         
-        // ランダムに並べ替え
-        const shuffledFemales = shuffle([...femaleChars]);
-        
-        // 最初の3人を選択（または全員）
-        const displayChars = shuffledFemales.slice(0, Math.min(3, shuffledFemales.length));
+        // 最初の4人を選択（または全員）
+        const displayChars = shuffledChars.slice(0, Math.min(4, shuffledChars.length));
         
         // 下段カード用の残りのキャラクター
         const rest = shuffle([...chars]).slice(0, 4);
