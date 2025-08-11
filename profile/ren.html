@@ -8,7 +8,7 @@
     body {
       margin: 0;
       font-family: "Hiragino Kaku Gothic ProN", sans-serif;
-      background: #f0f8ff;
+      background: linear-gradient(135deg, #f5f5f5 0%, #e0e0e0 100%);
       color: #333;
     }
     .profile-container {
@@ -18,8 +18,8 @@
     }
     .card {
       background: #ffffff;
-      border-radius: 16px;
-      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+      border-radius: 20px;
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
       overflow: hidden;
       display: flex;
       flex-direction: column;
@@ -29,75 +29,115 @@
       height: auto;
       display: block;
       object-fit: cover;
-      border-bottom: 4px solid #a3c9f5;
+      border-bottom: 4px solid #757575;
     }
     .hero-caption {
-      padding: 20px;
-      background: #e7f0fb;
-      font-size: 22px;
+      padding: 25px;
+      background: linear-gradient(135deg, #757575 0%, #424242 100%);
+      color: white;
+      font-size: 24px;
       font-weight: bold;
-      color: #3b6ea5;
       text-align: center;
-      border-bottom: 2px solid #a3c9f5;
+      text-shadow: 0 2px 4px rgba(0,0,0,0.3);
     }
     .info {
-      padding: 20px 24px;
+      padding: 30px;
     }
     .section {
-      margin-bottom: 30px;
+      margin-bottom: 35px;
     }
     .section h2 {
-      font-size: 20px;
-      color: #3b6ea5;
-      border-left: 6px solid #a3c9f5;
-      padding-left: 12px;
-      margin-bottom: 12px;
+      font-size: 22px;
+      color: #424242;
+      border-left: 6px solid #757575;
+      padding-left: 15px;
+      margin-bottom: 15px;
+      font-weight: bold;
     }
     .section ul {
       padding-left: 24px;
-      line-height: 1.8;
+      line-height: 1.9;
       list-style: none;
+    }
+    .section ul li {
+      margin-bottom: 8px;
+      display: flex;
+      align-items: flex-start;
     }
     .section ul li::before {
       content: attr(data-icon);
       display: inline-block;
-      width: 1.6em;
-      margin-left: -1.6em;
-      margin-right: 0.5em;
+      width: 1.8em;
+      margin-right: 0.8em;
+      flex-shrink: 0;
     }
     .section p {
-      line-height: 1.8;
-      margin-bottom: 10px;
+      line-height: 1.9;
+      margin-bottom: 12px;
+      font-size: 16px;
     }
     .bubble {
       position: relative;
-      background: #f0f8ff;
-      border: 2px solid #a3c9f5;
-      border-radius: 12px;
-      padding: 16px;
-      margin: 16px 0;
+      background: linear-gradient(135deg, #757575 0%, #424242 100%);
+      color: white;
+      border-radius: 15px;
+      padding: 20px;
+      margin: 20px 0;
       font-style: italic;
-      color: #444;
+      font-size: 18px;
+      font-weight: 500;
+      box-shadow: 0 8px 16px rgba(117, 117, 117, 0.3);
     }
     .bubble::before {
       content: "";
       position: absolute;
-      bottom: -20px;
-      left: 30px;
-      border: 10px solid transparent;
-      border-top-color: #a3c9f5;
+      bottom: -15px;
+      left: 35px;
+      border: 15px solid transparent;
+      border-top-color: #424242;
     }
-    .bubble::after {
-      content: "";
-      position: absolute;
-      bottom: -18px;
-      left: 30px;
-      border: 9px solid transparent;
-      border-top-color: #f0f8ff;
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 15px;
+      margin-top: 15px;
+    }
+    .skill-item {
+      background: #fafafa;
+      border: 2px solid #e0e0e0;
+      border-radius: 12px;
+      padding: 15px;
+      text-align: center;
+      transition: all 0.3s ease;
+    }
+    .skill-item:hover {
+      background: #757575;
+      color: white;
+      transform: translateY(-3px);
+      box-shadow: 0 8px 20px rgba(117, 117, 117, 0.3);
+    }
+    .values-box {
+      background: linear-gradient(135deg, #757575 0%, #424242 100%);
+      color: white;
+      border-radius: 15px;
+      padding: 25px;
+      margin: 20px 0;
+      line-height: 1.8;
+      font-size: 16px;
+    }
+    .values-box strong {
+      display: block;
+      font-size: 18px;
+      margin-bottom: 10px;
+      color: #fff3cd;
     }
     .video {
       text-align: center;
-      margin-top: 30px;
+      margin-top: 40px;
+    }
+    .video h2 {
+      color: #424242;
+      margin-bottom: 20px;
     }
     .video-wrapper {
       position: relative;
@@ -105,17 +145,18 @@
       max-width: 720px;
       width: 100%;
       margin: auto;
+      border-radius: 15px;
+      overflow: hidden;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.15);
     }
     .video-wrapper video {
       width: 100%;
-      border-radius: 10px;
       background: black;
     }
     .video-mask {
       position: absolute;
       top: 0; left: 0; right: 0; bottom: 0;
-      background: black;
-      border-radius: 10px;
+      background: rgba(0,0,0,0.8);
       display: none;
       opacity: 0;
       transition: opacity 0.8s ease;
@@ -129,46 +170,65 @@
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
-      background: rgba(255, 255, 255, 0.95);
-      padding: 14px 28px;
-      border-radius: 30px;
+      background: linear-gradient(135deg, #757575 0%, #424242 100%);
+      color: white;
+      padding: 16px 32px;
+      border-radius: 50px;
       font-size: 18px;
       font-weight: bold;
-      color: #3b6ea5;
       cursor: pointer;
-      box-shadow: 0 0 12px rgba(0,0,0,0.2);
+      box-shadow: 0 8px 20px rgba(117, 117, 117, 0.4);
       display: none;
       z-index: 2;
+      transition: transform 0.3s ease;
+    }
+    .video-overlay:hover {
+      transform: translate(-50%, -50%) scale(1.05);
     }
     .select-button {
       display: block;
       text-align: center;
-      margin: 40px auto;
-      padding: 14px 32px;
-      background-color: #3b6ea5;
+      margin: 50px auto 30px;
+      padding: 18px 40px;
+      background: linear-gradient(135deg, #757575 0%, #424242 100%);
       color: white;
       font-weight: bold;
-      border-radius: 40px;
+      font-size: 18px;
+      border-radius: 50px;
       text-decoration: none;
       width: fit-content;
+      box-shadow: 0 8px 20px rgba(117, 117, 117, 0.3);
+      transition: all 0.3s ease;
+    }
+    .select-button:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 12px 30px rgba(117, 117, 117, 0.4);
     }
     .back-link {
       display: block;
       text-align: center;
-      margin: 20px auto;
-      padding: 10px 20px;
-      background-color: #f0f8ff;
-      color: #3b6ea5;
+      margin: 15px auto;
+      padding: 12px 24px;
+      background-color: #fafafa;
+      color: #424242;
       font-weight: bold;
-      border: 2px solid #a3c9f5;
-      border-radius: 25px;
+      border: 2px solid #757575;
+      border-radius: 30px;
       text-decoration: none;
       width: fit-content;
       transition: all 0.3s ease;
     }
     .back-link:hover {
-      background-color: #e7f0fb;
+      background: linear-gradient(135deg, #757575 0%, #424242 100%);
+      color: white;
       transform: translateY(-2px);
+    }
+    .personality-section {
+      background: #fafafa;
+      border-radius: 15px;
+      padding: 20px;
+      margin: 20px 0;
+      border-left: 6px solid #757575;
     }
   </style>
 </head>
@@ -176,48 +236,74 @@
   <div class="profile-container">
     <div class="card">
       <div class="hero">
-        <img src="../ga/image/character/ren.png" alt="朝倉蓮">
+        <img src="../ga/image/character/ren.png" alt="神崎蓮">
       </div>
-      <div class="hero-caption">神崎 蓮（18歳）｜元刑事の道案内人</div>
+      <div class="hero-caption">神崎 蓮（55歳）｜元刑事・人生相談の道案内人</div>
       <div class="info">
         <div class="section">
           <h2>プロフィール</h2>
           <ul>
-            <li data-icon="🎭">職業：元刑事／人生相談の“道案内人”</li>
-            <li data-icon="🔥">性格：寡黙で頼れる、背中で語るタイプ</li>
-            <li data-icon="🌱">背景：人の闇を見てきた経験から、今は人の心を明るく照らす役割に転向</li>
-            <li data-icon="👀">魅力：言葉少なでも深みのある、静かに心を支える存在</li>
+            <li data-icon="👮">職業：元刑事・人生相談の道案内人</li>
+            <li data-icon="📊">年齢：55歳</li>
+            <li data-icon="🤔">性格：渋く低めの声、男性らしい寡黙な口調</li>
+            <li data-icon="💪">特徴：人の弱さを知っている支える存在</li>
+            <li data-icon="🤝">魅力：必要最小限の言葉で安心を与える</li>
           </ul>
         </div>
+
+        <div class="section personality-section">
+          <h2>性格・人となり</h2>
+          <p>元刑事として多くの事件や人々の苦悩を見てきた経験を持つ。現在は人生相談の道案内人として、人の心を静かに支える存在となっている。渋く低めの声を想像させる、男性らしい寡黙な口調で話す。人の弱さを深く理解しており、必要最小限の言葉で安心を与えることを大切にしている。</p>
+        </div>
+
         <div class="section">
           <h2>蓮のひとこと</h2>
           <div class="bubble">……しんどい時は、俺に話せばいい。誰だって、弱くなる日がある</div>
         </div>
+
         <div class="section">
-          <h2>日常と好きなこと</h2>
+          <h2>刑事から相談相手へ</h2>
+          <p>長年刑事として働いてきた経験を通じて、人の心の奥にある苦悩や弱さを深く理解するようになった。事件の背景には必ず人の弱さや悩みがあり、それを解決するためには表面的な取り調べだけでなく、心に寄り添うことが必要だと学んだ。</p>
+          <p>現在は人生相談の道案内人として、刑事時代に培った観察力と洞察力を活かし、悩みを抱える人々の心に寄り添うことを大切にしている。「話していい」と促し、相手が安心して本音を話せる環境を作ることを心がけている。</p>
+        </div>
+
+        <div class="section">
+          <h2>話し方・コミュニケーション</h2>
+          <div class="skills-grid">
+            <div class="skill-item">
+              <strong>🤔 寡黙な口調</strong><br>
+              渋く低めの声で男性らしい話し方
+            </div>
+            <div class="skill-item">
+              <strong>💪 支える姿勢</strong><br>
+              人の弱さを理解して寄り添う
+            </div>
+            <div class="skill-item">
+              <strong>🤝 安心を与える</strong><br>
+              必要最小限の言葉で安心感を提供
+            </div>
+          </div>
+        </div>
+
+        <div class="section">
+          <h2>日常と趣味</h2>
           <ul>
-            <li data-icon="📚">読書：舞台脚本と太宰治の「人間失格」を愛読</li>
-            <li data-icon="🎵">音楽：映画サントラやピアノソロで感情を整える</li>
-            <li data-icon="☕">休み時間：渡り廊下で一人台本を読むのが日課</li>
-            <li data-icon="📝">ノート：台本に感情メモを書き込む癖がある</li>
-            <li data-icon="💬">口癖：「…言葉って、むずかしいけど、伝えようとするのが大事だと思う」</li>
+            <li data-icon="📚">読書：推理小説や心理学の本</li>
+            <li data-icon="☕">喫茶店：静かな時間での思索</li>
+            <li data-icon="🎣">釣り：一人で静かに過ごす時間</li>
+            <li data-icon="📰">新聞：世の中の動きをチェック</li>
+            <li data-icon="🚶">散歩：夜の街を歩くのが好き</li>
           </ul>
         </div>
+
         <div class="section">
-          <h2>性格とふるまい</h2>
-          <p>
-            舞台の上では堂々としているけれど、普段は少し照れ屋でまじめ。<br>
-            相手のちょっとした言葉にも気づいて、返しに悩むこともある。<br>
-            自分に自信はないが、人に向き合う時は本気。舞台の裏では緊張で指先をギュッと握っていることも。
-          </p>
+          <h2>大切にしていること</h2>
+          <div class="values-box">
+            <strong>💪 弱さを受け入れること</strong>
+            誰にでも弱くなる日があることを理解しています。無理に強がる必要はなく、弱さを認めることも大切なことだと考えています。相手が安心して本音を話せる環境を作り、必要最小限の言葉で支えることを心がけています。
+          </div>
         </div>
-        <div class="section">
-          <h2>将来について</h2>
-          <p>
-            「舞台の上だけじゃなくて、誰かの“心の奥”に届くような表現をしたい。<br>
-            台詞じゃなく、自分の言葉で誰かを励ませるようになれたら嬉しいな」<br>
-          </p>
-        </div>
+
         <div class="video">
           <h2>蓮の紹介動画</h2>
           <div class="video-wrapper">
@@ -228,12 +314,14 @@
             <div id="renOverlay" class="video-overlay" onclick="replayRen()">▶ もう一度見る</div>
           </div>
         </div>
+
         <a href="../chat.html?char=ren&name=あなた" class="select-button">蓮とチャットを始める</a>
         <a href="../prof.html" class="back-link">AIキャラクター一覧</a>
         <a href="../index.html" class="back-link">← TOPページに戻る</a>
       </div>
     </div>
   </div>
+
   <script>
     const video = document.getElementById('renVideo');
     const overlay = document.getElementById('renOverlay');
