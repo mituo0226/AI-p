@@ -22,9 +22,10 @@
     }
 
     .container {
-      max-width: 1200px;
+      max-width: 100%;
       margin: 0 auto;
       padding: 15px;
+      overflow-x: hidden;
     }
 
     /* Header */
@@ -97,9 +98,10 @@
       background: rgba(255, 255, 255, 0.95);
       backdrop-filter: blur(10px);
       border-radius: 15px;
-      padding: 25px 20px;
+      padding: 25px 15px;
       margin-bottom: 20px;
       box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+      overflow-x: hidden;
     }
 
     .hero-section {
@@ -148,7 +150,7 @@
 
     .summary-items {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
       gap: 15px;
     }
 
@@ -182,11 +184,13 @@
     .character-card {
       background: white;
       border-radius: 15px;
-      padding: 20px;
+      padding: 20px 15px;
       box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
       transition: all 0.3s ease;
       position: relative;
       overflow: hidden;
+      word-wrap: break-word;
+      overflow-wrap: break-word;
     }
 
     .character-card::before {
@@ -406,9 +410,13 @@
       }
     }
 
-    @media (max-width: 375px) {
+    @media (max-width: 480px) {
       .container {
         padding: 10px;
+      }
+
+      .main-content {
+        padding: 20px 10px;
       }
 
       .hero-section h1 {
@@ -417,6 +425,11 @@
 
       .hero-section p {
         font-size: 0.9rem;
+      }
+
+      .summary-items {
+        grid-template-columns: 1fr;
+        gap: 10px;
       }
 
       .character-header {
@@ -429,6 +442,10 @@
         height: 60px;
       }
 
+      .character-card {
+        padding: 15px 10px;
+      }
+
       .nav {
         gap: 5px;
       }
@@ -436,6 +453,28 @@
       .nav a {
         padding: 6px 12px;
         font-size: 13px;
+      }
+    }
+
+    @media (max-width: 375px) {
+      .container {
+        padding: 8px;
+      }
+
+      .main-content {
+        padding: 15px 8px;
+      }
+
+      .hero-section h1 {
+        font-size: 1.6rem;
+      }
+
+      .hero-section p {
+        font-size: 0.85rem;
+      }
+
+      .character-card {
+        padding: 12px 8px;
       }
     }
   </style>
