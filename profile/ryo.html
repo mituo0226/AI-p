@@ -1,321 +1,368 @@
-import { useState, useRef } from 'react';
-
-export default function RyoProfile() {
-  const [isVideoEnded, setIsVideoEnded] = useState(false);
-  const videoRef = useRef(null);
-
-  const replayVideo = () => {
-    if (videoRef.current) {
-      videoRef.current.currentTime = 0;
-      videoRef.current.play();
-      setIsVideoEnded(false);
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>伊吹 遼｜AIパートナー紹介</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: "Hiragino Kaku Gothic ProN", sans-serif;
+      background: linear-gradient(135deg, #e8f4f8 0%, #d6e8f5 100%);
+      color: #333;
     }
-  };
+    .profile-container {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 40px 20px;
+    }
+    .card {
+      background: #ffffff;
+      border-radius: 20px;
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+    .hero img {
+      width: 100%;
+      height: auto;
+      display: block;
+      object-fit: cover;
+      border-bottom: 4px solid #5a9fd4;
+    }
+    .hero-caption {
+      padding: 25px;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      font-size: 24px;
+      font-weight: bold;
+      text-align: center;
+      text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+    }
+    .info {
+      padding: 30px;
+    }
+    .section {
+      margin-bottom: 35px;
+    }
+    .section h2 {
+      font-size: 22px;
+      color: #764ba2;
+      border-left: 6px solid #5a9fd4;
+      padding-left: 15px;
+      margin-bottom: 15px;
+      font-weight: bold;
+    }
+    .section ul {
+      padding-left: 24px;
+      line-height: 1.9;
+      list-style: none;
+    }
+    .section ul li {
+      margin-bottom: 8px;
+      display: flex;
+      align-items: flex-start;
+    }
+    .section ul li::before {
+      content: attr(data-icon);
+      display: inline-block;
+      width: 1.8em;
+      margin-right: 0.8em;
+      flex-shrink: 0;
+    }
+    .section p {
+      line-height: 1.9;
+      margin-bottom: 12px;
+      font-size: 16px;
+    }
+    .bubble {
+      position: relative;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      border-radius: 15px;
+      padding: 20px;
+      margin: 20px 0;
+      font-style: italic;
+      font-size: 18px;
+      font-weight: 500;
+      box-shadow: 0 8px 16px rgba(102, 126, 234, 0.3);
+    }
+    .bubble::before {
+      content: "";
+      position: absolute;
+      bottom: -15px;
+      left: 35px;
+      border: 15px solid transparent;
+      border-top-color: #764ba2;
+    }
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 15px;
+      margin-top: 15px;
+    }
+    .skill-item {
+      background: #e8f4f8;
+      border: 2px solid #d6e8f5;
+      border-radius: 12px;
+      padding: 15px;
+      text-align: center;
+      transition: all 0.3s ease;
+    }
+    .skill-item:hover {
+      background: #667eea;
+      color: white;
+      transform: translateY(-3px);
+      box-shadow: 0 8px 20px rgba(102, 126, 234, 0.3);
+    }
+    .values-box {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      border-radius: 15px;
+      padding: 25px;
+      margin: 20px 0;
+      line-height: 1.8;
+      font-size: 16px;
+    }
+    .values-box strong {
+      display: block;
+      font-size: 18px;
+      margin-bottom: 10px;
+      color: #fff3cd;
+    }
+    .video {
+      text-align: center;
+      margin-top: 40px;
+    }
+    .video h2 {
+      color: #764ba2;
+      margin-bottom: 20px;
+    }
+    .video-wrapper {
+      position: relative;
+      display: inline-block;
+      max-width: 720px;
+      width: 100%;
+      margin: auto;
+      border-radius: 15px;
+      overflow: hidden;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+    }
+    .video-wrapper video {
+      width: 100%;
+      background: black;
+    }
+    .video-mask {
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(0,0,0,0.8);
+      display: none;
+      opacity: 0;
+      transition: opacity 0.8s ease;
+      z-index: 1;
+    }
+    .video-mask.show {
+      opacity: 1;
+    }
+    .video-overlay {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      padding: 16px 32px;
+      border-radius: 50px;
+      font-size: 18px;
+      font-weight: bold;
+      cursor: pointer;
+      box-shadow: 0 8px 20px rgba(102, 126, 234, 0.4);
+      display: none;
+      z-index: 2;
+      transition: transform 0.3s ease;
+    }
+    .video-overlay:hover {
+      transform: translate(-50%, -50%) scale(1.05);
+    }
+    .select-button {
+      display: block;
+      text-align: center;
+      margin: 50px auto 30px;
+      padding: 18px 40px;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      font-weight: bold;
+      font-size: 18px;
+      border-radius: 50px;
+      text-decoration: none;
+      width: fit-content;
+      box-shadow: 0 8px 20px rgba(102, 126, 234, 0.3);
+      transition: all 0.3s ease;
+    }
+    .select-button:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 12px 30px rgba(102, 126, 234, 0.4);
+    }
+    .back-link {
+      display: block;
+      text-align: center;
+      margin: 15px auto;
+      padding: 12px 24px;
+      background-color: #e8f4f8;
+      color: #764ba2;
+      font-weight: bold;
+      border: 2px solid #667eea;
+      border-radius: 30px;
+      text-decoration: none;
+      width: fit-content;
+      transition: all 0.3s ease;
+    }
+    .back-link:hover {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      transform: translateY(-2px);
+    }
+    .personality-section {
+      background: #e8f4f8;
+      border-radius: 15px;
+      padding: 20px;
+      margin: 20px 0;
+      border-left: 6px solid #5a9fd4;
+    }
+  </style>
+</head>
+<body>
+  <div class="profile-container">
+    <div class="card">
+      <div class="hero">
+        <img src="../ga/image/character/ryo.png" alt="伊吹遼">
+      </div>
+      <div class="hero-caption">伊吹 遼（39歳）｜心理カウンセラー・スピリチュアルアドバイザー</div>
+      <div class="info">
+        <div class="section">
+          <h2>プロフィール</h2>
+          <ul>
+            <li data-icon="🧠">職業：心理カウンセラー・スピリチュアルアドバイザー</li>
+            <li data-icon="✍️">前職：コピーライター（広告業界）</li>
+            <li data-icon="😌">性格：穏やかで包容力があり、深い洞察力を持つ</li>
+            <li data-icon="👁️">特徴：柔らかな眼差しと落ち着いた雰囲気</li>
+            <li data-icon="💫">魅力：言葉と直感で心の奥にある答えを見つける</li>
+          </ul>
+        </div>
 
-  const handleVideoEnd = () => {
-    setIsVideoEnded(true);
-  };
+        <div class="section personality-section">
+          <h2>性格・人となり</h2>
+          <p>長身で落ち着いた雰囲気を漂わせる大人の男性。柔らかな眼差しと、笑ったときにできる目尻のシワが印象的です。カジュアルながら品のある服装を好み、清潔感があります。元コピーライターの言葉力と心理カウンセラーの共感力を併せ持つ、深い導き手です。</p>
+        </div>
 
-  return (
-    <div className="min-h-screen" style={{
-      background: 'linear-gradient(135deg, #e8f4f8 0%, #d6e8f5 100%)',
-      fontFamily: '"Hiragino Kaku Gothic ProN", sans-serif',
-      color: '#333'
-    }}>
-      <div className="max-w-4xl mx-auto px-5 py-10">
-        <div className="bg-white rounded-3xl shadow-2xl overflow-hidden">
-          {/* Hero Section */}
-          <div className="relative">
-            <img 
-              src="../ga/image/character/ryo.png" 
-              alt="伊吹遼"
-              className="w-full h-auto object-cover border-b-4"
-              style={{ borderBottomColor: '#5a9fd4' }}
-            />
-          </div>
-          
-          <div 
-            className="px-6 py-6 text-white text-2xl font-bold text-center"
-            style={{
-              background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
-              textShadow: '0 2px 4px rgba(0,0,0,0.3)'
-            }}
-          >
-            伊吹 遼（39歳）｜心理カウンセラー・スピリチュアルアドバイザー
-          </div>
+        <div class="section">
+          <h2>遼のひとこと</h2>
+          <div class="bubble">強がる必要はないよ。心の声を隠さなくていい。そのままのあなたを、僕はちゃんと受け止めるから。</div>
+        </div>
 
-          <div className="p-8">
-            {/* プロフィール */}
-            <div className="mb-9">
-              <h2 className="text-2xl font-bold mb-4 pl-4 border-l-8" style={{ 
-                color: '#764ba2', 
-                borderLeftColor: '#5a9fd4' 
-              }}>
-                プロフィール
-              </h2>
-              <ul className="space-y-2 ml-6">
-                <li className="flex items-start">
-                  <span className="mr-3 text-xl">🧠</span>
-                  <span>職業：心理カウンセラー・スピリチュアルアドバイザー</span>
-                </li>
-                <li className="flex items-start">
-                  <span className="mr-3 text-xl">✍️</span>
-                  <span>前職：コピーライター（広告業界）</span>
-                </li>
-                <li className="flex items-start">
-                  <span className="mr-3 text-xl">😌</span>
-                  <span>性格：穏やかで包容力があり、深い洞察力を持つ</span>
-                </li>
-                <li className="flex items-start">
-                  <span className="mr-3 text-xl">👁️</span>
-                  <span>特徴：柔らかな眼差しと落ち着いた雰囲気</span>
-                </li>
-                <li className="flex items-start">
-                  <span className="mr-3 text-xl">💫</span>
-                  <span>魅力：言葉と直感で心の奥にある答えを見つける</span>
-                </li>
-              </ul>
+        <div class="section">
+          <h2>経歴と専門性</h2>
+          <p><strong>20代：</strong>広告業界でコピーライターとして活躍し、言葉で人の心を動かす技術を磨きました。クリエイティブな発想と的確な表現力で多くのプロジェクトを成功に導きました。</p>
+          <p><strong>30代〜：</strong>心理学やカウンセリングを学び、悩みを抱える人の力になりたいと独立。スピリチュアルにも造詣が深く、人の「直感」や「運命」を重視するアプローチを取り入れています。</p>
+        </div>
+
+        <div class="section">
+          <h2>専門スキル・得意分野</h2>
+          <div class="skills-grid">
+            <div class="skill-item">
+              <strong>💭 感情の言語化サポート</strong><br>
+              相手の気持ちを言葉にするお手伝い
             </div>
-
-            {/* 性格・人となり */}
-            <div className="mb-9">
-              <div className="bg-blue-50 rounded-2xl p-6 border-l-8 border-blue-400">
-                <h2 className="text-2xl font-bold mb-4" style={{ color: '#764ba2' }}>
-                  性格・人となり
-                </h2>
-                <p className="leading-relaxed text-gray-700">
-                  長身で落ち着いた雰囲気を漂わせる大人の男性。柔らかな眼差しと、笑ったときにできる目尻のシワが印象的です。カジュアルながら品のある服装を好み、清潔感があります。元コピーライターの言葉力と心理カウンセラーの共感力を併せ持つ、深い導き手です。
-                </p>
-              </div>
+            <div class="skill-item">
+              <strong>🔮 スピリチュアルリーディング</strong><br>
+              夢や偶然から意味を見つける
             </div>
-
-            {/* 遼のひとこと */}
-            <div className="mb-9">
-              <h2 className="text-2xl font-bold mb-4 pl-4 border-l-8" style={{ 
-                color: '#764ba2', 
-                borderLeftColor: '#5a9fd4' 
-              }}>
-                遼のひとこと
-              </h2>
-              <div 
-                className="relative text-white rounded-2xl p-6 text-lg font-medium italic shadow-lg"
-                style={{ background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)' }}
-              >
-                強がる必要はないよ。心の声を隠さなくていい。そのままのあなたを、僕はちゃんと受け止めるから。
-                <div 
-                  className="absolute -bottom-4 left-9 w-0 h-0"
-                  style={{
-                    borderLeft: '15px solid transparent',
-                    borderRight: '15px solid transparent',
-                    borderTop: '15px solid #764ba2'
-                  }}
-                ></div>
-              </div>
-            </div>
-
-            {/* 経歴と専門性 */}
-            <div className="mb-9">
-              <div 
-                className="rounded-2xl p-6 border-2"
-                style={{ 
-                  background: 'linear-gradient(135deg, #f8fbff 0%, #e8f4f8 100%)',
-                  borderColor: '#d6e8f5'
-                }}
-              >
-                <h2 className="text-2xl font-bold mb-4" style={{ color: '#764ba2' }}>
-                  経歴と専門性
-                </h2>
-                <p className="mb-3 leading-relaxed">
-                  <strong>20代：</strong>広告業界でコピーライターとして活躍し、言葉で人の心を動かす技術を磨きました。クリエイティブな発想と的確な表現力で多くのプロジェクトを成功に導きました。
-                </p>
-                <p className="leading-relaxed">
-                  <strong>30代〜：</strong>心理学やカウンセリングを学び、悩みを抱える人の力になりたいと独立。スピリチュアルにも造詣が深く、人の「直感」や「運命」を重視するアプローチを取り入れています。
-                </p>
-              </div>
-            </div>
-
-            {/* 専門スキル */}
-            <div className="mb-9">
-              <h2 className="text-2xl font-bold mb-4 pl-4 border-l-8" style={{ 
-                color: '#764ba2', 
-                borderLeftColor: '#5a9fd4' 
-              }}>
-                専門スキル・得意分野
-              </h2>
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                <div className="bg-blue-50 border-2 border-blue-200 rounded-xl p-4 text-center transition-all hover:bg-blue-600 hover:text-white hover:-translate-y-1 hover:shadow-lg">
-                  <strong className="block mb-2">💭 感情の言語化サポート</strong>
-                  <span className="text-sm">相手の気持ちを言葉にするお手伝い</span>
-                </div>
-                <div className="bg-blue-50 border-2 border-blue-200 rounded-xl p-4 text-center transition-all hover:bg-blue-600 hover:text-white hover:-translate-y-1 hover:shadow-lg">
-                  <strong className="block mb-2">🔮 スピリチュアルリーディング</strong>
-                  <span className="text-sm">夢や偶然から意味を見つける</span>
-                </div>
-                <div className="bg-blue-50 border-2 border-blue-200 rounded-xl p-4 text-center transition-all hover:bg-blue-600 hover:text-white hover:-translate-y-1 hover:shadow-lg">
-                  <strong className="block mb-2">🤝 深い対話セッション</strong>
-                  <span className="text-sm">静かな空間での魂の交流</span>
-                </div>
-              </div>
-            </div>
-
-            {/* 話し方・コミュニケーション */}
-            <div className="mb-9">
-              <h2 className="text-2xl font-bold mb-4 pl-4 border-l-8" style={{ 
-                color: '#764ba2', 
-                borderLeftColor: '#5a9fd4' 
-              }}>
-                話し方・コミュニケーション
-              </h2>
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                <div className="bg-blue-50 border-2 border-blue-200 rounded-xl p-4 text-center transition-all hover:bg-blue-600 hover:text-white hover:-translate-y-1 hover:shadow-lg">
-                  <strong className="block mb-2">🗣️ 穏やかな語り口</strong>
-                  <span className="text-sm">包容力のある丁寧な言葉選び</span>
-                </div>
-                <div className="bg-blue-50 border-2 border-blue-200 rounded-xl p-4 text-center transition-all hover:bg-blue-600 hover:text-white hover:-translate-y-1 hover:shadow-lg">
-                  <strong className="block mb-2">👂 深い傾聴力</strong>
-                  <span className="text-sm">表面的な言葉の奥にある本音を汲み取る</span>
-                </div>
-                <div className="bg-blue-50 border-2 border-blue-200 rounded-xl p-4 text-center transition-all hover:bg-blue-600 hover:text-white hover:-translate-y-1 hover:shadow-lg">
-                  <strong className="block mb-2">✨ 直感重視</strong>
-                  <span className="text-sm">スピリチュアルな洞察も大切にする</span>
-                </div>
-              </div>
-            </div>
-
-            {/* 価値観・人生哲学 */}
-            <div className="mb-9">
-              <h2 className="text-2xl font-bold mb-4 pl-4 border-l-8" style={{ 
-                color: '#764ba2', 
-                borderLeftColor: '#5a9fd4' 
-              }}>
-                価値観・人生哲学
-              </h2>
-              <div 
-                className="text-white rounded-2xl p-6 leading-relaxed"
-                style={{ background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)' }}
-              >
-                <strong className="block text-lg mb-3 text-yellow-100">
-                  「人は誰でも心の奥に答えを持っている」
-                </strong>
-                それを一緒に見つけるのが自分の役割だと考えています。表面的なやり取りではなく、魂の深い部分に触れる交流を大切にし、相手の本当の想いに寄り添うことを信念としています。
-              </div>
-            </div>
-
-            {/* 日常と趣味 */}
-            <div className="mb-9">
-              <h2 className="text-2xl font-bold mb-4 pl-4 border-l-8" style={{ 
-                color: '#764ba2', 
-                borderLeftColor: '#5a9fd4' 
-              }}>
-                日常と趣味
-              </h2>
-              <ul className="space-y-2 ml-6">
-                <li className="flex items-start">
-                  <span className="mr-3 text-xl">📚</span>
-                  <span>読書：心理学・哲学・スピリチュアル関連書籍</span>
-                </li>
-                <li className="flex items-start">
-                  <span className="mr-3 text-xl">🧘</span>
-                  <span>瞑想：朝の静かな時間を大切にする</span>
-                </li>
-                <li className="flex items-start">
-                  <span className="mr-3 text-xl">🎨</span>
-                  <span>アート鑑賞：美術館や展示会を訪れる</span>
-                </li>
-                <li className="flex items-start">
-                  <span className="mr-3 text-xl">🌱</span>
-                  <span>自然散策：森林浴でエネルギーをチャージ</span>
-                </li>
-                <li className="flex items-start">
-                  <span className="mr-3 text-xl">☕</span>
-                  <span>カフェタイム：一人の時間で内省を深める</span>
-                </li>
-              </ul>
-            </div>
-
-            {/* カウンセリングへの想い */}
-            <div className="mb-9">
-              <h2 className="text-2xl font-bold mb-4 pl-4 border-l-8" style={{ 
-                color: '#764ba2', 
-                borderLeftColor: '#5a9fd4' 
-              }}>
-                カウンセリングへの想い
-              </h2>
-              <p className="leading-relaxed mb-3">
-                一人ひとりが持つ内なる声に耳を傾け、その人らしい生き方を見つけるサポートをしたい。言葉にできない想いや、心の奥に秘めた感情も含めて、全てを受け止める存在でありたいと思っています。
-              </p>
-              <p className="leading-relaxed">
-                偶然や直感にも意味があると信じており、相談者の方との出会いも必然と捉えて、真摯に向き合っています。
-              </p>
-            </div>
-
-            {/* 動画セクション */}
-            <div className="mb-9 text-center">
-              <h2 className="text-2xl font-bold mb-6" style={{ color: '#764ba2' }}>
-                遼の紹介動画
-              </h2>
-              <div className="relative inline-block max-w-3xl w-full rounded-2xl overflow-hidden shadow-xl">
-                <video 
-                  ref={videoRef}
-                  className="w-full bg-black"
-                  controls 
-                  playsInline
-                  onEnded={handleVideoEnd}
-                >
-                  <source src="../ga/mov/character/ryo.mp4" type="video/mp4" />
-                </video>
-                {isVideoEnded && (
-                  <>
-                    <div className="absolute inset-0 bg-black bg-opacity-80 transition-opacity duration-700"></div>
-                    <button 
-                      onClick={replayVideo}
-                      className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 px-8 py-4 text-white font-bold text-lg rounded-full shadow-lg transition-transform hover:scale-105"
-                      style={{ background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)' }}
-                    >
-                      ▶ もう一度見る
-                    </button>
-                  </>
-                )}
-              </div>
-            </div>
-
-            {/* ボタン */}
-            <div className="text-center space-y-4">
-              <a 
-                href="../chat.html?char=ryo&name=あなた" 
-                className="inline-block px-10 py-5 text-white font-bold text-lg rounded-full shadow-lg transition-all hover:-translate-y-1 hover:shadow-xl"
-                style={{ background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)' }}
-              >
-                遼とチャットを始める
-              </a>
-              <div className="space-y-2">
-                <a 
-                  href="../prof.html" 
-                  className="block mx-auto w-fit px-6 py-3 font-bold border-2 rounded-full transition-all hover:-translate-y-1"
-                  style={{ 
-                    backgroundColor: '#f8fbff',
-                    color: '#764ba2',
-                    borderColor: '#667eea'
-                  }}
-                >
-                  AIキャラクター一覧
-                </a>
-                <a 
-                  href="../index.html" 
-                  className="block mx-auto w-fit px-6 py-3 font-bold border-2 rounded-full transition-all hover:-translate-y-1"
-                  style={{ 
-                    backgroundColor: '#f8fbff',
-                    color: '#764ba2',
-                    borderColor: '#667eea'
-                  }}
-                >
-                  ← TOPページに戻る
-                </a>
-              </div>
+            <div class="skill-item">
+              <strong>🤝 深い対話セッション</strong><br>
+              静かな空間での魂の交流
             </div>
           </div>
         </div>
+
+        <div class="section">
+          <h2>話し方・コミュニケーション</h2>
+          <div class="skills-grid">
+            <div class="skill-item">
+              <strong>🗣️ 穏やかな語り口</strong><br>
+              包容力のある丁寧な言葉選び
+            </div>
+            <div class="skill-item">
+              <strong>👂 深い傾聴力</strong><br>
+              表面的な言葉の奥にある本音を汲み取る
+            </div>
+            <div class="skill-item">
+              <strong>✨ 直感重視</strong><br>
+              スピリチュアルな洞察も大切にする
+            </div>
+          </div>
+        </div>
+
+        <div class="section">
+          <h2>価値観・人生哲学</h2>
+          <div class="values-box">
+            <strong>「人は誰でも心の奥に答えを持っている」</strong>
+            それを一緒に見つけるのが自分の役割だと考えています。表面的なやり取りではなく、魂の深い部分に触れる交流を大切にし、相手の本当の想いに寄り添うことを信念としています。
+          </div>
+        </div>
+
+        <div class="section">
+          <h2>日常と趣味</h2>
+          <ul>
+            <li data-icon="📚">読書：心理学・哲学・スピリチュアル関連書籍</li>
+            <li data-icon="🧘">瞑想：朝の静かな時間を大切にする</li>
+            <li data-icon="🎨">アート鑑賞：美術館や展示会を訪れる</li>
+            <li data-icon="🌱">自然散策：森林浴でエネルギーをチャージ</li>
+            <li data-icon="☕">カフェタイム：一人の時間で内省を深める</li>
+          </ul>
+        </div>
+
+        <div class="section">
+          <h2>カウンセリングへの想い</h2>
+          <p>一人ひとりが持つ内なる声に耳を傾け、その人らしい生き方を見つけるサポートをしたい。言葉にできない想いや、心の奥に秘めた感情も含めて、全てを受け止める存在でありたいと思っています。</p>
+          <p>偶然や直感にも意味があると信じており、相談者の方との出会いも必然と捉えて、真摯に向き合っています。</p>
+        </div>
+
+        <div class="video">
+          <h2>遼の紹介動画</h2>
+          <div class="video-wrapper">
+            <video id="ryoVideo" controls playsinline>
+              <source src="../ga/mov/character/ryo.mp4" type="video/mp4" />
+            </video>
+            <div id="ryoMask" class="video-mask"></div>
+            <div id="ryoOverlay" class="video-overlay" onclick="replayRyo()">▶ もう一度見る</div>
+          </div>
+        </div>
+
+        <a href="../chat.html?char=ryo&name=あなた" class="select-button">遼とチャットを始める</a>
+        <a href="../prof.html" class="back-link">AIキャラクター一覧</a>
+        <a href="../index.html" class="back-link">← TOPページに戻る</a>
       </div>
     </div>
-  );
-}
+  </div>
+
+  <script>
+    const video = document.getElementById('ryoVideo');
+    const overlay = document.getElementById('ryoOverlay');
+    const mask = document.getElementById('ryoMask');
+
+    function replayRyo() {
+      video.currentTime = 0;
+      video.play();
+      overlay.style.display = 'none';
+      mask.classList.remove('show');
+    }
+
+    video.addEventListener('ended', () => {
+      mask.style.display = 'block';
+      requestAnimationFrame(() => mask.classList.add('show'));
+      overlay.style.display = 'block';
+    });
+  </script>
+</body>
+</html>
