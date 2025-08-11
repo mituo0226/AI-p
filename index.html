@@ -16,7 +16,7 @@
     /* フェードイン・フェードアウト */
     .hero-container {
       opacity: 1;
-      transition: opacity 0.8s ease-in-out;
+      transition: opacity 1.5s ease-in-out;
     }
     
     .hero-container.fade-out {
@@ -147,7 +147,7 @@
 
         // フェードイン
         heroContainer.classList.remove('fade-out');
-      }, 400); // フェードアウトの半分の時間で内容更新
+      }, 750); // フェードアウトの半分の時間で内容更新
     }
 
     async function init(){
@@ -181,7 +181,7 @@
           setInterval(() => {
             currentIndex = (currentIndex + 1) % displayChars.length;
             showCharacter(displayChars[currentIndex]);
-          }, 4000); // 4秒ごとに切り替え
+          }, 6000); // 6秒ごとに切り替え
         }
 
         // 下段カード：ランダム4人
